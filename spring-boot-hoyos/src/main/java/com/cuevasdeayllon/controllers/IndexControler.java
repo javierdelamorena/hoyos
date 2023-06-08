@@ -51,7 +51,7 @@ public class IndexControler {
 		model.addAttribute("email","Email");
 		model.addAttribute("Password","Password");
 		model.addAttribute("foto", "Foto");
-		model.addAttribute("direccion", "Direccion en Cuevas de Ayllón");
+		model.addAttribute("direccion", "Direccion en Hoyos");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("AltaUsuario", "Alta de Usuario");
 
@@ -80,13 +80,22 @@ public class IndexControler {
 		return "galeriafoto";
 
 	}
-	@GetMapping("/orfeo")
+	@GetMapping("/piscinasNaturales")
 	public String casas(Model model) {
+
+
+		logger.info("Entramos en metodo /piscinasNaturales");
+
+		return "piscinasNaturales";
+
+	}
+	@GetMapping("/estado")
+	public String estado(Model model) {
 
 
 		logger.info("Entramos en metodo /casasRurales");
 
-		return "campusOrfeo";
+		return "estadosPropuestas";
 
 	}
 	@GetMapping("/historiaPueblo")
@@ -114,6 +123,15 @@ public class IndexControler {
 		logger.info("Entramos en metodo /rutas");
 
 		return "rutas";
+
+	}
+	@GetMapping("/editarEstados")
+	public String editarEstados(Model model) {
+
+
+		logger.info("Entramos en metodo /editarEstados");
+
+		return "editarEstados";
 
 	}
 	@GetMapping("/enlacesDeInteres")

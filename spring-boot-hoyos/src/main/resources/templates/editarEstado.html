@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Hoyos todas propuestas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=500, user-scalable=no" />
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+
+</head>
+
+
+
+
+<body class="bodyAdministradores">
+    <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+
+
+
+    <div class="container" style="margin-top: 10%;">
+
+        <table class="table table-bordered" style="background-color: #b48823f0;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;">
+
+            <thead class="thead-dark">
+                <tr>
+
+                    <th scope="col">Fecha </th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Borrar</th>
+
+
+                </tr>
+            </thead>
+            <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
+                th:text="${usuarioBorrado}"></div> -->
+            <tr th:each="propuesta:${listaPropuestas}">
+
+
+                <td th:if="${propuesta.fecha}" th:text="${propuesta.fecha}"></td>
+
+                <td th:if="${propuesta.fecha == null}" th:text="'sin fecha'"></td>
+                <td th:if="${propuesta.titulo}" th:text="${propuesta.titulo}"></td>
+
+
+                <td th:if="${propuesta.usuario.nombre}" th:text="${propuesta.usuario.nombre}"></td>
+
+                <td><a href="#" data-bs-toggle="modal" class="btn btn-dark"
+                        th:attr="data-bs-target='#modal'+${propuesta.idPropuesta}">Editar Estado</a>
+                    <div class="modal fade" data-bs-backdrop="staticBackdropLabel"
+                        th:attr="id=modal+${propuesta.idPropuesta}" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body ">
+                                    <h5 class="modal-title">Editar Estado</h5></br>
+                                    <h5 class="alert alert-danger"
+                                        th:text="'Antes de editar el estado de la propuesta '+${propuesta.titulo}+', piensalo'">
+                                        bien
+                                    </h5>
+                                    <!-- <div class="btn-group " th:attr="id=modal+${propuesta.idPropuesta}"> -->
+                                    <input type="hidden" id="idPropuesta" name="idPropuesta"
+                                        th:value="${propuesta.idPropuesta}">
+                                    <div class="row" style="margin: 1%;">
+                                        <button style="margin: 1%;" type="button" onclick="votacion();" class="btn btn-success"
+                                            name="votacion">votacion</button>
+                                        <!-- <label class="btn btn-success" for="votacion1">Votacion</label> -->
+
+                                        <button style="margin: 1%;" type="button" onclick="pleno();" class="btn btn-primary">
+                                            pleno
+                                        </button>
+                                        <!-- <label class="btn btn-primary" for="pleno1" >Pleno</label> -->
+
+                                        <button style="margin: 1%;" type="button" onclick="encurso();"
+                                            class="btn btn-secondary">encurso</button>
+                                        <!-- <label class="btn btn-secondary" for="encurso1">En Curso</label> -->
+
+                                        <button style="margin: 1%;" type="button" onclick="realizada();"
+                                            class="btn btn-warning">realizada</button>
+                                        <!-- <label class="btn btn-warning" for="realizada1">Realizada</label> -->
+
+                                        <button style="margin: 1%;" type="button" onclick="desestimada();"
+                                            class="btn btn-danger">desestimada</button>
+                                            <div id="propuestaDesestimada"></div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+
+
+
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </td>
+
+
+                
+
+            </tr>
+            <div class=" col-sm-10">
+                <h5 id="input" style="background-color: blueviolet;"></h5>
+            </div>
+        </table>
+
+
+        <div class=" col-sm-2">
+
+            <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn "
+                style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
+        </div>
+
+    </div>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        var mensaje = "";
+        function votacion() {
+            console.log('Hemos pulsado votacion');
+            $.ajax({
+
+                type: 'post',
+                url: "editarEstadoVotacion",
+                data: { 'idPropuesta': $('#idPropuesta').val() },
+                beforeSend: function () {
+                    var mensaje = "";
+                    // $('#input').prepend(mensaje);
+                    $('#input').empty();
+                }
+
+            }).done(function (data) {
+                mensaje = data;
+                $('#input').append(mensaje);
+                alert(mensaje);
+            });
+        };
+        function pleno() {
+            console.log('Hemos pulsado pleno');
+            $.ajax({
+
+                type: 'post',
+                url: "editarEstadoPleno",
+                data: { 'idPropuesta': $('#idPropuesta').val() },
+                beforeSend: function () {
+                    var mensaje = "";
+                    // $('#input').prepend(mensaje);
+                    $('#input').empty();
+                }
+
+            }).done(function (data) {
+                mensaje = data;
+                $('#input').append(mensaje);
+                alert(mensaje);
+            });
+
+        };
+        function encurso() {
+            console.log('Hemos pulsado enCurso');
+            $.ajax({
+
+                type: 'post',
+                url: "editarEstadoEnCurso",
+                data: { 'idPropuesta': $('#idPropuesta').val() },
+                beforeSend: function () {
+                    var mensaje = "";
+                    // $('#input').prepend(mensaje);
+                    $('#input').empty();
+                }
+
+            }).done(function (data) {
+                mensaje = data;
+                $('#input').append(mensaje);
+                alert(mensaje);
+            });
+
+        };
+        function realizada() {
+            console.log('Hemos pulsado realizada');
+            $.ajax({
+
+                type: 'post',
+                url: "editarEstadoRealizada",
+                data: { 'idPropuesta': $('#idPropuesta').val() },
+                beforeSend: function () {
+                    var mensaje = "";
+                    // $('#input').prepend(mensaje);
+                    $('#input').empty();
+                }
+
+            }).done(function (data) {
+                mensaje = data;
+                $('#input').append(mensaje);
+                alert(mensaje);
+
+            });
+
+        };
+        function desestimada() {
+            console.log('Hemos pulsado desestimada');
+           
+                mensaje = "<input class='form-control' placeholder='explicación de desestimacion' type='text' id='textoDesestimada'>";
+                mensaje+="<button class='btn btn-dark' onclick='desestimadaEnviar();'>Enviar desestimada</button>"
+                $('#propuestaDesestimada').append(mensaje);
+                
+            
+
+        };
+        function desestimadaEnviar() {
+            console.log('Hemos pulsado desestimada enviar');
+            $.ajax({
+
+                type: 'post',
+                url: "editarEstadoDesestimada",
+                data: { 'idPropuesta': $('#idPropuesta').val(),'textoDesestimada':$('#textoDesestimada').val() },
+                beforeSend: function () {
+                    var mensaje = "";
+                    // $('#input').prepend(mensaje);
+                    $('#input').empty();
+                }
+
+            }).done(function (data) {
+                mensaje = data;
+                $('#input').append(mensaje);
+                alert(mensaje);
+            });
+
+        };
+
+
+
+
+    </script>
+</body>
+
+</html>

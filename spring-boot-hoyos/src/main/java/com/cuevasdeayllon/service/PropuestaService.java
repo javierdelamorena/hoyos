@@ -2,6 +2,7 @@ package com.cuevasdeayllon.service;
 
 import java.util.List;
 
+import com.cuevasdeayllon.dto.EstadosPropuestas;
 import com.cuevasdeayllon.entity.Propuestas;
 
 public interface PropuestaService {
@@ -18,7 +19,11 @@ public interface PropuestaService {
 	
 	List<Propuestas> findById_Usuario(int id_usuario);
 	
+	List<Propuestas> findByTodas();
+	
 	Propuestas  editarPropuesta(Propuestas propuestas);
+	
+	
 		
 
 }

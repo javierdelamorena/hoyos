@@ -19,10 +19,9 @@
     text-shadow: aliceblue;
     height: 100px;"> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navUsuario">
-        <div class="container-fluid" style="padding-top: 1%;
-        padding-bottom: 1%;">
+        <div class="container-fluid" style="padding-top: 1%;">
             <a class="nav-link" aria-current="page" 
-            th:href="@{/logout}">CUEVAS DE AYLLÓN</a>
+            th:href="@{/logout}">HOYOS</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             Menú <span class="navbar-toggler-icon"></span>
           </button>
@@ -33,7 +32,10 @@
                     <a class="nav-link" th:href="@{/todosDocumentos}" >Informacion Relevante</a>
                 </li>
                 <li class="nav-item" style="margin-left:5px;">
-                    <a type="submit" class="nav-link" th:href="@{/grafico}" >Total puntuaciones</a>
+                    <a  class="nav-link" th:href="@{/grafico}" >Total puntuaciones de propuestas</a>
+                </li>
+                <li class="nav-item" style="margin-left:5px;">
+                    <a  class="nav-link" th:href="@{/estado}" >Estado de las propuestas </a>
                 </li>
                 <!-- <li class="nav-item" style="margin-left:5px;" >
                     <a class="nav-link" th:if="${usuario.idUsuario != null}" href="@{'/mercadillo?idUsuario='+${usuario.idUsuario}}" id="enviaridUsuario" >Compra Venta y Servicios</a>
@@ -63,6 +65,7 @@
                         <li><a class="dropdown-item" th:href="@{/todosUsuarios}">Lista de Usuarios</a></li>
                         <li><a class="dropdown-item" th:href="@{/fotosGaleriaLista}">Lista de Fotos</a></li>
                         <li><a class="dropdown-item" th:href="@{/listaPropuestas}">Lista de Propuestas</a></li>
+                        <li><a class="dropdown-item" th:href="@{/editarEstadoLista}">Editar Estados</a></li>
                         <li><a class="dropdown-item" th:href="@{/listaAnunciosAdmin}">Lista de Anuncios</a></li>
                         <li><a class="dropdown-item" th:href="@{/votacionPropuestas}">Resultado de Propuestas</a></li>
                         <li><a class="dropdown-item" th:href="@{/toFileUpload}">SubirDocumento</a></li>

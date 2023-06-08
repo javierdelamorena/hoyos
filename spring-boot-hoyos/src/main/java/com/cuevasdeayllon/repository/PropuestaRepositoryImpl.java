@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cuevasdeayllon.dto.EstadosPropuestas;
 import com.cuevasdeayllon.entity.Propuestas;
 @Repository
 public class PropuestaRepositoryImpl implements PropuestaRepository {
@@ -56,6 +57,14 @@ public class PropuestaRepositoryImpl implements PropuestaRepository {
 	public List<Propuestas> findById_Usuario(int id_usuario) {
 		
 		return repository.findById_Uusuario(id_usuario);
+	}
+
+	
+
+	@Override
+	public List<Propuestas> findTodas() {
+		// TODO Auto-generated method stub
+		return repository.findTodas();
 	}
 	
 

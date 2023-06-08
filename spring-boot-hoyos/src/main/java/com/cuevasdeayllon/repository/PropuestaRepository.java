@@ -2,6 +2,7 @@ package com.cuevasdeayllon.repository;
 
 import java.util.List;
 
+import com.cuevasdeayllon.dto.EstadosPropuestas;
 import com.cuevasdeayllon.entity.Propuestas;
 
 public interface PropuestaRepository {
@@ -16,6 +17,10 @@ public interface PropuestaRepository {
 	Propuestas findBtNombre(String nombre);
 	
 	List<Propuestas> findById_Usuario(int id_usuario);
+	
+	List<Propuestas> findTodas();
+	
+	
 	
 
 

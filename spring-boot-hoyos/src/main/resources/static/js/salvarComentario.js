@@ -54,7 +54,7 @@ $("#salvarComentario").on("click", function () {
             html2 += '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
             html2 += '</div>';
             html2 += '<div class="modal-body">';
-            html2 += '<form action="/spring-boot-cuevas-ayllon/editarComentario" method="get">';
+            html2 += '<form action="/spring-boot-hoyos/editarComentario" method="get">';
             //html2 += '<form action="/editarComentario" method="get">';
             //html2 += '<form action="https://cuevas-de-ayllon.com/editarComentario" method="get">';
             html2 += '<textarea id="objetos.comentarios.id" name="comentario" value="objetos.comentarios.comentario"  rows="4"cols="50" style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255">';

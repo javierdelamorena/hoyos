@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cuevasdeayllon.dto.EstadosPropuestas;
 import com.cuevasdeayllon.entity.Propuestas;
 import com.cuevasdeayllon.repository.PropuestaRepository;
 
@@ -63,6 +64,14 @@ public class PropuestaServiceImpl implements PropuestaService {
 		service.save(miPropuesta);
 		
 		return null;
+	}
+
+	
+
+	@Override
+	public List<Propuestas> findByTodas() {
+		// TODO Auto-generated method stub
+		return service.findTodas();
 	}
 
 }

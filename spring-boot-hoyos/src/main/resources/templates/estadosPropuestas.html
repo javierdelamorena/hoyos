@@ -28,32 +28,56 @@
       <div class="col-lg-5" style="padding-top: 8%;
       padding-bottom: 8%;">
         <h3 style="padding: 4%;
-            font-size: 45px;
+            font-size: 44px;
             /* width: 100%; */
-            margin-right: 37%;
-            background-color: rgb(47 122 161 / 56%);">Puntuaciones totales</h3>
+            margin-right: 36%;
+            background-color: rgb(47 122 161 / 56%);">Estado de propuestas</h3>
       </div>
     </header>
   </div>
 
   <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
   <hr>
-  <div class="container">
-    <div >
-
-      <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn btn-dark"
-        style="color: #eeeeee;background-color: #463232a3;">Volver</a>
-    </div>
-    
-    <div  id="propuestas" ></div>
-    <!-- <div class="chart-container col-lg-6" id="graficoBarras" style="float: right;"></div> -->
-
+  <!-- <div class="container "> -->
+  <div class="container col-lg-6 col-sm-12">
     <div class="col-sm-3">
 
       <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn btn-dark"
         style="color: #eeeeee;background-color: #463232a3;">Volver</a>
     </div>
+    <div style="margin-top: 1%;margin-bottom: 1%;font-size: 23px;font-weight: 300;">
+
+      <div style="background-color: rgb(37, 242, 40);margin: 1%;padding-left: 34%;">
+        En votacion
+      </div>
+      <div style="background-color: rgb(16, 218, 241);margin: 1%;padding-left: 34%;">
+        Llevada a pleno
+      </div>
+      <div style="background-color: rgb(222, 19, 241);margin: 1%;padding-left: 34%;">
+        En Curso
+      </div>
+      <div style="background-color: rgb(241, 226, 15);margin: 1%;padding-left: 34%;">
+        Realizada
+      </div>
+      <div style="background-color: rgb(230, 78, 78);margin: 1%;padding-left: 34%;">
+        Desestimada
+      </div>
+
+    </div>
+
   </div>
+  <div id="propuestas" class="container col-lg-6 col-sm-12">
+    <div class="col-sm-3">
+
+      <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn btn-dark"
+        style="color: #eeeeee;background-color: #463232a3;">Volver</a>
+    </div>
+
+  </div>
+  <!-- <div class="chart-container col-lg-6" id="graficoBarras" style="float: right;"></div> -->
+
+
+  <!-- </div> -->
 
 
 
@@ -65,7 +89,7 @@
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script th:src="@{js/totalpuntuaciones.js}"></script>
+  <script th:src="@{js/estados.js}"></script>
 </body>
 
 

@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-
+import com.cuevasdeayllon.dto.EstadosPropuestas;
 import com.cuevasdeayllon.entity.Propuestas;
 
 public interface PropuestaJpaRepository extends JpaRepository<Propuestas, Integer>{
@@ -26,6 +26,7 @@ public interface PropuestaJpaRepository extends JpaRepository<Propuestas, Intege
 	
 	@Query("select e from Propuestas e where  activa='si'")
 	List<Propuestas> findTodas();
+	
 	
 	
 	

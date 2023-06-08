@@ -31,6 +31,9 @@ public class Estados implements Serializable{
     private String encurso;
     private String realizada;
     private String desestimada;
+    private String pleno;
+    @Column(name="textodesestimada")
+    private String textoDesestimada;
     
     @ManyToOne
 	@JoinColumn(name="id_propuesta",referencedColumnName ="id_propuesta" )
@@ -39,6 +42,9 @@ public class Estados implements Serializable{
 
     
     
+	public Estados() {
+		super();
+	}
 	public int getId() {
 		return id;
 	}
@@ -74,6 +80,24 @@ public class Estados implements Serializable{
 	}
 	public void setDesestimada(String desestimada) {
 		this.desestimada = desestimada;
+	}
+	public String getPleno() {
+		return pleno;
+	}
+	public void setPleno(String pleno) {
+		this.pleno = pleno;
+	}
+	public Propuestas getPropuesta() {
+		return propuesta;
+	}
+	public void setPropuesta(Propuestas propuesta) {
+		this.propuesta = propuesta;
+	}
+	public String getTextoDesestimada() {
+		return textoDesestimada;
+	}
+	public void setTextoDesestimada(String textoDesestimada) {
+		this.textoDesestimada = textoDesestimada;
 	}
     
     

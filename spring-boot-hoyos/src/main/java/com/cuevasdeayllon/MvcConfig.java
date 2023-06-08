@@ -69,6 +69,10 @@ public class MvcConfig implements WebMvcConfigurer{
   	.addResourceLocations("file:/C:/TEMP/uploadsMercadillo/");
 //			registry.addResourceHandler("/uploadsMercadillo/**")
 //				.addResourceLocations("file:/uploadsMercadillo/");
+  	registry.addResourceHandler("/uploadsPiscina/**")		
+  	.addResourceLocations("file:/C:/TEMP/uploadsPiscina/");
+//			registry.addResourceHandler("/uploadsPiscina/**")
+//				.addResourceLocations("file:/uploadsPiscina/");
 	
 	}
 

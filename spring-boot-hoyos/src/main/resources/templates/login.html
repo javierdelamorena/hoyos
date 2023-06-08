@@ -28,7 +28,7 @@
 
 			<div class="col-lg-5" style="padding-top: 9%;
           padding-bottom: 9%;">
-				<div id="cartelLogin">Entra en espacio vecinal Cuevas de Ayllón</div>
+				<div id="cartelLogin">Entra en espacio vecinal Hoyos</div>
 			</div>
 		</header>
 	</div>
@@ -44,7 +44,7 @@
 			<hr>
 			<p>
 				Desde aquí puedes entrar en el espacio vecinal de Hoyos. Necesitarás introducir el email y
-				la contraseña dos veces. Si no te acuerdas de la contraseña y no encuentras el email siempre puedes
+				la contraseña. Si no te acuerdas de la contraseña y no encuentras el email siempre puedes
 				clicar en el link “¿Has olvidado tu contraseña?”
 
 				Esperamos que te guste y que con ello podamos tener más comunicación entre los vecinos a la hora de
@@ -52,18 +52,14 @@
 			</p>
 			</br>
 
-			<p>
-				Esperamos que te guste y que lo disfrutes.
-			</p>
+			
 			<hr>
 		</div>
 
 		<div class="col-lg-4 col-sm-8 " id="registro"
 			style=" margin-top: 3%;margin-left: 7%; margin-bottom: 3%; background-color: #5d7e3fc7;; border-radius: 2px;float:right;padding: 30px; ">
 			<h5 id="formularioRegistro" style="margin-left: 1%;font-size: 19px;">Entra en el espacio
-				vecinal de Cuevas de
-				Ayllón con tu nombre y
-				contraseña.</h5>
+				vecinal de Hoyos con tu email y contraseña.</h5>
 
 			<form th:action="@{/login}" id="formularioRegistro" method="post" style=" margin: 20px;font-size: 20px;">
 				<div class="row col-lg-10 col-sm-4 alert alert-info my-4" th:if="${loginIncorrecto}"
@@ -73,7 +69,7 @@
 				</div>
 				<div class="row col-lg-8 col-sm-4">
 					<!-- <input type="text" id="nombre" name="nombre" class="form-control"> -->
-					<input type="text" id="nombre" name="email" class="form-control">
+					<input type="text" id="email" name="email" class="form-control">
 
 				</div>
 
@@ -109,7 +105,7 @@
 			<a href="" style="text-decoration: none;
         font-size: 17px;
         font-family: sans-serif;
-        color: #2f3235c7;">Cuevas de Ayllón</a>
+        color: #2f3235c7;">Hoyos</a>
 			<hr>
 			<a href="https://www.guardiacivil.es/ca/institucional/directorio/soria/puesto_de_san_esteban_de_gormaz.html" style="text-decoration: none;
         font-size: 17px;
