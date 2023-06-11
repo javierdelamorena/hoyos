@@ -15,21 +15,17 @@
 
 <body class="bodyAdministradores">
 
-    <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+    <nav th:replace="layouts/fragmentoAdministradores :: nav"></nav>
 
-    <div class="container col-lg-4" style="
-    margin-top: 5%;
-    background-color: #d8852e99;
-    border-radius: 10px;
-    padding: 1%;">
+    <div class="container col-lg-4" style="background-color: burlywood;margin-top: 10%;">
 
 
 
-        <h5 style="color: white;"> Este formulario de anuncio se mostrara en tablon de
+        <h5 style="color: white;padding: 2%;"> Este formulario de anuncio se mostrara en tablon de
             anuncios</h5>
-        <h5 style="color: white;" th:if="${faltaTitulo}" th:text="${faltaTitulo}"></h5>
-        <h5 style="color: white;" th:if="${faltaAnuncio}" th:text="${faltaAnuncio}"></h5>
-        <h5 style="color: white;" th:if="${anuncioSubido}" th:text="${anuncioSubido}"></h5>
+        <h5 style="color: white;padding: 2%;" th:if="${faltaTitulo}" th:text="${faltaTitulo}"></h5>
+        <h5 style="color: white;padding: 2%;" th:if="${faltaAnuncio}" th:text="${faltaAnuncio}"></h5>
+        <h5 style="color: white;padding: 2%;" th:if="${anuncioSubido}" th:text="${anuncioSubido}"></h5>
 
         <form th:action="@{/subirAnuncio}" class="text-dark" style="width: 100%;
         padding: 30px;" method="post" enctype="multipart/form-data">

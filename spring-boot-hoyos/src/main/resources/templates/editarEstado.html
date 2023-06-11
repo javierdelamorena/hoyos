@@ -9,7 +9,39 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+    
+            body {
+                background-color: #f2f2f2;
+            }
+    
+            h1 {
+                text-align: center;
+            }
+    
+            .content {
+    
+                font-family: "Open Sans";
+                background-color: white;
+    
+            }
+    
+            form {
+                width: 100%;
+                margin-top: 60px;
+                margin-bottom: 60px;
+            }
+    
+            form #q {
+                width: 100%;
+                text-align: left;
+                padding: 5px 0px;
+            }
+        </style>
 
 </head>
 
@@ -17,16 +49,16 @@
 
 
 <body class="bodyAdministradores">
-    <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
+    <nav th:replace="layouts/fragmentoAdministradores :: nav"></nav>
 
 
 
-    <div class="container" style="margin-top: 10%;">
+    <div class="container content" style="margin-top: 10%;">
+        <form>
+            <input type="text" id="q" placeholder="Buscar......" onkeyup="search()">
+        </form>
 
-        <table class="table table-bordered" style="background-color: #b48823f0;
-        font-size: 20px;
-        text-align: center;
-        font-weight: bold;">
+        <table class="table table-bordered" >
 
             <thead class="thead-dark">
                 <tr>
@@ -41,6 +73,7 @@
             </thead>
             <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
                 th:text="${usuarioBorrado}"></div> -->
+                <tbody id="the_table_body">
             <tr th:each="propuesta:${listaPropuestas}">
 
 
@@ -66,33 +99,57 @@
                                 <div class="modal-body ">
                                     <h5 class="modal-title">Editar Estado</h5></br>
                                     <h5 class="alert alert-danger"
-                                        th:text="'Antes de editar el estado de la propuesta '+${propuesta.titulo}+', piensalo'">
+                                        th:text="'Antes de editar el estado de la propuesta '+${propuesta.titulo}+', piénsalo bien.'">
                                         bien
                                     </h5>
                                     <!-- <div class="btn-group " th:attr="id=modal+${propuesta.idPropuesta}"> -->
                                     <input type="hidden" id="idPropuesta" name="idPropuesta"
                                         th:value="${propuesta.idPropuesta}">
                                     <div class="row" style="margin: 1%;">
-                                        <button style="margin: 1%;" type="button" onclick="votacion();" class="btn btn-success"
-                                            name="votacion">votacion</button>
-                                        <!-- <label class="btn btn-success" for="votacion1">Votacion</label> -->
 
-                                        <button style="margin: 1%;" type="button" onclick="pleno();" class="btn btn-primary">
-                                            pleno
-                                        </button>
-                                        <!-- <label class="btn btn-primary" for="pleno1" >Pleno</label> -->
+                                        <form action="editarEstadoVotacion" method="post">
 
-                                        <button style="margin: 1%;" type="button" onclick="encurso();"
-                                            class="btn btn-secondary">encurso</button>
-                                        <!-- <label class="btn btn-secondary" for="encurso1">En Curso</label> -->
+                                            <input type="hidden" id="idPropuesta" th:name="idPropuesta"
+                                                th:value="${propuesta.idPropuesta}">
+                                            <input style="margin: 1%;width: 100%;" type="submit" class="btn btn-success"
+                                                value="En Votación">
+                                        </form>
 
-                                        <button style="margin: 1%;" type="button" onclick="realizada();"
-                                            class="btn btn-warning">realizada</button>
-                                        <!-- <label class="btn btn-warning" for="realizada1">Realizada</label> -->
+                                        <form action="editarEstadoPleno" method="post">
 
-                                        <button style="margin: 1%;" type="button" onclick="desestimada();"
-                                            class="btn btn-danger">desestimada</button>
-                                            <div id="propuestaDesestimada"></div>
+                                            <input type="hidden" id="idPropuesta" th:name="idPropuesta"
+                                                th:value="${propuesta.idPropuesta}">
+                                            <input style="margin: 1%;width: 100%;" type="submit" class="btn btn-primary"
+                                                value="LLevada a Pleno">
+                                        </form>
+
+                                        <form action="editarEstadoEnCurso" method="post">
+
+                                            <input type="hidden" id="idPropuesta" th:name="idPropuesta"
+                                                th:value="${propuesta.idPropuesta}">
+                                            <input style="margin: 1%;width: 100%;background-color: rgb(222, 19, 241);"
+                                                type="submit" class="btn" value="En Curso">
+                                        </form>
+
+
+
+                                        <form action="editarEstadoRealizada" method="post">
+
+                                            <input type="hidden" id="idPropuesta" th:name="idPropuesta"
+                                                th:value="${propuesta.idPropuesta}">
+                                            <input style="margin: 1%;width: 100%;" type="submit" class="btn btn-warning"
+                                                value="Realizada">
+                                        </form>
+
+                                        <form action="editarEstadoDesestimada" method="post">
+                                            <textarea class="form-control"  placeholder='explicación de desestimación'
+                                                type='text' name='textoDesestimada'></textarea>
+                                            <input type="hidden" id="idPropuesta" th:name="idPropuesta"
+                                                th:value="${propuesta.idPropuesta}">
+                                            <input style="margin: 1%;width: 100%;" type="submit" class="btn btn-danger"
+                                                value="desestimada">
+                                        </form>
+
                                     </div>
                                 </div>
 
@@ -114,16 +171,17 @@
                 </td>
 
 
-                
+
 
             </tr>
-            <div class=" col-sm-10">
-                <h5 id="input" style="background-color: blueviolet;"></h5>
+        </tbody>
+            <div class=" col-sm-10" >
+                <h5 id="input" th:if="${input}" th:text="${input}" style="background-color: blueviolet;padding: 2%;"></h5>
             </div>
         </table>
 
 
-        <div class=" col-sm-2">
+        <div class=" col-sm-2" style="margin: 2%;" >
 
             <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn "
                 style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
@@ -135,122 +193,29 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-        var mensaje = "";
-        function votacion() {
-            console.log('Hemos pulsado votacion');
-            $.ajax({
+    <script type="text/javascript">
+        function search() {
+            var num_cols, display, input, filter, table_body, tr, td, i, txtValue;
+            num_cols = 3;
+            input = document.getElementById("q");
+            filter = input.value.toUpperCase();
+            table_body = document.getElementById("the_table_body");
+            tr = table_body.getElementsByTagName("tr");
 
-                type: 'post',
-                url: "editarEstadoVotacion",
-                data: { 'idPropuesta': $('#idPropuesta').val() },
-                beforeSend: function () {
-                    var mensaje = "";
-                    // $('#input').prepend(mensaje);
-                    $('#input').empty();
+            for (i = 0; i < tr.length; i++) {
+                display = "none";
+                for (j = 0; j < num_cols; j++) {
+                    td = tr[i].getElementsByTagName("td")[j];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            display = "";
+                        }
+                    }
                 }
-
-            }).done(function (data) {
-                mensaje = data;
-                $('#input').append(mensaje);
-                alert(mensaje);
-            });
-        };
-        function pleno() {
-            console.log('Hemos pulsado pleno');
-            $.ajax({
-
-                type: 'post',
-                url: "editarEstadoPleno",
-                data: { 'idPropuesta': $('#idPropuesta').val() },
-                beforeSend: function () {
-                    var mensaje = "";
-                    // $('#input').prepend(mensaje);
-                    $('#input').empty();
-                }
-
-            }).done(function (data) {
-                mensaje = data;
-                $('#input').append(mensaje);
-                alert(mensaje);
-            });
-
-        };
-        function encurso() {
-            console.log('Hemos pulsado enCurso');
-            $.ajax({
-
-                type: 'post',
-                url: "editarEstadoEnCurso",
-                data: { 'idPropuesta': $('#idPropuesta').val() },
-                beforeSend: function () {
-                    var mensaje = "";
-                    // $('#input').prepend(mensaje);
-                    $('#input').empty();
-                }
-
-            }).done(function (data) {
-                mensaje = data;
-                $('#input').append(mensaje);
-                alert(mensaje);
-            });
-
-        };
-        function realizada() {
-            console.log('Hemos pulsado realizada');
-            $.ajax({
-
-                type: 'post',
-                url: "editarEstadoRealizada",
-                data: { 'idPropuesta': $('#idPropuesta').val() },
-                beforeSend: function () {
-                    var mensaje = "";
-                    // $('#input').prepend(mensaje);
-                    $('#input').empty();
-                }
-
-            }).done(function (data) {
-                mensaje = data;
-                $('#input').append(mensaje);
-                alert(mensaje);
-
-            });
-
-        };
-        function desestimada() {
-            console.log('Hemos pulsado desestimada');
-           
-                mensaje = "<input class='form-control' placeholder='explicación de desestimacion' type='text' id='textoDesestimada'>";
-                mensaje+="<button class='btn btn-dark' onclick='desestimadaEnviar();'>Enviar desestimada</button>"
-                $('#propuestaDesestimada').append(mensaje);
-                
-            
-
-        };
-        function desestimadaEnviar() {
-            console.log('Hemos pulsado desestimada enviar');
-            $.ajax({
-
-                type: 'post',
-                url: "editarEstadoDesestimada",
-                data: { 'idPropuesta': $('#idPropuesta').val(),'textoDesestimada':$('#textoDesestimada').val() },
-                beforeSend: function () {
-                    var mensaje = "";
-                    // $('#input').prepend(mensaje);
-                    $('#input').empty();
-                }
-
-            }).done(function (data) {
-                mensaje = data;
-                $('#input').append(mensaje);
-                alert(mensaje);
-            });
-
-        };
-
-
-
-
+                tr[i].style.display = display;
+            }
+        }		
     </script>
 </body>
 

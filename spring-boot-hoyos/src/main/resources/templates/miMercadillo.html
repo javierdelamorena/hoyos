@@ -66,7 +66,7 @@
                 </thead>
                 <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
             th:text="${usuarioBorrado}"></div> -->
-                <tr th:each="mercadillo:${miMercadillo}">
+                <tr th:if="${miMercadillo}" th:each="mercadillo:${miMercadillo}">
                     <td th:if="${mercadillo.nombre}" th:text="${mercadillo.nombre}"></td>
                     <td th:if="${mercadillo.nombre == null}" th:text="' '"></td>
                     <td th:if="${mercadillo.tipo_servicio}" th:text="${mercadillo.tipo_servicio}"></td>

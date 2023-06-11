@@ -7,9 +7,9 @@
 }
 
 .bodyAdministradores {
-	background-image: url("30.jpg");
+	
 
-	background-size: cover;
+	background-color: darkgray;
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
@@ -541,7 +541,7 @@ body {
 	font-size: 28px;
 
 	margin-right: -3%;
-	background-color: #deb887c7;
+	background-color: #b48be8c7;
 }
 
 @media (max-width : 576px) {

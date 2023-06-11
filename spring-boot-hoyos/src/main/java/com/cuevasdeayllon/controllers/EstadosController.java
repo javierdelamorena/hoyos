@@ -66,7 +66,9 @@ public class EstadosController {
     
 			estadosPropuestas.add(estadoPropuesta);
 			
-			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
+			estadosPropuestas= estadosPropuestas.stream().sorted(Comparator.comparing(EstadosPropuestas::getIdPropuesta).reversed())
+					.collect(Collectors.toList());
+			
     
 		}
 		
@@ -76,7 +78,7 @@ public class EstadosController {
 	}
 
 	@PostMapping("/editarEstadoVotacion")
-	public @ResponseBody String editarEstadoVotacion(@RequestParam("idPropuesta") int idPropuesta, Model model) {
+	public String editarEstadoVotacion(@RequestParam("idPropuesta") int idPropuesta, Model model) {
 		
 		Estados estado=estadosService.findByIdPropuesta(idPropuesta);
 		Propuestas propuesta=propuestaService.findByIdPropuesta(idPropuesta);
@@ -88,16 +90,57 @@ public class EstadosController {
 		estado.setEncurso(null);
 		estado.setId(estado.getId());
 		estado.setPropuesta(propuesta);
+		estado.setTextoDesestimada(null);
 		estadosService.actualizarEstado(estado);
+		
+		List<Propuestas> propuestas = propuestaService.findByTodas();
+		logger.info("Entramos en metodo  /editarEstadoPleno:" + propuestas);
+		propuestas = propuestas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
+				.collect(Collectors.toList());
+		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
+		
+
+		for (int i = 0; i < propuestas.size(); i++) {
+			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
+			
+			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
+			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
+			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
+			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
+			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
+			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
+			
+			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
+				
+				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
+				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
+				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
+				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
+				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
+				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
+				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
+    
+			}
+    
+			estadosPropuestas.add(estadoPropuesta);
+			
+			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
+    
+		}
+		
+		model.addAttribute("listaPropuestas", estadosPropuestas);
+		
+		logger.info("recibimos idPropuesta: " + idPropuesta);
+		
 		
 		logger.info("Entramos en metodo /editarEstadoVotacion");
 		
-		String votaciones="La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado votacion ";
-		return votaciones;
+		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado Votacion ");
+		return "editarEstado";
 
 	}
 	@PostMapping("/editarEstadoEnCurso")
-	public @ResponseBody String editarEstadoEnCurso(@RequestParam("idPropuesta") int idPropuesta, Model model) {
+	public String editarEstadoEnCurso(@RequestParam("idPropuesta") int idPropuesta, Model model) {
 		
 		Estados estado=estadosService.findByIdPropuesta(idPropuesta);
 		Propuestas propuesta=propuestaService.findByIdPropuesta(idPropuesta);
@@ -109,18 +152,57 @@ public class EstadosController {
 		estado.setEncurso("encurso");
 		estado.setId(estado.getId());
 		estado.setPropuesta(propuesta);
+		estado.setTextoDesestimada(null);
 		estadosService.actualizarEstado(estado);
 		
+		List<Propuestas> propuestas = propuestaService.findByTodas();
+		logger.info("Entramos en metodo  /editarEstadoPleno:" + propuestas);
+		propuestas = propuestas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
+				.collect(Collectors.toList());
+		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
+		
+
+		for (int i = 0; i < propuestas.size(); i++) {
+			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
+			
+			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
+			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
+			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
+			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
+			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
+			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
+			
+			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
+				
+				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
+				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
+				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
+				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
+				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
+				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
+				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
+    
+			}
+    
+			estadosPropuestas.add(estadoPropuesta);
+			
+			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
+    
+		}
+		
+		model.addAttribute("listaPropuestas", estadosPropuestas);
+		
+		logger.info("recibimos idPropuesta: " + idPropuesta);
 		
 		
-		logger.info("Entramos en metodo /editarEstadoEnCurso");
+		logger.info("Entramos en metodo /editarEstadoEncurso");
 		
-		String enCursos="La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado en curso ";
-		return enCursos;
+		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado En Curso ");
+		return "editarEstado";
 
 	}
 	@PostMapping("/editarEstadoPleno")
-	public @ResponseBody String editarEstadoPleno(@RequestParam("idPropuesta") int idPropuesta, Model model) {
+	public  String editarEstadoPleno(@RequestParam("idPropuesta") int idPropuesta, Model model) {
 		
 		Estados estado=estadosService.findByIdPropuesta(idPropuesta);
 		Propuestas propuesta=propuestaService.findByIdPropuesta(idPropuesta);
@@ -132,19 +214,56 @@ public class EstadosController {
 		estado.setDesestimada(null);
 		estado.setId(estado.getId());
 		estado.setPropuesta(propuesta);
+		estado.setTextoDesestimada(null);
 		estadosService.actualizarEstado(estado);
+		List<Propuestas> propuestas = propuestaService.findByTodas();
+		logger.info("Entramos en metodo  /editarEstadoPleno:" + propuestas);
+		propuestas = propuestas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
+				.collect(Collectors.toList());
+		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
+		
+
+		for (int i = 0; i < propuestas.size(); i++) {
+			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
+			
+			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
+			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
+			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
+			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
+			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
+			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
+			
+			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
+				
+				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
+				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
+				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
+				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
+				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
+				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
+				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
+    
+			}
+    
+			estadosPropuestas.add(estadoPropuesta);
+			
+			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
+    
+		}
+		
+		model.addAttribute("listaPropuestas", estadosPropuestas);
 		
 		logger.info("recibimos idPropuesta: " + idPropuesta);
 		
 		
 		logger.info("Entramos en metodo /editarEstadoPleno");
 		
-		String plenos="La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado pleno ";
-		return plenos;
+		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado Pleno ");
+		return "editarEstado";
 
 	}
 	@PostMapping("/editarEstadoRealizada")
-	public @ResponseBody String editarEstadoRealizada(@RequestParam("idPropuesta") int idPropuesta, Model model) {
+	public String editarEstadoRealizada(@RequestParam("idPropuesta") int idPropuesta, Model model) {
 		
 		Estados estado=estadosService.findByIdPropuesta(idPropuesta);
 		Propuestas propuesta=propuestaService.findByIdPropuesta(idPropuesta);
@@ -155,21 +274,108 @@ public class EstadosController {
 		estado.setEncurso(null);
 		estado.setId(estado.getId());
 		estado.setPropuesta(propuesta);
+		estado.setTextoDesestimada(null);
 		estadosService.actualizarEstado(estado);
+		
+		List<Propuestas> propuestas = propuestaService.findByTodas();
+		logger.info("Entramos en metodo  /editarEstadoRealizada:" + propuestas);
+		propuestas = propuestas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
+				.collect(Collectors.toList());
+		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
+		
+
+		for (int i = 0; i < propuestas.size(); i++) {
+			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
+			
+			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
+			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
+			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
+			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
+			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
+			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
+			
+			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
+				
+				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
+				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
+				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
+				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
+				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
+				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
+				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
+    
+			}
+    
+			estadosPropuestas.add(estadoPropuesta);
+			
+			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
+    
+		}
+		
+		model.addAttribute("listaPropuestas", estadosPropuestas);
 		
 		logger.info("recibimos idPropuesta: " + idPropuesta);
 		
+		
 		logger.info("Entramos en metodo /editarEstadoRealizada");
 		
-		String relizadas="La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado relizada ";
-		return relizadas;
+		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado realizada ");
+		return "editarEstado";
 
 	}
 	@PostMapping("/editarEstadoDesestimada")
-	public @ResponseBody String editarEstadoDesestimada(@RequestParam("idPropuesta") int idPropuesta,@RequestParam("textoDesestimada") String textoDesestimada, Model model) {
+	public String editarEstadoDesestimada(@RequestParam("idPropuesta") int idPropuesta,@RequestParam("textoDesestimada") String textoDesestimada, Model model) {
 		
 		Estados estado=estadosService.findByIdPropuesta(idPropuesta);
 		Propuestas propuesta=propuestaService.findByIdPropuesta(idPropuesta);
+		
+		if(textoDesestimada.isEmpty()) {
+			List<Propuestas> propuestas = propuestaService.findByTodas();
+			logger.info("Entramos en metodo /editarEstadoLista:" + propuestas);
+			propuestas = propuestas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
+					.collect(Collectors.toList());
+			List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
+			
+
+			for (int i = 0; i < propuestas.size(); i++) {
+				EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
+				
+				estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
+				estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
+				estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
+				estadoPropuesta.setActiva(propuestas.get(i).getActiva());
+				estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
+				estadoPropuesta.setFecha(propuestas.get(i).getFecha());
+				
+				for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
+					
+					estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
+					estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
+					estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
+					estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
+					estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
+					estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
+					estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
+	    
+				}
+	    
+				estadosPropuestas.add(estadoPropuesta);
+				
+				estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
+	    
+			}
+			
+			model.addAttribute("listaPropuestas", estadosPropuestas);
+			
+			logger.info("recibimos idPropuesta: " + idPropuesta);
+			
+			
+			logger.info("Entramos en metodo /editarEstadoDesestimada");
+			
+			model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" no ha sido editada correctamente en estado desestimada porque no tiene un explicacion.");
+			return "editarEstado";
+			
+		}
 		estado.setId(idPropuesta);
 		estado.setVotacion(null);
 		estado.setRealizada(null);
@@ -179,15 +385,54 @@ public class EstadosController {
 		estado.setId(estado.getId());
 		estado.setPropuesta(propuesta);
 		estado.setTextoDesestimada(textoDesestimada);
+		
 		estadosService.actualizarEstado(estado);
+		
+		List<Propuestas> propuestas = propuestaService.findByTodas();
+		logger.info("Entramos en metodo /editarEstadoLista:" + propuestas);
+		propuestas = propuestas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
+				.collect(Collectors.toList());
+		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
+		
+
+		for (int i = 0; i < propuestas.size(); i++) {
+			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
+			
+			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
+			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
+			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
+			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
+			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
+			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
+			
+			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
+				
+				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
+				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
+				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
+				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
+				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
+				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
+				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
+    
+			}
+    
+			estadosPropuestas.add(estadoPropuesta);
+			
+			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
+    
+		}
+		
+		model.addAttribute("listaPropuestas", estadosPropuestas);
 		
 		logger.info("recibimos idPropuesta: " + idPropuesta);
 		
 		
 		logger.info("Entramos en metodo /editarEstadoDesestimada");
 		
-		String desestimadas="La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado desestimada ";
-		return desestimadas;
+		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado desestimada ");
+		return "editarEstado";
+		
 
 	}
 	@GetMapping(value=("estadosPropuestasAjax"), produces = MediaType.APPLICATION_JSON_VALUE)
@@ -217,8 +462,9 @@ public class EstadosController {
 			}
     
 			estadosPropuestas.add(estadoPropuesta);
+			estadosPropuestas= estadosPropuestas.stream().sorted(Comparator.comparing(EstadosPropuestas::getIdPropuesta).reversed())
+					.collect(Collectors.toList());
 			
-			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
     
 		}
     

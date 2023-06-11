@@ -8,62 +8,59 @@ $.ajax({
     console.log('Estos son los datos' + datos);
 
     var html2 = '';
-    html2 += '<table class="table table-striped table-bordered" style="font-size: 23px;background-color: rgb(0 126 255 / 34%);text-align: center;border: solid;margin-top: 2%;">';
-    html2 += '<tr>  ';
-    html2 += '<th scope="col">Propuesta</th> ';
-    // html2 += '<th scope="col">Porque se ha desestimada</th> ';
-
-
-    html2 += '</tr>';
-
+    //html2 += '<table class="table table-bordered" style="font-size: 23px;background-color: white;text-align: center;border: solid;margin-top: 2%;">';
+    // html2 += '<div >  ';
+    
+    // html2 += '<section id="mySection">';
     for (let i = 0; i < datos.length; i++) {
         console.log('Estos son los datos' + datos[i].propuesta);
-
-
-
-        html2 += '</tr>';
-        html2 += '<tr>';
+        //html2 += '</tr>';
+        //html2 += '<tr>';
         if (datos[i].votacion === 'votacion') {
-            html2 += '<td style="background-color: rgb(37, 242, 40);">' + datos[i].titulo + '</td>';
-
+            html2 += '<div class="row " style="margin: 1%">  ';
+            html2 += '<div  style="font-size: 23px;background-color: rgb(37, 242, 40);text-align: center;padding: 1%;"><h5 class="card-title" id="h5-buscador">' + datos[i].titulo + '</h5></div>';
+            html2 += '</div >  ';
         }
         if (datos[i].encurso === 'encurso') {
-            html2 += '<td style="background-color: rgb(222, 19, 241);">' + datos[i].titulo + '</td>';
-
+            html2 += '<div class="row " style="margin: 1%">  ';
+            html2 += '<div  style="font-size: 23px;background-color: rgb(222, 19, 241);text-align: center;padding: 1%;"><h5 class="card-title" id="h5-buscador">' + datos[i].titulo + '</h5></div>';
+            html2 += '</div >  ';
         }
         if (datos[i].realizada === 'realizada') {
-            html2 += '<td style="background-color: rgb(241, 226, 15);">' + datos[i].titulo + '</td>';
-
+            html2 += '<div class="row " style="margin: 1%">  ';
+            html2 += '<div style="font-size: 23px;padding: 1%;background-color: rgb(241, 226, 15);text-align: center;"><h5 class="card-title" id="h5-buscador">' + datos[i].titulo + '</h5></div>';
+            html2 += '</div >  ';
         }
-        // if (datos[i].desestimada === 'desestimada') {
-           
-        //     html2 += '<td style="background-color: rgb(230, 78, 78);">' + datos[i].titulo + '</td>';
-        //     html2 += '<td style="background-color: rgb(230, 78, 78);">' + datos[i].textoDesestimada + '</td>';
 
-        // }
+
         if (datos[i].pleno === 'pleno') {
-            html2 += '<td style="background-color: rgb(16, 218, 241);">' + datos[i].titulo + '</td>';
-
+            html2 += '<div class="row " style="margin: 1%">  ';
+            html2 += '<div  style="font-size: 23px;padding: 1%;background-color: rgb(16, 218, 241);text-align: center;"><h5 class="card-title" id="h5-buscador">' + datos[i].titulo + '</h5></div>';
+            html2 += '</div >  ';
         }
 
-        html2 += '</tr>';
-       
-        if (datos[i].desestimada === 'desestimada') {
-            html2 += '<th scope="col"></th> ';
-            html2 += '<th scope="col">Porque se ha desestimada</th>';
-            html2 += '<tr>';
-           
 
-            html2 += '<td style="background-color: rgb(230, 78, 78);">' + datos[i].titulo + '</td>';
-            html2 += '<td style="background-color: rgb(230, 78, 78);">' + datos[i].textoDesestimada + '</td>';
-            html2 += '</tr>';
+
+        if (datos[i].desestimada === 'desestimada') {
+            // html2 += '<div>';
+            html2 += '<div class="row" style="margin-left: 1%;margin-right: 1%;">';
+            html2 += '<div  style="font-size: 23px;background-color: rgb(207 16 16 / 45%);text-align: center;padding: 1%;border-bottom: outset;"><h5 class="card-title" id="h5-buscador">' + datos[i].titulo + '</h5></div>';
+            // html2 += '</div>';
+
+            // html2 += '<div class="row" style="margin-left: 1%;margin-right: 1%;" >';
+            html2 += '<div class="col" style="font-size: 18px;background-color: rgb(207 16 16 / 45%);text-align: center;padding: 1%;padding-top: 4%;">Porque se ha desestimada:</div>';
+            
+            html2 += '<div class="col" style="background-color: rgb(207 16 16 / 45%);padding: 1%;"><h5 class="card-title" id="h5-buscador"><textarea  readonly  rows="4" cols="40">' + datos[i].textoDesestimada + '</textarea></h5></div>';
+           
+            html2 += '</div>';
         }
 
 
 
     }
-    html2 += '</table>';
-    $('#propuestas').prepend(html2);
+    // html2 += '</section>';
+    // html2 += '</div>';
+    $('#propuestas').append(html2);
 
 
 });

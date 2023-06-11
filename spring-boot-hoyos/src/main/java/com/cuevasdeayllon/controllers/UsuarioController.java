@@ -133,7 +133,7 @@ public class UsuarioController {
 				service.salvarUsuario(usuario);
 
 
-				Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
+				Usuario usuari=service.usuarioPorEmail(usuario.getEmail());
 				if(usuari!=null) {
 					logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
 					logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");

@@ -93,7 +93,7 @@ public class IndexControler {
 	public String estado(Model model) {
 
 
-		logger.info("Entramos en metodo /casasRurales");
+		logger.info("Entramos en metodo /estado");
 
 		return "estadosPropuestas";
 

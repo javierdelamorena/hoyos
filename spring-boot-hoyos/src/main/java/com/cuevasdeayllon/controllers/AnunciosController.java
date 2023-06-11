@@ -66,7 +66,8 @@ public class AnunciosController {
 	@PostMapping("/subirAnuncio")
 	public String insertarAnuncio( @RequestParam("titulo")String titulo,@RequestParam("anuncio")String anuncio,@RequestParam("file")MultipartFile foto, Model model) {
 
-
+		//String rootPath="/uploadsAnuncios/";
+		String rootPath="C://TEMP//uploadsAnuncios";
 		logger.info("Entramos en metodo /subirAnuncio");
 
 		int oraLen = foto.getOriginalFilename().length();
@@ -98,6 +99,22 @@ public class AnunciosController {
 				anuncioeditable.setAnuncio(anuncio);
 				anuncioeditable.setFecha(new Date());		
 				anuncioeditable.setTitulo_anuncio(titulo);
+				if(!foto.isEmpty()) {
+
+
+					try {
+						byte[]bytes=foto.getBytes();
+						Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
+						Files.write(rutaCompleta,bytes);
+
+						anuncioeditable.setFoto_anuncio(foto.getOriginalFilename());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+
 
 				anuncioRepositoryImpl.insertarAnucio(anuncioeditable,foto);
 

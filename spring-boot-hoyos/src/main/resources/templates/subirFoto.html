@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title> Cuevas de Ayllón Subir foto a Galeria</title>
+    <title> Hoyos Subir foto a Galeria</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=500, user-scalable=no" />
 
@@ -26,7 +26,7 @@
                 font-size: 33px;
                 
                 margin-right: 10%;
-                background-color: #deb887c7;">Subir foto a galería fotográfica de Cuevas de Ayllón</h3>
+                background-color: #deb887c7;">Subir foto a galería fotográfica de Hoyos</h3>
             </div>
         </header>
     </div>
@@ -45,14 +45,15 @@
     border-radius: 10px;
     
     margin-bottom: 3%;float: left;">
-            <h3 th:if="${fotoSubida}" th:text="${fotoSubida}"></h3>
+            <h2 th:if="${fotoSubida}" th:text="${fotoSubida}" style="padding: 1%;"></h2>
             <form th:action="@{/salvarFoto}" th:object="${usuario}" class="text-dark" style="
         padding: 30px;" method="post" enctype="multipart/form-data">
 
                 <div class="row col-sm-4" style="width: 70%;
                  margin-left: 1%;">
                     <label form="file" class="col-form-label col-sm-2" style="font-size: 20px;
-                    font-family: cursive;width: 100%;">Subir foto a galería</label>
+                    font-family: cursive;width: 100%;">Subir foto a galería , se pide a los vecinos que las
+                    fotos que suban sean inferiores a 500kb, perdonen las molestias.</label>
                     <!-- </div> 
                 <div class="row col-sm-4" style="width: 70%;
                 margin-left: 1%;"> -->

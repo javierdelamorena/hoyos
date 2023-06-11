@@ -361,9 +361,12 @@ public class MercadilloController {
 
 		logger.info("Entramos en metodo mercadilloTodos");
 		List<Mercadillo> todos = mercadilloservice.todosLosMercadillos();
-		todos = todos.stream().sorted(Comparator.comparing(Mercadillo::getId).reversed()).collect(Collectors.toList());
+		if (todos.size() > 0) {
+			todos = todos.stream().sorted(Comparator.comparing(Mercadillo::getId).reversed())
+					.collect(Collectors.toList());
+			model.addAttribute("mercadillo", todos);
+		}
 
-		model.addAttribute("mercadillo", todos);
 		return "mercadilloExterior";
 
 	}
@@ -396,15 +399,17 @@ public class MercadilloController {
 	@PostMapping(path = "/borrarMimercadillo")
 	public String borrarMimercadillo(@RequestParam("id") int id, @RequestParam("idUsuario") int idUsuario,
 			Model model) {
-
-		logger.info("Entramos en metodo mercadilloTodosAdministrador");
-		if (id > 0) {
+		Mercadillo mercadilloComprobar = mercadilloservice.findById(id);
+		logger.info("Entramos en metodo borrarMimercadillo");
+		if (id > 0 && mercadilloComprobar != null) {
+			logger.info("Entramos en metodo borrarMimercadillo el id es: " + id);
 			mercadilloservice.borrarMercadillo(id);
 
 			model.addAttribute("mercadilloBorrado", "Tu oferta se ha borrado con exito");
 			List<Mercadillo> todos = mercadilloservice.todosLosMercadillosiIdUsuario(idUsuario);
-
-			model.addAttribute("miMercadillo", todos);
+			if (todos.size() > 0) {
+				model.addAttribute("miMercadillo", todos);
+			}
 		}
 		return "miMercadillo";
 
@@ -414,13 +419,15 @@ public class MercadilloController {
 	public String borrarMimercadillo(@RequestParam("id") int id, Model model) {
 
 		logger.info("Entramos en metodo mercadilloTodosAdministrador");
-		if (id > 0) {
+		Mercadillo mercadilloComprobar = mercadilloservice.findById(id);
+		if (id > 0 && mercadilloComprobar != null) {
 			mercadilloservice.borrarMercadillo(id);
 
 			model.addAttribute("mercadilloBorrado", "La oferta se ha borrado con exito");
 			List<Mercadillo> todos = mercadilloservice.todosLosMercadillos();
-
-			model.addAttribute("mercadillo", todos);
+			if (todos.size() > 0) {
+				model.addAttribute("mercadillo", todos);
+			}
 		}
 		return "listaMercadillos";
 

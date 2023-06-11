@@ -664,6 +664,9 @@ public class PropuestaController {
 	public @ResponseBody List<PuntuacionTotal> resultadoVotacionesAjax(Model model) {
 
 		List<PuntuacionTotal> resultadoToatales = puntuacionTotalservice.todasLasPuntuaciones();
+		resultadoToatales= resultadoToatales.stream().sorted(Comparator.comparing(PuntuacionTotal::getId_total).reversed())
+				.collect(Collectors.toList());
+		
 
 		return resultadoToatales;
 
