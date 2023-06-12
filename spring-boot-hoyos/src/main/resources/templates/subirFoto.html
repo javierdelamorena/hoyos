@@ -45,7 +45,8 @@
     border-radius: 10px;
     
     margin-bottom: 3%;float: left;">
-            <h2 th:if="${fotoSubida}" th:text="${fotoSubida}" style="padding: 1%;"></h2>
+            <h2 th:if="${fotoSubida}" th:text="${fotoSubida}" style="font-size: 20px;
+    padding: 3%;"></h2>
             <form th:action="@{/salvarFoto}" th:object="${usuario}" class="text-dark" style="
         padding: 30px;" method="post" enctype="multipart/form-data">
 

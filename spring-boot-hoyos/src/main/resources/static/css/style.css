@@ -558,7 +558,7 @@ body {
 }
 /*+++++++++++++++++++++++Navs+++++++++++++++++++++++++++*/
 #navPrincipal {
-	font-size: 18px;
+	font-size: 16px;
 	z-index: 3;
 	text-shadow: aliceblue;
 
@@ -580,7 +580,7 @@ body {
 }
 
 #navUsuario {
-	font-size: 18px;
+	font-size: 16px;
 	z-index: 3;
 	text-shadow: aliceblue;
 
@@ -591,6 +591,25 @@ body {
 
 
 	#navUsuario {
+		font-size: 24px;
+		z-index: 3;
+		text-shadow: aliceblue;
+		/* font-family: math; */
+		height: 100px;
+	}
+}
+#navAdministrador {
+	font-size: 15px;
+	z-index: 3;
+	text-shadow: aliceblue;
+
+	height: 100px;
+}
+
+@media (max-width : 576px) {
+
+
+	#navAdministrador {
 		font-size: 24px;
 		z-index: 3;
 		text-shadow: aliceblue;
