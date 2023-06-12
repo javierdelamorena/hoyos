@@ -30,15 +30,15 @@ $("#salvarComentario").on("click", function () {
         html2 += '<tr>';
         console.log("Hecho Correcto estamos dentro del for!" + objetos.comentarios[0].comentario);
         console.log("Hecho Correcto estamos dentro del for!" + objetos.propuestas.idPropuesta);
-        html2 += '<td><p   style="background-color: rgba(255, 255, 255, 0.9);border-radius: 50px;box-shadow: 0px 10px 3px 0px rgba(0,0,0,0.5);position: relative;margin-bottom: 30px;padding: 5px;font-weight: bold;font-size: 20px;font-family: inherit;display: -webkit-inline-box">Ha dicho:  ' + objetos.comentarios[0].comentario + '</p></td>';
+        html2 += '<td><p   id="textoComentarios">Ha dicho:  ' + objetos.comentarios[0].comentario + '</p></td>';
         html2 += '</tr>';
         if (objetos.comentarios[0].editable != null) {
             console.log("Hecho Correcto estamos dentro del if de editable!" + objetos.comentarios[0].editable);
             html2 += '<tr>';
             html2 += "<td>";
             html2 += "<button type='submit' class='btn btn-dark' data-bs-toggle='modal' value='Editar' data-bs-target='#staticBackdrop1" + objetos.comentarios[0].id + "' style='color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;float: left;' id=" + objetos.comentarios[0].id + ">Editar</button>";
-            html2 += " <form action='/spring-boot-cuevas-ayllon/borrarComentario' method='post'>";
-            //html2 += " <form action='/borrarComentario' method='post'>";
+            //html2 += " <form action='/spring-boot-hoyos/borrarComentario' method='post'>";
+            html2 += " <form action='borrarComentario' method='post'>";
             //html2 += " <form action='https://cuevas-de-ayllon.com/borrarComentario' method='post'>";
 
             html2 += "<input type='hidden' name='idComentario' value=" + objetos.comentarios[0].id + " >";
@@ -54,8 +54,8 @@ $("#salvarComentario").on("click", function () {
             html2 += '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
             html2 += '</div>';
             html2 += '<div class="modal-body">';
-            html2 += '<form action="/spring-boot-hoyos/editarComentario" method="get">';
-            //html2 += '<form action="/editarComentario" method="get">';
+            //html2 += '<form action="/spring-boot-hoyos/editarComentario" method="get">';
+            html2 += '<form action="editarComentario" method="get">';
             //html2 += '<form action="https://cuevas-de-ayllon.com/editarComentario" method="get">';
             html2 += '<textarea id="objetos.comentarios.id" name="comentario" value="objetos.comentarios.comentario"  rows="4"cols="50" style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255">';
             html2 += '' + objetos.comentarios[0].comentario + '';

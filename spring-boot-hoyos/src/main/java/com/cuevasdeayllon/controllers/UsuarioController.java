@@ -346,6 +346,7 @@ public class UsuarioController {
 				String passwordEncriptada = usuario.getPassword();
 				usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
 				usuario.setIdUsuario(usuario.getIdUsuario());
+				usuario.setRoles(usuario.getRoles());
 				service.editarUsuario(usuario);
 
 
