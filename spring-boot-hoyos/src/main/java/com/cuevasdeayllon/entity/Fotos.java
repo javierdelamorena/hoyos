@@ -5,7 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="fotos")
@@ -17,7 +21,13 @@ public class Fotos {
 	
 	private String fotos;
 	
-	int id_usuario;
+
+
+	
+	@ManyToOne
+	@JoinColumn(name="id_usuario",referencedColumnName ="id_usuario" )
+	@JsonBackReference
+	private Usuario usuario;
 
 	public Fotos() {
 		super();
@@ -39,12 +49,14 @@ public class Fotos {
 		this.fotos = fotos;
 	}
 
-	public int getId_usuario() {
-		return id_usuario;
+	
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	

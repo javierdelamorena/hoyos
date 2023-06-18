@@ -43,35 +43,6 @@ public class EstadosController {
 		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
 		
 		 estadosPropuestas=Utilidades.listaPropuestasAlistaEstadosPropuestas(propuestas);
-//		for (int i = 0; i < propuestas.size(); i++) {
-//			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
-//			
-//			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
-//			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
-//			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
-//			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
-//			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
-//			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
-//			
-//			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
-//				
-//				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
-//				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
-//				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
-//				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
-//				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
-//				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
-//				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
-//    
-//			}
-//    
-//			estadosPropuestas.add(estadoPropuesta);
-//			
-//			estadosPropuestas= estadosPropuestas.stream().sorted(Comparator.comparing(EstadosPropuestas::getIdPropuesta).reversed())
-//					.collect(Collectors.toList());
-//			
-//    
-//		}
 		
 		model.addAttribute("listaPropuestas", estadosPropuestas);
 		return "editarEstado";
@@ -100,34 +71,6 @@ public class EstadosController {
 				.collect(Collectors.toList());
 		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
 		
-
-//		for (int i = 0; i < propuestas.size(); i++) {
-//			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
-//			
-//			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
-//			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
-//			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
-//			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
-//			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
-//			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
-//			
-//			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
-//				
-//				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
-//				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
-//				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
-//				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
-//				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
-//				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
-//				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
-//    
-//			}
-//    
-//			estadosPropuestas.add(estadoPropuesta);
-//			
-//			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
-//    
-//		}
 		estadosPropuestas=Utilidades.listaPropuestasAlistaEstadosPropuestas(propuestas);
 		
 		model.addAttribute("listaPropuestas", estadosPropuestas);
@@ -163,34 +106,6 @@ public class EstadosController {
 				.collect(Collectors.toList());
 		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
 		
-
-//		for (int i = 0; i < propuestas.size(); i++) {
-//			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
-//			
-//			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
-//			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
-//			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
-//			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
-//			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
-//			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
-//			
-//			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
-//				
-//				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
-//				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
-//				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
-//				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
-//				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
-//				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
-//				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
-//    
-//			}
-//    
-//			estadosPropuestas.add(estadoPropuesta);
-//			
-//			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
-//    
-//		}
 		estadosPropuestas=Utilidades.listaPropuestasAlistaEstadosPropuestas(propuestas);
 		model.addAttribute("listaPropuestas", estadosPropuestas);
 		
@@ -224,34 +139,6 @@ public class EstadosController {
 				.collect(Collectors.toList());
 		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
 		
-
-//		for (int i = 0; i < propuestas.size(); i++) {
-//			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
-//			
-//			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
-//			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
-//			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
-//			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
-//			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
-//			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
-//			
-//			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
-//				
-//				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
-//				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
-//				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
-//				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
-//				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
-//				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
-//				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
-//    
-//			}
-//    
-//			estadosPropuestas.add(estadoPropuesta);
-//			
-//			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
-//    
-//		}
 		estadosPropuestas=Utilidades.listaPropuestasAlistaEstadosPropuestas(propuestas);
 		model.addAttribute("listaPropuestas", estadosPropuestas);
 		
@@ -285,34 +172,6 @@ public class EstadosController {
 				.collect(Collectors.toList());
 		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
 		
-
-//		for (int i = 0; i < propuestas.size(); i++) {
-//			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
-//			
-//			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
-//			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
-//			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
-//			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
-//			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
-//			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
-//			
-//			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
-//				
-//				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
-//				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
-//				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
-//				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
-//				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
-//				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
-//				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
-//    
-//			}
-//    
-//			estadosPropuestas.add(estadoPropuesta);
-//			
-//			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
-//    
-//		}
 		estadosPropuestas=Utilidades.listaPropuestasAlistaEstadosPropuestas(propuestas);
 		
 		model.addAttribute("listaPropuestas", estadosPropuestas);
@@ -339,34 +198,6 @@ public class EstadosController {
 					.collect(Collectors.toList());
 			List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
 			
-
-//			for (int i = 0; i < propuestas.size(); i++) {
-//				EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
-//				
-//				estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
-//				estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
-//				estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
-//				estadoPropuesta.setActiva(propuestas.get(i).getActiva());
-//				estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
-//				estadoPropuesta.setFecha(propuestas.get(i).getFecha());
-//				
-//				for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
-//					
-//					estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
-//					estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
-//					estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
-//					estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
-//					estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
-//					estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
-//					estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
-//	    
-//				}
-//	    
-//				estadosPropuestas.add(estadoPropuesta);
-//				
-//				estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
-//	    
-//			}
 			estadosPropuestas=Utilidades.listaPropuestasAlistaEstadosPropuestas(propuestas);
 			model.addAttribute("listaPropuestas", estadosPropuestas);
 			
@@ -398,33 +229,7 @@ public class EstadosController {
 		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
 		
 		estadosPropuestas=Utilidades.listaPropuestasAlistaEstadosPropuestas(propuestas);
-//		for (int i = 0; i < propuestas.size(); i++) {
-//			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
-//			
-//			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
-//			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
-//			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
-//			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
-//			estadoPropuesta.setUsuario(propuestas.get(i).getUsuario());
-//			estadoPropuesta.setFecha(propuestas.get(i).getFecha());
-//			
-//			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
-//				
-//				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
-//				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
-//				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
-//				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
-//				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
-//				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
-//				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
-//    
-//			}
-//    
-//			estadosPropuestas.add(estadoPropuesta);
-//			
-//			estadosPropuestas.forEach(p->logger.info("estos son los estados: "+p.getIdPropuesta()));
-//    
-//		}
+
 		
 		model.addAttribute("listaPropuestas", estadosPropuestas);
 		
@@ -444,32 +249,6 @@ public class EstadosController {
 		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
 		List<Propuestas> propuestas = propuestaService.findByTodas();
 
-//		for (int i = 0; i < propuestas.size(); i++) {
-//			EstadosPropuestas estadoPropuesta = new EstadosPropuestas();
-//			
-//			estadoPropuesta.setIdPropuesta(propuestas.get(i).getIdPropuesta());
-//			estadoPropuesta.setPropuesta(propuestas.get(i).getPropuesta());
-//			estadoPropuesta.setTitulo(propuestas.get(i).getTitulo());
-//			estadoPropuesta.setActiva(propuestas.get(i).getActiva());
-//			
-//			for (int j = 0;j < propuestas.get(i).getEstados().size(); j++) {
-//				
-//				estadoPropuesta.setId_estado(propuestas.get(i).getEstados().get(j).getId());
-//				estadoPropuesta.setVotacion(propuestas.get(i).getEstados().get(j).getVotacion());
-//				estadoPropuesta.setEncurso(propuestas.get(i).getEstados().get(j).getEncurso());
-//				estadoPropuesta.setPleno(propuestas.get(i).getEstados().get(j).getPleno());
-//				estadoPropuesta.setRealizada(propuestas.get(i).getEstados().get(j).getRealizada());
-//				estadoPropuesta.setDesestimada(propuestas.get(i).getEstados().get(j).getDesestimada());
-//				estadoPropuesta.setTextoDesestimada(propuestas.get(i).getEstados().get(j).getTextoDesestimada());
-//    
-//			}
-//    
-//			estadosPropuestas.add(estadoPropuesta);
-//			estadosPropuestas= estadosPropuestas.stream().sorted(Comparator.comparing(EstadosPropuestas::getIdPropuesta).reversed())
-//					.collect(Collectors.toList());
-//			
-//    
-//		}
 		estadosPropuestas=Utilidades.listaPropuestasAlistaEstadosPropuestas(propuestas);
     
 		return estadosPropuestas;

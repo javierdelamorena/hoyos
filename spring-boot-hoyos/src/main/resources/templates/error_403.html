@@ -15,11 +15,11 @@
             <div class="card-body">
                 <h5 class="card-title">Lo sentimos <span th:text="${#httpServletRequest.remoteUser}"></span>, No tienes
                     permisos
-                    para acceder a este recurso, tendras que volver a entrar </h5>
+                    para acceder a este recurso, tendras que cerrar a entrar </h5>
                 <a th:href="@{/toLoging}" class="btn btn-outline-light" role="button">Ir a Login</a>
 
 
-                <a  value="Volver" th:href="@{/toUsuario}" role="button"class="btn btn-outline-light">Volver</a>
+                <a  value="cerrar" th:href="@{/toUsuario}" role="button"class="btn btn-outline-light">cerrar</a>
 
 
             </div>

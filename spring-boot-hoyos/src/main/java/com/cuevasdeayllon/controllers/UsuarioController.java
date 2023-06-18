@@ -228,6 +228,8 @@ public class UsuarioController {
 		if(usuario!=null) {
 
 			service.borrarUsuario(usuario);
+		}else {
+			return "home";
 		}
 
 		model.addAttribute("usuarioBorrado", "El suario se ha borrado con exito");

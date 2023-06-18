@@ -618,9 +618,14 @@ public class PropuestaController {
 	@PostMapping("/borrarPropuesta")
 	public String borrarPropuesta(@RequestParam("idPropuesta") int idPropuesta, Model model) {
 		logger.info("Entramos en metodo /borrarPropuesta");
-		if (idPropuesta > 0) {
+		
+		Propuestas propuesta=propuestaService.findByIdPropuesta(idPropuesta);
+		if (idPropuesta > 0&&propuesta!=null) {
 			propuestaService.deleteById(idPropuesta);
 
+		}else {
+			return "listaPropuestas";
+			
 		}
 		List<Propuestas> todas = propuestaService.findAll();
 		model.addAttribute("listaPropuestas", todas);

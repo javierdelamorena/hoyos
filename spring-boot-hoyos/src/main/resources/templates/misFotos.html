@@ -47,7 +47,7 @@
 </head>
 
 <body class="bodyAdministradores">
-  <nav th:replace="layouts/fragmentoAdministradores :: nav"></nav>
+  <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
 
 
 
@@ -64,7 +64,7 @@
         <tr>
           
           <th scope="col">Foto</th>
-          <th scope="col">Usuario</th>
+          <th scope="col">Editar</th>
           <th scope="col">Borrar</th>
 
 
@@ -80,8 +80,16 @@
             style="border-radius:30px;padding:10px; height: 175px;width: 250px;" alt="Responsive image">
         </td>
 
-        <td th:if="${foto.usuario.nombre}" th:text="${foto.usuario.nombre}"></td>
-        
+        <form th:action="@{/borrarFoto}" method="post">
+
+            <input type="hidden" name="idFotos" th:value="${foto.idFotos}">
+            <input type="hidden" name="fotos" th:value="${foto.fotos}">
+            <input type="hidden" name="email" th:value="${foto.usuario.email}">
+  
+  
+            <td><input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark" value="Editar Foto"></td>
+          </form>
+  
 
 
         <form th:action="@{/borrarFoto}" method="post">

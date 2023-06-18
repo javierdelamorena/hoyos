@@ -56,6 +56,9 @@ public class Usuario implements Serializable{
 	private List<Propuestas> propuestas;
 	@OneToMany(mappedBy="usuario",cascade=CascadeType.ALL)
 	@JsonIgnore
+	private List<Fotos> fotos;
+	@OneToMany(mappedBy="usuario",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private List<Comentarios> comentarios;
 	@PrePersist
 	
@@ -155,6 +158,13 @@ public class Usuario implements Serializable{
 	}
 	public void setNotificacion(String notificacion) {
 		this.notificacion = notificacion;
+	}
+	
+	public List<Fotos> getFotos() {
+		return fotos;
+	}
+	public void setFotos(List<Fotos> fotos) {
+		this.fotos = fotos;
 	}
 	private static final long serialVersionUID = 1L;
 }

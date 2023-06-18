@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title> Cuevas de Ayllón Comentarios</title>
+  <title> Hoyos Comentarios</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=500, user-scalable=no" />
   
@@ -27,7 +27,7 @@
         font-size: 33px;
         /* width: 100%; */
         margin-right: 10%;
-        background-color: rgb(47 122 161 / 56%);">Espacio vecinal votaciones y comentarios</h3>
+        background-color: rgb(47 122 161 / 56%);">Espacio vecinal, votaciones y comentarios</h3>
       </div>
     </header>
   </div>
@@ -35,9 +35,23 @@
   <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
  
     <hr>
+    
     <div class="container" id="containerComentario">
+      <div class="col-lg-9" id="textoExplicacion" style=" 
+ 
+ margin-bottom: 0%;">
+      <hr>
+      <p>
+        Desde aquí podrás votar las propuestas, enriquecerlas con comentarios o quitar tu voto si te arrepientes. Si no estas de acuerdo también podrás dar tu opinión, esta será tenida en cuenta a la hora de discutirla en el pleno. Este es un espacio para votar y debatir mejoras para el pueblo, los usuarios que hagan comentarios ofensivos o falten el respeto a los demás, serán dados de baja automáticamente.
+      </br>
+        Esperamos que te guste y que lo disfrutes.
+      </p>
+      <hr>
+
+    </div>
+      
     <div class="row">
-      <div class="col-lg-10" data-bs-spy="scroll" id="cajaComentarios">
+      <div class="col-lg-9" data-bs-spy="scroll" id="cajaComentarios">
       <a type="button" th:href="@{/usuario}"class="btn" 
       style="color: #eeeeee;background-color: #463232a3;float: right;"
       aria-label="Close">Cerrar</a>
@@ -67,7 +81,7 @@
         </div>
 
         <div class="row"  style="padding: 1%;">
-          <h5 id="propuesta" th:text="${'Titulo: '+propuestas.titulo}" style="font-size: 23px;"></h5>
+          <p id="propuesta" th:text="${'Titulo: '+propuestas.titulo}" ></p>
         </div>
 
         <div class="row">
@@ -168,7 +182,7 @@
       </div>
     </div>
     <div class="row" style="margin-bottom: 5%;">
-      <div class="col-lg-10" id="cajaAbajoComentarios">
+      <div class="col-lg-9" id="cajaAbajoComentarios">
         <div class="row">
           <div class="col-lg-12">
             <textarea type="text" id="comentario" name="comentario" class="form-control" maxlength="250" required></textarea>
@@ -220,7 +234,7 @@
       console.log("Hecho Correcto!");
       console.log('el numero de graficos es:  ', data);
       var html2 = '';
-      html2 += '<h5 id="recuperacion" style="font-size: 23px;">Esta propuesta tiene: ' + data + ' votos</h5>';
+      html2 += '<p id="recuperacion" >Esta propuesta tiene: ' + data + ' votos</p>';
 
       $('#puntuacionTotal').append(html2);
       $.ajax({

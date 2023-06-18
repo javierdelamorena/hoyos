@@ -49,7 +49,7 @@ public class MercadilloController {
 			@RequestParam("file1") MultipartFile foto1, @RequestParam("file2") MultipartFile foto2,
 			@RequestParam("file3") MultipartFile foto3, Model model, HttpSession sesion) {
 		logger.info("Entramos en metodo mercadillo");
-		logger.info("El articulo que recogemos es: " + mercadillo.getNombre());
+		logger.info("El nombre de usuario que recogemos es: " + mercadillo.getNombre());
 		if (mercadillo.getId_usuario() == 0) {
 			return "login";
 		}
@@ -96,7 +96,21 @@ public class MercadilloController {
 				for (int i = 0; i < oraLen; i++) {
 					if (foto1.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos",
-								"El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
+								"El nombre de la foto1 no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
+						List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquiler");
+						model.addAttribute("tipo_servicio", tipoServicio);
+						model.addAttribute("nombre", "Nombre del anunciante");
+						model.addAttribute("categoria", "Categoría ");
+						model.addAttribute("servicio", "Tipo de servicio");
+						model.addAttribute("foto1", "Foto 1");
+						model.addAttribute("foto2", "Foto 2");
+						model.addAttribute("foto3", "Foto 3");
+						model.addAttribute("precio", "Precio");
+						model.addAttribute("texto", "Escribe tu oferta");
+						model.addAttribute("nombre_servicio", "Tipo de servicio o articulo");
+
+						model.addAttribute("telefono", "Telefono del anunciante");
+
 						return "mercadillo";
 					}
 				}
@@ -119,7 +133,20 @@ public class MercadilloController {
 				for (int i = 0; i < oraLen; i++) {
 					if (foto1.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos",
-								"El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
+								"El nombre de la foto2 no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
+						List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquiler");
+						model.addAttribute("tipo_servicio", tipoServicio);
+						model.addAttribute("nombre", "Nombre del anunciante");
+						model.addAttribute("categoria", "Categoría ");
+						model.addAttribute("servicio", "Tipo de servicio");
+						model.addAttribute("foto1", "Foto 1");
+						model.addAttribute("foto2", "Foto 2");
+						model.addAttribute("foto3", "Foto 3");
+						model.addAttribute("precio", "Precio");
+						model.addAttribute("texto", "Escribe tu oferta");
+						model.addAttribute("nombre_servicio", "Tipo de servicio o articulo");
+
+						model.addAttribute("telefono", "Telefono del anunciante");
 						return "mercadillo";
 					}
 				}
@@ -145,7 +172,20 @@ public class MercadilloController {
 				for (int i = 0; i < oraLen; i++) {
 					if (foto3.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos",
-								"El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
+								"El nombre de la foto3 no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
+						List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquiler");
+						model.addAttribute("tipo_servicio", tipoServicio);
+						model.addAttribute("nombre", "Nombre del anunciante");
+						model.addAttribute("categoria", "Categoría ");
+						model.addAttribute("servicio", "Tipo de servicio");
+						model.addAttribute("foto1", "Foto 1");
+						model.addAttribute("foto2", "Foto 2");
+						model.addAttribute("foto3", "Foto 3");
+						model.addAttribute("precio", "Precio");
+						model.addAttribute("texto", "Escribe tu oferta");
+						model.addAttribute("nombre_servicio", "Tipo de servicio o articulo");
+
+						model.addAttribute("telefono", "Telefono del anunciante");
 						return "mercadillo";
 					}
 				}

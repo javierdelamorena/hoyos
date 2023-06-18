@@ -36,12 +36,12 @@
 
   <!-- <div class="row" style="margin-left: 7%;">  -->
   <div class="container-fluid">
-    <div class="col-lg-2" style=" margin-left: 2%;
+    <div class="col-lg-3" id="textoExplicacion" style=" margin-left: 2%;
     margin-top: 3%;
-    font-size: 20px;
-    font-family: serif;
+   
+    
     float: right;
-    margin-right: 5%;">
+    margin-right: 3%;">
       <hr>
       <p>
         En esta sección hacemos un breve resumen histórico de Hoyos. Si nos visitas te
@@ -57,7 +57,7 @@
       <hr>
     </div>
 
-    <div class="caja col-lg-6" style="margin-top: 3%;float: right;">
+    <div class="caja col-lg-5" style="margin-top: 4%;float: right;margin-bottom: 15%;">
       <!-- <textarea name="" id="historia" cols="200" rows="50" readonly> -->
       <h2 style=" text-align: center; font-weight: bold;margin-top: 10%;">
         Hoyos
@@ -106,43 +106,7 @@
       </p>
       <!-- </textarea> -->
     </div>
-    <aside class="col-lg-2" style="text-decoration: none;margin-top: 3%;margin-left: 5%;">
-      <a href="" style="text-decoration: none;
-      font-size: 17px;
-      font-family: sans-serif;
-      color: #2f3235c7;
-      ">Hoyos</a>
-      <hr>
-      <a href="https://www.guardiacivil.es/ca/institucional/directorio/soria/puesto_de_san_esteban_de_gormaz.html"
-        style="text-decoration: none;
-      font-size: 17px;
-      font-family: sans-serif;
-      color: #2f3235c7;" data-toggles="tooltip" data-placement="bottom" title="GUARDIA CIVIL
-             PUESTO DE SAN ESTEBAN DE GORMAZ
-             Localidad: SAN ESTEBAN DE GORMAZ
-             Provincia: SORIA
-             Dirección postal: AVDA. DEL GENERALISIMO, 10
-             Código postal: 42330
-             Teléfono: 975350046">Seguridad ciudadana</a>
-      <hr>
-      <a th:href="@{/contacto}" style="text-decoration: none;
-      font-size: 17px;
-      font-family: sans-serif;
-      color: #2f3235c7;">Contacto</a>
-      <hr>
-      <a th:href="@{/preguntas}" style="text-decoration: none;
-      font-size: 17px;
-      font-family: sans-serif;
-      color: #2f3235c7;">Preguntas frecuentes</a>
-      <hr>
-      <a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
-        style="text-decoration: none;
-      font-size: 17px;
-      font-family: sans-serif;
-      color: #2f3235c7;">Como llegar</a>
-      <hr>
-
-    </aside>
+    <aside th:replace="layouts/fragmentoprincipal :: footer" class="col-lg-2" style="text-decoration: none;margin-top: 3%;margin-left: 5%;"></aside>
 
 
   </div>

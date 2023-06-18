@@ -4,6 +4,8 @@
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyAdministradores {
@@ -13,6 +15,8 @@
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyAnuncios {
@@ -21,6 +25,8 @@
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyMercadilloSubir {
@@ -29,6 +35,8 @@
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyContacto {
@@ -37,6 +45,8 @@
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyPreguntas {
@@ -45,6 +55,8 @@
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyEnlacesInteres {
@@ -53,6 +65,8 @@
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyRegistro {
@@ -61,6 +75,8 @@
 	/* background-repeat: repeat; */
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyUsuario {
@@ -69,6 +85,8 @@
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyLogin {
@@ -77,6 +95,8 @@
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyComentarios {
@@ -85,6 +105,8 @@
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyRutas {
@@ -93,6 +115,8 @@
 	background-repeat: no-repeat;
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 }
 
 .bodyHistoria {
@@ -101,6 +125,8 @@
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 
 }
 
@@ -110,7 +136,8 @@
 	background-repeat: no-repeat;
 	margin: 0;
 	height: 100vh;
-
+	object-fit: cover;
+	object-position: bottom;
 
 }
 
@@ -127,6 +154,8 @@
 	background-repeat: repeat;
 	margin: 0;
 	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
 
 }
 
@@ -227,6 +256,28 @@ body {
 	margin-bottom: 5%;
 }
 
+@media (max-width:576px) {
+	.caja {
+		font-family: sans-serif;
+		color: #0b0b0b;
+		font-size: 24px;
+		font-weight: 400;
+		/* font-weight: bolder; */
+		text-align: left;
+		background: #57a14fc7;
+		margin: 40px;
+		/* overflow: hidden; */
+		padding: 20px;
+		border-radius: 35px 0px 35px 0px;
+		-moz-border-radius: 35px 0px 35px 0px;
+		-webkit-border-radius: 35px 0px 35px 0px;
+		border: 2px solid #040404;
+
+		box-shadow: 5px 0px 19px 4px;
+		margin-bottom: 5%;
+	}
+}
+
 #historia {
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
@@ -259,9 +310,7 @@ body {
 
 }
 
-/* #formularioRegistro {
-	font-size: 20px;
-} */
+
 
 #galeriaImg {
 	padding: 10px;
@@ -283,13 +332,39 @@ body {
 	}
 }
 
-@media (max-width: ≥576px) {
+@media (max-width:576px) {
 
 	#fotosMercadillo {
 		width: 54%;
 		margin-top: 5%;
 		margin-left: 8%;
 		margin-bottom: 3%;
+	}
+}
+
+
+
+#explicacionMercadillo {
+	text-decoration: none;
+	margin-top: 6%;
+	font-size: 18px;
+	font-family: sans-serif;
+	font-weight: 500;
+	margin-bottom: 6%;
+
+}
+
+
+@media (max-width:576px) {
+
+	#explicacionMercadillo {
+		text-decoration: none;
+		margin-top: 3%;
+		font-size: 22px;
+		font-family: sans-serif;
+		font-weight: 500;
+		margin-bottom: 3%;
+
 	}
 }
 
@@ -303,7 +378,7 @@ body {
 	}
 }
 
-@media (max-width: ≥576px) {
+@media (max-width:576px) {
 
 	#fotosModel {
 		border-radius: 4px;
@@ -556,6 +631,7 @@ body {
 	}
 
 }
+
 /*+++++++++++++++++++++++Navs+++++++++++++++++++++++++++*/
 #navPrincipal {
 	font-size: 16px;
@@ -598,6 +674,7 @@ body {
 		height: 100px;
 	}
 }
+
 #navAdministrador {
 	font-size: 15px;
 	z-index: 3;
@@ -617,13 +694,15 @@ body {
 		height: 100px;
 	}
 }
-#desplegableNavPrincipal{
+
+#desplegableNavPrincipal {
 	font-size: 15px;
 }
+
 @media (max-width : 576px) {
 
 
-	#desplegableNavPrincipal{
+	#desplegableNavPrincipal {
 		font-size: 25px;
 	}
 }
@@ -691,7 +770,7 @@ body {
 #containerComentario {
 	margin-top: 3%;
 	margin-bottom: 5%;
-	margin-left: 20%;
+	margin-left: 19%;
 }
 
 @media (max-width : 576px) {
@@ -790,5 +869,83 @@ body {
 		margin: 4%;
 		background-color: #fffffffa;
 		padding: 1%;
+	}
+}
+
+#puntuacionTotal {
+	font-size: 20px;
+	font-weight: 500;
+
+}
+
+@media (max-width : 576px) {
+	#puntuacionTotal {
+		font-size: 23px;
+		font-weight: 500;
+
+	}
+}
+
+#propuesta {
+	font-size: 20px;
+	font-weight: 500;
+
+}
+
+@media (max-width : 576px) {
+	#propuesta {
+		font-size: 23px;
+		font-weight: 500;
+
+	}
+}
+
+#textoExplicacion {
+	font-size: 16px;
+
+}
+
+@media (max-width : 576px) {
+	#textoExplicacion {
+		font-size: 25px;
+
+	}
+}
+
+#textoAside {
+	font-size: 13px;
+
+}
+
+@media (max-width : 576px) {
+	#textoAside {
+		font-size: 22px;
+
+	}
+}
+
+#textoMercadillo {
+	font-size: 16px;
+	padding: 1%;
+
+}
+
+@media (max-width : 576px) {
+	#textoMercadillo {
+		font-size: 24px;
+		padding: 1%;
+
+	}
+}
+
+#textoPresentacion {
+	font-size: 17px;
+
+}
+
+@media (max-width : 576px) {
+	#textoPresentacion {
+		font-size: 24px;
+
 	}
 }

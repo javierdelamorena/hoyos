@@ -63,7 +63,7 @@ public class IndexControler {
 	@GetMapping("/toLoging")
 	public String irALoging(Model model) {
 
-		model.addAttribute("nombre","Nombre");
+		model.addAttribute("email","Email");
 		model.addAttribute("Password","Password");
 
 		logger.info("Entramos en metodo index/toLoging");

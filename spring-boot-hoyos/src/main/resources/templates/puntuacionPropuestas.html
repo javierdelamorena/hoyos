@@ -52,6 +52,12 @@
 
 
     <div class="container content" style="margin-top: 10%;">
+        <div class="col-lg-12 col-sm-2" style="margin: 2%;" >
+
+            <a type="button" value="cerrar" th:href="@{/toUsuario}" class="btn "
+                style="color: #eeeeee;background-color: #463232a3;margin-right: 6%;">cerrar</a>
+        </div>
+        <p style="text-align: center;">Listado de puntuaciones totales de propuestas</p>
         <form>
             <input class="form-control" type="text" id="q" placeholder="Buscar......" onkeyup="search()">
         </form>
@@ -62,7 +68,7 @@
                 <tr>
                     <th scope="col">Propuesta</th>
                     <th scope="col">Puntuacion Total</th>
-                    <th scope="col">Borrar Total</th>
+                    <!-- <th scope="col">Borrar Total</th> -->
 
 
 
@@ -79,7 +85,7 @@
 
                     <td th:if="${propuesta.puntuacion}" th:text="${propuesta.puntuacion}"></td>
                     <td th:if="${propuesta.puntuacion}==0" th:text="'0'"></td>
-                    <form th:action="@{/borrarPuntuacion}" method="post">
+                    <!-- <form th:action="@{/borrarPuntuacion}" method="post">
 
                         <input type="hidden" name="idPuntuacion" th:value="${propuesta.id_total}">
 
@@ -88,7 +94,7 @@
                         <td><input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark"
                                 value="Borrar ">
                         </td>
-                    </form>
+                    </form> -->
 
 
                 </tr>
@@ -96,10 +102,10 @@
 
         </table>
 
-        <div class="col-sm-2">
+        <div class="col-lg-12 col-sm-2" style="margin: 2%;" >
 
-            <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn btn-dark"
-                style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
+            <a type="button" value="cerrar" th:href="@{/toUsuario}" class="btn "
+                style="color: #eeeeee;background-color: #463232a3;margin-right: 6%;">cerrar</a>
         </div>
 
     </div>

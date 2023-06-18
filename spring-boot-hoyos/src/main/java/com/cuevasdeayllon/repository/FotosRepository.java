@@ -16,5 +16,9 @@ public interface FotosRepository {
 	void deleteFoto(Fotos foto);
 	
 	Page<Fotos> fotosPaginas(Pageable page);
+	
+	public List<Fotos> todasByIdUsuario(int idUsuario);
+	
+	Fotos fotoByIdUsuario(int idUsuario);
 
 }

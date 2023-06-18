@@ -19,69 +19,9 @@
 
 
 
-    <!-- <nav class="navbar navbar-expand-lg " th:fragment="nav" style="padding-left: 12%; display: flex;">
-        <div class="container-fluid">
-            
-            
-            <button class="navbar-toggler navbar-toggler-left" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="border: solid;
-                border-block-width: 8px;background-color:white;">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarNavDropdown">
-                <ul class="navbar-nav" style="margin-left: 10%;">
-                    <li class="nav-item " style="margin-left:5px;">
-                        <a class="nav-link" aria-current="page" 
-                            th:href="@{/}">CUEVAS DE AYLLON</a>
-                    </li>
-                    <li class="nav-item " style="margin-left:5px;">
-                        <a class="nav-link" aria-current="page" th:href="@{/galeriaFotografica}"
-                            >Galeria de
-                            imagenes</a>
-                    </li>
-                    <li class="nav-item " style="margin-left:5px;">
-                        <a class="nav-link" 
-                            th:href="@{/historiaPueblo}">Historia</a>
-                    </li>
-                    <li class="nav-item " style="margin-left:5px;">
-                        <a class="nav-link" th:href="@{/toRutas}" >Rutas</a>
-                    </li>
-                    <li class="nav-item " style="margin-left:5px;">
-                        <a class="nav-link" th:href="@{/todosAnuncios}" >Tablon
-                            de Anuncios</a>
-                    </li>
-                    <li class="nav-item " style="margin-left:5px;">
-                        <a class="nav-link" th:href="@{/enlacesDeInteres}"
-                            >Enlaces de Interes</a>
-                    </li>
-                    <li class="nav-item " style="margin-left:5px;">
-                        <a class="nav-link"  th:href="@{/orfeo}">Campus
-                            ORFEO/ORPHEUS DE LAS TIERRAS DE AYLLÓN</a>
-                    </li>
-
-                    
-
-                    <div class="dropdown" style="margin-left:5px;">
-                        <a class="nav-link dropdown-toggle"  href="#"
-                            role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            Espacio Vecinal
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/registrarse}">Registrarse</a></li>
-                            <li><a class="dropdown-item" th:href="@{/toLoging}">Entrar</a></li>
-
-                        </ul>
-                    </div>
-
-                </ul>
-            </div>
-
-        </div>
-
-    </nav> -->
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navPrincipal">
-        <div class="container-fluid" style="padding-top: 1%;
-      ">
+        <div class="container-fluid" style="padding-top: 1%;margin-right: 1%;">
             <a class="nav-link" aria-current="page" 
             th:href="@{/}">HOYOS</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,32 +71,30 @@
         </div>
       </nav>
 
-    <!-- <div class="container" th:fragment="fondo" id="divImgInicio"> -->
-    <!-- <img src="imagenes/imagenDeFondo.jpg" class="img-fluid" alt="Cinque Terre" id="imgInicio" th:fragment="fondo" /> -->
+    
+    <aside th:fragment="footer" id="textoAside" class="col-lg-2 col-sm-10" style="margin-left: 5%;
+    margin-top: 4%;">
+        <a href="" style="text-decoration: none;
+        color: #2f3235c7;">Hoyos</a>
+        <hr>
+        <a href="https://www.guardiacivil.es/ca/institucional/directorio/soria/puesto_de_san_esteban_de_gormaz.html"
+            style="text-decoration: none;color: #2f3235c7;" data-toggles="tooltip" data-placement="bottom" title="GUARDIA CIVIL
+         PUESTO DE SAN ESTEBAN DE GORMAZ
+         Localidad: SAN ESTEBAN DE GORMAZ
+         Provincia: SORIA
+         Dirección postal: AVDA. DEL GENERALISIMO, 10
+         Código postal: 42330
+         Teléfono: 975350046">Seguridad ciudadana</a>
+        <hr>
+        <a th:href="@{/contacto}" style="text-decoration: none;color: #2f3235c7;">Contacto</a>
+        <hr>
+        <a th:href="@{/preguntas}" style="text-decoration: none;color: #2f3235c7;">Preguntas frecuentes</a>
+        <hr>
+        <a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
+            style="text-decoration: none;color: #2f3235c7;">Como llegar</a>
+        <hr>
 
-    <!-- </div> -->
-    <!-- <div class="container" th:fragment="espacio"></div> -->
-    <!-- <footer class="footer  rounded-top text-center" th:fragment="footer" style="position: fixed;
-    background-color: white;">
-     
-        <i class="bi bi-facebook"></i>
-    </footer>  -->
-    <div class="footer" th:fragment="footer" style="display:inline-flex ;height: 40px;">
-        
-        <div class="foot comollegar">
-            <a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
-                target="_blank" alt="Como llegar" title="como  llegar" style="color: white; padding: 30px;text-decoration: none;">Como llegar</a><br>
-        </div>
-        <div class="foot preguntas">
-            <a th:href="@{/preguntas}"
-                target="_blank" alt="Preguntas frecuentes" title="Preguntas frecuentes" style="color: white; padding: 30px;text-decoration: none;">Preguntas Frecuentes</a><br>
-        </div>
-        <div class="foot contacto">
-            <a th:href="@{/contacto}"
-                target="_blank" alt="Contacto" title="Contacto" style="color: white; padding: 30px;text-decoration: none;">Contacto</a><br>
-        </div>
-
-    </div>
+    </aside>
 
 
 

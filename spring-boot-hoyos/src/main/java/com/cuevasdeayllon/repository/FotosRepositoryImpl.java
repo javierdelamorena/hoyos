@@ -38,13 +38,24 @@ public class FotosRepositoryImpl implements FotosRepository{
 	}
 
 
-	
-
-
 	@Override
 	public Page<Fotos> fotosPaginas(Pageable page) {
 		
 		return repository.findAllPage(page);
+	}
+
+
+	@Override
+	public List<Fotos> todasByIdUsuario(int idUsuario) {
+		// TODO Auto-generated method stub
+		return repository.findAllByIdUsuario(idUsuario);
+	}
+
+
+	@Override
+	public Fotos fotoByIdUsuario(int idUsuario) {
+		// TODO Auto-generated method stub
+		return repository.findByIdUsuario(idUsuario);
 	};
 
 }

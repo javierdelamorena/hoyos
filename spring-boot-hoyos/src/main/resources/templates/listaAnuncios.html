@@ -54,6 +54,12 @@
         <h5 th:if="${faltaTitulo}" th:text="${faltaTitulo}" class="alert alert-danger"></h5>
         <h5 th:if="${faltaAnuncio}" th:text="${faltaAnuncio}" class="alert alert-danger"></h5>
         <h5 th:if="${anuncioSubido}" th:text="${anuncioSubido}" class="alert alert-info"></h5>
+        <div class="col-lg-12 col-sm-2" style="margin: 2%;" >
+
+            <a type="button" value="cerrar" th:href="@{/toUsuario}" class="btn "
+                style="color: #eeeeee;background-color: #463232a3;margin-right: 6%;">cerrar</a>
+        </div>
+        <p style="text-align: center;">Lista de anucios del tablón de anuncios.</p>
         <form>
             <input class="form-control" type="text" id="q" placeholder="Buscar......" onkeyup="search()">
         </form>
@@ -169,10 +175,10 @@
 
         </table>
 
-        <div class="col-sm-2" style="margin: 2%;">
+        <div class="col-lg-12 col-sm-2" style="margin: 2%;" >
 
-            <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn btn-dark"
-                style="color: #eeeeee;background-color: #463232a3;margin-left: 4%;">Volver</a>
+            <a type="button" value="cerrar" th:href="@{/toUsuario}" class="btn "
+                style="color: #eeeeee;background-color: #463232a3;margin-right: 6%;">cerrar</a>
         </div>
 
     </div>

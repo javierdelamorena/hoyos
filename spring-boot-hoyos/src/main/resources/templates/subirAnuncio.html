@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cuevas de Ayllón subir anuncio</title>
+    <title>Hoyos subir anuncio</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=500, user-scalable=no" />
 
@@ -23,10 +23,11 @@
 
         <h5 style="color: white;padding: 2%;"> Este formulario de anuncio se mostrara en tablon de
             anuncios</h5>
+        <h5 style="color: white;padding: 2%;" th:if="${fotoConEspacio}" th:text="${fotoConEspacio}"></h5>
         <h5 style="color: white;padding: 2%;" th:if="${faltaTitulo}" th:text="${faltaTitulo}"></h5>
         <h5 style="color: white;padding: 2%;" th:if="${faltaAnuncio}" th:text="${faltaAnuncio}"></h5>
         <h5 style="color: white;padding: 2%;" th:if="${anuncioSubido}" th:text="${anuncioSubido}"></h5>
-
+        
         <form th:action="@{/subirAnuncio}" class="text-dark" style="width: 100%;
         padding: 30px;" method="post" enctype="multipart/form-data">
 
@@ -50,8 +51,8 @@
             </div>
             <div class="col-sm-2">
 
-                <a type="button" value="Volver" th:href="@{/toUsuario}" class="btn "
-                    style="color: #eeeeee;background-color: #463232a3;">Volver</a>
+                <a type="button" value="cerrar" th:href="@{/toUsuario}" class="btn "
+                    style="color: #eeeeee;background-color: #463232a3;">cerrar</a>
             </div>
 
         </form>

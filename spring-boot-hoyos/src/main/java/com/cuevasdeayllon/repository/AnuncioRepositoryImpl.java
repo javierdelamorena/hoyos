@@ -22,8 +22,8 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 	@Override
 	public void insertarAnucio(Anuncios anuncio,MultipartFile foto)  {
-		//String rootPath="C://TEMP//uploadsAnuncios";
-		String rootPath="/uploadsAnuncios/";
+		String rootPath="C://TEMP//uploadsAnuncios";
+		//String rootPath="/uploadsAnuncios/";
 		Anuncios anuncioeditable=new Anuncios();
 		anuncioeditable.setIdAnuncios(0);
 		anuncioeditable.setAnuncio(anuncio.getAnuncio());
@@ -35,7 +35,7 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 			try {
 				byte[]bytes=foto.getBytes();
-				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
+				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename().toString().trim());
 				Files.write(rutaCompleta,bytes);
 				
 				anuncioeditable.setFoto_anuncio(foto.getOriginalFilename());

@@ -59,11 +59,30 @@ public class FotosController {
 
 		List<Fotos>fotos=service.todasLasFotos();
 		
-		
+		if(fotos!=null) {
 
-		fotos.forEach(f->logger.info("Esta es la lista de fotos: "+f.getFotos()+" y el usuario"+ f.getId_usuario()));
+		fotos.forEach(f->logger.info("Esta es la lista de fotos: "+f.getFotos()+" y el usuario"+ f.getUsuario().getNombre()));
 		model.addAttribute("fotosLista", fotos);
+		}else {
+			return "listaFotos";
+		}
 		return "listaFotos";
+
+	}
+	
+	@GetMapping( path= "/fotosMiLista")
+	public String fotosMiLista(@RequestParam("idUsuario") int id_usuario,Model model,HttpSession sesion) {
+
+		List<Fotos>fotos=service.todasByIdUsuario(id_usuario);
+		
+		if(fotos!=null) {
+
+		fotos.forEach(f->logger.info("Esta es la lista de fotos: "+f.getFotos()+" y el usuario"+ f.getUsuario().getNombre()));
+		model.addAttribute("fotosLista", fotos);
+		}else {
+			return "misFotos";
+		}
+		return "misFotos";
 
 	}
 
@@ -98,7 +117,7 @@ public class FotosController {
 				Files.write(rutaCompleta,bytes);
 				fotos.setIdFotos(0);
 				fotos.setFotos(foto.getOriginalFilename());
-				fotos.setId_usuario(id_usuario);
+				fotos.setUsuario(usuario);
 
 				service.salvarFoto(fotos);
 				model.addAttribute("fotoSubida", "La foto se ha añadido con exito, la podras ver en la galeria");
@@ -119,16 +138,18 @@ public class FotosController {
 	}
 
 	@PostMapping("/borrarFoto")	
-	public String borrarFoto(@RequestParam("fotos")String foto,@RequestParam("id_usuario")int id_usuario,@RequestParam("idFotos")int idFotos,Model model) {
+	public String borrarFoto(@RequestParam("fotos")String foto,@RequestParam("email")String  email,@RequestParam("idFotos")int idFotos,Model model) {
 		Fotos fotos=new Fotos();
-
+		Usuario usuario=usuarioservice.usuarioPorEmail(email);
 		if(foto!=null) {
 			fotos.setFotos(foto)	;
-			fotos.setId_usuario(id_usuario);
+			fotos.setUsuario(usuario);
 			fotos.setIdFotos(idFotos);
 
 			service.deleteFoto(fotos);
 			model.addAttribute("fotoBorrada", "La foto se ha borrado con exito.");
+		}else {
+			return "listaFotos";
 		}
 		List<Fotos>fotosLista=service.todasLasFotos();
 		model.addAttribute("fotosLista", fotosLista);

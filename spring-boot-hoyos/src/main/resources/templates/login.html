@@ -35,9 +35,9 @@
 
 	<nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
 	<div>
-		<div class="col-lg-3 col-sm-10" style=" margin-left: 7%;
+		<div class="col-lg-3 col-sm-10" id="textoExplicacion" style=" margin-left: 7%;
 			margin-top: 3%;
-			font-size: 20px;
+			
 			font-family: serif;
 			float: right;
 			margin-right: 4%;">
@@ -56,8 +56,8 @@
 			<hr>
 		</div>
 
-		<div class="col-lg-4 col-sm-8 " id="registro"
-			style=" margin-top: 3%;margin-left: 7%; margin-bottom: 3%; background-color: #5d7e3fc7;; border-radius: 2px;float:right;padding: 30px; ">
+		<div class="col-lg-4 col-sm-8 " 
+			style=" margin-top: 3%;margin-left: 7%; margin-bottom: 3%; background-color: #5d7e3fc7;; border-radius: 2px;float:right;padding: 30px;margin-bottom: 15%; ">
 			<h5 id="formularioRegistro" style="margin-left: 1%;font-size: 19px;">Entra en el espacio
 				vecinal de Hoyos con tu email y contraseña.</h5>
 
@@ -67,20 +67,15 @@
 				<div class="row col-lg-8 col-sm-4">
 					<label form="email" class="col-form-label" th:text="${email}"></label>
 				</div>
-				<div class="row col-lg-8 col-sm-4">
-					<!-- <input type="text" id="nombre" name="nombre" class="form-control"> -->
+				<div class="row col-lg-8 col-sm-4">					<!-- <input type="text" id="nombre" name="nombre" class="form-control"> -->
 					<input type="text" id="email" name="email" class="form-control">
-
 				</div>
 
 				<div class="row col-lg-8 col-sm-4">
-					<label form="password" class="col-form-label" th:text="${Password}">Contraseña</label>
+					<label form="password" class="col-form-label" th:text="${Password}"></label>
 				</div>
-				<div class="row col-lg-8 col-sm-4">
-
-					<!-- <input type="password" id="password" name="password" class="form-control"> -->
+				<div class="row col-lg-8 col-sm-4">					<!-- <input type="password" id="password" name="password" class="form-control"> -->
 					<input type="password" id="password" name="password" class="form-control">
-
 				</div>
 				</br>
 				</br>
@@ -99,43 +94,7 @@
 	">Has olvidado tu contraseña?</a>
 		</div>
 
-		<aside class="col-lg-2" style="text-decoration: none;
-		margin-top: 3%;
-		margin-left: 10%;">
-			<a href="" style="text-decoration: none;
-        font-size: 17px;
-        font-family: sans-serif;
-        color: #2f3235c7;">Hoyos</a>
-			<hr>
-			<a href="https://www.guardiacivil.es/ca/institucional/directorio/soria/puesto_de_san_esteban_de_gormaz.html" style="text-decoration: none;
-        font-size: 17px;
-        font-family: sans-serif;
-        color: #2f3235c7;" data-toggles="tooltip" data-placement="bottom" title="GUARDIA CIVIL
-			   PUESTO DE SAN ESTEBAN DE GORMAZ
-			   Localidad: SAN ESTEBAN DE GORMAZ
-			   Provincia: SORIA
-			   Dirección postal: AVDA. DEL GENERALISIMO, 10
-			   Código postal: 42330
-			   Teléfono: 975350046">Seguridad ciudadana</a>
-			<hr>
-			<a th:href="@{/contacto}" style="text-decoration: none;
-        font-size: 17px;
-        font-family: sans-serif;
-        color: #2f3235c7;">Contacto</a>
-			<hr>
-			<a th:href="@{/preguntas}" style="text-decoration: none;
-        font-size: 17px;
-        font-family: sans-serif;
-        color: #2f3235c7;">Preguntas frecuentes</a>
-			<hr>
-			<a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
-				style="text-decoration: none;
-        font-size: 17px;
-        font-family: sans-serif;
-        color: #2f3235c7;">Como llegar</a>
-			<hr>
-
-		</aside>
+		<aside th:replace="layouts/fragmentoprincipal :: footer" class="col-lg-2" style="text-decoration: none;margin-top: 3%;margin-left: 10%;"></aside>
 	</div>
 
 
