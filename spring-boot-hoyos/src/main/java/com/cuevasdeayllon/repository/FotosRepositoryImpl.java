@@ -56,6 +56,13 @@ public class FotosRepositoryImpl implements FotosRepository{
 	public Fotos fotoByIdUsuario(int idUsuario) {
 		// TODO Auto-generated method stub
 		return repository.findByIdUsuario(idUsuario);
+	}
+
+
+	@Override
+	public Fotos fotoById(int idFotos) {
+		// TODO Auto-generated method stub
+		return repository.getById(idFotos);
 	};
 
 }

@@ -27,20 +27,24 @@
   font-family: cursive;
   border-radius: 10px;
   height: 100%;">
-      <div class="col-lg-2 fecha" id="fecha"></div>
-
-      <div class="col-lg-5 " style="padding-top: 9%;
-      padding-bottom: 9%;">
-        <div id="cartelHome" style="
-        background-color: #9b3db5bd;">Bienvenid@s a Hoyos</div>
+      <div th:replace="layouts/fragmentoprincipal :: idiomas" id="idiomas"></div>
+      
+        
+      
+      
+      <div class="col-lg-5 " id="divCartel">
+        <div id="cartelHome">Bienvenid@s a Hoyos</div>
         <!-- <h3 class="tituloHeaderHome">Bienvenid@s a Cuevas de Ayllón</h3> -->
-      </div>
 
-  
-  </header>
- </div> 
+      </div>
+      
+      
+      <div th:replace="layouts/fragmentoprincipal :: nombreFoto" ></div>
+    
+    </header>
+  </div>
   <nav th:replace="layouts/fragmentoprincipal :: nav" id="navPrincipal"></nav>
-<hr>
+  <hr>
 
   <!-- <div class="row" style="margin-left: 10%;"> -->
   <div class="container-fluid">
@@ -65,25 +69,16 @@
    
     /* font-family: sans-serif; */
     
-    margin-bottom: 15%;"id="textoPresentacion">
-      <p>La Villa de Hoyos (en extremeño Joyus) es un municipio del norte de la provincia de Cáceres (España). Limita al
-        Norte con Trevejo y Acebo, al Sur Moraleja y Cilleros, Este con Perales del Puerto y Oeste con Cilleros.
-
-        Dista de la capital de la provincia 100 km, tiene una superficie de 15 km2, en esta localidad tiene su sede el
-        Consejo Regulador de la Denominación de Origen del Aceite «Gata Hurdes». Es Sede de la Mancomunidad de
-        Municipios de Sierra de Gata cuenta con: Oficina Comarcal de Urbanismo, Oficina ARI, Oficina Comarcal de la
-        Vivienda, Servicio Social de Base, Parque de Maquinaria, Servicios de Recogida de Residuos Sólidos, Monitores
-        Deportivos, Programa de familia y exclusión social y sede del Grupo de Acción Local ADISGATA con un Centro de
-        Desarrollo Rural.
-
-        Hoyos está relacionado con antiguos asentamientos romanos, por su cercanía a la Ruta de la Plata y más tarde con
-        pueblos árabes. Durante el siglo XII, Hoyos entró a formar parte del Reino de León y concretamente perteneció a
-        la ciudad de Coria. A principios del siglo XIX, Hoyos fue testigo de uno de los episodios más dramáticos de la
-        Guerra de la Independencia Española, cuando las tropas francesas asesinaron el 29 de agosto de 1809, en su
-        casa-palacio de Hoyos, al Obispo de Coria, don Juan Álvarez de Castro.
-
-        Debido a que Hoyos fue lugar elegido por cierta nobleza y por los obispos de Coria como lugar de residencia
-        veraniega, el casco histórico presenta un importante interés artístico.
+    margin-bottom: 15%;" id="textoPresentacion" th:text="#{text.cliente.textoHome}">
+       <!-- <p >Hoyos es un remanso de luz, de casas y calles nobiliarias en las que perviven imágenes populares como estampa
+        de las encajeras. El pueblo está rodeado de bellos y numerosos huertos familiares de naranjos y limoneros que
+        perfuman deliciosamente el ambiente cuando el azahar florece, árboles exóticos como los ornamentales y delicados
+        Camelios, acacias del Serengueti, Secuoyas y guayabos. La benignidad climática de esta tierra serragatina, con
+        un microclima de tipo mediterráneo continental templado, hace de ella un rincón privilegiado. La temperatura
+        media anual oscila en torno a los 14 grados. Su paisaje se caracteriza por la presencia de robledales,
+        alcornocales, montes de castaños, junto a olivares, viñas, huertos y prados. Todo ello, hace de la Villa de
+        Hoyos un auténtico paraíso, un pequeño jardín rural, ante cuyo descubrimiento el viajero puede contemplar la
+        serenidad, la belleza y la poesía que lo habitan. 
 
 
       </p></br>
@@ -91,15 +86,15 @@
         ¡Estáis invitados y esperamos que os guste y disfrutéis de la visita a nuestra pequeña localidad!
 
 
-      </p>
+      </p> -->
     </div>
 
-    <aside th:replace="layouts/fragmentoprincipal :: footer" ></aside>
+    <aside th:replace="layouts/fragmentoprincipal :: footer"></aside>
 
   </div>
 
 
-  
+
 
 
 

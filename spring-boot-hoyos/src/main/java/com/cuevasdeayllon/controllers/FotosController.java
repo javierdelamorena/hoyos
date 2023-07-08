@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,16 +19,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -33,8 +45,9 @@ import com.cuevasdeayllon.entity.Usuario;
 import com.cuevasdeayllon.paginator.PageRender;
 import com.cuevasdeayllon.repository.FotosRepositoryImpl;
 import com.cuevasdeayllon.service.UsuarioService;
-
+@CrossOrigin(origins = "*")
 @Controller
+
 public class FotosController {
 
 	private static final Logger logger = LoggerFactory.getLogger(FotosController.class);
@@ -54,6 +67,7 @@ public class FotosController {
 //		return fotos;
 //
 //	}
+	
 	@GetMapping( path= "/fotosGaleriaLista")
 	public String todasFotosLista(Model model,HttpSession sesion) {
 
@@ -135,6 +149,78 @@ public class FotosController {
 		model.addAttribute("fotoSubida", "La foto no se ha añadido con exito, probablemente no escogio una foto, vuelva a intentarlo");
 		model.addAttribute("usuario", usuario);
 		return "subirFoto";
+	}
+	@PostMapping( value = ("/paginaEditarFoto"), produces = MediaType.APPLICATION_JSON_VALUE)
+	public String paginaeditarFoto(@RequestParam("idFoto")int idFoto,Model model,HttpSession sesion) {
+		logger.info("Entramos en metodo salvarFoto");
+		
+		logger.info("El  idfoto  que recogemos es "+ idFoto);
+		
+		Fotos fotos=service.fotoById(idFoto);;
+		
+		
+		
+		model.addAttribute("foto", fotos);
+		
+		return "editarFoto";
+	}
+
+	@PostMapping( value = ("/editarFoto"), produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String editarFoto(@RequestParam("mails")String mail,@RequestParam("idFotos")String id,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
+		logger.info("Entramos en metodo editarFoto");
+		logger.info("El mail que recogemos es: "+mail+"  con la idfoto  "+ id+"  con la foto  "+ foto);
+		
+		
+		String idFoto=id;
+		logger.info("Entramos en metodo editarFoto"+idFoto);
+		
+		Usuario usuario=usuarioservice.usuarioPorEmail(mail.trim());
+		
+		//logger.info("Entramos en metodo editarFoto"+usuario.getEmail());
+		Fotos fotos=new Fotos();
+		
+		int idfoto=Integer.parseInt(id);
+		fotos=service.fotoById(idfoto);
+
+		//String rootPath="/uploadsGaleria/";
+		String rootPath="C://TEMP//uploadsGaleria";
+
+		if(!foto.isEmpty()&&usuario!=null) {
+			int oraLen = foto.getOriginalFilename().length();
+			logger.info("El nombre de la foto es: "+foto.getOriginalFilename());
+
+			for (int i = 0; i <  oraLen; i++) {
+				if (foto.getOriginalFilename().charAt(i) == ' ') {
+					
+					return "El nombre de la foto no puede tener espacios en blanco.";
+				}
+			}
+
+
+			try {
+				byte[]bytes=foto.getBytes();
+				Path rutaCompleta=Paths.get(rootPath+"//"+fotos.getFotos());
+				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
+				Files.write(rutaCompleta,bytes);
+				fotos.setIdFotos(fotos.getIdFotos());
+				fotos.setFotos(fotos.getFotos());
+				fotos.setUsuario(usuario);
+
+				service.salvarFoto(fotos);
+				
+				return "La foto se ha editado con exito, la podras ver en la galeria";
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
+
+		}
+		
+		String mensaje="La foto se ha editado correctamente";
+		return mensaje;
 	}
 
 	@PostMapping("/borrarFoto")	

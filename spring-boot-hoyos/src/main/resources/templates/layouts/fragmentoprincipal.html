@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="head">
-   
+
     <meta charset="UTF-8">
     <script th:src="@{/js/jquery.min.js}"></script>
     <link href="css/style.css" rel="stylesheet">
@@ -19,59 +19,59 @@
 
 
 
-    
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navPrincipal">
         <div class="container-fluid" style="padding-top: 1%;margin-right: 1%;">
-            <a class="nav-link" aria-current="page" 
-            th:href="@{/}">HOYOS</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            Menú <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse bg-light" id="navbarNavDropdown" >
-            <ul class="navbar-nav">
-                
-                <li class="nav-item " style="margin-left:5px;">
-                    <a class="nav-link" aria-current="page" th:href="@{/fotosGaleria}"
-                        >Galeria de
-                        imagenes</a>
-                </li>
-                <li class="nav-item " style="margin-left:5px;">
-                    <a class="nav-link" 
-                        th:href="@{/historiaPueblo}">Historia</a>
-                </li>
-                <li class="nav-item " style="margin-left:5px;">
-                    <a class="nav-link" th:href="@{/toRutas}" >Rutas</a>
-                </li>
-                <li class="nav-item " style="margin-left:5px;">
-                    <a class="nav-link" th:href="@{/todosAnuncios}" >Tablon
-                        de Anuncios</a>
-                </li>
-                <li class="nav-item " style="margin-left:5px;">
-                    <a class="nav-link" th:href="@{/enlacesDeInteres}"
-                        >Enlaces de Interes</a>
-                </li>
-                <li class="nav-item " style="margin-left:5px;">
-                    <a class="nav-link"  th:href="@{/piscinasNaturales}">Piscina Natural
-                        </a>
-                </li>
-                <li class="nav-item " style="margin-left:5px;">
-                    <a class="nav-link"  th:href="@{/mercadilloTodos}">Compra Venta y Servicios</a>
-                </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Espacio Vecinal
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="desplegableNavPrincipal">
-                    <li><a class="dropdown-item" th:href="@{/registrarse}" >Registrarse</a></li>
-                    <li><a class="dropdown-item" th:href="@{/toLoging}">Entrar</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+            <a class="nav-link" aria-current="page" th:href="@{/}">HOYOS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                Menú <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse bg-light" id="navbarNavDropdown">
+                <ul class="navbar-nav">
 
-    
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" aria-current="page" th:href="@{/fotosGaleria}"
+                            th:text="#{text.cliente.galeria}"></a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" th:href="@{/toRutas}" th:text="#{text.cliente.rutas}"></a>
+                    </li>
+
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" th:href="@{/piscinasNaturales}" th:text="#{text.cliente.piscinas}">
+                        </a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" th:href="@{/historiaPueblo}" th:text="#{text.cliente.historia}"></a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" th:href="@{/enlacesDeInteres}"
+                            th:text="#{text.cliente.enlacesinteres}">Enlaces de Interes</a>
+                    </li>
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" th:href="@{/todosAnuncios}" th:text="#{text.cliente.tablon}"></a>
+                    </li>
+
+                    <li class="nav-item " style="margin-left:5px;">
+                        <a class="nav-link" th:href="@{/mercadilloTodos}" th:text="#{text.cliente.compraventa}"></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" th:text="#{text.cliente.vecinal}">
+                            Espacio Vecinal
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="desplegableNavPrincipal">
+                            <li><a class="dropdown-item" th:href="@{/registrarse}">Registrarse</a></li>
+                            <li><a class="dropdown-item" th:href="@{/toLoging}">Entrar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
     <aside th:fragment="footer" id="textoAside" class="col-lg-2 col-sm-10" style="margin-left: 5%;
     margin-top: 4%;">
         <a href="" style="text-decoration: none;
@@ -95,8 +95,23 @@
         <hr>
 
     </aside>
+    <div th:fragment="idiomas" class="col-lg-3 col-sm-2" style="float: right;">
+       
+            <a href="?lang=es_ES"><span><img src="imagenes/espana.png" style="width: 8%;" /></span></a>
+            <a href="?lang=en_EN"><span><img src="imagenes/reino-unido.png" style="width: 8%;" /></span></a>
+            <a href="?lang=fr_FR"><span><img src="imagenes/francia.png" style="width: 8%;" /></span></a>
+            <div class="col-lg-6 fecha" id="fecha"></div>
+        
+            
 
+        
+    </div>
+    
 
+        <div th:fragment="nombreFoto" class="col-lg-2" style="float: right;margin-left: 2px;">
+            Foto de Mónica Morán
+        </div>
+    
 
 </body>
 

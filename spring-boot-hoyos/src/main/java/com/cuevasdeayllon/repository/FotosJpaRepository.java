@@ -17,10 +17,10 @@ public interface FotosJpaRepository extends JpaRepository<Fotos, Integer>{
 	Page<Fotos> findAllPage(Pageable page);
 	
 	
-	@Query("select e from Fotos where e.id_Usuario=?1")
+	@Query("select e from Fotos e where id_usuario=?1")
 	List<Fotos> findAllByIdUsuario(int idUsuario);
 	
-	@Query("select e from Fotos where e.id_Usuario=?1")
+	@Query("select e from Fotos e where id_usuario=?1")
 	Fotos findByIdUsuario(int idUsuario);
 
 }

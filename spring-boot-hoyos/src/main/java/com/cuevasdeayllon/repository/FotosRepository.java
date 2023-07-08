@@ -20,5 +20,7 @@ public interface FotosRepository {
 	public List<Fotos> todasByIdUsuario(int idUsuario);
 	
 	Fotos fotoByIdUsuario(int idUsuario);
+	
+	Fotos fotoById(int idFotos);
 
 }

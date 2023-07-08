@@ -25,10 +25,11 @@
   height: 100%;">
       <div class="col-lg-2 fecha" id="fecha"></div>
 
-      <div class="col-lg-5 col-sm-3" style="padding-top: 8%;
-      padding-bottom: 8%;">
+      <div class="col-lg-5 " id="divCartel">
         <div id="cartelGaleria">Galeria de imágenes de Hoyos</div>
       </div>
+      <div style="float: left;
+      margin-left: 1%;" >Foto de Mónica Morán</div>
     </header>
   </div>
   <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
@@ -42,6 +43,10 @@
             <img class="img-thumbnail  " style="border-radius:4px;padding:10px;height: 275px;width: 415px;"
               th:src="@{'/uploadsGaleria/'+${foto.fotos}}" th:alt="${foto.fotos}" />
           </a>
+          <div th:text="'Foto de '+${foto.usuario.nombre}+' '+ ${foto.usuario.apellido1}+' '+ ${foto.usuario.apellido2}" style="font-family: cursive;
+          font-size: 14px;font-weight: 600;">
+
+          </div>
           <div tabindex="-1" aria-labelledby="modal" aria-hidden="true" class="modal fade"
             th:attr="id=modal+${foto.idFotos}">
             <div class="modal-dialog modal-lg modal-dialog-centered">

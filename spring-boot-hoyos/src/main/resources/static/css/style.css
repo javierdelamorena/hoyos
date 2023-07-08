@@ -70,7 +70,7 @@
 }
 
 .bodyRegistro {
-	background-image: url("25.jpg");
+	background-image: url("42.jpg");
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
@@ -90,7 +90,7 @@
 }
 
 .bodyLogin {
-	background-image: url("24.jpg");
+	background-image: url("41.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
@@ -383,21 +383,17 @@ body {
 	#fotosModel {
 		border-radius: 4px;
 		padding: 10px;
-		height: 1024px;
-		width: 1024px;
+		
 	}
 }
 
 
 .fecha {
 	float: right;
-	color: white;
-	font-size: 17px;
-	margin-top: 1%;
-
-	border-radius: 13px;
-	/* font-weight: 600; */
-	padding: auto;
+    color: white;
+    font-size: 17px;
+    margin-top: 1%;
+    border-radius: 13px;
 }
 
 @media (max-width : 576px) {
@@ -420,10 +416,11 @@ body {
 }
 
 #cartelHome {
-	padding: 4%;
-	font-size: 29px;
-	/* width: 100%; */
-	margin-right: 30%;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
+	background-color: #9b3db5bd;
 
 }
 
@@ -435,15 +432,16 @@ body {
 		font-size: 35px;
 		margin-right: 38%;
 		margin-top: 8%;
+		background-color: #9b3db5bd;
 
 	}
 }
 
 #cartelHistoria {
-	padding: 4%;
-	font-size: 28px;
-	/* width: 100%; */
-	margin-right: 40%;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
 	background-color: #57a14fc7;
 }
 
@@ -451,7 +449,7 @@ body {
 
 
 	#cartelHistoria {
-		padding: 4%;
+		padding: 6%;
 		font-size: 32px;
 		/* width: 100%; */
 		margin-right: 38%;
@@ -461,10 +459,10 @@ body {
 }
 
 #cartelRutas {
-	padding: 4%;
-	font-size: 29px;
-	/* width: 100%; */
-	margin-right: 20%;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
 	background-color: #deb887c7;
 }
 
@@ -482,10 +480,10 @@ body {
 }
 
 #cartelTablon {
-	padding: 5%;
-	font-size: 29px;
-	/* width: 100%; */
-	margin-right: 12%;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
 	background-color: #db7373c7;
 }
 
@@ -505,10 +503,10 @@ body {
 
 
 #cartelEnlaces {
-	padding: 4%;
-	font-size: 29px;
-	/* width: 100%; */
-	margin-right: 25%;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
 	background-color: #75ccbaa8;
 }
 
@@ -527,11 +525,11 @@ body {
 
 
 #cartelRegistro {
-	padding: 4%;
-	font-size: 25px;
-	/* width: 100%; */
-	margin-right: 27%;
-	background-color: #deb887c7;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
+	background-color: #87a6dec7;
 }
 
 @media (max-width : 576px) {
@@ -542,16 +540,16 @@ body {
 		font-size: 32px;
 		/* width: 100%; */
 		margin-right: 38%;
-		background-color: #deb887c7;
+		background-color: #87a6dec7;
 
 	}
 }
 
 #cartelLogin {
-	padding: 4%;
-	font-size: 25px;
-	/* width: 100%; */
-	margin-right: 30%;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
 	background-color: #5d7e3fc7;
 }
 
@@ -570,10 +568,10 @@ body {
 
 
 #cartelGaleria {
-	padding: 4%;
-	font-size: 28px;
-	/* width: 100%; */
-	margin-right: 25%;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
 	background-color: #8788dec7;
 }
 
@@ -591,10 +589,10 @@ body {
 }
 
 #cartelOrfeo {
-	padding: 3%;
-	font-size: 30px;
-	/* width: 100%; */
-	margin-right: 43%;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
 	background-color: #4f52c8c7;
 }
 
@@ -612,10 +610,10 @@ body {
 }
 
 #cartelServicios {
-	padding: 4%;
-	font-size: 28px;
-
-	margin-right: -3%;
+	padding: 6%;
+    font-size: 28px;
+    /* width: 100%; */
+    margin-right: 30%;
 	background-color: #b48be8c7;
 }
 
@@ -627,11 +625,14 @@ body {
 		font-size: 35px;
 		/* width: 100%; */
 		margin-right: 38%;
-		background-color: #deb887c7;
+		background-color: #b48be8c7;
 	}
 
 }
-
+#divCartel{
+	padding-top: 9%;
+      padding-bottom: 9%;
+}
 /*+++++++++++++++++++++++Navs+++++++++++++++++++++++++++*/
 #navPrincipal {
 	font-size: 16px;
@@ -770,7 +771,7 @@ body {
 #containerComentario {
 	margin-top: 3%;
 	margin-bottom: 5%;
-	margin-left: 19%;
+	margin-left: 22%;
 }
 
 @media (max-width : 576px) {
@@ -946,6 +947,43 @@ body {
 @media (max-width : 576px) {
 	#textoPresentacion {
 		font-size: 24px;
+
+	}
+}
+ #subirFoto{
+
+	margin-left: 26%;
+ }
+ @media (max-width : 576px) {
+	#subirFoto {
+		margin-left: 0%;
+
+	}
+}
+
+#cartelEspacioVecinal{
+	padding: 5%;
+    font-size: 24px;
+    margin-right: 32%;
+    background-color: #87aedec7;
+}
+@media (max-width : 576px) {
+	#cartelEspacioVecinal{
+		padding: 5%;
+    font-size: 30px;
+    margin-right: 38%;
+    background-color: #87aedec7;
+
+	}
+}
+#divCartelEspacioVecinal{
+	padding-top: 8%;
+    padding-bottom: 8%;
+}
+@media (max-width : 576px) {
+	#divCartelEspacioVecinal{
+		padding-top: 8%;
+    padding-bottom: 8%;
 
 	}
 }

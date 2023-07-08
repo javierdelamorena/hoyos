@@ -76,7 +76,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //		 .invalidateHttpSession(true)
 //		 .clearAuthentication(true)
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home").permitAll().and()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home")
+				.permitAll()
+				.and()
 				.headers()
 				.addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
 

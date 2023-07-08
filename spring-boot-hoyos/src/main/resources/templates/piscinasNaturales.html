@@ -24,10 +24,11 @@
   height: 100%;">
       <div class="col-lg-2 fecha" id="fecha"></div>
 
-      <div class="col-lg-7" style="padding-top: 8%;
-      padding-bottom: 8%;">
+      <div class="col-lg-5" id="divCartel">
         <div id="cartelOrfeo">Piscina Natural de Hoyos</div>
       </div>
+      <div style="float: left;
+      margin-left: 1%;" >Foto de Mónica Morán</div>
     </header>
   </div>
   <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
@@ -75,6 +76,15 @@
           </div>
           <div class="carousel-item">
             <img th:src=" @{uploadsPiscina/4.jpg}" class="d-block w-100" alt="..." width="100" height="400">
+          </div>
+          <div class="carousel-item">
+            <img th:src=" @{uploadsPiscina/5.jpg}" class="d-block w-100" alt="..." width="100" height="400">
+          </div>
+          <div class="carousel-item">
+            <img th:src=" @{uploadsPiscina/6.jpg}" class="d-block w-100" alt="..." width="100" height="400">
+          </div>
+          <div class="carousel-item">
+            <img th:src=" @{uploadsPiscina/7.jpg}" class="d-block w-100" alt="..." width="100" height="400">
           </div>
         </div>
         <button class="carousel-control-prev" type="button"

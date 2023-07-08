@@ -240,8 +240,15 @@ public class MercadilloController {
 	@PostMapping(path = "/editarMimercadillo")
 	public String editarMimercadillo(@Valid Mercadillo mercadillo, BindingResult result,
 			@RequestParam("file1") MultipartFile foto1, @RequestParam("file2") MultipartFile foto2,
-			@RequestParam("file3") MultipartFile foto3, Model model, HttpSession sesion) {
-		Mercadillo mercado = new Mercadillo();
+			@RequestParam("file3") MultipartFile foto3, Model model, HttpSession sesion) throws Exception {
+		Mercadillo mercado = mercadilloservice.findById(mercadillo.getId());
+		
+		if(mercado==null) {
+			throw new Exception("El id que recibimos no corresponde con ningun mercadillo");
+		}
+		
+		
+		
 		if (mercadillo.getId_usuario() == 0) {
 			return "login";
 		}
@@ -273,7 +280,9 @@ public class MercadilloController {
 
 			model.addAttribute("usuario", usuario);
 			model.addAttribute("miMercadillo", todos);
-
+			model.addAttribute("mercadilloBorrado",
+					"Ha habido un error en la edicion del mercadillo añadala de nuevo, gracias.");
+			logger.info("Entramos en metodo index/mercadillo Ha habido un error en la edicion del mercadillo:"); 
 			return "miMercadillo";
 
 		}
@@ -294,7 +303,7 @@ public class MercadilloController {
 
 				for (int i = 0; i < oraLen; i++) {
 					if (foto1.getOriginalFilename().charAt(i) == ' ') {
-						model.addAttribute("espaciosBlancos",
+						model.addAttribute("mercadilloBorrado",
 								"El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
 						return "miMercadillo";
 					}
@@ -317,7 +326,7 @@ public class MercadilloController {
 				logger.info("El nombre de la foto1 es: " + foto1.getOriginalFilename());
 				for (int i = 0; i < oraLen; i++) {
 					if (foto2.getOriginalFilename().charAt(i) == ' ') {
-						model.addAttribute("espaciosBlancos",
+						model.addAttribute("mercadilloBorrado",
 								"El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
 						return "miMercadillo";
 					}
@@ -343,7 +352,7 @@ public class MercadilloController {
 
 				for (int i = 0; i < oraLen; i++) {
 					if (foto3.getOriginalFilename().charAt(i) == ' ') {
-						model.addAttribute("espaciosBlancos",
+						model.addAttribute("mercadilloBorrado",
 								"El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
 						return "miMercadillo";
 					}
@@ -363,16 +372,16 @@ public class MercadilloController {
 
 			}
 
-			mercado.setId(mercadillo.getId());
+			mercado.setId(mercado.getId());
 			mercado.setNombre(mercadillo.getNombre());
 			mercado.setPrecio(mercadillo.getPrecio());
 			mercado.setTelefono(mercadillo.getTelefono());
 			mercado.setId_usuario(mercadillo.getId_usuario());
 			mercado.setTipo_servicio(mercadillo.getTipo_servicio());
 			mercado.setTexto(mercadillo.getTexto());
-			mercado.setFoto1(mercadillo.getFoto1());
-			mercado.setFoto2(mercadillo.getFoto2());
-			mercado.setFoto3(mercadillo.getFoto3());
+			mercado.setFoto1(mercado.getFoto1());
+			mercado.setFoto2(mercado.getFoto2());
+			mercado.setFoto3(mercado.getFoto3());
 			mercado.setFecha(new Date());
 			mercado.setNombre_servicio(mercadillo.getNombre_servicio());
 

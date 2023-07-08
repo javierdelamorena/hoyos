@@ -6,10 +6,12 @@ $("#salvarComentario").on("click", function () {
         type: 'GET',
         url: "salvarcomentario",
         //url: "https://cuevas-de-ayllon.com/salvarcomentario",
-        data: { 'comentario': $('#comentario').val() }
-
+        data: { 'comentario': $('#comentario').val() },
+        // beforeSend: function(){
+        //     $('#textoComentario').empty();
+        // }
     }).done(function (objetos) {
-
+        document.getElementById("comentario").value = "";
         console.log("Hecho Correcto!");
         console.log("Hecho Correcto!");
         console.log("Hecho Correcto!");
