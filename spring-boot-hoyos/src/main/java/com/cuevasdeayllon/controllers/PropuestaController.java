@@ -243,7 +243,7 @@ public class PropuestaController {
 		Propuestas propuestaIdPropuesta=propuestaService.findByIdPropuesta(idpropuesta);
 		List<Comentarios> comentarios = comentarioService.findAllByIdPropuesta(idpropuesta);
 		List<ComentariosDto> comentarioDtoList = new ArrayList<>();
-		Usuario usuario = usuarioservice.usuarioPorId(propuestaIdPropuesta.getUsuario().getIdUsuario());
+		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
 
 		for (int i = 0; i < comentarios.size(); i++) {
 
