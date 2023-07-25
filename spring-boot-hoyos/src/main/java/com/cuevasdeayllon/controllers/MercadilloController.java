@@ -1,5 +1,6 @@
 package com.cuevasdeayllon.controllers;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cuevasdeayllon.compresor.ImageResizer;
 import com.cuevasdeayllon.entity.Mercadillo;
 import com.cuevasdeayllon.entity.Usuario;
 import com.cuevasdeayllon.repository.MercadilloRepository;
@@ -119,6 +121,9 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto1.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
+					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto1.getOriginalFilename());
+					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
+				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto1.getOriginalFilename());
 					mercadillo.setFoto1(foto1.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -156,6 +161,9 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto2.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
+					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto2.getOriginalFilename());
+					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
+				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto2.getOriginalFilename());
 					mercadillo.setFoto2(foto2.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -195,6 +203,9 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto3.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
+					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto3.getOriginalFilename());
+					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
+				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto3.getOriginalFilename());
 					mercadillo.setFoto3(foto3.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -313,6 +324,9 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto1.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
+					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto1.getOriginalFilename());
+					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
+				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto1.getOriginalFilename());
 					mercado.setFoto1(foto1.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -337,6 +351,9 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto2.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
+					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto2.getOriginalFilename());
+					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
+				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto2.getOriginalFilename());
 					mercado.setFoto2(foto2.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -363,6 +380,9 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto3.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
+					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto3.getOriginalFilename());
+					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
+				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto3.getOriginalFilename());
 					mercado.setFoto3(foto3.getOriginalFilename());
 
 				} catch (IOException e) {

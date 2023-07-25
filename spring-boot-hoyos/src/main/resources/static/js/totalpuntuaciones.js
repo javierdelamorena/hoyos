@@ -9,7 +9,7 @@ $.ajax({
 
     var html2 = '';
     html2 += '<table class="table table-striped table-bordered" style="text-align: center;">';
-    html2 += '<tr>  ';
+    html2 += '<tr style="background-color: #deb887a8;">  ';
     html2 += '<th scope="col">Historial de Propuestas</th> ';
     html2 += '<th scope="col">Apoyos</th>';
 

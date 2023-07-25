@@ -1,5 +1,7 @@
 package com.cuevasdeayllon.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,7 +42,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.cuevasdeayllon.compresor.ImageResizer;
 import com.cuevasdeayllon.entity.Fotos;
 import com.cuevasdeayllon.entity.Usuario;
 import com.cuevasdeayllon.paginator.PageRender;
@@ -108,9 +111,10 @@ public class FotosController {
 		logger.info("El usuario que recogemos es: "+id_usuario+" con la foto  "+ foto);
 		Usuario usuario=usuarioservice.usuarioPorId(id_usuario);
 		Fotos fotos=new Fotos();
-
+		
 		//String rootPath="/uploadsGaleria/";
 		String rootPath="C://TEMP//uploadsGaleria";
+		//String rootPath="C:\\TEMP\\uploadsGaleria\\";
 
 		if(!foto.isEmpty()&&id_usuario>0) {
 			int oraLen = foto.getOriginalFilename().length();
@@ -127,13 +131,27 @@ public class FotosController {
 			try {
 				byte[]bytes=foto.getBytes();
 				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
-				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
+				
 				Files.write(rutaCompleta,bytes);
+				BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto.getOriginalFilename());
+				BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);
+				
+
+				
+			    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto.getOriginalFilename());
+				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
+				
 				fotos.setIdFotos(0);
 				fotos.setFotos(foto.getOriginalFilename());
 				fotos.setUsuario(usuario);
 
 				service.salvarFoto(fotos);
+				
+				
+				
+				
+				
+				
 				model.addAttribute("fotoSubida", "La foto se ha añadido con exito, la podras ver en la galeria");
 				model.addAttribute("usuario", usuario);
 				return "subirFoto";
@@ -202,6 +220,12 @@ public class FotosController {
 				Path rutaCompleta=Paths.get(rootPath+"//"+fotos.getFotos());
 				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
 				Files.write(rutaCompleta,bytes);
+				BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+fotos.getFotos());
+				BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);
+				
+
+				
+			    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto.getOriginalFilename());
 				fotos.setIdFotos(fotos.getIdFotos());
 				fotos.setFotos(fotos.getFotos());
 				fotos.setUsuario(usuario);

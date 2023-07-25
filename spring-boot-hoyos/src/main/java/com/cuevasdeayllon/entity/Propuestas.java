@@ -38,7 +38,7 @@ public class Propuestas implements Serializable{
 	
 
 	@ManyToOne
-	@JoinColumn(name="id_usuario",referencedColumnName ="id_usuario" )
+	@JoinColumn(name="id_usuario",referencedColumnName ="id_usuario")
 	@JsonBackReference
 	private Usuario usuario;
 	@OneToMany(mappedBy="propuesta",cascade=CascadeType.ALL)

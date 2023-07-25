@@ -383,17 +383,17 @@ body {
 	#fotosModel {
 		border-radius: 4px;
 		padding: 10px;
-		
+
 	}
 }
 
 
 .fecha {
 	float: right;
-    color: white;
-    font-size: 17px;
-    margin-top: 1%;
-    border-radius: 13px;
+	color: white;
+	font-size: 17px;
+	margin-top: 1%;
+	border-radius: 13px;
 }
 
 @media (max-width : 576px) {
@@ -417,9 +417,9 @@ body {
 
 #cartelHome {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
 	background-color: #9b3db5bd;
 
 }
@@ -439,9 +439,9 @@ body {
 
 #cartelHistoria {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
 	background-color: #57a14fc7;
 }
 
@@ -460,9 +460,9 @@ body {
 
 #cartelRutas {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
 	background-color: #deb887c7;
 }
 
@@ -481,9 +481,9 @@ body {
 
 #cartelTablon {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
 	background-color: #db7373c7;
 }
 
@@ -504,10 +504,10 @@ body {
 
 #cartelEnlaces {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
-	background-color: #75ccbaa8;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
+	background-color: #c8cb4bc9;
 }
 
 @media (max-width : 576px) {
@@ -518,7 +518,7 @@ body {
 		font-size: 32px;
 		/* width: 100%; */
 		margin-right: 38%;
-		background-color: #75ccbaa8;
+		background-color: #c8cb4bc9;
 
 	}
 }
@@ -526,9 +526,9 @@ body {
 
 #cartelRegistro {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
 	background-color: #87a6dec7;
 }
 
@@ -547,9 +547,9 @@ body {
 
 #cartelLogin {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
 	background-color: #5d7e3fc7;
 }
 
@@ -569,9 +569,9 @@ body {
 
 #cartelGaleria {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
 	background-color: #8788dec7;
 }
 
@@ -590,9 +590,9 @@ body {
 
 #cartelOrfeo {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
 	background-color: #4f52c8c7;
 }
 
@@ -611,9 +611,9 @@ body {
 
 #cartelServicios {
 	padding: 6%;
-    font-size: 28px;
-    /* width: 100%; */
-    margin-right: 30%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
 	background-color: #b48be8c7;
 }
 
@@ -629,10 +629,12 @@ body {
 	}
 
 }
-#divCartel{
+
+#divCartel {
 	padding-top: 9%;
-      padding-bottom: 9%;
+	padding-bottom: 9%;
 }
+
 /*+++++++++++++++++++++++Navs+++++++++++++++++++++++++++*/
 #navPrincipal {
 	font-size: 16px;
@@ -709,8 +711,7 @@ body {
 }
 
 /*++++++++++++++++++++Comentarios+++++++++++++++++++++++++++*/
-
-#cajaComentarios {
+#cajaComentariosArriba {
 	background-color: rgb(26 52 123 / 43%);
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
@@ -718,7 +719,37 @@ body {
 	padding: 15px;
 	position: relative;
 
-	height: 1000px;
+
+
+
+}
+
+@media (max-width : 576px) {
+
+
+	#cajaComentariosArriba {
+		background-color: rgb(26 52 123 / 43%);
+		border-top-left-radius: 25px;
+		border-top-right-radius: 25px;
+		overflow: overlay;
+		padding: 15px;
+		position: relative;
+
+
+
+
+	}
+}
+
+#cajaComentarios {
+	background-color: rgb(26 52 123 / 43%);
+
+	height: 400px;
+	overflow: overlay;
+	padding: 15px;
+
+
+
 
 
 
@@ -729,13 +760,13 @@ body {
 
 	#cajaComentarios {
 		background-color: rgb(26 52 123 / 43%);
-		border-top-left-radius: 25px;
-		border-top-right-radius: 25px;
+
+		height: 400px;
 		overflow: overlay;
 		padding: 15px;
 		position: relative;
 
-		height: 1000px;
+
 
 
 	}
@@ -746,8 +777,8 @@ body {
 	position: relative;
 	bottom: 0;
 
-	border-bottom-right-radius: 6px;
-	border-bottom-left-radius: 6px;
+
+
 	background-color: rgb(26 52 123 / 43%);
 
 }
@@ -819,30 +850,38 @@ body {
 }
 
 #textoComentarios {
+	text-align: left;
 	background-color: rgba(255, 255, 255, 0.9);
-	border-radius: 20px;
+	border-top-right-radius: 26px;
+	border-bottom-right-radius: 26px;
+	border-bottom-left-radius: 26px;
 	/* box-shadow: 5px 0px 23px 2px rgb(0 0 0 / 50%); */
 	position: relative;
-	padding: 20px;
+	padding: 8px;
 	font-weight: 500;
 	font-size: 20px;
 	border: groove;
 	/* font-family: sans-serif; */
 	display: -webkit-inline-box;
+	overflow-wrap: anywhere;
 }
 
 @media (max-width : 576px) {
 	#textoComentarios {
+		text-align: left;
 		background-color: rgba(255, 255, 255, 0.9);
-		border-radius: 20px;
+		border-top-right-radius: 26px;
+		border-bottom-right-radius: 26px;
+		border-bottom-left-radius: 26px;
 		/* box-shadow: 5px 0px 23px 2px rgb(0 0 0 / 50%); */
 		position: relative;
-		padding: 20px;
+		padding: 8px;
 		font-weight: 500;
 		font-size: 20px;
 		border: groove;
 		/* font-family: sans-serif; */
 		display: -webkit-inline-box;
+		overflow-wrap: anywhere;
 	}
 
 
@@ -851,11 +890,11 @@ body {
 
 #tablaComentarios {
 	max-height: 48%;
-	width: 91%;
+	/* width: 91%; */
 	display: block;
 	/* border: solid; */
 	overflow-y: auto;
-	margin: 4%;
+	/* margin: 4%; */
 	background-color: #fffffffa;
 	padding: 1%;
 }
@@ -863,11 +902,11 @@ body {
 @media (max-width : 576px) {
 	#tablaComentarios {
 		max-height: 48%;
-		width: 91%;
+		/* width: 91%; */
 		display: block;
 		/* border: solid; */
 		overflow-y: auto;
-		margin: 4%;
+		/* margin: 4%; */
 		background-color: #fffffffa;
 		padding: 1%;
 	}
@@ -886,6 +925,16 @@ body {
 
 	}
 }
+ /* .puntuacionMass {
+	
+
+} 
+
+@media (max-width : 576px) {
+	.puntuacionMass {
+		width: 0%;
+	}
+} */
 
 #propuesta {
 	font-size: 20px;
@@ -950,40 +999,52 @@ body {
 
 	}
 }
- #subirFoto{
+
+#subirFoto {
 
 	margin-left: 26%;
- }
- @media (max-width : 576px) {
+}
+
+@media (max-width : 576px) {
 	#subirFoto {
 		margin-left: 0%;
 
 	}
 }
 
-#cartelEspacioVecinal{
+#cartelEspacioVecinal {
 	padding: 5%;
-    font-size: 24px;
-    margin-right: 32%;
-    background-color: #87aedec7;
+	font-size: 24px;
+	margin-right: 32%;
+	background-color: #87aedec7;
 }
+
 @media (max-width : 576px) {
-	#cartelEspacioVecinal{
+	#cartelEspacioVecinal {
 		padding: 5%;
-    font-size: 30px;
-    margin-right: 38%;
-    background-color: #87aedec7;
+		font-size: 30px;
+		margin-right: 38%;
+		background-color: #87aedec7;
 
 	}
 }
-#divCartelEspacioVecinal{
+
+#divCartelEspacioVecinal {
 	padding-top: 8%;
-    padding-bottom: 8%;
+	padding-bottom: 8%;
 }
+
 @media (max-width : 576px) {
-	#divCartelEspacioVecinal{
+	#divCartelEspacioVecinal {
 		padding-top: 8%;
-    padding-bottom: 8%;
+		padding-bottom: 8%;
 
 	}
+}
+#q{
+	width: 95%;
+        border: ridge;
+        border-radius: 10px;
+        margin-left: 2%;
+        padding: 1%;
 }

@@ -26,10 +26,9 @@
   height: 100%;">
       <div class="col-lg-2 fecha" id="fecha"></div>
       <div class="col-lg-5" id="divCartel">
-        <div id="cartelTablon">Tablón Anuncios de Hoyos</div>
+        <div id="cartelTablon" th:text="#{text.cliente.carteltablon}"></div>
       </div>
-      <div style="float: left;
-      margin-left: 1%;" >Foto de Mónica Morán</div>
+      <div th:replace="layouts/fragmentoprincipal :: nombreFoto" ></div>
     </header>
   </div>
   <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
@@ -41,12 +40,12 @@
     float: right;
     margin-left: 2%;">
       <hr>
-      <p>
-        En esta sección ponemos todos los anuncios y eventos que se relizan en Hoyos.
+      <p  th:text="#{text.cliente.textotablon}">
+        <!-- En esta sección ponemos todos los anuncios y eventos que se relizan en Hoyos. -->
       </p>
       
-      <p>
-        Esperamos que te guste y que lo disfrutes.
+      <p th:text="#{text.cliente.gustar}">
+        <!-- Esperamos que te guste y que lo disfrutes. -->
       </p>
       <hr>
     </div>

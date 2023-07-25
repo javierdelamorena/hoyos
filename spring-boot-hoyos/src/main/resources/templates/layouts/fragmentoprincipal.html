@@ -84,19 +84,20 @@
          Provincia: SORIA
          Dirección postal: AVDA. DEL GENERALISIMO, 10
          Código postal: 42330
-         Teléfono: 975350046">Seguridad ciudadana</a>
+         Teléfono: 975350046" th:text="#{text.cliente.seguridad}"></a>
         <hr>
-        <a th:href="@{/contacto}" style="text-decoration: none;color: #2f3235c7;">Contacto</a>
+        <a th:href="@{/contacto}" style="text-decoration: none;color: #2f3235c7;"th:text="#{text.cliente.contacto}"></a>
         <hr>
-        <a th:href="@{/preguntas}" style="text-decoration: none;color: #2f3235c7;">Preguntas frecuentes</a>
+        <a th:href="@{/preguntas}" style="text-decoration: none;color: #2f3235c7;"th:text="#{text.cliente.preguntas}"></a>
         <hr>
         <a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
             style="text-decoration: none;color: #2f3235c7;">Como llegar</a>
         <hr>
 
     </aside>
+    
     <div th:fragment="idiomas" class="col-lg-3 col-sm-2" style="float: right;">
-       
+        
             <a href="?lang=es_ES"><span><img src="imagenes/espana.png" style="width: 8%;" /></span></a>
             <a href="?lang=en_EN"><span><img src="imagenes/reino-unido.png" style="width: 8%;" /></span></a>
             <a href="?lang=fr_FR"><span><img src="imagenes/francia.png" style="width: 8%;" /></span></a>
@@ -109,7 +110,7 @@
     
 
         <div th:fragment="nombreFoto" class="col-lg-2" style="float: right;margin-left: 2px;">
-            Foto de Mónica Morán
+            Foto de Óscar Antúnez García
         </div>
     
 

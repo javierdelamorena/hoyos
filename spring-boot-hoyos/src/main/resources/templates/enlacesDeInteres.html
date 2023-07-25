@@ -23,10 +23,9 @@
             <div class="col-lg-2 fecha" id="fecha"></div>
 
             <div class="col-lg-5" id="divCartel">
-                <div id="cartelEnlaces">Enlaces de interés de Hoyos</div>
+                <div id="cartelEnlaces" th:text="#{text.cliente.cartelenlaces}"></div>
             </div>
-            <div style="float: left;
-      margin-left: 1%;" >Foto de Mónica Morán</div>
+            <div th:replace="layouts/fragmentoprincipal :: nombreFoto" ></div>
         </header>
     </div>
     <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
@@ -35,16 +34,16 @@
         <div class="col-lg-3 col-sm-10" id="textoExplicacion"
             style=" margin-right: 6%;margin-left: 4%;margin-top: 4%;float: right;">
             <hr>
-            <p>
-                En este apartado te dejamos enlaces de interés a la hora
-                de visitar Hoyos, donde dormir, donde comer, diputacion, ayuntamiento y junta.
+            <p th:text="#{text.cliente.textoenlaces}">
+                <!-- En este apartado te dejamos enlaces de interés a la hora
+                de visitar Hoyos, donde dormir, donde comer, diputacion, ayuntamiento y junta. -->
 
 
             </p>
 
 
-            <p>
-                Esperamos que te sean útiles.
+            <p th:text="#{text.cliente.gustar}">
+                <!-- Esperamos que te sean útiles. -->
             </p>
             <hr>
         </div>
@@ -56,7 +55,7 @@
     text-align: center;
     margin-bottom: 4%;
     font-size: 17px;">
-                <a href="#" class="list-group-item list-group-item-action disabled" style="background-color: #75ccbaa8;
+                <a href="#" class="list-group-item list-group-item-action disabled" style="background-color: #c8cb4bc9;
             color: black;
             font-weight: 800;
             font-size: 20px;">Sitios de Interes</a>
@@ -73,7 +72,7 @@
     text-align: center;
     margin-bottom: 4%;
     font-size: 17px;">
-                <a href="#" class="list-group-item list-group-item-action disabled" style="background-color: #75ccbaa8;
+                <a href="#" class="list-group-item list-group-item-action disabled" style="background-color:#c8cb4bc9;
                 color: black;
                 font-weight: 800;
                 font-size: 20px;">Turismo de la zona</a>
@@ -95,7 +94,7 @@
     text-align: center;
     margin-bottom: 10%;
     font-size: 17px;">
-                <a href="#" class="list-group-item list-group-item-action disabled" style="background-color: #75ccbaa8;
+                <a href="#" class="list-group-item list-group-item-action disabled" style="background-color: #c8cb4bc9;
                 color: black;
                 font-weight: 800;
                 font-size: 20px;">Diputación y Ayuntamiento</a>

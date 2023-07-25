@@ -24,10 +24,9 @@
             <div class="col-lg-2 fecha" id="fecha"></div>
 
             <div class="col-lg-5" id="divCartel">
-                <div id="cartelRutas">Rutas de Hoyos</div>
+                <div id="cartelRutas" th:text="#{text.cliente.cartelrutas}"></div>
             </div>
-            <div style="float: left;
-      margin-left: 1%;" >Foto de Mónica Morán</div>
+            <div th:replace="layouts/fragmentoprincipal :: nombreFoto" ></div>
         </header>
     </div>
     <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
@@ -38,16 +37,16 @@
         margin-top: 3%;
         margin-right: 4%;">
             <hr>
-            <p>
-                Aquí tienes todas las rutas que podrás realizar alrededor de Hoyos. Pulsando sobre la ruta te
+            <p th:text="#{text.cliente.textorutas}">
+                <!-- Aquí tienes todas las rutas que podrás realizar alrededor de Hoyos. Pulsando sobre la ruta te
                 saldrá un desplegable con fotografías y explicación de la ruta. Son paseos por bonitos
-                parajes con unas preciosas vistas, que te permitirán entrar en contacto directo con la naturaleza.
+                parajes con unas preciosas vistas, que te permitirán entrar en contacto directo con la naturaleza. -->
             </p>
             </br>
             
             </br>
-            <p>
-                Esperamos que te guste y que las disfutes
+            <p th:text="#{text.cliente.gustar}">
+                <!-- Esperamos que te guste y que las disfutes -->
             </p>
             <hr>
         </div>

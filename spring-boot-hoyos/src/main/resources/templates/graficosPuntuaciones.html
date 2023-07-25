@@ -37,7 +37,7 @@
     }
 
     form #q {
-      width: 100%;
+      
       text-align: left;
       padding: 5px 0px;
     }
@@ -74,8 +74,12 @@
           style="color: #eeeeee;background-color: #463232a3;margin-right: 6%;">cerrar</a>
       </div>
       
-      <form>
-        <input class="form-control" type="text" id="q" placeholder="Buscar......" onkeyup="search()">
+      <form >
+        <input class="form-control" type="text" id="q" placeholder="Buscar propuesta......" onkeyup="search()" style="width: 95%;
+        border: ridge;
+        border-radius: 10px;
+        margin-left: 2%;
+        padding: 1%;">
       </form>
 
       <div id="propuestas"></div>
@@ -100,6 +104,12 @@
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script th:src="@{js/totalpuntuaciones.js}"></script>
+  <script>
+     $(document).ready(function () {
+    
+      $('#espacioAdministrador').hide();
+    });
+  </script>
   <script type="text/javascript">
     function search() {
       var num_cols, display, input, filter, table_body, tr, td, i, txtValue;

@@ -24,11 +24,15 @@ public interface PropuestaJpaRepository extends JpaRepository<Propuestas, Intege
 	@Query("select e from Propuestas e where id_usuario=?1 and activa='si'")
 	List<Propuestas> findById_Uusuario(int id_usuario);
 	
+
+	
 	@Query("select e from Propuestas e where  activa='si'")
 	List<Propuestas> findTodas();
 	
 	
-	
+	String query="slect * from propuestas p inner join usuarios u on p.id_usuario=u.id_usuario";
+	@Query(value=query,nativeQuery = true)
+	List<Propuestas> findTodasQ();
 	
 	
 

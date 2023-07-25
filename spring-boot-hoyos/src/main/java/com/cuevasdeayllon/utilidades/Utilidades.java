@@ -25,6 +25,36 @@ public class Utilidades {
 
 	}
 
+	public static Comentarios comentariosDtoTocomentarios(ComentariosDto comentariosDTO) {
+
+		Comentarios comentarios = new Comentarios();
+
+		comentarios.setComentario(comentariosDTO.getComentario());
+		comentarios.setId(comentariosDTO.getId());
+		comentarios.setPropuesta(comentariosDTO.getPropuesta());
+		comentarios.setUsuario(comentariosDTO.getUsuario());
+		comentarios.setEditable(comentariosDTO.getEditable());
+		return comentarios;
+
+	}
+
+	public static List<Comentarios> comentariosDtoListTocomentarios(List<ComentariosDto> comentariosLitaDto) {
+		List<Comentarios> comentariosLita = new ArrayList<>();
+		
+		Comentarios comentarios = null;
+		for (int i = 0; i < comentariosLitaDto.size(); i++) {
+			comentarios = new Comentarios();
+			comentarios.setComentario(comentariosLitaDto.get(i).getComentario());
+			comentarios.setId(comentariosLitaDto.get(i).getId());
+			comentarios.setPropuesta(comentariosLitaDto.get(i).getPropuesta());
+			comentarios.setUsuario(comentariosLitaDto.get(i).getUsuario());
+			comentarios.setEditable(comentariosLitaDto.get(i).getEditable());
+			comentariosLita.add(comentarios);
+		}
+		return comentariosLita;
+
+	}
+
 	public static List<EstadosPropuestas> listaPropuestasAlistaEstadosPropuestas(List<Propuestas> propuestas) {
 
 		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();

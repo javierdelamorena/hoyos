@@ -57,8 +57,8 @@
       <hr>
       <div class="row col-lg-12">
         <div class="col-4" th:if="${usuario.foto}">
-          <img class="img-thumbnail  float-left" style="border-radius: 8px;margin-top: 24%;" th:src="@{'/uploads/'+${usuario.foto}}"
-            th:alt="${usuario.foto}" />
+          <img class="img-thumbnail  float-left" style="border-radius: 8px;margin-top: 24%;"
+            th:src="@{'/uploads/'+${usuario.foto}}" th:alt="${usuario.foto}" />
         </div>
         <div class="col-lg-8" style=" font-family: serif;
         text-align: center;
@@ -252,16 +252,24 @@
     margin-top: 2%;" id="todasPropuestas">
       <hr>
       <h2
-        style="margin-top: 13%;padding: 3%;color: rgb(0, 0, 0); font-family: -webkit-body;padding: 10px; font-size: 24px;margin-left: 3%;background-color: #87aedec7;">
+        style="margin-top: 13%;padding: 3%;color: rgb(0, 0, 0); font-family: -webkit-body;padding: 21px;; font-size: 24px;background-color: #87aedec7;">
         Aquí
-        tienes todas las propuestas, las tuyas y las de los demás vecinos.</h2>
-
-      <h2
-        style="padding: 3%;color: rgb(0, 0, 0); font-family: -webkit-body;padding: 10px; font-size: 24px;margin-left: 3%;background-color: #87aedec7;">
+        tienes todas las propuestas, las tuyas y las de los demás vecinos.
+        </br>
         Clicando sobre el nombre, podras leer la propuesta, comentarla y votarla.</h2>
       </br>
+      <hr>
+      <h5 style="color: #000000a8;
+      background-color: #d9d4c3;
+      text-align: center;
+      padding: 2%;
+      font-size: 18px">TITULO DE LAS PROPUESTAS</h5>';
       <form>
-        <input class="form-control" type="text" id="q" placeholder="Buscar Propuesta......" onkeyup="search()">
+        <input class="form-control" type="text" id="q" placeholder="Buscar Propuesta......" onkeyup="search()" style="width: 95%;
+        border: ridge;
+        border-radius: 10px;
+        margin-left: 2%;
+        padding: 1%;">
       </form>
 
     </div>
@@ -284,6 +292,7 @@
           <form th:action="@{/doBorrarDesdeUsuario}" th:object="${usuario}" class="text-dark" style="width: 250%;
            padding: 30px;" method="post">
             <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
+            <input type="hidden" id="roles" th:field="*{roles}" class="form-control">
             <div class=" col-sm-2">
               <input type="submit" value="Darse de baja" class="btn btn-primary">
             </div>
@@ -323,9 +332,7 @@
         <div class="modal-body">
           <label form="titulo" class="col-form-label col-sm-2" maxlength="50">Titulo</label>
           <input type="text" id="titulo" class="form-control">
-          <textarea id="texto" name="texto" rows="4" cols="50" style=" height: 180px; width: 98%; margin-top: 10px;"
-            maxlength="500">
-            </textarea>
+          <textarea id="texto" name="texto" rows="4" cols="50" style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="500"></textarea>
           <button type="button" class="btn btn-primary" id="enviarPropuesta">enviar propuestas</button>
 
         </div>
@@ -514,9 +521,15 @@
 <script>
 
   $(document).ready(function () {
+    var role = $('#roles').val();
+    if (role === 'USER') {
+      $('#espacioAdministrador').hide();
+    }
+
     $.ajax({
 
       type: 'get',
+      dataType: "json",
       //url: "https://cuevas-de-ayllon.com/propuesta",
       url: "propuesta",
 
@@ -524,15 +537,25 @@
 
 
     }).done(function (data) {
-      console.log("El valor devuelto por propuestas es: " + data);
+      
+      
+      for (var i = 0; i < data.length; i++) {
+        console.log("El valor devuelto por propuestas en i es:  " + JSON.stringify(data[i].idUsuario));
+        
+        for (var j = 0; j < data[i].length; j++) {
+          console.log("El valor devuelto por propuestas en j es:  " + data[i][j]);
+        
+        
+        }
+    }
       var html2 = '';
-      html2 += '<hr>';
+      // html2 += '<hr>';
       html2 += '<table  class="table table-responsive table-hover table-striped table-borderless" style="-moz-border-radius: 10px;text-decoration: none; text-align: center;">';
-      html2 += '<thead>';
-      html2 += '<tr> ';
-      html2 += '<th style="color:black;font-family: sans-serif;">TITULO DE LAS PROPUESTAS</th>';
-      html2 += '</tr>';
-      html2 += '</thead>';
+      // html2 += '<thead>';
+      // html2 += '<tr> ';
+      // html2 += '<th style="color:#000000a8;">TITULO DE LAS PROPUESTAS</th>';
+      // html2 += '</tr>';
+      // html2 += '</thead>';
 
       html2 += '<tbody id="the_table_body"> ';
       for (var i = 0; i < data.length; i++) {
@@ -563,13 +586,27 @@
     // while (div.firstChild) {
     //   div.removeChild(div.firstChild);
     // }
-
+    var texto =  document.getElementById('texto').value;
+    console.log('el texto vale: ',texto);
+    console.log('el texto vale: ',document.getElementById('texto').value);
+    if(texto.trim()===""){ 
+      texto = "";
+      console.log('El texto esta vacio; ', texto);
+    } 
+    // else if(texto =32){
+    //   texto = "";
+    //   console.log('El texto vale 32; ', texto);
+    // }
+    else {
+      
+      console.log('El texto no esta vacio; ', texto);
+    }
 
     $.ajax({
       type: 'POST',
       url: "propuesta",
       //url: "https://cuevas-de-ayllon.com/propuesta",
-      data: { 'propuesta': $('#texto').val(), 'titulo': $('#titulo').val() },
+      data: { 'propuesta': texto, 'titulo': $('#titulo').val(),'idUsuario':$('#idUsuario').val() },
       timeout: 5000,
 
 
@@ -579,7 +616,35 @@
       console.log("El valor devuelto por la añadir propuestaq es este: " + data.titulo);
       var propuestaRealizada1 = '';
       var propuestaRealizada = '';
-      if (jQuery.trim(data.titulo) !== "propuesta Existente") {
+      if (jQuery.trim(data.titulo) === "titulovacio") {
+        var propuestaRealizada2 = '';
+        propuestaRealizada1 += '';
+        propuestaRealizada1 += '<div  class="container col-lg-3" style="background-color: white;font-size: 20px;padding: 1%;">'
+        propuestaRealizada1 += 'La propuesta no tiene titulo, ';
+        propuestaRealizada1 += 'cierre la ventana y vuelva a realizar la propuesta poniendo Titulo,';
+        propuestaRealizada1 += 'sentimos la molestias';
+
+        propuestaRealizada += '</div>'
+        console.log("Añádimos el mensaje propuesta no tiene titulo: ", propuestaRealizada1);
+
+        $('#staticBackdrop').append(propuestaRealizada1);
+
+      }
+      if (jQuery.trim(data.propuesta) === "propuestavacia") {
+        var propuestaRealizada2 = '';
+        propuestaRealizada1 += '';
+        propuestaRealizada1 += '<div  class="container col-lg-3" style="background-color: white;font-size: 20px;padding: 1%;">'
+        propuestaRealizada1 += 'La propuesta no tiene texto, ';
+        propuestaRealizada1 += 'cierre la ventana y vuelva a realizar la propuesta poniendo texto,';
+        propuestaRealizada1 += 'sentimos la molestias';
+
+        propuestaRealizada += '</div>'
+        console.log("Añádimos el mensaje propuesta no tiene texto: ", propuestaRealizada1);
+
+        $('#staticBackdrop').append(propuestaRealizada1);
+
+      }
+      if (jQuery.trim(data.titulo) !== "propuesta Existente" && jQuery.trim(data.titulo) !== "titulovacio"&&jQuery.trim(data.propuesta) !== "propuestavacia") {
 
         console.log("El valor devuelto por  añadir propuesta es este: " + data);
         var html2 = '';
@@ -608,7 +673,7 @@
         var propuestaRealizada1 = '';
         propuestaRealizada1 += '';
         propuestaRealizada1 += '<div  class="container col-lg-3" style="background-color: white;font-size: 20px;padding: 1%;">'
-        propuestaRealizada1 += 'La propuesta ya existe';
+        propuestaRealizada1 += 'La propuesta ya existe, ';
         propuestaRealizada1 += 'cierre la ventana y vuelva a realizar la propuesta cambiando el nombre,';
         propuestaRealizada1 += 'sentimos la molestias';
 
@@ -618,6 +683,7 @@
         $('#staticBackdrop').append(propuestaRealizada1);
 
       }
+
     });
   })
 

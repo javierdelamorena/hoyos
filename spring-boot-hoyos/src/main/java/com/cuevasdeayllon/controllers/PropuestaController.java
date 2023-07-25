@@ -76,14 +76,38 @@ public class PropuestaController {
 
 	@PostMapping(value = ("/propuesta"), produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Propuestas propuesta(@RequestParam("titulo") String titulo,
-			@RequestParam("propuesta") String propuesta, Model model, HttpSession sesion) {
+			@RequestParam("propuesta") String propuesta,@RequestParam("idUsuario") int idUsuario, Model model, HttpSession sesion) {
 
 		Propuestas propuestaComprobar = new Propuestas();
 
-		if (titulo != null) {
+		if (titulo != null&&!titulo.isEmpty()&&propuesta != null&&!propuesta.isEmpty()) {
 
 			propuestaComprobar = propuestaService.findBtNombre(titulo);
 
+		}else if(titulo == null||titulo.isEmpty()) {
+			//logger.info("Esta es la propuesta propuestaComprobar :" + propuestaComprobar.getTitulo());
+			Propuestas propuestas = new Propuestas();
+			propuestas.setPropuesta("pro");
+			propuestas.setTitulo("titulovacio");
+			logger.info("Entramos en metodo propuesta no existente");
+			Usuario usuario = usuarioservice.usuarioPorId(idUsuario);
+			System.out.println("el usuario es:" + usuario.getNombre());
+			propuestas.setUsuario(usuario);
+			logger.info("titulo vacio");
+			model.addAttribute("propuestaExistente", "Esta propuesta ya existe");
+			return propuestas;
+		}else if(propuesta == "" ) {
+			//logger.info("Esta es la propuesta propuestaComprobar :" + propuestaComprobar.getTitulo());
+			Propuestas propuestas = new Propuestas();
+			propuestas.setPropuesta("propuestavacia");
+			propuestas.setTitulo("tituloNOvacio");
+			logger.info("Entramos en metodo propuesta no existente");
+			Usuario usuario = usuarioservice.usuarioPorId(idUsuario);
+			System.out.println("el usuario es:" + usuario.getNombre());
+			propuestas.setUsuario(usuario);
+			logger.info("propuesta vacia");
+			model.addAttribute("propuestaExistente", "Esta propuesta ya existe");
+			return propuestas;
 		}
 
 		if (propuestaComprobar == null) {
@@ -95,7 +119,7 @@ public class PropuestaController {
 			propuestas.setTitulo(titulo);
 			propuestas.setActiva("si");
 			logger.info("Entramos en metodo agregar propuesta hemos comprobado que no existe");
-			Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+			Usuario usuario = usuarioservice.usuarioPorId(idUsuario);
 			System.out.println("el usuario es:" + usuario.getNombre());
 			propuestas.setUsuario(usuario);
 			propuestaService.save(propuestas);
@@ -137,7 +161,7 @@ public class PropuestaController {
 			propuestas.setPropuesta("propuesta Existente");
 			propuestas.setTitulo("propuesta Existente");
 			logger.info("Entramos en metodo propuesta no existente");
-			Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+			Usuario usuario = usuarioservice.usuarioPorId(idUsuario);
 			System.out.println("el usuario es:" + usuario.getNombre());
 			propuestas.setUsuario(usuario);
 			logger.info("propuestaExistente", "Esta propuiesta ya existe");
@@ -205,6 +229,8 @@ public class PropuestaController {
 
 		todas = todas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
 				.collect(Collectors.toList());
+		
+		todas.forEach(p->logger.info("estos son los idUasuarios"+p.getUsuario().getIdUsuario()));
 
 		return todas;
 
@@ -214,10 +240,10 @@ public class PropuestaController {
 	public String comentarios(@RequestParam("idPropuesta") int idpropuesta, Model model, HttpSession sesion) {
 
 		logger.info("Entramos en metodo comentarios esta es la idpropuesta" + idpropuesta);
-
+		Propuestas propuestaIdPropuesta=propuestaService.findByIdPropuesta(idpropuesta);
 		List<Comentarios> comentarios = comentarioService.findAllByIdPropuesta(idpropuesta);
 		List<ComentariosDto> comentarioDtoList = new ArrayList<>();
-		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		Usuario usuario = usuarioservice.usuarioPorId(propuestaIdPropuesta.getUsuario().getIdUsuario());
 
 		for (int i = 0; i < comentarios.size(); i++) {
 
@@ -236,7 +262,7 @@ public class PropuestaController {
 
 		}
 
-		Propuestas propuesta = propuestaService.findByIdPropuesta(idpropuesta);
+		Propuestas propuestas = propuestaService.findByIdPropuesta(idpropuesta);
 
 		// logger.info("Estas son la propuestas que recogemos en metodo
 		// comentarios:["+propuesta.getPropuesta()+" "+propuesta.getIdPropuesta()+"]");
@@ -245,17 +271,17 @@ public class PropuestaController {
 
 		comentarios.forEach(c -> logger.info("Estos son los usuarios: " + c.getUsuario().getNombre()));
 
-		model.addAttribute("propuestas", propuesta);
+		model.addAttribute("propuestas", propuestas);
 
 		sesion.setAttribute("usuario", usuario);
 
-		sesion.setAttribute("propuestas", propuesta);
+		sesion.setAttribute("propuestas", propuestas);
 
 		return "comentarios";
 
 	}
 
-	@GetMapping("/editarComentario")
+	@GetMapping(value = ("/editarComentario"), produces = MediaType.APPLICATION_JSON_VALUE)
 	public String editarComentarios(@RequestParam("idComentario") int idcomentario,
 			@RequestParam("comentario") String coment, Model model, HttpSession sesion) {
 
@@ -271,7 +297,7 @@ public class PropuestaController {
 		;
 
 		if (comentario != null) {
-			logger.info("Entramos en el metodo salvarcomentario la lista esta a 0 " + comentario.getComentario());
+			logger.info("Entramos en el metodo editarcomentarios  la lista no esta a 0" + comentario.getComentario());
 			comentario.setUsuario(comentario.getUsuario());
 			comentario.setEditable("si");
 			comentario.setPropuesta(comentario.getPropuesta());
@@ -296,6 +322,11 @@ public class PropuestaController {
 			}
 
 		}
+//		Objetos objetos = new Objetos();
+//		objetos.setComentarios(Utilidades.comentariosDtoListTocomentarios(comentarioDtoList));
+//		objetos.setPropuestas(propuesta);
+//		objetos.setUsuario(usuario);
+//		
 		model.addAttribute("propuestas", propuesta);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("comentarioEditable", comentarioDtoList);
@@ -348,6 +379,7 @@ public class PropuestaController {
 			}
 
 		}
+		
 		model.addAttribute("propuestas", propuesta);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("comentarioEditable", comentario);

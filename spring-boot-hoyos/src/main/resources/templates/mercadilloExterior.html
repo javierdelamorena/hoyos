@@ -23,10 +23,9 @@
             <div class="col-lg-2 fecha" id="fecha"></div>
 
             <div class="col-lg-5" id="divCartel">
-                <div id="cartelServicios">Compra Venta y Servicios de Hoyos</div>
+                <div id="cartelServicios" th:text="#{text.cliente.cartelmercadillo}"></div>
             </div>
-            <div style="float: left;
-      margin-left: 1%;" >Foto de Mónica Morán</div>
+            <div th:replace="layouts/fragmentoprincipal :: nombreFoto" ></div>
         </header>
     </div>
     <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
@@ -38,16 +37,16 @@
         
         margin-left: 0%;">
             <hr>
-            <p>
-                En este apartado podrás anunciar cualquier cosa que quieras vender o alquilar (una casa, un terreno, un
+            <p  th:text="#{text.cliente.textomercadillo}">
+                <!-- En este apartado podrás anunciar cualquier cosa que quieras vender o alquilar (una casa, un terreno, un
                 coche o una silla, lo que quieras) y cualquier servicio que quieras ofrecer (trabajos de albañilería,
                 clases particulares, cuidado de personas mayores, etc).
                 </br>
-                ¡Suerte!
+                ¡Suerte! -->
             </p>
 
-            <p>
-                Esperamos que te guste y que lo disfrutes.
+            <p th:text="#{text.cliente.gustar}">
+                <!-- Esperamos que te guste y que lo disfrutes. -->
             </p>
             <hr>
         </div>

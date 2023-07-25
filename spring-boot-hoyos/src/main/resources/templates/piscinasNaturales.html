@@ -25,10 +25,9 @@
       <div class="col-lg-2 fecha" id="fecha"></div>
 
       <div class="col-lg-5" id="divCartel">
-        <div id="cartelOrfeo">Piscina Natural de Hoyos</div>
+        <div id="cartelOrfeo" th:text="#{text.cliente.cartelpiscina}"></div>
       </div>
-      <div style="float: left;
-      margin-left: 1%;" >Foto de Mónica Morán</div>
+      <div th:replace="layouts/fragmentoprincipal :: nombreFoto" ></div>
     </header>
   </div>
   <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
@@ -44,20 +43,20 @@
     margin-top: 3%;
     margin-bottom: 7%;">
       <hr>
-      <p>
-        La Piscina Natural de Hoyos a la que se accede desde la antigua carretera-Valverde-Hervas o
+      <p th:text="#{text.cliente.textopiscina}">
+        <!-- La Piscina Natural de Hoyos a la que se accede desde la antigua carretera-Valverde-Hervas o
         carretera-Perales-Hoyos a unos 4 km del pueblo, se encuentra en el cauce natural de la Ribera de Acebo.
 
         
         Actualmente cuenta, además de sus amplias zonas para el descanso y el esparcimiento, con un Restaurante-Asador
         con una gran zona de aparcamiento. Es en deﬁnitiva un lugar perfecto para descansar, tomar el sol, nadar,
         refrescarse o simplemente relajarse escuchando el sonido del agua y contemplando un hermoso paisaje jalonado de
-        la rica ﬂora típica de ribera.
+        la rica ﬂora típica de ribera. -->
       </p>
 
 
-      <p>
-        Esperamos que te guste y que lo disfrutes.
+      <p th:text="#{text.cliente.gustar}">
+        
       </p>
       <hr>
 
