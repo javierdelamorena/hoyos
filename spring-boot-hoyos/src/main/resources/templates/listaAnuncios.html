@@ -87,10 +87,10 @@
                     <td th:if="${anuncio.titulo_anuncio}" th:text="${anuncio.titulo_anuncio}"></td>
 
                     <td th:if="${anuncio.fecha}" th:text="${anuncio.fecha}"></td>
-                    <td><a href="#" data-bs-toggle="modal" class="btn btn-dark"
+                    <td><a href="#" data-bs-toggle="modal" class="btn btn-primary"
                             th:attr="data-bs-target='#modal1'+${anuncio.idAnuncios}">Editar Anuncio</a></td>
 
-                    <td><a href="#" data-bs-toggle="modal" class="btn btn-dark"
+                    <td><a href="#" data-bs-toggle="modal" class="btn btn-danger"
                             th:attr="data-bs-target='#modal'+${anuncio.idAnuncios}">Borrar Anuncio</a></td>
 
 

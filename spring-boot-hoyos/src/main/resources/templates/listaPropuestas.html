@@ -93,7 +93,7 @@
 
                     <td th:if="${propuesta.usuario.nombre}" th:text="${propuesta.usuario.nombre}"></td>
 
-                    <td><a href="#" data-bs-toggle="modal" class="btn btn-dark"
+                    <td><a href="#" data-bs-toggle="modal" class="btn btn-danger"
                             th:attr="data-bs-target='#modal'+${propuesta.idPropuesta}">Borrar Propuesta</a></td>
 
                     <div class="modal fade" data-bs-backdrop="staticBackdropLabel"
@@ -116,7 +116,7 @@
 
 
 
-                                        <input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark"
+                                        <input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-danger"
                                             value="Borrar Propuesta">
                                     </form>
                                 </div>

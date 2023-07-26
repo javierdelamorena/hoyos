@@ -64,7 +64,7 @@
 
           <td th:if="${propuesta.titulo}" th:text="${propuesta.titulo}"></td>
 
-          <td> <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+          <td> <button type="button" class="btn btn-primary" data-bs-toggle="modal"
               th:attr="data-bs-target='#staticBackdrop'+${propuesta.idPropuesta}" style="margin: 10px;color: #eeeeee;">
               Editar
             </button></td>
@@ -92,7 +92,7 @@
                     <textarea id="propuesta" name="propuesta" th:value="${propuesta.propuesta}" rows="4" cols="50"
                       style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255"
                       th:text="${propuesta.propuesta}"></textarea>
-                    <input type="submit" class="btn btn-dark" value="Editar propuesta">
+                    <input type="submit" class="btn btn-primary" value="Editar propuesta">
                   </form>
                 </div>
                 <!-- <h2 id="propuestaRelizada"></h2>
@@ -111,7 +111,7 @@
 
               <input type="hidden" name="idPropuesta" th:value="${propuesta.idPropuesta}">
               <input type="hidden" name="idUsuario" th:value="${propuesta.usuario.idUsuario}">
-              <input type="submit" class="btn btn-dark" value="Borrar " style="margin-top: 4%;">
+              <input type="submit" class="btn btn-danger" value="Borrar " style="margin-top: 4%;">
             </form>
           </td>
 

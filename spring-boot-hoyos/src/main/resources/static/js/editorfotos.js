@@ -22,7 +22,7 @@ const loadImage = () => {
    
      previewImg.addEventListener("load", () => {
         resetFilterBtn.click();
-        document.querySelector(".container").classList.remove("disable");
+        // document.querySelector(".container").classList.remove("disable");
       });
 }
 

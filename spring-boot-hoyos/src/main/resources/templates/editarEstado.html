@@ -91,7 +91,7 @@
 
                 <td th:if="${propuesta.usuario.nombre}" th:text="${propuesta.usuario.nombre}"></td>
 
-                <td><a href="#" data-bs-toggle="modal" class="btn btn-dark"
+                <td><a href="#" data-bs-toggle="modal" class="btn btn-primary"
                         th:attr="data-bs-target='#modal'+${propuesta.idPropuesta}">Editar Estado</a>
                     <div class="modal fade" data-bs-backdrop="staticBackdropLabel"
                         th:attr="id=modal+${propuesta.idPropuesta}" data-bs-keyboard="false" tabindex="-1"
