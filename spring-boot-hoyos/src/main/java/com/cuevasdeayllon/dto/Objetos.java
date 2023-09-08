@@ -11,7 +11,7 @@ public class Objetos {
 	
 	private Usuario usuario;
 	private Propuestas propuestas;
-	
+	private List<Usuario> usuarios;
 	private List<Comentarios> comentarios;
 	private Puntuacion puntuacion;
 	
@@ -47,6 +47,12 @@ public class Objetos {
 	}
 	public void setComentarios(List<Comentarios> comentarios) {
 		this.comentarios = comentarios;
+	}
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 	
 	

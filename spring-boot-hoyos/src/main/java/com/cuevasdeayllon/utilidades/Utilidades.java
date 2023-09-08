@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.cuevasdeayllon.dto.ComentariosDto;
 import com.cuevasdeayllon.dto.EstadosPropuestas;
+import com.cuevasdeayllon.dto.PropuestaDto;
 import com.cuevasdeayllon.entity.Comentarios;
 import com.cuevasdeayllon.entity.Propuestas;
 
@@ -90,5 +91,20 @@ public class Utilidades {
 		}
 		return estadosPropuestas;
 
+	}
+	public static PropuestaDto propuestaApropuestaDto(Propuestas propuesta) {
+		PropuestaDto propuestaDto=new PropuestaDto() ;
+			propuestaDto.setActiva(propuesta.getActiva());
+			propuestaDto.setEstados(propuesta.getEstados());
+			propuestaDto.setComentario(propuesta.getComentario());
+			propuestaDto.setFecha(propuesta.getFecha());
+			propuestaDto.setTitulo(propuesta.getTitulo());
+			propuestaDto.setUsuario(propuesta.getUsuario());
+			propuestaDto.setIdPropuesta(propuesta.getIdPropuesta());
+			propuestaDto.setPropuesta(propuesta.getPropuesta());
+			return propuestaDto;
+			
+		
+		
 	}
 }

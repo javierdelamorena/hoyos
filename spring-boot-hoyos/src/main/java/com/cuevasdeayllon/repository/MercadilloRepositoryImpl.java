@@ -1,5 +1,7 @@
 package com.cuevasdeayllon.repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +20,8 @@ public class MercadilloRepositoryImpl implements MercadilloRepository {
 	@Override
 	@Transactional(readOnly=true)
 	public List<Mercadillo> todosLosMercadillos() {
+		
+		
 		
 		return mercadilloJpaRepository.findAll();
 	}
@@ -45,8 +49,8 @@ public class MercadilloRepositoryImpl implements MercadilloRepository {
 		merdado.setId_usuario(mercadillo.getId_usuario());
 		merdado.setNombre(mercadillo.getNombre());
 		merdado.setTelefono(mercadillo.getTelefono());
-		merdado.setNombre_servicio(mercadillo.getNombre_servicio());
-		merdado.setTipo_servicio(mercadillo.getTipo_servicio());
+		merdado.setNombre_servicio(mercadillo.getNombre_servicio().trim());
+		merdado.setTipo_servicio(mercadillo.getTipo_servicio().trim());
 		merdado.setPrecio(mercadillo.getPrecio());
 		merdado.setTexto(mercadillo.getTexto());
 		merdado.setFoto1(mercadillo.getFoto1());
@@ -97,6 +101,12 @@ public class MercadilloRepositoryImpl implements MercadilloRepository {
 	public List<Mercadillo> todosLosMercadillosiIdUsuario(int idUsuario) {
 		
 		return mercadilloJpaRepository.findByIdUsuario(idUsuario);
+	}
+
+	@Override
+	public List<Mercadillo> findByTipo_servicio(String tipo_servicio) {
+		// TODO Auto-generated method stub
+		return mercadilloJpaRepository.findByTipo_servicio(tipo_servicio);
 	}
 
 }

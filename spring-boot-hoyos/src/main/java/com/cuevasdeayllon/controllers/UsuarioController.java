@@ -317,14 +317,21 @@ public class UsuarioController {
 	@PostMapping(path="/editarUsuario")
 	public String editarUsuario(@Valid Usuario usuario,BindingResult result,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
 		logger.info("Entramos en metodo editar");
-
+		Usuario usuarioControl=new Usuario();
+		if(usuario!=null) {
+			usuarioControl=service.usuarioPorEmail(usuario.getEmail());
+		}else {
+			
+			model.addAttribute("fotoConHuecos", "Lo sentimos, algo salio mal, el usuario no existe, gracias.");
+			return "usuario";
+		}
 		logger.info("El usuario que recogemos es: "+usuario.getNombre()+" con el password  "+ usuario.getPassword()+" con idUsuario: "+usuario.getIdUsuario());
 		//Usuario usuariocomprobacion=(Usuario) sesion.getAttribute("usuario");
 
 		String passwordSinEncriptar=usuario.getPassword();
 
 		if(!foto.isEmpty()&&usuario!=null) {
-			Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
+			Usuario usuari=service.usuarioPorEmail(usuario.getEmail());
 			int oraLen = foto.getOriginalFilename().length();
 			logger.info("El nombre de la foto es: "+foto.getOriginalFilename());
 
@@ -348,11 +355,11 @@ public class UsuarioController {
 				String passwordEncriptada = usuario.getPassword();
 				usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
 				usuario.setIdUsuario(usuario.getIdUsuario());
-				usuario.setRoles(usuario.getRoles());
+				usuario.setRoles(usuarioControl.getRoles());
 				service.editarUsuario(usuario);
 
 
-				usuari=service.usuarioPorNombre(usuario.getNombre());
+				usuari=service.usuarioPorId(usuario.getIdUsuario());
 				if(usuari!=null) {
 					logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
 					logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
@@ -382,11 +389,11 @@ public class UsuarioController {
 			String passwordEncriptada = usuario.getPassword();
 			usuario.setIdUsuario(usuario.getIdUsuario());
 			usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
-			usuario.setRoles(usuario.getRoles());
+			usuario.setRoles(usuarioControl.getRoles());
 			service.editarUsuario(usuario);
 
 
-			Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
+			Usuario usuari=service.usuarioPorNombre(usuarioControl.getNombre());
 			if(usuari!=null) {
 				logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
 				logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");

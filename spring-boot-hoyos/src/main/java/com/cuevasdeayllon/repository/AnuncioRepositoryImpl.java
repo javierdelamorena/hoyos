@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,7 +22,7 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 	private AnuncioJpaRepository anuncioJpaRepository;
 
 	@Override
-	public void insertarAnucio(Anuncios anuncio,MultipartFile foto)  {
+	public void insertarAnucio(Anuncios anuncio,MultipartFile file)  {
 		String rootPath="C://TEMP//uploadsAnuncios";
 		//String rootPath="/uploadsAnuncios/";
 		Anuncios anuncioeditable=new Anuncios();
@@ -30,15 +31,21 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 		anuncioeditable.setFecha(new Date());		
 		anuncioeditable.setTitulo_anuncio(anuncio.getTitulo_anuncio());
 
-		if(!foto.isEmpty()) {
+		if(!file.isEmpty()) {
 
 
 			try {
-				byte[]bytes=foto.getBytes();
-				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename().toString().trim());
+				byte[]bytes=file.getBytes();
+				Path rutaCompleta=Paths.get(rootPath+"//"+file.getOriginalFilename().toString().trim());
 				Files.write(rutaCompleta,bytes);
+				String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+				if(extension.equals("mp4")) {
+					anuncioeditable.setVideo_anuncio(file.getOriginalFilename());
+					
+				}else {
+					anuncioeditable.setFoto_anuncio(file.getOriginalFilename());
+				}
 				
-				anuncioeditable.setFoto_anuncio(foto.getOriginalFilename());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -112,10 +112,11 @@
 
 
                 </td>
+                
 
                 <td>
 
-                    <form th:action="@{/borrarFoto}" method="post">
+                    <form th:action="@{/borrarFotoUsuario}" method="post">
                         <input type="hidden" name="idFotos" th:value="${foto.idFotos}">
                         <input type="hidden" name="fotos" th:value="${foto.fotos}">
                         <input type="hidden" name="email" th:value="${foto.usuario.email}">

@@ -72,47 +72,49 @@
     </nav>
 
 
-    <aside th:fragment="footer" id="textoAside" class="col-lg-2 col-sm-10" style="margin-left: 5%;
+    <aside th:fragment="footer" id="textoAside" class="col-lg-2 col-sm-12" style="margin-left: 5%;
     margin-top: 4%;">
         <a href="" style="text-decoration: none;
         color: #2f3235c7;">Hoyos</a>
         <hr>
-        <a href="https://www.guardiacivil.es/ca/institucional/directorio/soria/puesto_de_san_esteban_de_gormaz.html"
+        <a href="https://www.guardiacivil.es/es/institucional/directorio/caceres/puesto_de_hoyos.html"
             style="text-decoration: none;color: #2f3235c7;" data-toggles="tooltip" data-placement="bottom" title="GUARDIA CIVIL
-         PUESTO DE SAN ESTEBAN DE GORMAZ
-         Localidad: SAN ESTEBAN DE GORMAZ
-         Provincia: SORIA
-         Dirección postal: AVDA. DEL GENERALISIMO, 10
-         Código postal: 42330
-         Teléfono: 975350046" th:text="#{text.cliente.seguridad}"></a>
+            PUESTO DE HOYOS
+            Localidad: HOYOS
+            Provincia: CACERES
+            Dirección postal: AVDA. DE ESPAÑA, 1
+            Código postal: 10850
+            Teléfono: 927514006" th:text="#{text.cliente.seguridad}"></a>
         <hr>
-        <a th:href="@{/contacto}" style="text-decoration: none;color: #2f3235c7;"th:text="#{text.cliente.contacto}"></a>
+        <a th:href="@{/contacto}" style="text-decoration: none;color: #2f3235c7;"
+            th:text="#{text.cliente.contacto}"></a>
         <hr>
-        <a th:href="@{/preguntas}" style="text-decoration: none;color: #2f3235c7;"th:text="#{text.cliente.preguntas}"></a>
+        <a th:href="@{/preguntas}" style="text-decoration: none;color: #2f3235c7;"
+            th:text="#{text.cliente.preguntas}"></a>
         <hr>
-        <a href="https://www.google.com/maps/place/42342+Cuevas+de+Ayll%C3%B3n,+Soria/@41.3900595,-3.3133699,16z/data=!3m1!4b1!4m5!3m4!1s0xd4471d9e8689bef:0xd01fd59690b0f669!8m2!3d41.3899419!4d-3.3093724"
+        <a href="https://www.google.com/maps/place/10850+Hoyos,+C%C3%A1ceres/@40.1712811,-6.7299004,15z/data=!3m1!4b1!4m6!3m5!1s0xd3dc0dd45bdd52b:0xa9566addb72720f0!8m2!3d40.1720606!4d-6.7206346!16s%2Fm%2F02z7jz1?entry=ttu"
             style="text-decoration: none;color: #2f3235c7;">Como llegar</a>
         <hr>
 
     </aside>
-    
+
     <div th:fragment="idiomas" class="col-lg-3 col-sm-2" style="float: right;">
-        
-            <a href="?lang=es_ES"><span><img src="imagenes/espana.png" style="width: 8%;" /></span></a>
-            <a href="?lang=en_EN"><span><img src="imagenes/reino-unido.png" style="width: 8%;" /></span></a>
-            <a href="?lang=fr_FR"><span><img src="imagenes/francia.png" style="width: 8%;" /></span></a>
-            <div class="col-lg-6 fecha" id="fecha"></div>
-        
-            
 
-        
+        <a href="?lang=es_ES"><span><img src="imagenes/espana.png" style="width: 8%;" /></span></a>
+        <a href="?lang=en_EN"><span><img src="imagenes/reino-unido.png" style="width: 8%;" /></span></a>
+        <a href="?lang=fr_FR"><span><img src="imagenes/francia.png" style="width: 8%;" /></span></a>
+        <div class="col-lg-6 fecha" id="fecha"></div>
+
+
+
+
     </div>
-    
 
-        <div th:fragment="nombreFoto" class="col-lg-2" style="float: right;margin-left: 2px;">
-            Foto de Óscar Antúnez García
-        </div>
-    
+
+    <div th:fragment="nombreFoto" class="col-lg-2" style="float: right;margin-left: 2px;">
+        Foto de Óscar Antúnez García
+    </div>
+
 
 </body>
 

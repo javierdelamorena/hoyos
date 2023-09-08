@@ -261,7 +261,7 @@ public class IndexControler {
 	public String mercadillo(@RequestParam("idUsuario")int idUsuario,HttpSession session,Model model) {
 
 		logger.info("Entramos en metodo index/mercadillo el idusuario es: "+idUsuario);
-		List<String>tipoServicio= Arrays.asList("Compra Venta ","Servicios","Alquiler");
+		List<String>tipoServicio= Arrays.asList("Compra","Venta","Servicios","Alquiler");
 		Usuario usuario=service.usuarioPorId(idUsuario);
 		Mercadillo mercadillo=new Mercadillo();
 		mercadillo.setId_usuario(usuario.getIdUsuario());

@@ -265,6 +265,24 @@ public class FotosController {
 		model.addAttribute("fotosLista", fotosLista);
 		return "listaFotos";
 	}
+	@PostMapping("/borrarFotoUsuario")	
+	public String borrarFotoUsuario(@RequestParam("fotos")String foto,@RequestParam("email")String  email,@RequestParam("idFotos")int idFotos,Model model) {
+		Fotos fotos=new Fotos();
+		Usuario usuario=usuarioservice.usuarioPorEmail(email);
+		if(foto!=null) {
+			fotos.setFotos(foto)	;
+			fotos.setUsuario(usuario);
+			fotos.setIdFotos(idFotos);
+
+			service.deleteFoto(fotos);
+			model.addAttribute("fotoBorrada", "La foto se ha borrado con exito.");
+		}else {
+			return "misFotos";
+		}
+		List<Fotos>fotosLista=service.todasByIdUsuario(usuario.getIdUsuario());
+		model.addAttribute("fotosLista", fotosLista);
+		return "misFotos";
+	}
 	/**
 	 * Metodo que devuelve todas las fotos paginadas
 	 * @param page

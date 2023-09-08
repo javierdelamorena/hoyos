@@ -776,7 +776,8 @@ body {
 	padding: 15px;
 	position: relative;
 	bottom: 0;
-
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 
 
 	background-color: rgb(26 52 123 / 43%);
@@ -877,11 +878,29 @@ body {
 		position: relative;
 		padding: 8px;
 		font-weight: 500;
-		font-size: 20px;
+		font-size: 22px;
 		border: groove;
 		/* font-family: sans-serif; */
 		display: -webkit-inline-box;
 		overflow-wrap: anywhere;
+	}
+
+
+
+}
+#comentario {
+	
+	
+	font-weight: 400;
+	
+}
+
+@media (max-width : 576px) {
+	#comentario {
+		
+		font-weight: 400;
+		font-size: 20px;
+		
 	}
 
 
@@ -1041,10 +1060,68 @@ body {
 
 	}
 }
+/*Caja de*/
+#salvarComentario {
+	margin-left: 0%;
+}
+
+@media (max-width : 576px) {
+	#salvarComentario {
+		margin-left: 0%;
+		/* width: 30%; */
+
+	}
+}
+#editarComentario {
+	margin-left: 0%;
+}
+
+@media (max-width : 576px) {
+	#editarComentario {
+		margin-left: 0%;
+		/* width: 30%; */
+
+	}
+}
+#botonAgregar {
+	margin-right: 5%;
+    margin-left: 6%;
+}
+
+@media (max-width : 576px) {
+	#botonAgregar {
+		margin-left: 1%;
+		
+
+	}
+}
+/* #comentario {
+	margin-left: 0%;
+}
+
+@media (max-width : 576px) {
+	#comentario {
+		width: 60%;
+
+	}
+} */
 #q{
 	width: 95%;
         border: ridge;
         border-radius: 10px;
         margin-left: 2%;
         padding: 1%;
+}
+
+/*carrouse de fotos*/
+#carrosel {
+	margin-top: 1%; float:right;margin-top: 3%;margin-bottom: 15%;
+}
+
+@media (max-width : 576px) {
+	#carrosel {
+		margin-top: 1%; float:right;margin-top: 3%;margin-bottom: 15%;
+		width: 100%;
+
+	}
 }

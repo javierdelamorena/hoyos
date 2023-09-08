@@ -76,16 +76,18 @@ public class PropuestaController {
 
 	@PostMapping(value = ("/propuesta"), produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Propuestas propuesta(@RequestParam("titulo") String titulo,
-			@RequestParam("propuesta") String propuesta,@RequestParam("idUsuario") int idUsuario, Model model, HttpSession sesion) {
+			@RequestParam("propuesta") String propuesta, @RequestParam("idUsuario") int idUsuario, Model model,
+			HttpSession sesion) {
 
 		Propuestas propuestaComprobar = new Propuestas();
 
-		if (titulo != null&&!titulo.isEmpty()&&propuesta != null&&!propuesta.isEmpty()) {
+		if (titulo != null && !titulo.isEmpty() && propuesta != null && !propuesta.isEmpty()) {
 
 			propuestaComprobar = propuestaService.findBtNombre(titulo);
 
-		}else if(titulo == null||titulo.isEmpty()) {
-			//logger.info("Esta es la propuesta propuestaComprobar :" + propuestaComprobar.getTitulo());
+		} else if (titulo == null || titulo.isEmpty()) {
+			// logger.info("Esta es la propuesta propuestaComprobar :" +
+			// propuestaComprobar.getTitulo());
 			Propuestas propuestas = new Propuestas();
 			propuestas.setPropuesta("pro");
 			propuestas.setTitulo("titulovacio");
@@ -96,8 +98,9 @@ public class PropuestaController {
 			logger.info("titulo vacio");
 			model.addAttribute("propuestaExistente", "Esta propuesta ya existe");
 			return propuestas;
-		}else if(propuesta == "" ) {
-			//logger.info("Esta es la propuesta propuestaComprobar :" + propuestaComprobar.getTitulo());
+		} else if (propuesta == "") {
+			// logger.info("Esta es la propuesta propuestaComprobar :" +
+			// propuestaComprobar.getTitulo());
 			Propuestas propuestas = new Propuestas();
 			propuestas.setPropuesta("propuestavacia");
 			propuestas.setTitulo("tituloNOvacio");
@@ -128,13 +131,12 @@ public class PropuestaController {
 			estado.setPropuestas(propuestaEstado);
 			estado.setVotacion("votacion");
 			estadosService.guardarEstado(estado);
-			
-			PuntuacionTotal puntuacion=new PuntuacionTotal();
+
+			PuntuacionTotal puntuacion = new PuntuacionTotal();
 			puntuacion.setPropuesta(titulo);
 			puntuacion.setPuntuacion(0);
-			
+
 			puntuacionTotalservice.salvarPuntuacion(titulo, 0);
-			
 
 			// List<Usuario> usuari=usuarioservice.todosLosUsuarios();
 
@@ -229,18 +231,18 @@ public class PropuestaController {
 
 		todas = todas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
 				.collect(Collectors.toList());
-		
-		todas.forEach(p->logger.info("estos son los idUasuarios"+p.getUsuario().getIdUsuario()));
+
+		todas.forEach(p -> logger.info("estos son los idUasuarios" + p.getUsuario().getIdUsuario()));
 
 		return todas;
 
 	}
 
 	@GetMapping("/comentarios")
-	public String comentarios(@RequestParam("idPropuesta") int idpropuesta, Model model, HttpSession sesion) {
+	public String comentarios(@RequestParam("idPropuesta") int idpropuesta,@RequestParam("mail") String mail, Model model, HttpSession sesion) {
 
-		logger.info("Entramos en metodo comentarios esta es la idpropuesta" + idpropuesta);
-		Propuestas propuestaIdPropuesta=propuestaService.findByIdPropuesta(idpropuesta);
+		logger.info("Entramos en metodo comentarios esta es la idpropuesta" + idpropuesta+ " mail= " +mail);
+		Propuestas propuestaIdPropuesta = propuestaService.findByIdPropuesta(idpropuesta);
 		List<Comentarios> comentarios = comentarioService.findAllByIdPropuesta(idpropuesta);
 		List<ComentariosDto> comentarioDtoList = new ArrayList<>();
 		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
@@ -282,7 +284,7 @@ public class PropuestaController {
 	}
 
 	@GetMapping(value = ("/editarComentario"), produces = MediaType.APPLICATION_JSON_VALUE)
-	public String editarComentarios(@RequestParam("idComentario") int idcomentario,
+	public @ResponseBody Objetos editarComentarios(@RequestParam("idComentario") int idcomentario,
 			@RequestParam("comentario") String coment, Model model, HttpSession sesion) {
 
 		logger.info("Entramos en metodo editarcomentarios esta es la idcomentario" + idcomentario);
@@ -290,7 +292,7 @@ public class PropuestaController {
 		Comentarios comentario = comentarioService.findByid(idcomentario);
 
 		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-
+		List<Usuario> usuarioList = new ArrayList<>();
 		logger.info("Entramos en metodo editarcomentarios este es el usuario" + usuario.getNombre());
 
 		Propuestas propuesta = propuestaService.findBtNombre(comentario.getPropuesta().getTitulo());
@@ -298,6 +300,8 @@ public class PropuestaController {
 
 		if (comentario != null) {
 			logger.info("Entramos en el metodo editarcomentarios  la lista no esta a 0" + comentario.getComentario());
+
+			comentario.setId(idcomentario);
 			comentario.setUsuario(comentario.getUsuario());
 			comentario.setEditable("si");
 			comentario.setPropuesta(comentario.getPropuesta());
@@ -309,7 +313,7 @@ public class PropuestaController {
 		for (int i = 0; i < comentarios.size(); i++) {
 
 			ComentariosDto comentarioDto = Utilidades.comentariosTocomentariosDto(comentarios.get(i));
-
+			usuarioList.add(comentarios.get(i).getUsuario());
 			comentarioDtoList.add(comentarioDto);
 
 			if (comentarios.get(i).getUsuario().getIdUsuario() != usuario.getIdUsuario()) {
@@ -322,17 +326,18 @@ public class PropuestaController {
 			}
 
 		}
-//		Objetos objetos = new Objetos();
-//		objetos.setComentarios(Utilidades.comentariosDtoListTocomentarios(comentarioDtoList));
-//		objetos.setPropuestas(propuesta);
-//		objetos.setUsuario(usuario);
-//		
+		Objetos objetos = new Objetos();
+		objetos.setComentarios(Utilidades.comentariosDtoListTocomentarios(comentarioDtoList));
+		objetos.setPropuestas(propuesta);
+		objetos.setUsuario(usuario);
+		objetos.setUsuarios(usuarioList);
+
 		model.addAttribute("propuestas", propuesta);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("comentarioEditable", comentarioDtoList);
 		model.addAttribute("comentarios", comentarioDtoList);
 
-		return "comentarios";
+		return objetos;
 
 	}
 
@@ -379,7 +384,60 @@ public class PropuestaController {
 			}
 
 		}
-		
+
+		model.addAttribute("propuestas", propuesta);
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("comentarioEditable", comentario);
+		model.addAttribute("comentarios", comentarios);
+
+		return "comentarios";
+
+	}
+	/**
+	 * Metodo que utilizamos para borrar los comentarios
+	 * 
+	 * @param idcomentario
+	 * @param idpropuesta
+	 * @param model
+	 * @param sesion
+	 * @return
+	 */
+	@PostMapping("/borrarComentarioAjax")
+	public String borrarComentariosAjax(@RequestParam("idComentario") String idcomentario,
+			@RequestParam("idPropuesta") String idpropuesta, Model model, HttpSession sesion) {
+
+		logger.info("Entramos en metodo borrarcomentarios esta es la idcomentario" + idcomentario);
+		Comentarios comentario = new Comentarios();
+		Propuestas propuesta = new Propuestas();
+        int idcomentarioInt=Integer.parseInt(idcomentario);
+        
+		if (idcomentarioInt > 0) {
+			comentario = comentarioService.findByid(idcomentarioInt);
+		}
+
+		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		if (comentario != null) {
+			propuesta = propuestaService.findBtNombre(comentario.getPropuesta().getTitulo());
+		} else {
+			propuesta = (Propuestas) sesion.getAttribute("propuestas");
+		}
+
+		if (comentario != null) {
+			logger.info("Entramos en el metodo borrarcomentario la lista esta a 0 " + comentario.getComentario());
+
+			comentarioService.deleteById(comentario, idcomentarioInt);
+		}
+		List<Comentarios> comentarios = comentarioService.findAllByIdPropuesta(propuesta.getIdPropuesta());
+
+		for (int i = 0; i < comentarios.size(); i++) {
+
+			if (comentarios.get(i).getUsuario().getIdUsuario() != usuario.getIdUsuario()) {
+
+				comentarios.get(i).setEditable(null);
+			}
+
+		}
+
 		model.addAttribute("propuestas", propuesta);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("comentarioEditable", comentario);
@@ -491,15 +549,15 @@ public class PropuestaController {
 	 * @return
 	 */
 	@GetMapping("/puntuacionMas")
-	public String puntuacionMasUno(@RequestParam(required = false) String mas, @RequestParam("titulo") String titulo,
+	public String puntuacionMasUno(@RequestParam(required = false) String mas, @RequestParam("idPropuesta") int idPropuesta,
 			Model model, HttpSession sesion) {
 		logger.info("Entramos en metodo /puntuacionMas con mas=" + mas);
 
 		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-		Propuestas propuesta = propuestaService.findBtNombre(titulo);
+		Propuestas propuesta = propuestaService.findByIdPropuesta(idPropuesta);
 		List<Comentarios> listaComentario = comentarioService.findAllByIdPropuesta(propuesta.getIdPropuesta());
 		Puntuacion puntuacion = new Puntuacion();
-		Puntuacion puntuacioncheck = puntuacionservice.puntuacionDePropuesta(usuario.getNombre(), titulo);
+		Puntuacion puntuacioncheck = puntuacionservice.puntuacionDePropuesta(usuario.getNombre(),propuesta.getTitulo());
 		int contador = 0;
 		if (puntuacioncheck == null) {
 			logger.info("puntuacioncheck= null " + mas);
@@ -549,14 +607,14 @@ public class PropuestaController {
 	 */
 	@GetMapping("/puntuacionMenos")
 	public String puntuacionMenosUno(@RequestParam(required = false) String menos,
-			@RequestParam("titulo") String titulo, Model model, HttpSession sesion) {
+			@RequestParam("idPropuesta") int idPropuesta, Model model, HttpSession sesion) {
 		logger.info("Entramos en metodo /puntuacionMas con mas=" + menos);
 
 		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-		Propuestas propuesta = propuestaService.findBtNombre(titulo);
+		Propuestas propuesta = propuestaService.findByIdPropuesta(idPropuesta);
 		List<Comentarios> listaComentario = comentarioService.findAllByIdPropuesta(propuesta.getIdPropuesta());
 		Puntuacion puntuacion = new Puntuacion();
-		Puntuacion puntuacioncheck = puntuacionservice.puntuacionDePropuesta(usuario.getNombre(), titulo);
+		Puntuacion puntuacioncheck = puntuacionservice.puntuacionDePropuesta(usuario.getNombre(), propuesta.getTitulo());
 		int contador = 0;
 		if (puntuacioncheck == null) {
 			logger.info("puntuacioncheck= null " + menos);
@@ -632,13 +690,11 @@ public class PropuestaController {
 		logger.info("Entramos en metodo /listaPropuestas:" + todas);
 		todas = todas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
 				.collect(Collectors.toList());
-		
+
 		model.addAttribute("listaPropuestas", todas);
 		return "listaPropuestas";
 
 	}
-
-	
 
 	/**
 	 * Metodo que se utiliza pa borrar una propuesta pr los administradores
@@ -650,14 +706,14 @@ public class PropuestaController {
 	@PostMapping("/borrarPropuesta")
 	public String borrarPropuesta(@RequestParam("idPropuesta") int idPropuesta, Model model) {
 		logger.info("Entramos en metodo /borrarPropuesta");
-		
-		Propuestas propuesta=propuestaService.findByIdPropuesta(idPropuesta);
-		if (idPropuesta > 0&&propuesta!=null) {
+
+		Propuestas propuesta = propuestaService.findByIdPropuesta(idPropuesta);
+		if (idPropuesta > 0 && propuesta != null) {
 			propuestaService.deleteById(idPropuesta);
 
-		}else {
+		} else {
 			return "listaPropuestas";
-			
+
 		}
 		List<Propuestas> todas = propuestaService.findAll();
 		model.addAttribute("listaPropuestas", todas);
@@ -701,15 +757,12 @@ public class PropuestaController {
 	public @ResponseBody List<PuntuacionTotal> resultadoVotacionesAjax(Model model) {
 
 		List<PuntuacionTotal> resultadoToatales = puntuacionTotalservice.todasLasPuntuaciones();
-		resultadoToatales= resultadoToatales.stream().sorted(Comparator.comparing(PuntuacionTotal::getId_total).reversed())
-				.collect(Collectors.toList());
-		
+		resultadoToatales = resultadoToatales.stream()
+				.sorted(Comparator.comparing(PuntuacionTotal::getId_total).reversed()).collect(Collectors.toList());
 
 		return resultadoToatales;
 
 	}
-
-	
 
 	@GetMapping("/misPropuestas")
 	public String misPropuestas(@RequestParam("idUsuario") int idUsuario, Model model) {

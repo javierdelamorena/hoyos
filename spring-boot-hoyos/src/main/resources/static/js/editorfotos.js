@@ -22,7 +22,7 @@ const loadImage = () => {
    
      previewImg.addEventListener("load", () => {
         resetFilterBtn.click();
-        // document.querySelector(".container").classList.remove("disable");
+        
       });
 }
 
@@ -161,7 +161,7 @@ const saveImage = (mails,ids) => {
     //     console.log('Oups! Something goes wrong.');
     // });
     // We setup our request
-    XHR.open('POST', 'http://localhost:8080/spring-boot-hoyos/editarFoto');
+    XHR.open('POST', 'editarFoto');
  
     XHR.send(fd);
    
@@ -171,7 +171,7 @@ filterSlider.addEventListener("input", updateFilter);
 resetFilterBtn.addEventListener("click", resetFilter);
 // saveImgBtn.addEventListener("click", saveImage);
 fileInput.addEventListener("click", loadImage);
-chooseImgBtn.addEventListener("click", () => fileInput.click());
+//chooseImgBtn.addEventListener("click", () => fileInput.click());
 
 function dataURItoBlob (dataURI) {
     // convert base64/URLEncoded data component to raw binary data held in a string

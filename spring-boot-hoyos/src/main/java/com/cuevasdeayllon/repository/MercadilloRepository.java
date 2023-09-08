@@ -16,7 +16,7 @@ public interface MercadilloRepository {
 	
 	Mercadillo findByTipoServicio(String tipoServicio);
 	
-	
+	List<Mercadillo> findByTipo_servicio(String tipo_servicio);
 	
 	void insertarMercadillo(Mercadillo mercadillo);
 	

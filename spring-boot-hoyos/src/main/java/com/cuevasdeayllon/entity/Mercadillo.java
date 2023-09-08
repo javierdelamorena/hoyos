@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -37,7 +39,7 @@ public class Mercadillo implements Serializable{
 	
 	@NotEmpty
 	private String tipo_servicio;
-	
+	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	@NotEmpty
 	private String nombre;

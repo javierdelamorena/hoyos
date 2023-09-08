@@ -1,6 +1,7 @@
 package com.cuevasdeayllon.controllers;
 
 import java.io.IOException;
+import org.apache.commons.io.FilenameUtils;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -65,17 +66,17 @@ public class AnunciosController {
 
 	@PostMapping("/subirAnuncio")
 	public String insertarAnuncio(@RequestParam("titulo") String titulo, @RequestParam("anuncio") String anuncio,
-			@RequestParam("file") MultipartFile foto, Model model) {
+			@RequestParam("file") MultipartFile file, Model model) {
 
 		// String rootPath="/uploadsAnuncios/";
 		String rootPath = "C://TEMP//uploadsAnuncios";
 		logger.info("Entramos en metodo /subirAnuncio");
 
-		int oraLen = foto.getOriginalFilename().length();
-		logger.info("El nombre de la foto es: " + foto.getOriginalFilename());
+		int oraLen = file.getOriginalFilename().length();
+		logger.info("El nombre de la foto es: " + file.getOriginalFilename());
 
 		for (int i = 0; i < oraLen; i++) {
-			if (foto.getOriginalFilename().charAt(i) == ' ') {
+			if (file.getOriginalFilename().charAt(i) == ' ') {
 				model.addAttribute("fotoConEspacio", "El nombre de la foto no puede tener espacios en blanco.");
 				return "subirAnuncio";
 
@@ -101,14 +102,21 @@ public class AnunciosController {
 				anuncioeditable.setAnuncio(anuncio);
 				anuncioeditable.setFecha(new Date());
 				anuncioeditable.setTitulo_anuncio(titulo);
-				if (!foto.isEmpty()) {
+				if (!file.isEmpty()) {
 
 					try {
-						byte[] bytes = foto.getBytes();
-						Path rutaCompleta = Paths.get(rootPath + "//" + foto.getOriginalFilename());
+						byte[] bytes = file.getBytes();
+						Path rutaCompleta = Paths.get(rootPath + "//" + file.getOriginalFilename());
 						Files.write(rutaCompleta, bytes);
+						String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+						if(extension.equals("mp4")) {
+							anuncioeditable.setVideo_anuncio(file.getOriginalFilename());
+							
+						}else {
+							anuncioeditable.setFoto_anuncio(file.getOriginalFilename());
+						}
 
-						anuncioeditable.setFoto_anuncio(foto.getOriginalFilename());
+						
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -116,7 +124,7 @@ public class AnunciosController {
 
 				}
 
-				anuncioRepositoryImpl.insertarAnucio(anuncioeditable, foto);
+				anuncioRepositoryImpl.insertarAnucio(anuncioeditable, file);
 
 				model.addAttribute("anuncioSubido", "El anuncio se ha agregado con exito.");
 

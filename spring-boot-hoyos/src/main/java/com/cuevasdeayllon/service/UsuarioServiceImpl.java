@@ -101,7 +101,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		usuarios.setNotificacion(usuario.getNotificacion());
 		usuarios.setEnabled(true);
 		usuarios.setDireccion(usuario.getDireccion());
-		usuarios.setRoles("USER");
+		usuarios.setRoles(usuario.getRoles());
 
 		usuarioService.salvarUsuario(usuarios);
 

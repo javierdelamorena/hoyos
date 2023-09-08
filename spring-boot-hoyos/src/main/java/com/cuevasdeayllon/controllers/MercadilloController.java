@@ -24,6 +24,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cuevasdeayllon.compresor.ImageResizer;
@@ -57,7 +58,7 @@ public class MercadilloController {
 		}
 		if (result.hasErrors()) {
 			logger.info("Entramos en metodo index/mercadillo el idusuario es: " + mercadillo.getId_usuario());
-			List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquiler");
+			List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
 			Usuario usuario = service.usuarioPorId(mercadillo.getId_usuario());
 
 			mercadillo.setId_usuario(usuario.getIdUsuario());
@@ -99,7 +100,7 @@ public class MercadilloController {
 					if (foto1.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos",
 								"El nombre de la foto1 no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
-						List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquiler");
+						List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
 						model.addAttribute("tipo_servicio", tipoServicio);
 						model.addAttribute("nombre", "Nombre del anunciante");
 						model.addAttribute("categoria", "Categoría ");
@@ -139,7 +140,7 @@ public class MercadilloController {
 					if (foto1.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos",
 								"El nombre de la foto2 no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
-						List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquiler");
+						List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
 						model.addAttribute("tipo_servicio", tipoServicio);
 						model.addAttribute("nombre", "Nombre del anunciante");
 						model.addAttribute("categoria", "Categoría ");
@@ -181,7 +182,7 @@ public class MercadilloController {
 					if (foto3.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos",
 								"El nombre de la foto3 no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
-						List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquiler");
+						List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
 						model.addAttribute("tipo_servicio", tipoServicio);
 						model.addAttribute("nombre", "Nombre del anunciante");
 						model.addAttribute("categoria", "Categoría ");
@@ -217,7 +218,7 @@ public class MercadilloController {
 			mercadilloservice.insertarMercadillo(mercadillo);
 
 			logger.info("Entramos en metodo index/mercadillo" + mercadillo.getId());
-			List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquier");
+			List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquier");
 			Usuario usuario = service.usuarioPorId(mercadillo.getId());
 			Mercadillo mercado = new Mercadillo();
 			mercado.setId_usuario(mercadillo.getId());
@@ -270,7 +271,7 @@ public class MercadilloController {
 		}
 		if (result.hasErrors()) {
 			logger.info("Entramos en metodo index/mercadillo el idusuario es: " + mercadillo.getId_usuario());
-			List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquiler");
+			List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
 			Usuario usuario = service.usuarioPorId(mercadillo.getId_usuario());
 			List<Mercadillo> todos = mercadilloservice.todosLosMercadillosiIdUsuario(mercadillo.getId_usuario());
 			mercadillo.setId_usuario(usuario.getIdUsuario());
@@ -457,7 +458,7 @@ public class MercadilloController {
 		logger.info("Entramos en metodo mercadilloTodosAdministrador");
 		List<Mercadillo> todos = mercadilloservice.todosLosMercadillosiIdUsuario(id_usuario);
 
-		List<String> tipoServicio = Arrays.asList("Compra Venta ", "Servicios", "Alquiler");
+		List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
 		model.addAttribute("tipo_servicio", tipoServicio);
 
 		model.addAttribute("miMercadillo", todos);
@@ -499,6 +500,16 @@ public class MercadilloController {
 			}
 		}
 		return "listaMercadillos";
+
+	}
+	@GetMapping(path = "/tipoServicio")
+	public @ResponseBody List<Mercadillo> miMercadillo(@RequestParam("tipoServicio")String tipoServicio, Model model) {
+
+		logger.info("Entramos en metodo mercadilloTodosAdministrador");
+		List<Mercadillo> todos = mercadilloservice.findByTipo_servicio(tipoServicio);
+
+		
+		return todos;
 
 	}
 

@@ -4,8 +4,8 @@
 <head>
     <title> Hoyos Rutas</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=500, user-scalable=no" />
-    
+    <meta name="viewport" content="width=500" />
+
     <link href="css/style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -26,7 +26,7 @@
             <div class="col-lg-5" id="divCartel">
                 <div id="cartelRutas" th:text="#{text.cliente.cartelrutas}"></div>
             </div>
-            <div th:replace="layouts/fragmentoprincipal :: nombreFoto" ></div>
+            <div th:replace="layouts/fragmentoprincipal :: nombreFoto"></div>
         </header>
     </div>
     <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
@@ -43,7 +43,7 @@
                 parajes con unas preciosas vistas, que te permitirán entrar en contacto directo con la naturaleza. -->
             </p>
             </br>
-            
+
             </br>
             <p th:text="#{text.cliente.gustar}">
                 <!-- Esperamos que te guste y que las disfutes -->
@@ -65,13 +65,7 @@
                 </a>
             </li>
             <hr>
-            <li style="padding: 1%;">
-                <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop6"
-                    style="text-decoration: none;margin-top: 3%;">
-                    Puentes
-                </a>
-            </li>
-            <hr>
+            
             <li style="padding: 1%;">
                 <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                     style="text-decoration: none;margin-top: 3%;">
@@ -137,20 +131,28 @@
             <hr>
             <li style="padding: 1%;">
                 <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop10"
-                    style="text-decoration: none;margin-top: 3%;">
-                    El Pingano
+                    style="text-decoration: none;margin-top: 3%;" th:text="#{text.cliente.puenteviejo0}">
+                    
                 </a>
             </li>
             <hr>
             <li style="padding: 1%;">
                 <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop11"
-                    style="text-decoration: none;margin-top: 3%;">
-                    El Portillo y las tenadas
+                    style="text-decoration: none;margin-top: 3%;" th:text="#{text.cliente.castanios0}">
+                    
+                </a>
+            </li>
+            <hr>
+            <li style="padding: 1%;">
+                <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop12"
+                    style="text-decoration: none;margin-top: 3%;" th:text="#{text.cliente.piscinas0}">
+                    
                 </a>
             </li>
             <hr>
         </ul>
-        <aside th:replace="layouts/fragmentoprincipal :: footer" class="col-lg-2 col-sm-10" style="text-decoration: none;margin-top: 3%;margin-left: 7%;"></aside>
+        <aside th:replace="layouts/fragmentoprincipal :: footer" class="col-lg-2 col-sm-10"
+            style="text-decoration: none;margin-top: 3%;margin-left: 7%;"></aside>
 
     </div>
     <div class=" modal fade modal-lg" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -590,115 +592,7 @@
             </div>
         </div>
     </div>
-    <!-- <button type="button" class="btn btn-primary" id="botonesRutas" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop6" style="margin: 10px;">
-            Puentes
-        </button> -->
-
-
-    <div class="modal fade modal-lg" id="staticBackdrop6" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <p><b> Puentes</b> </p>
-                    <p style="font-size: 18px;">
-
-                        En Cuevas de Ayllón había tres puentes sobre el río Pedro, que comunicaban su parte noreste.
-                        El puente de la Fragua conectaba con el camino de Liceras y las tenadas (majadas) de El
-                        Portillo.
-                        Se reformó por primera vez con materiales modernos en los años sesenta, pero una riada lo
-                        derrumbó al poco tiempo. Fue un acto heroico que, con enormes troncos haciendo de palanca,
-                        los
-                        hombres del pueblo lograran levantarlo de nuevo, haciendo suyo el principio de Arquímedes
-                        del
-                        punto de apoyo. Sobre el puente se conserva bastante documentación municipal. Por este
-                        puente
-                        pasó la primera carretera del pueblo y, a pesar de haberse construido uno contiguo nuevo,
-                        todavía sigue en pie, en muy buen estado, se usa.
-                    </p>
-                    <br>
-                    <!-- <img src="imagenesRutas/puentes1.jpg" alt="" style="width: 100%;"> -->
-                    <img src="https://cuevas-de-ayllon.com/imagenesRutas/puentes1.jpg" alt="" style="width: 100%;">
-                    <h6 style="float: right;"> Puente de la Fragua. Foto: CARME MUÑOZ</h6>
-                    <br><br>
-                    <p style="font-size: 18px;">
-                        El puente de Las Cabras es el único de los tres que ya no existe. Desapareció hace unos
-                        años.
-                        Conectaba el pueblo por la calle de la Iglesia, las pozas y los huertos con el camino que
-                        hoy es
-                        carretera hacia Liceras. Quizá por su situación algo peculiar, tenía dedicada la siguiente
-                        canción romance: El cura y la criada (á.a)
-                    </p><br>
-                    <p style="width: 50%;margin-left: 23%;">
-                        <i><br>
-
-                            Estaba don Juan muy malo en la cama,<br>
-
-                            durai duraina, muy malo en la cama.<br>
-
-                            A la media noche llamaba a su ama,<br>
-
-                            durai duraina, llamaba a su ama.<br>
-
-                            -¿Qué querrá ahora el cura que a estas horas llama?<br>
-
-                            durai duraina, que a estas horas llama.<br>
-
-                            -Coge tú el botijo y vete a por agua,<br>
-
-                            durai duraina, y vete a por agua.<br>
-
-                            Puente de las Cabras la picó una rana,<br>
-
-                            durai duraina, la picó una rana.<br>
-
-                            A los nueve meses la creció la panza,<br>
-
-                            duari duraina, la creció la panza.<br>
-
-                            Y parió un Juanillo hasta con sotana,<br>
-
-                            durai duraina, hasta con sotana.<br>
-
-
-
-
-
-                        </i>
-                    </p><br>
-                    <p style="font-size: 18px;">
-                        Una obra más de las que en el pueblo se cantaban sobre curas y mujeres. La gracia y la
-                        normalidad con las que se interpretaban, demostraban lo asentada que estaba en esa sociedad
-                        la idea de que los curas, con necesidades humanas como todos, vivían la contradicción del
-                        ser y del deber ser.
-                    </p>
-                    <br>
-                    <!-- <img src="imagenesRutas/puentes2.jpg" alt="" style="width: 100%;"> -->
-                    <img src="https://cuevas-de-ayllon.com/imagenesRutas/puentes2.jpg" alt="" style="width: 100%;">
-                    <h6 style="float: right;"> Puente de el Molino. Foto: CARME MUÑOZ</h6>
-                    <br> <br>
-                    <p style="font-size: 18px;">
-                        El puente del Barrio de Abajo se sitúa cerca del antiguo molino y, como su nombre indica,
-                        también al lado del barrio de Abajo. Conectaba directamente este barrio con la fuente y los
-                        lavaderos.
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- <button type="button" class="btn btn-primary" id="botonesRutas" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop7" style="margin: 10px;">
-            Despoblado de Sotocarros
-        </button> -->
+    
 
 
     <div class="modal fade modal-lg" id="staticBackdrop7" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -940,35 +834,22 @@
                 </div>
                 <div class="modal-body">
 
-                    <p><b> EL PINGANO</b></p>
+                    <p th:text="#{text.cliente.puenteviejo0}"><b> </b></p>
                     <p style="font-size: 18px;">
-                        El Pingano es uno de los cerros más populares del pueblo, tanto por
-                        la cercanía como por las vistas que regala. Es como un balcón donde
-                        acaba el Monte en una de sus partes. Desde ahí, se puede observar
-                        el pueblo, todo El Portillo, toda la parte del término municipal situado
-                        en la margen izquierda del río Pedro, la Cabeza de San Juan (otro de
-                        los cerros populares y singulares) y la frondosa ribera.
+                        
                     </p></br>
                     <!-- <img src="imagenesRutas/pingano1.jpg" alt="" style="width: 100%;"> -->
-                    <img src="https://cuevas-de-ayllon.com/imagenesRutas/pingano1.jpg" alt="" style="width: 100%;">
-                    <p>Foto: Toñi Benéitez</p></br>
+                    <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/pingano1.jpg" alt="" style="width: 100%;"> -->
+                    
                     <p style="font-size: 18px;">
-                        Más a lo lejos, desde el suroeste al oeste, la línea montañosa de la
-                        Sierra de Ayllón, donde sobresale el pico de Grado, que junta y separa
-                        las provincias de Soria, Segovia y Guadalajara. Meseta y sierra, con los
-                        colores de la Castilla de siempre, que cambian a lo largo del año, del
-                        verde cereal de la primavera tardía al blanco de los rastrojos de agosto
-                        o al rojo intenso de las sementeras.
-                        Si al lado queda el encinar del Monte, enfrente, hacia el sur, saluda
-                        La Matilla, el encinar de Estebanvela, pueblo segoviano que limita con
-                        Cuevas de Ayllón.
+                        
                     </p></br>
 
 
 
                     <!-- <img src="imagenesRutas/pingano2.jpg" alt="" style="width: 100%;"> -->
-                    <img src="https://cuevas-de-ayllon.com/imagenesRutas/pingano2.jpg" alt="" style="width: 100%;">
-                    <p>Foto: Toñi Benéitez</p>
+                    <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/pingano2.jpg" alt="" style="width: 100%;"> -->
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -991,33 +872,42 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p><b> EL PORTILLO Y LAS TENADAS</b></p>
+                    <p th:text="#{text.cliente.castanios0}"><b> </b></p>
                     <p style="font-size: 18px;">
-                        Según la Real Academia de la Lengua, portillo es un sustantivo con
-                        varias acepciones. Casi todas cuadrarían en este caso. Es un paso,
-                        es una entrada y salida, es un camino angosto entre dos alturas…</p></br>
-
-                    El Portillo, topónimo muy descriptivo, era uno de los parajes donde
-                    se situaban más tenadas, es decir, majadas de ovejas. Había una
-                    quincena y aún se conservan varias en buen estado. Otro paraje que
-                    también contaba con muchas, era el de Valdegalino.</p></br>
+                        </p></br>
                     <p style="font-size: 18px;">
-                        La mayoría de vecinos tenía su rebaño de churras y ojaladas. En el
-                        pasado también hubo merinas, según documentación de los siglos XV
-                        y XVI y hasta principios del siglo XX se usaban, delimitaban
-                        y respetaban, las cañadas, en realidad, ramales de la Cañada Real
-                        Soriana Occidental .</p></br>
+                        </p></br>
                     <p style="font-size: 18px;">
-                        La oveja era uno de los elementos básicos de la economía: carne, lana
-                        y estiércol para abono de los cereales.
-                        Las ovejas se esquilaban durante el mes de junio y el día del esquileo
-                        era una auténtica fiesta. A quien pasaba por el lugar se le invitaba
-                        a pastas, anís, algún trago de vino en bota y moscatel.
+                        
                     </p></br>
 
                     <!-- <img src="imagenesRutas/elPortillo.jpg" alt="" style="width: 100%;"> -->
-                    <img src="https://cuevas-de-ayllon.com/imagenesRutas/elPortillo.jpg" alt="" style="width: 100%;">
-                    <p>Foto: Toñi Benéitez</p>
+                    <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/elPortillo.jpg" alt="" style="width: 100%;"> -->
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-lg" id="staticBackdrop12" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p th:text="#{text.cliente.piscinas0}"><b> </b></p>
+                    <p style="font-size: 18px;" th:text="#{text.cliente.piscinas1}">
+                        
+                    </p></br>
+
+                    <img src="imagenesRutas/piscinahoyos1.jpg" alt="" style="width: 100%;">
+                    <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/piscinahoyos1.jpg" alt="" style="width: 100%;"> -->
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

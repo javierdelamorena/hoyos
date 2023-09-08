@@ -4,21 +4,18 @@
 <head>
   <title> Hoyos Comentarios</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=500, user-scalable=no" />
-  
+  <meta name="viewport" content="width=500" />
+
   <link href="css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-  
-    <script>
-      $(window).ready(function(){
-          $("body").animate({ scrollTop: $(document).height()}, 1000);    
-      });
-    </script>
+
+
+
 </head>
 
 <body>
-  <div class="row" >
+  <div class="row">
     <header class="bodyComentarios" style="text-align: center;
       color: #ffffff;
       font-family: cursive;
@@ -27,88 +24,92 @@
 
       <div class="col-lg-5" style="padding-top: 8%;
       padding-bottom: 8%;">
-        <h3 id="cartelEspacioVecinal">Espacio vecinal, votaciones y comentarios</h3>
+        <h3 id="cartelEspacioVecinal" th:text="#{text.cliente.cartelcomentarios}">Espacio vecinal, votaciones y comentarios</h3>
       </div>
     </header>
   </div>
 
   <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
- 
-    <hr>
-    
-    <div class="container" id="containerComentario">
-      <div class="col-lg-9" id="textoExplicacion" style=" 
+
+  <hr>
+
+  <div class="container" id="containerComentario">
+    <div class="col-lg-9" id="textoExplicacion" style=" 
  
  margin-bottom: 0%;">
       <hr>
       <p>
-        Desde aquí podrás votar las propuestas, enriquecerlas con comentarios o quitar tu voto si te arrepientes. Si no estas de acuerdo también podrás dar tu opinión, esta será tenida en cuenta a la hora de discutirla en el pleno. Este es un espacio para votar y debatir mejoras para el pueblo, los usuarios que hagan comentarios ofensivos o falten el respeto a los demás, serán dados de baja automáticamente.
-      </br>
+        Desde aquí podrás votar las propuestas, enriquecerlas con comentarios o quitar tu voto si te arrepientes. Si no
+        estas de acuerdo también podrás dar tu opinión, esta será tenida en cuenta a la hora de discutirla en el pleno.
+        Este es un espacio para votar y debatir mejoras para el pueblo, los usuarios que hagan comentarios ofensivos o
+        falten el respeto a los demás, serán dados de baja automáticamente.
+        </br>
         Esperamos que te guste y que lo disfrutes.
       </p>
       <hr>
 
     </div>
-      <div class="container">
-        
-    <div class="col-lg-9" id="cajaComentariosArriba">
-      
-        <a type="button" th:href="@{/usuario}" class="btn btn-dark" style="color: #eeeeee;background-color: #463232a3;float: right;"
-              id="cerrarComentario">Cerrar</a>
-        
-    
-      <div class="row"  style="padding: 1%;">
-        <div class="col-lg-5">
-          <div id="puntuacionTotal" style="margin-bottom: 5%;"></div>
-          
-        </div>
-        
+    <div class="container">
 
-      
-        
-        <div class="col-lg-2 " style="margin-bottom: 3%;">
-          <form th:action="@{/puntuacionMas}" id="puntuacionMass" method="get">
-            <input type="hidden" name="mas" value="mas">
-            <input type="hidden" name="titulo" th:value="${propuestas.titulo}" >
-            <input type="submit" class="btn " style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;" value=" Voto a favor " >
-          </form>
-          
-        </div>
+      <div class="col-lg-9" id="cajaComentariosArriba">
 
-        <div class="col-lg-2" >
-          <form th:action="@{/puntuacionMenos}" method="get">
-            <input type="hidden" name="menos" value="menos">
-            <input type="hidden" name="titulo" th:value="${propuestas.titulo}" >
-            <input type="submit" class="btn" style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;" value="Quitar tu voto" >
+        <a type="button" th:href="@{/usuario}" class="btn btn-dark"
+          style="color: #eeeeee;background-color: #463232a3;float: right;font-size: smaller;" id="cerrarComentario">Cerrar</a>
 
-          </form>
-         
-        
-      </div>
-    </div>
-    
-    <div class="row"  style="padding: 1%;">
-      <p id="propuesta" th:text="${'Titulo: '+propuestas.titulo}" ></p>
-      
-    </div>
 
-    <div class="row" >
-      <div class="col-lg-12">
-        <div disabled th:text="${propuestas.propuesta}" id="comentarioTextoPropuesta"></div>
-      </div>
-      <hr style="margin-top: 2%;">
-    </div>
-  </div>
-      <div class="col-lg-9" data-bs-spy="scroll" id="cajaComentarios">
-      
-            
         <div class="row" style="padding: 1%;">
-          <table class="table-responsive table-striped "
-            id="tablaComentarios"> 
+          <div class="col-lg-5">
+            <div id="puntuacionTotal" style="margin-bottom: 5%;"></div>
+
+          </div>
+
+
+
+
+          <div class="col-lg-2 " style="margin-bottom: 3%;">
+            <form th:action="@{/puntuacionMas}" id="puntuacionMass" method="get">
+              <input type="hidden" name="mas" value="mas">
+              <input type="hidden" name="idPropuesta" th:value="${propuestas.idPropuesta}">
+              <input type="submit" class="btn " style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;font-size: smaller;"
+                value=" Voto a favor ">
+            </form>
+
+          </div>
+
+          <div class="col-lg-2">
+            <form th:action="@{/puntuacionMenos}" method="get">
+              <input type="hidden" name="menos" value="menos">
+              <input type="hidden" name="idPropuesta" th:value="${propuestas.idPropuesta}">
+              <input type="submit" class="btn" style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;font-size: smaller;"
+                value="Quitar tu voto">
+
+            </form>
+
+
+          </div>
+        </div>
+
+        <div class="row" style="padding: 1%;">
+          <p id="propuesta" th:text="${'Titulo: '+propuestas.titulo}"></p>
+
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div disabled th:text="${propuestas.propuesta}" id="comentarioTextoPropuesta"></div>
+          </div>
+          <hr style="margin-top: 2%;">
+        </div>
+      </div>
+      <div class="col-lg-9" data-bs-spy="scroll" id="cajaComentarios">
+
+
+        <div class="row" style="padding: 1%;">
+          <table class="table-responsive table-striped " id="tablaComentarios">
             <thead style="display: block;">
 
             </thead>
-            <tbody th:if="comentarios" th:each="comentario:${comentarios}">
+            <tbody id="losComentarios" th:if="comentarios" th:each="comentario:${comentarios}">
               <tr style="margin-bottom: 3px;">
                 <td><img class="logo  float-left" style="width: 50px ;float: left; border-radius: 90px;"
                     th:src="@{'/uploads/'+${comentario.usuario.foto}}"></td>
@@ -119,11 +120,13 @@
 
               </tr> -->
 
-              
+
               <tr style="margin-bottom: 1%;">
                 <div>
                   <td>
-                    <div  id="textoComentarios" th:text="${comentario.usuario.nombre.toUpperCase()}+ ' ha dicho:  '+${comentario.comentario}" disabled>
+                    <div id="textoComentarios"
+                      th:text="${comentario.usuario.nombre.toUpperCase()}+ ' ha dicho:  '+${comentario.comentario}"
+                      disabled>
                       <!-- <p id="textoComentarios" 
                       th:text="'Ha dicho:  '+${comentario.comentario}" disabled></p> -->
                     </div>
@@ -134,231 +137,202 @@
               <tr>
                 <td th:if="${comentario.editable != null}">
                   <div style="display: flex;">
-                    <button  type="button" class="btn btn-dark"  th:data-comentario="${comentario.comentario}" th:data-id="${comentario.id}"
-                        onclick="editarComent(this.getAttribute('data-comentario'),this.getAttribute('data-id'))" style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;
-                        float: left;">editar</button>
-                     <!-- <button type="submit" class="btn btn-dark" data-bs-toggle="modal" value="Editar"
-                      th:attr="data-bs-target='#staticBackdrop1'+${comentario.id}" style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;
-            float: left;" th:id="${comentario.id}">
-                      Editar -->
-                    <!-- </button>  -->
+                    <button type="button" class="btn btn-dark" th:data-comentario="${comentario.comentario}"
+                      th:data-id="${comentario.id}"
+                      onclick="editarComent(this.getAttribute('data-comentario'),this.getAttribute('data-id'))" style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;
+                        float: left;font-size: smaller;">editar</button>
+
                     <form th:action="@{/borrarComentario}" method="post">
 
                       <input type="hidden" name="idComentario" th:value="${comentario.id}">
                       <input type="hidden" name="idPropuesta" th:value="${comentario.propuesta.idPropuesta}">
 
                       <input type="submit" class="btn" value="Borrar"
-                        style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;">
+                        style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;font-size: smaller;">
                     </form>
 
                   </div>
                 </td>
               </tr>
-              <div class="modal fade gh" th:id="staticBackdrop1+${comentario.id}" data-bs-backdrop="static"
-                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel">Comentario</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form th:action="@{/editarComentario}" method="get"> 
-                        <textarea class="form-control texto" th:id="staticBackdrop1+${comentario.id}" name="comentario" th:value="${comentario.comentario}"th:text="${comentario.comentario}" rows="4" cols="50"style=" height: 180px; width: 98%; margin-top: 10px;" maxlength="255"></textarea>
-                        <input type="hidden" name="idComentario" id="idComentario" th:value="${comentario.id}">
-                        
-                        <input type="submit" id="enviarPropuesta" value="enviar"> 
-                        <!-- <button th:data-id="${comentario.id}"
-                        th:data-comentario="${comentario.comentario}"
-                        onclick="editarComentario(this.getAttribute('data-id'), this.getAttribute('data-comentario'));"> enviar</button> -->
-                      </form> 
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-            </tbody>
-            <tbody id="todosLosComentarios"></tbody>
-
-           </table>
         </div>
 
-        
-      
+        </tbody>
+        <tbody id="todosLosComentarios">
+
+        </tbody>
+
+        </table>
+      </div>
+
+
+
     </div>
     <div class="col-lg-9" style="margin-bottom: 5%;">
-      <div  id="cajaAbajoComentarios">
-        <div class="row" style="margin-top: 2%;">
+      <div id="cajaAbajoComentarios">
         
-          <div class="col-lg-9 col-sm-9" id="textoComentario">
-            <textarea type="text" id="comentario" name="comentario" class="form-control" maxlength="250" required style="font-weight: 600;" placeholder="Escribe tu opinión...."></textarea>
+        <div  class="row col-12" style="margin-top: 2%;">
+
+          <div class="col-lg-12 col-sm-6" id="textoComentario" style="display: flex;">
+            <div  class="col-lg-8 col-sm-8">
+            <textarea type="text" id="comentario" name="comentario" class="form-control" maxlength="250" required placeholder="Escribe tu opinión...."></textarea>
+              </div>
+               <div class="col-lg-1 col-sm-2" id="botonAgregar">
+                <button class="btn " style="color: #eeeeee;background-color: #463232a3;" id="salvarComentario">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
+                  </svg>
+                  Agregar </button>
+    
+              </div>
+              <div class="col-lg-1 col-sm-2" id="editComentario" style="float: right; margin-bottom: 1%;">
+          
+              </div>
           </div>
-        
-        
-          <div class="col-lg-3 col-sm-3">
+          <!-- <div class="rows"> -->
+          
+
+          <!-- <div class="col-lg-1 col-sm-1">
             <button class="btn " style="color: #eeeeee;background-color: #463232a3;" id="salvarComentario">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
-              <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
-            </svg>
-            Agregar Comentario</button>
-            
-          </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
+              </svg>
+              Agregar Comentario</button>
+
+          </div> -->
+        <!-- </div> -->
+
         </div>
 
       </div>
 
     </div>
   </div>
-  <a name="finalDoc"></a>
-</div>
+  
+ 
+
+
+
+
+
 
 
 
   <script th:src="@{js/jquery.min.js}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-  crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <!-- <script src="js/todosComentarios.js"></script> -->
+  <script src="js/editarComentarios.js"></script>
   <script src="js/salvarComentario.js"></script>
-  
 
-</body>
-
-
-
-<script>
-  // function editarComent(comentario, idComentario) {
-  //   console.log("se ha pulsado salvarComentario");
-  //   $('#comentario').append(comentario);
-  // };
-  // $(document).ready(function script() {
+  <script>
+    // function editarComent(comentario, idComentario) {
+    //   console.log("se ha pulsado salvarComentario");
+    //   $('#comentario').append(comentario);
+    // };
+    // $(document).ready(function script() {
 
 
-  // $(document).ready(function () { 
-	  $('#salvarComentario').hide();
-  
-     $('#comentario').keyup(function () { 
-    if ($.trim($('#comentario').get(0).textContent.length >1) )
-    { 
-      $('#salvarComentario').show(); 
-    }
-     
-    var comentario=$.trim($('#comentario').val());
-  if(comentario==="")
-    {
-      $('#salvarComentario').hide(); 
-    }else{
-      $('#salvarComentario').show(); 
-    }
-  }); 
-  
-    
-  // });
+    // $(document).ready(function () { 
+    $('#salvarComentario').hide();
+
+    $('#comentario').keyup(function () {
+      if ($.trim($('#comentario').get(0).textContent.length > 1)) {
+        $('#salvarComentario').show();
+      }
+      else if(comentario ==='Escribe tu opinión....')
+      {
+        $('#salvarComentario').hide();
+      }
+      else{
+        $('#salvarComentario').hide();
+
+      }
+
+      var comentario = $.trim($('#comentario').val());
+      if (comentario === "") {
+        $('#salvarComentario').hide();
+      } else {
+        $('#salvarComentario').show();
+      }
+    });
+
+
+    //   $('#editarComentario').hide();
+
+    //   $('#comentario').keyup(function () { 
+    //  if ($.trim($('#comentario').get(0).textContent.length >1) )
+    //  { 
+    //    $('#editarComentario').show(); 
+    //  }
+
+    //  var comentario=$.trim($('#comentario').val());
+    // if(comentario==="")
+    //  {
+    //    $('#editarComentario').hide(); 
+    //  }else{
+    //    $('#editarComentario').show(); 
+    //  }
+    // }); 
+
+
+    // });
 
 
 
-  // $('#puntuacionMass').on('click', function(){ 
-  // alert('Prevenido');
+    // $('#puntuacionMass').on('click', function(){ 
+    // alert('Prevenido');
 
-  // setTimeout(() => {
-  $(document).ready(function script() {
-    $.ajax({
-
-      type: 'GET',
-      url: "puntuacionTotal",
-      //url: "https://cuevas-de-ayllon.com/puntuacionTotal",
-    }).done(function (data) {
-
-
-      console.log("Hecho Correcto!");
-      console.log('el numero de graficos es:  ', data);
-      var html2 = '';
-      html2 += '<p id="recuperacion" >Esta propuesta tiene: ' + data + ' votos</p>';
-
-      $('#puntuacionTotal').append(html2);
+    // setTimeout(() => {
+    $(document).ready(function script() {
       $.ajax({
 
         type: 'GET',
-        url: "guardarTotal",
-        //url: "https://cuevas-de-ayllon.com/guardarTotal",
-        data: { 'total': data }
-
-      });
+        url: "puntuacionTotal",
+        //url: "https://cuevas-de-ayllon.com/puntuacionTotal",
+      }).done(function (data) {
 
 
-    }).fail(function () {
-      console.log("Fallo!");
-    })
-      .always(function () {
-        console.log("Completo!");
-      });
-  });
+        console.log("Hecho Correcto!");
+        console.log('el numero de graficos es:  ', data);
+        var html2 = '';
+        html2 += '<p id="recuperacion" >Esta propuesta tiene: ' + data + ' votos</p>';
 
-</script>
-<script>
-  $(document).ready(function () {
- 
-   $('#espacioAdministrador').hide();
-  });
+        $('#puntuacionTotal').append(html2);
+        $.ajax({
 
-</script>
+          type: 'GET',
+          url: "guardarTotal",
+          //url: "https://cuevas-de-ayllon.com/guardarTotal",
+          data: { 'total': data }
 
-<script>
-
-  // $(document).ready(function script() {
-  // $('#puntuacionMass').on('submit', function () {
-  //   var texto = $('#recuperacion').text();
-  //   console.log('Esta es la propuesta que recuperamos', texto);
-
-    // $.ajax({
-
-    //   type: 'GET',
-    //   url: "guardarTotal",
-    // }).done(function (data) {
+        });
 
 
-    //   console.log("Hecho Correcto!");
-    //   console.log('Esta propuesta tiene:  ', data, ' puntos');
+      }).fail(function () {
+        console.log("Fallo!");
+      })
+        .always(function () {
+          console.log("Completo!");
+        });
+    });
+
+  </script>
+  <script>
+    $(document).ready(function () {
+
+      $('#espacioAdministrador').hide();
+    });
+
+  </script>
 
 
+</body>
 
-
-
-
-    // }).fail(function () {
-    //   console.log("Fallo!");
-    // })
-    //   .always(function () {
-    //     console.log("Completo!");
-    //});
-
-    //   $.ajax({
- 
-    //     type: 'GET',
-    //     url: "puntuacionTotal",
-    //   }).done(function (data) {
-
-
-    //     console.log("Hecho Correcto!");
-
-    //   }).fail(function () {
-    //     console.log("Fallo!");
-    //   })
-    //     .always(function () {
-    //       console.log("Completo!");
-    //     });
-  // });
-
-
-    // lo que queramos hacer
-
-
-
-
-</script>
-<script src="js/editarComentarios.js"></script>
 </html>

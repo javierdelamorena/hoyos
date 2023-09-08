@@ -4,7 +4,7 @@
 <head>
   <title>Hoyos usuario</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=500, user-scalable=no" />
+  <meta name="viewport" content="width=500" />
 
   <link href="css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -38,7 +38,7 @@
       /* margin-right: 28%; */" id="fecha"></div> -->
 
       <div class="col-lg-5" id="divCartelEspacioVecinal">
-        <h3 id="cartelEspacioVecinal">Espacio vecinal</h3>
+        <h3 id="cartelEspacioVecinal" th:text="#{text.cliente.cartelespaciovecinal}"></h3>
       </div>
     </header>
   </div>
@@ -57,7 +57,7 @@
       <hr>
       <div class="row col-lg-12">
         <div class="col-4" th:if="${usuario.foto}">
-          <img class="img-thumbnail  float-left" style="border-radius: 8px;margin-top: 24%;"
+          <img class="img-thumbnail  float-left" style="border-radius: 8px;margin-top: 24%;height: 158px;"
             th:src="@{'/uploads/'+${usuario.foto}}" th:alt="${usuario.foto}" />
         </div>
         <div class="col-lg-8" style=" font-family: serif;
@@ -252,24 +252,26 @@
     margin-top: 2%;" id="todasPropuestas">
       <hr>
       <h2
-        style="margin-top: 13%;padding: 3%;color: rgb(0, 0, 0); font-family: -webkit-body;padding: 21px;; font-size: 24px;background-color: #87aedec7;">
+        style="margin-bottom: 7%;margin-top: 13%;padding: 3%;color: rgb(0, 0, 0); font-family: -webkit-body;padding: 21px;; font-size: 24px;background-color: #87aedec7;">
         Aquí
         tienes todas las propuestas, las tuyas y las de los demás vecinos.
         </br>
         Clicando sobre el nombre, podras leer la propuesta, comentarla y votarla.</h2>
-      </br>
+     
       <hr>
       <h5 style="color: #000000a8;
       background-color: #d9d4c3;
       text-align: center;
       padding: 2%;
-      font-size: 18px">TITULO DE LAS PROPUESTAS</h5>';
+      font-size: 18px;margin-top: 6%;
+      margin-bottom: 6%;">TITULO DE LAS PROPUESTAS</h5>
       <form>
         <input class="form-control" type="text" id="q" placeholder="Buscar Propuesta......" onkeyup="search()" style="width: 95%;
         border: ridge;
         border-radius: 10px;
         margin-left: 2%;
-        padding: 1%;">
+        padding: 1%;
+        margin-bottom: 6%;">
       </form>
 
     </div>
@@ -361,70 +363,70 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form th:action="@{/editarUsuario}" th:object="${usuario}" class="text-dark" style="width: 250%;
+          <form  th:action="@{/editarUsuario}" th:object="${usuario}" class="form-control text-dark" style="width: 100%;
         padding: 30px;" method="post" enctype="multipart/form-data">
-            <div class="row col-sm-4">
-              <label form="nombre" class="col-form-label col-sm-2" th:text="${nombre}"></label>
+            <div class="row col-12">
+              <label form="nombre" class="col-form-label " th:text="${nombre}"></label>
             </div>
-            <div class="row col-sm-4">
+            <div class="row col-12">
               <input type="text" id="nombre" th:field="*{nombre}" class="form-control" maxlength="20"
                 placeholder="Nombre">
               <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="alert alert-danger">
               </div>
             </div>
-            <div class="row col-sm-4">
-              <label form="apellido1" class="col-form-label col-sm-2" th:text="${apellido1}"></label>
+            <div class="row col-12">
+              <label form="apellido1" class="col-form-label " th:text="${apellido1}"></label>
             </div>
-            <div class="row col-sm-4">
+            <div class="row col-12">
               <input type="text" id="apellido1" th:field="*{apellido1}" maxlength="20" class="form-control"
                 placeholder="Primer Apellido">
               <div th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}" class="alert alert-danger">
               </div>
             </div>
-            <div class="row col-sm-4">
-              <label form="apellido2" class="col-form-label col-sm-2" th:text="${apellido2}"></label>
+            <div class="row col-12">
+              <label form="apellido2" class="col-form-label " th:text="${apellido2}"></label>
             </div>
-            <div class="row col-sm-4">
+            <div class="row col-12">
               <input type="text" id="apellido2" th:field="*{apellido2}" maxlength="20" class="form-control"
                 placeholder="Segundo Apellido">
               <div th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}" class="alert alert-danger">
               </div>
             </div>
-            <div class="row col-sm-4">
-              <label form="email" class="col-form-label col-sm-2" th:text="${email}"></label>
+            <div class="row col-12">
+              <label form="email" class="col-form-label " th:text="${email}"></label>
             </div>
-            <div class="row col-sm-4">
+            <div class="row col-12">
               <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="@Email">
               <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger">
               </div>
             </div>
-            <div class="row col-sm-4">
-              <label form="direccion" class="col-form-label col-sm-6" th:text="${direccion}"></label>
+            <div class="row col-12">
+              <label form="direccion" class="col-form-label " th:text="${direccion}"></label>
             </div>
-            <div class="row col-sm-4">
+            <div class="row col-12">
               <input type="text" id="direccion" th:field="*{direccion}" class="form-control"
                 placeholder="Direccion del Pueblo">
               <div th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="alert alert-danger">
               </div>
             </div>
-            <div class="row col-sm-4">
-              <label form="file" class="col-form-label col-sm-2" th:text="${foto}"></label>
+            <div class="row col-12">
+              <label form="file" class="col-form-label " th:text="${foto}"></label>
             </div>
-            <div class="row col-sm-4">
+            <div class="row col-12">
               <input type="file" id="foto" name="file" class="form-control">
               <div th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}" class="alert alert-danger">
               </div>
             </div>
-            <div class="row col-sm-4">
-              <label form="password" class="col-form-label col-sm-2" th:text="${Password}"></label>
+            <div class="row col-12">
+              <label form="password" class="col-form-label " th:text="${Password}"></label>
             </div>
-            <div class="row col-sm-4">
+            <div class="row col-12">
               <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Contraseña">
               <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger">
               </div>
             </div></br></br>
             <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
-            <div class=" col-sm-2">
+            <div class="col-12">
               <input type="submit" id="enviarAlta" value="ENVIAR" class="btn btn-primary">
             </div>
 
@@ -538,9 +540,9 @@
 
     }).done(function (data) {
       
-      
+      console.log('esta es la data cruda',data);
       for (var i = 0; i < data.length; i++) {
-        console.log("El valor devuelto por propuestas en i es:  " + JSON.stringify(data[i].idUsuario));
+        console.log("El valor devuelto por propuestas en i es:  " + JSON.stringify(data[i]));
         
         for (var j = 0; j < data[i].length; j++) {
           console.log("El valor devuelto por propuestas en j es:  " + data[i][j]);

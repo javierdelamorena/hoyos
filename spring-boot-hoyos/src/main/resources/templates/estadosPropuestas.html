@@ -58,7 +58,7 @@
       /* margin-right: 28%; */" id="fecha"></div> -->
 
       <div class="col-lg-5" id="divCartelEspacioVecinal">
-        <h3 id="cartelEspacioVecinal">Estado de propuestas</h3>
+        <h3 id="cartelEspacioVecinal" th:text="#{text.cliente.estadopropuestas}"></h3>
       </div>
     </header>
   </div>
@@ -163,7 +163,7 @@
 
 
       for (i = 0; i < div.length; i++) {
-        h1 = div[i].getElementsByTagName("h5")[0];
+        h1 = div[i].getElementsByTagName("div")[0];
         if (h1) {
           var palabrasEnFiltro = filter.split(' ');
           var hallado = 0;
