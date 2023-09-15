@@ -36,7 +36,7 @@ function editarComent(comentario, idComentario) {
 
 function editar() {
     $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: "editarComentario",
         //url: "https://cuevas-de-ayllon.com/salvarcomentario",
         data: { 'comentario': $('#comentario').val(), 'idComentario': idComent },

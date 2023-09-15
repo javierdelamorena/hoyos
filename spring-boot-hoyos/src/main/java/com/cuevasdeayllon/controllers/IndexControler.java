@@ -326,7 +326,16 @@ public class IndexControler {
 
 	}
 
+	@GetMapping("/mercadilloexterior")
+	public String mercadilloexterior(Model model) {
 
+
+		logger.info("Entramos en metodo /mercadilloexterior");
+
+		return "mercadilloExterior";
+		
+
+	}
 
 
 }

@@ -99,24 +99,33 @@
               font-family: serif;
               font-weight: 500;"></textarea>
               </td>
+
             </tr>
-            <tr th:if="${anuncio.foto_anuncio}">
-              <td th:if="${anuncio.foto_anuncio}" style="text-align: center;"><img th:if="${anuncio.foto_anuncio}"
+            <tr>
+              <td>
+                <button th:id="'idBoton'+${anuncio.idAnuncios}" class="btn" th:data-id="${anuncio.idAnuncios}"
+                  th:onclick="enviarFoto(this.getAttribute('data-id'));" style="width: 100%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-image-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z" />
+                  </svg> Ver Imagen
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td th:id="'idFoto'+${anuncio.idAnuncios}">
+
+              </td>
+            </tr>
+            <!-- <tr th:if="${anuncio.foto_anuncio}">
+              <td  th:if="${anuncio.foto_anuncio}" style="text-align: center;"><img th:if="${anuncio.foto_anuncio}"
                   class="img-thumbnail  " style=" margin: 10px; border-radius: 8px;"
                   th:src="@{'/uploadsAnuncios/'+${anuncio.foto_anuncio}}" th:alt="${anuncio.foto_anuncio}" />
               </td>
 
-            <tr th:if="${anuncio.video_anuncio}">
-              <td th:if="${anuncio.video_anuncio}" style="text-align: center;">
-                <div class="embed-responsive embed-responsive-21by9"><iframe class="embed-responsive-item"
-                    th:if="${anuncio.video_anuncio}" style=" margin: 10px; border-radius: 8px;"
-                    th:src="@{'/uploadsAnuncios/'+${anuncio.video_anuncio}}" th:alt="${anuncio.video_anuncio}"
-                    type="video/mp4"></iframe>
-                </div>
-              </td>
-
-            </tr>
-            </tr>
+            
+            </tr> -->
 
             <tr style="height: 90px;">
               <td style="border-color: antiquewhite;">
@@ -158,5 +167,58 @@
     height: 10px;
   }
 </style>
+<script>
+
+  function enviarFoto(id) {
+    var idAnuncio = id;
+    console.log('este es el id de la foto', idAnuncio);
+    $.ajax({
+      type: 'GET',
+      url: "anuncio",
+      //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+      data: { 'idAnuncio': idAnuncio },
+      // beforeSend: function(){
+      //     $('#textoComentario').empty();
+      // }
+    }).done(function (data) {
+      console.log(data);
+      if (data.video_anuncio != null) {
+        // if (data.video_anuncio.slice((data.video_anuncio.lastIndexOf(".") - 1 >>> 0) + 2) === "mp4") {
+
+
+        $('#idFoto' + idAnuncio).append('<div class="embed-responsive embed-responsive-21by9"><video class="embed-responsive-item"   style=" margin: 10px; border-radius: 8px;width: 100%;height: 100%;" src="/spring-boot-hoyos/uploadsAnuncios/' + data.video_anuncio + '" controls autoplay ></video></div>');
+
+        $('#idBoton' + idAnuncio).hide();
+      }
+      // }
+      else if (data.audio_anuncio != null) {
+        // if (data.audio_anuncio.slice((data.video_anuncio.lastIndexOf(".") - 1 >>> 0) + 2) === "mp3") {
+
+
+        $('#idFoto' + idAnuncio).append('<div class="embed-responsive embed-responsive-21by9">' +
+          '<audio class="embed-responsive-item"   style=" margin: 10px; border-radius: 8px;width: 100%;"  controls autoplay>' +
+          '<source src="/spring-boot-hoyos/uploadsAnuncios/' + data.audio_anuncio + '" type="audio/ogg">' +
+          '<source src="/spring-boot-hoyos/uploadsAnuncios/' + data.audio_anuncio + '" type="audio/mpeg">' +
+          '</audio></div>');
+
+        $('#idBoton' + idAnuncio).hide();
+      }
+      // }
+
+      else if (data.foto_anuncio != null) {
+        $('#idFoto' + idAnuncio).append('<a href="http://localhost:8080/spring-boot-hoyos/uploadsAnuncios/' + data.audio_anuncio + '" download><img class="img-thumbnail"  style=" margin: 10px; border-radius: 8px;" src="/spring-boot-hoyos/uploadsAnuncios/' + data.foto_anuncio + '"  /></a>');
+
+        $('#idBoton' + idAnuncio).hide();
+      } else {
+        $('#idFoto' + idAnuncio).html('<p style="text-align:center;">Este anuncio no tiene imagen que mostrar</p>');
+        $('#idBoton' + idAnuncio).hide();
+      }
+    });
+  }
+
+
+
+
+</script>
 
 </html>

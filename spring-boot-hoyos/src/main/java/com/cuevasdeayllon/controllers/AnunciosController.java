@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cuevasdeayllon.entity.Anuncios;
@@ -69,7 +70,7 @@ public class AnunciosController {
 			@RequestParam("file") MultipartFile file, Model model) {
 
 		// String rootPath="/uploadsAnuncios/";
-		String rootPath = "C://TEMP//uploadsAnuncios";
+
 		logger.info("Entramos en metodo /subirAnuncio");
 
 		int oraLen = file.getOriginalFilename().length();
@@ -97,34 +98,8 @@ public class AnunciosController {
 						"El texto en los anuncios es necesario, lo unico que se puede omitir es la foto.");
 				return "subirAnuncio";
 			} else {
-				Anuncios anuncioeditable = new Anuncios();
-				anuncioeditable.setIdAnuncios(0);
-				anuncioeditable.setAnuncio(anuncio);
-				anuncioeditable.setFecha(new Date());
-				anuncioeditable.setTitulo_anuncio(titulo);
-				if (!file.isEmpty()) {
 
-					try {
-						byte[] bytes = file.getBytes();
-						Path rutaCompleta = Paths.get(rootPath + "//" + file.getOriginalFilename());
-						Files.write(rutaCompleta, bytes);
-						String extension = FilenameUtils.getExtension(file.getOriginalFilename());
-						if(extension.equals("mp4")) {
-							anuncioeditable.setVideo_anuncio(file.getOriginalFilename());
-							
-						}else {
-							anuncioeditable.setFoto_anuncio(file.getOriginalFilename());
-						}
-
-						
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-
-				anuncioRepositoryImpl.insertarAnucio(anuncioeditable, file);
+				anuncioRepositoryImpl.insertarAnucio(anuncio, titulo, file);
 
 				model.addAttribute("anuncioSubido", "El anuncio se ha agregado con exito.");
 
@@ -143,17 +118,17 @@ public class AnunciosController {
 	@PostMapping("/editarAnuncio")
 	public String editarAnuncio(@RequestParam("idAnuncio") int idAnuncio, @RequestParam("titulo") String titulo,
 			@RequestParam("fecha") String fecha, @RequestParam("anuncio") String anuncio,
-			@RequestParam("file") MultipartFile foto, Model model) {
+			@RequestParam("file") MultipartFile file, Model model) {
 
-		// String rootPath="/uploadsAnuncios/";
-		String rootPath = "C://TEMP//uploadsAnuncios";
+		
+		
 		logger.info("Entramos en metodo /subirAnuncio");
 		Anuncios anuncioeditable = anuncioRepositoryImpl.recuperarAnuncio(idAnuncio);
-		int oraLen = foto.getOriginalFilename().length();
-		logger.info("El nombre de la foto es: " + foto.getOriginalFilename());
+		int oraLen = file.getOriginalFilename().length();
+		logger.info("El nombre de la foto es: " + file.getOriginalFilename());
 
 		for (int i = 0; i < oraLen; i++) {
-			if (foto.getOriginalFilename().charAt(i) == ' ') {
+			if (file.getOriginalFilename().charAt(i) == ' ') {
 				model.addAttribute("faltaTitulo", "El nombre de la foto no puede tener espacios en blanco.");
 				List<Anuncios> anuncios = anuncioRepositoryImpl.listAnuncio();
 
@@ -182,35 +157,8 @@ public class AnunciosController {
 						"El texto en los anuncios es necesario, lo unico que se puede omitir es la foto.");
 				return "listaAnuncios";
 			} else {
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				java.sql.Date fechaConvertida = null;
-				try {
-					Date parsed = dateFormat.parse(fecha);
-					fechaConvertida = new java.sql.Date(parsed.getTime());
-				} catch (Exception e) {
-					System.out.println("Error occurred" + e.getMessage());
-				}
 
-				anuncioeditable.setIdAnuncios(idAnuncio);
-				anuncioeditable.setAnuncio(anuncio);
-				anuncioeditable.setFecha(fechaConvertida);
-				anuncioeditable.setTitulo_anuncio(titulo);
-				if (!foto.isEmpty()) {
-
-					try {
-						byte[] bytes = foto.getBytes();
-						Path rutaCompleta = Paths.get(rootPath + "//" + foto.getOriginalFilename());
-						Files.write(rutaCompleta, bytes);
-
-						anuncioeditable.setFoto_anuncio(foto.getOriginalFilename());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-
-				anuncioRepositoryImpl.editarAnuncio(anuncioeditable.getIdAnuncios(), anuncioeditable);
+				anuncioRepositoryImpl.editarAnuncio(anuncioeditable, anuncio, titulo, fecha, file);
 
 				List<Anuncios> anuncios = anuncioRepositoryImpl.listAnuncio();
 
@@ -254,7 +202,7 @@ public class AnunciosController {
 	public String borrarAnuncio(@RequestParam("idAnuncio") int idAnuncio, Model model) {
 		try {
 			Anuncios anuncios = anuncioRepositoryImpl.recuperarAnuncio(idAnuncio);
-			
+
 			if (idAnuncio > 0 && anuncios != null) {
 				anuncioRepositoryImpl.deleteAnuncio(idAnuncio);
 			} else {
@@ -311,6 +259,14 @@ public class AnunciosController {
 		model.addAttribute("listaDocumentos", documento);
 
 		return "documentos";
+
+	}
+
+	@GetMapping("/anuncio")
+	public @ResponseBody Anuncios unanuncio(@RequestParam("idAnuncio") int idAnuncio) {
+
+		Anuncios anuncios = anuncioRepositoryImpl.recuperarAnuncio(idAnuncio);
+		return anuncios;
 
 	}
 

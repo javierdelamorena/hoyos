@@ -14,7 +14,7 @@
 
 </head>
 
-<body>
+<body th:object="${usuario}" th:onload="recogerComentarioConUsuario([[${usuario.idUsuario}]]);">
   <div class="row">
     <header class="bodyComentarios" style="text-align: center;
       color: #ffffff;
@@ -70,6 +70,7 @@
             <form th:action="@{/puntuacionMas}" id="puntuacionMass" method="get">
               <input type="hidden" name="mas" value="mas">
               <input type="hidden" name="idPropuesta" th:value="${propuestas.idPropuesta}">
+              <input type="hidden" name="idUsuario" th:value="${usuario.idUsuario}">
               <input type="submit" class="btn " style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;font-size: smaller;"
                 value=" Voto a favor ">
             </form>
@@ -80,6 +81,7 @@
             <form th:action="@{/puntuacionMenos}" method="get">
               <input type="hidden" name="menos" value="menos">
               <input type="hidden" name="idPropuesta" th:value="${propuestas.idPropuesta}">
+              <input type="hidden" name="idUsuario" th:value="${usuario.idUsuario}">
               <input type="submit" class="btn" style="color: #eeeeee;background-color: #463232a3;margin-left: 1%;font-size: smaller;"
                 value="Quitar tu voto">
 
@@ -178,7 +180,7 @@
             <textarea type="text" id="comentario" name="comentario" class="form-control" maxlength="250" required placeholder="Escribe tu opinión...."></textarea>
               </div>
                <div class="col-lg-1 col-sm-2" id="botonAgregar">
-                <button class="btn " style="color: #eeeeee;background-color: #463232a3;" id="salvarComentario">
+                <button class="btn " style="color: #eeeeee;background-color: #463232a3;" id="salvarComentario" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill"
                     viewBox="0 0 16 16">
                     <path

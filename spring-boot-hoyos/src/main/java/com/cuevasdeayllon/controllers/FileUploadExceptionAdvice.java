@@ -11,15 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class FileUploadExceptionAdvice {
 	
-//	@ExceptionHandler(MaxUploadSizeExceededException.class)
-//    public ModelAndView handleMaxSizeException(
-//      MaxUploadSizeExceededException exc, 
-//      HttpServletRequest request,
-//      HttpServletResponse response) {
-// 
-//        ModelAndView modelAndView = new ModelAndView("errorFoto");
-//        modelAndView.getModel().put("message", "File too large!");
-//        return modelAndView;
-//    }
+	@ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ModelAndView handleMaxSizeException(
+      MaxUploadSizeExceededException exc, 
+      HttpServletRequest request,
+      HttpServletResponse response) {
+ 
+        ModelAndView modelAndView = new ModelAndView("errorFoto");
+        modelAndView.getModel().put("message", "El archivo es muy grande!");
+        return modelAndView;
+    }
 
 }

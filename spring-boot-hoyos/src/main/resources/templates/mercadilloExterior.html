@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body >
 
     <div class="row">
         <header class="bodyMercadilloSubir" style="text-align: center;
@@ -50,16 +50,18 @@
             </p>
             <hr>
         </div>
-        <div class="col-lg-5" style="float: right;margin-bottom: 15%;margin-top: 2%;">
+        <div class="container col-lg-5" id="selectorTipo" style="float: right;margin-bottom: 15%;margin-top: 2%;">
             <!-- <select class="form-control"  id="myInput" onchange="search()"> -->
-            <select class="form-select" id="myInput" style="width: 60%;margin-left: 4%;margin-top: 7%;">
-                <option>Buscar oferta......</option>
-                <option class="Venta">Venta</option>
-                <option class="Compra">Compra</option>
-                <option class="Servicios">Servicios</option>
-                <option class="Alquiler">Alquiler</option>
-                
-            </select>
+            <div class="divSelecMercadillo">
+                <select class="form-select " id="myInput">
+                    <option>Buscar oferta......</option>
+                    <option class="Venta">Venta</option>
+                    <option class="Compra">Compra</option>
+                    <option class="Servicios">Servicios</option>
+                    <option class="Alquiler">Alquiler</option>
+
+                </select>
+            </div>
             <!-- <form>
                 <input class="form-control" type="text" id="myInput" placeholder="Buscar oferta......" onkeyup="search()"style="width: 80%;
                 border: ridge;
@@ -67,106 +69,9 @@
                 margin-left: 2%;
                 padding: 1%;">
               </form> -->
-            <div id="ofertas" style="margin-left: 4%;">
-                <div class="row " th:if="${mercadillo}" th:each="mercadillo : ${mercadillo}" style="margin-top: 7%;">
-                    <div class="col-lg-5" style="margin-top: 3%; float:left">
-                        <div th:id="'carouselExampleControls'+${mercadillo.id}" class="carousel slide"
-                            data-bs-ride="carousel">
-                            <div class="carousel-inner" th:if="${mercadillo.foto1}">
-                                <div class="carousel-item active">
-                                    <img th:src="@{'/uploadsMercadillo/'+${mercadillo.foto1}}" class="d-block w-100"
-                                        alt="...">
-                                </div>
-                                <div class="carousel-item" th:if="${mercadillo.foto2}">
-                                    <img th:src="@{'/uploadsMercadillo/'+${mercadillo.foto2}}" class="d-block w-100"
-                                        alt="...">
-                                </div>
-                                <div class="carousel-item" th:if="${mercadillo.foto3}">
-                                    <img th:src="@{'/uploadsMercadillo/'+${mercadillo.foto3}}" class="d-block w-100"
-                                        alt="...">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button"
-                                th:attr="data-bs-target='#carouselExampleControls'+${mercadillo.id}"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button"
-                                th:attr="data-bs-target='#carouselExampleControls'+${mercadillo.id}"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-lg-4" style="margin-top: 1%;" id="textoMercadillo">
-
-
-                        <div class="col-lg-1" style="width: 100%;font-weight: 600;">
-
-                            <p th:text=" ${'Fecha del anuncio: ' + mercadillo.fecha}"></p>
-
-                        </div>
-                        <div th:if="${mercadillo.tipo_servicio =='Compra'} "
-                            th:text="'Se compra: '+ ${mercadillo.nombre_servicio}" class="col-1 Compra Venta"
-                            style="width: 100%;font-weight: 600;" id="textoMercadillo">
-
-                            <!-- <p th:text="'Se vende: '+ ${mercadillo.nombre_servicio}"></p> -->
-
-                        </div>
-                        <div th:if="${mercadillo.tipo_servicio =='Venta'} "
-                            th:text="'Se vende: '+ ${mercadillo.nombre_servicio}" class="col-1 Compra Venta"
-                            style="width: 100%;font-weight: 600;" id="textoMercadillo">
-
-                            <!-- <p th:text="'Se vende: '+ ${mercadillo.nombre_servicio}"></p> -->
-
-                        </div>
-                        <div th:if="${mercadillo.tipo_servicio =='Servicios'} "
-                            th:text="'Se ofrece: '+ ${mercadillo.nombre_servicio}" class="col-1 Servicios"
-                            style="width: 100%;font-weight: 600;" id="textoMercadillo">
-
-                            <!-- <p th:text="'Se ofrece: '+ ${mercadillo.nombre_servicio}"></p> -->
-
-                        </div>
-                        <div th:if="${mercadillo.tipo_servicio =='Alquiler'} "
-                            th:text="'Se alquila: '+ ${mercadillo.nombre_servicio}" class="col-1 Alquiler"
-                            style="width: 100%;font-weight: 600;" id="textoMercadillo">
-
-                            <!-- <p th:text="'Se ofrece: '+ ${mercadillo.nombre_servicio}"></p> -->
-
-                        </div>
-                        <div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo"
-                            th:text="'Precio: '+ ${mercadillo.precio}+' Euros'">
-
-
-
-                        </div>
-                        <div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo"
-                            th:text="'Nombre: '+ ${mercadillo.nombre}">
-
-
-
-                        </div>
-                        <div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">
-
-                            <p th:text="'Telefono: '+ ${mercadillo.telefono}"></p>
-
-                        </div>
-                        <div class="col-lg-1" style="display: contents;
-                align-items: center;
-                word-break: break-all;
-                margin: 0 0 1em 1em;">
-                            <div th:text="${mercadillo.texto}" style="padding: 3%;">
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <hr style="margin-top: 3%;width: 72%;">
-                </div>
+            <!-- <div id="ofertas" onscroll="esElFinal()" style="margin-left: 4%;"> -->
+                <div id="ofertas"  style="margin-left: 4%;"class="scroller">
+                
             </div>
         </div>
         <aside th:replace="layouts/fragmentoprincipal :: footer"></aside>
@@ -177,287 +82,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script th:src="@{/js/fecha.js}"></script>
     <script th:src="@{/js/clima.js}"></script>
-    <script type="text/javascript">
+    <script th:src="@{/js/mercadilloexteriorAjax.js}"></script>
+    <!-- <script th:src="@{/js/filtroTiposervicio.js}"></script> -->
+    <!-- <script th:src="@{/js/paginator.js}"></script> -->
+    <!-- <script th:src="@{/js/filtroTiposervicioPrecio.js}"></script> -->
 
-
-
-        $('#myInput').change(function () {
-            if ($('#myInput').val() == 'Buscar oferta......') {
-                console.log('myinput vale Buscar oferta');
-                $.ajax({
-                    type: 'GET',
-                    url: "mercadilloTodos"
-
-                });
-            } else {
-                $.ajax({
-                    type: 'GET',
-                    url: "tipoServicio",
-                    //url: "https://cuevas-de-ayllon.com/salvarcomentario",
-                    data: { 'tipoServicio': $('#myInput').val() },
-
-                }).done(function (objetos) {
-                    var x = $("#ofertas").empty();
-                    console.log(objetos);
-                    var html = '';
-
-
-                    for (var i = 0; i < objetos.length; i++) {
-
-
-                        if (objetos[i].tipo_servicio == 'Venta') {
-                            html += '<div class="row" style="margin-top: 7%;">';
-                            html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
-                            html += '<div id="carouselExampleControls' + objetos[i].id + '" class="carousel slide" data-bs-ride="carousel">';
-                            html += '<div class="carousel-inner">';
-                            if (objetos[i].foto1 ) {
-                                html += '<div class="carousel-item active">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            if (objetos[i].foto2 ) {
-                                html += '<div class="carousel-item">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            if (objetos[i].foto3 ) {
-                                html += '<div class="carousel-item">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            html += '</div>';
-                            html += '<button class="carousel-control-prev" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="prev">';
-                            html += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-                            html += '<span class="sr-only">Previous</span>';
-                            html += '</button>';
-                            html += '<button class="carousel-control-next" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="next">';
-                            html += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-                            html += '<span class="sr-only">Next</span>';
-                            html += '</button>';
-                            html += '</div>';
-
-                            html += '</div>';
-                            html += '<div class="col-lg-4" style="margin-top: 1%;" id="textoMercadillo">';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;">';
-                            html += '<p >Fecha del anuncio: ' + objetos[i].fecha + '</p>';
-                            html += '</div>';
-
-                            html += '<div  "class="col-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">';
-                            html += '<p >Se vende: ' + objetos[i].nombre_servicio + '</p>';
-                            html += '</div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Precio: ' + objetos[i].precio + ' Euros</div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
-                            html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                            html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
-                            html += '</div>';
-                            html += '</div>';
-                            html += '<hr style="margin-top: 3%;width: 72%;">';
-
-
-
-
-                        }
-                        if (objetos[i].tipo_servicio == 'Compra') {
-                            html += '<div class="row" style="margin-top: 7%;">';
-                            html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
-                            html += '<div id="carouselExampleControls' + objetos[i].id + '" class="carousel slide" data-bs-ride="carousel">';
-                            html += '<div class="carousel-inner">';
-                            if (objetos[i].foto1 ) {
-                                html += '<div class="carousel-item active">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            if (objetos[i].foto2 ) {
-                                html += '<div class="carousel-item">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            if (objetos[i].foto3 ) {
-                                html += '<div class="carousel-item">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            html += '</div>';
-                            html += '<button class="carousel-control-prev" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="prev">';
-                            html += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-                            html += '<span class="sr-only">Previous</span>';
-                            html += '</button>';
-                            html += '<button class="carousel-control-next" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="next">';
-                            html += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-                            html += '<span class="sr-only">Next</span>';
-                            html += '</button>';
-                            html += '</div>';
-
-                            html += '</div>';
-                            html += '<div class="col-lg-4" style="margin-top: 1%;" id="textoMercadillo">';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;">';
-                            html += '<p >Fecha del anuncio: ' + objetos[i].fecha + '</p>';
-                            html += '</div>';
-
-                            html += '<div  "class="col-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">';
-                            html += '<p >Se compro: ' + objetos[i].nombre_servicio + '</p>';
-                            html += '</div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Precio: ' + objetos[i].precio + ' Euros</div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
-                            html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                            html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
-                            html += '</div>';
-                            html += '</div>';
-                            html += '<hr style="margin-top: 3%;width: 72%;">';
-
-
-
-
-                        }
-                        if (objetos[i].tipo_servicio == 'Servicios') {
-                            html += '<div class="row" style="margin-top: 7%;">';
-                            html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
-                            html += '<div id="carouselExampleControls' + objetos[i].id + '" class="carousel slide" data-bs-ride="carousel">';
-                            html += '<div class="carousel-inner">';
-                            if (objetos[i].foto1 ) {
-                                html += '<div class="carousel-item active">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            if (objetos[i].foto2 ) {
-                                html += '<div class="carousel-item">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            if (objetos[i].foto3 ) {
-                                html += '<div class="carousel-item">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            html += '</div>';
-                            html += '<button class="carousel-control-prev" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="prev">';
-                            html += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-                            html += '<span class="sr-only">Previous</span>';
-                            html += '</button>';
-                            html += '<button class="carousel-control-next" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="next">';
-                            html += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-                            html += '<span class="sr-only">Next</span>';
-                            html += '</button>';
-                            html += '</div>';
-
-                            html += '</div>';
-                            html += '<div class="col-lg-4" style="margin-top: 1%;" id="textoMercadillo">';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;">';
-                            html += '<p >Fecha del anuncio: ' + objetos[i].fecha + '</p>';
-                            html += ' </div>';
-
-                            html += '<div  "class="col-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">';
-                            html += '<p >Se ofrece: ' + objetos[i].nombre_servicio + '</p>';
-                            html += '</div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Precio: ' + objetos[i].precio + ' Euros</div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
-                            html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                            html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
-                            html += '</div>';
-                            html += '</div>';
-                            html += '<hr style="margin-top: 3%;width: 72%;">';
-
-                        }
-                        if (objetos[i].tipo_servicio == 'Alquiler') {
-                            html += '<div class="row" style="margin-top: 7%;">';
-                            html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
-                            html += '<div id="carouselExampleControls' + objetos[i].id + '" class="carousel slide" data-bs-ride="carousel">';
-                            html += '<div class="carousel-inner">';
-                            if (objetos[i].foto1 ) {
-                                html += '<div class="carousel-item active">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            if (objetos[i].foto2 ) {
-                                html += '<div class="carousel-item">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            if (objetos[i].foto3 ) {
-                                html += '<div class="carousel-item">';
-
-                                html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
-
-                                html += '</div>';
-                            }
-                            html += '</div>';
-                            html += '<button class="carousel-control-prev" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="prev">';
-                            html += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-                            html += '<span class="sr-only">Previous</span>';
-                            html += '</button>';
-                            html += '<button class="carousel-control-next" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="next">';
-                            html += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-                            html += '<span class="sr-only">Next</span>';
-                            html += '</button>';
-                            html += '</div>';
-
-                            html += '</div>';
-                            html += '<div class="col-lg-4" style="margin-top: 1%;" id="textoMercadillo">';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;">';
-                            html += '<p >Fecha del anuncio: ' + objetos[i].fecha + '</p>';
-                            html += ' </div>';
-
-                            html += '<div  "class="col-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">';
-                            html += '<p >Se alquila: ' + objetos[i].nombre_servicio + '</p>';
-                            html += '</div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Precio: ' + objetos[i].precio + ' Euros</div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
-                            html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
-                            html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                            html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
-                            html += '</div>';
-                            html += '</div>';
-                            html += '<hr style="margin-top: 3%;width: 72%;">';
-
-
-                        }
-
-
-
-                        // html += '</div>';
-
-                    }
-                    // html += '</div>';
-                    $('#ofertas').append(html);
-                }
-
-
-
-                ).fail(function () {
-                    console.log("Fallo!");
-                })
-                    .always(function () {
-                        console.log("Completo!");
-                    });;
-            }
-        }
-        );
-    </script>
 
 
 </body>

@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -107,6 +109,54 @@ public class MercadilloRepositoryImpl implements MercadilloRepository {
 	public List<Mercadillo> findByTipo_servicio(String tipo_servicio) {
 		// TODO Auto-generated method stub
 		return mercadilloJpaRepository.findByTipo_servicio(tipo_servicio);
+	}
+
+	@Override
+	public List<Mercadillo> findByTipoServicioPrecioMax(String tipo_servicio, int precioMax) {
+		
+		return mercadilloJpaRepository.findByTipo_servicioPreciMax(tipo_servicio, Double.valueOf(precioMax));
+	}
+
+	@Override
+	public List<Mercadillo> findByTipoServicioPrecioMin(String tipo_servicio, int precioMin) {
+		// TODO Auto-generated method stub
+		return mercadilloJpaRepository.findByTipo_servicioPreciMin(tipo_servicio, Double.valueOf(precioMin));
+	}
+
+	@Override
+	public List<Mercadillo> findByTipoServicioPrecioMaxMin(String tipo_servicio,int precioMin ,int precioMax) {
+		// TODO Auto-generated method stub
+		return mercadilloJpaRepository.findByTipo_servicioPreciMaxMin(tipo_servicio, Double.valueOf(precioMin), Double.valueOf(precioMax));
+	}
+
+	@Override
+	public Page<Mercadillo> todasPaginasMercadillo(Pageable page) {
+		// TODO Auto-generated method stub
+		return mercadilloJpaRepository.findAll(page);
+	}
+
+	@Override
+	public Page<Mercadillo> findPaginasByTipoServicioPrecioMax(Pageable page,String tipo_servicio, int precioMax) {
+		// TODO Auto-generated method stub
+		return mercadilloJpaRepository.findPaginaByTipo_servicioPreciMax(page,tipo_servicio, precioMax);
+	}
+
+	@Override
+	public Page<Mercadillo> findPaginasByTipoServicioPrecioMin(Pageable page,String tipo_servicio, int precioMin) {
+		// TODO Auto-generated method stub
+		return mercadilloJpaRepository.findPaginaByTipo_servicioPreciMin(page,tipo_servicio, precioMin);
+	}
+
+	@Override
+	public Page<Mercadillo> findPaginasByTipoServicioPrecioMaxMin(Pageable page,String tipo_servicio, int precioMin, int precioMax) {
+		// TODO Auto-generated method stub
+		return mercadilloJpaRepository.findPaginaByTipo_servicioPreciMaxMin(page,tipo_servicio, precioMin, precioMax);
+	}
+
+	@Override
+	public Page<Mercadillo> findPaginaByTipo_servicio(Pageable page, String tipo_servicio) {
+		// TODO Auto-generated method stub
+		return mercadilloJpaRepository.findPaginaByTipo_servicio(page, tipo_servicio);
 	}
 
 }

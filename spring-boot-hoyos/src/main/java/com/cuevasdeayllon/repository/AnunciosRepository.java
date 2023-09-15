@@ -3,6 +3,8 @@ package com.cuevasdeayllon.repository;
 import java.io.IOException;
 import java.util.List;
 
+import javax.mail.Multipart;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cuevasdeayllon.entity.Anuncios;
@@ -12,7 +14,7 @@ public interface AnunciosRepository {
 	List<Anuncios> listAnuncio();
 	
 	
-	void insertarAnucio(Anuncios anuncio,MultipartFile foto) throws IOException;
+	void insertarAnucio(String anuncio,String titulo,MultipartFile file) throws IOException;
 	
 	
 	Anuncios recuperarAnuncio(int idAnuncio);
@@ -21,6 +23,6 @@ public interface AnunciosRepository {
 	void deleteAnuncio(int idAnuncio);
 	
 	
-	void editarAnuncio(int idAnuncio,Anuncios anuncio);
+	void editarAnuncio(Anuncios editable,String anuncio,String titulo,String fecha,MultipartFile file);
 
 }

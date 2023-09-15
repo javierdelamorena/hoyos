@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +19,9 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +31,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cuevasdeayllon.compresor.ImageResizer;
+import com.cuevasdeayllon.entity.Fotos;
 import com.cuevasdeayllon.entity.Mercadillo;
 import com.cuevasdeayllon.entity.Usuario;
+import com.cuevasdeayllon.paginator.PageRender;
 import com.cuevasdeayllon.repository.MercadilloRepository;
 import com.cuevasdeayllon.service.UsuarioService;
 
@@ -58,7 +66,7 @@ public class MercadilloController {
 		}
 		if (result.hasErrors()) {
 			logger.info("Entramos en metodo index/mercadillo el idusuario es: " + mercadillo.getId_usuario());
-			List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
+			List<String> tipoServicio = Arrays.asList("Compra", "Venta", "Servicios", "Alquiler");
 			Usuario usuario = service.usuarioPorId(mercadillo.getId_usuario());
 
 			mercadillo.setId_usuario(usuario.getIdUsuario());
@@ -100,7 +108,7 @@ public class MercadilloController {
 					if (foto1.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos",
 								"El nombre de la foto1 no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
-						List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
+						List<String> tipoServicio = Arrays.asList("Compra", "Venta", "Servicios", "Alquiler");
 						model.addAttribute("tipo_servicio", tipoServicio);
 						model.addAttribute("nombre", "Nombre del anunciante");
 						model.addAttribute("categoria", "Categoría ");
@@ -122,9 +130,9 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto1.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto1.getOriginalFilename());
-					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
-				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto1.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto1.getOriginalFilename());
+					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
+					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto1.getOriginalFilename());
 					mercadillo.setFoto1(foto1.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -140,7 +148,7 @@ public class MercadilloController {
 					if (foto1.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos",
 								"El nombre de la foto2 no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
-						List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
+						List<String> tipoServicio = Arrays.asList("Compra", "Venta", "Servicios", "Alquiler");
 						model.addAttribute("tipo_servicio", tipoServicio);
 						model.addAttribute("nombre", "Nombre del anunciante");
 						model.addAttribute("categoria", "Categoría ");
@@ -162,9 +170,9 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto2.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto2.getOriginalFilename());
-					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
-				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto2.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto2.getOriginalFilename());
+					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
+					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto2.getOriginalFilename());
 					mercadillo.setFoto2(foto2.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -182,7 +190,7 @@ public class MercadilloController {
 					if (foto3.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("espaciosBlancos",
 								"El nombre de la foto3 no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
-						List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
+						List<String> tipoServicio = Arrays.asList("Compra", "Venta", "Servicios", "Alquiler");
 						model.addAttribute("tipo_servicio", tipoServicio);
 						model.addAttribute("nombre", "Nombre del anunciante");
 						model.addAttribute("categoria", "Categoría ");
@@ -204,9 +212,9 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto3.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto3.getOriginalFilename());
-					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
-				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto3.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto3.getOriginalFilename());
+					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
+					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto3.getOriginalFilename());
 					mercadillo.setFoto3(foto3.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -218,7 +226,7 @@ public class MercadilloController {
 			mercadilloservice.insertarMercadillo(mercadillo);
 
 			logger.info("Entramos en metodo index/mercadillo" + mercadillo.getId());
-			List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquier");
+			List<String> tipoServicio = Arrays.asList("Compra", "Venta", "Servicios", "Alquier");
 			Usuario usuario = service.usuarioPorId(mercadillo.getId());
 			Mercadillo mercado = new Mercadillo();
 			mercado.setId_usuario(mercadillo.getId());
@@ -254,13 +262,11 @@ public class MercadilloController {
 			@RequestParam("file1") MultipartFile foto1, @RequestParam("file2") MultipartFile foto2,
 			@RequestParam("file3") MultipartFile foto3, Model model, HttpSession sesion) throws Exception {
 		Mercadillo mercado = mercadilloservice.findById(mercadillo.getId());
-		
-		if(mercado==null) {
+
+		if (mercado == null) {
 			throw new Exception("El id que recibimos no corresponde con ningun mercadillo");
 		}
-		
-		
-		
+
 		if (mercadillo.getId_usuario() == 0) {
 			return "login";
 		}
@@ -271,7 +277,7 @@ public class MercadilloController {
 		}
 		if (result.hasErrors()) {
 			logger.info("Entramos en metodo index/mercadillo el idusuario es: " + mercadillo.getId_usuario());
-			List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
+			List<String> tipoServicio = Arrays.asList("Compra", "Venta", "Servicios", "Alquiler");
 			Usuario usuario = service.usuarioPorId(mercadillo.getId_usuario());
 			List<Mercadillo> todos = mercadilloservice.todosLosMercadillosiIdUsuario(mercadillo.getId_usuario());
 			mercadillo.setId_usuario(usuario.getIdUsuario());
@@ -294,7 +300,7 @@ public class MercadilloController {
 			model.addAttribute("miMercadillo", todos);
 			model.addAttribute("mercadilloBorrado",
 					"Ha habido un error en la edicion del mercadillo añadala de nuevo, gracias.");
-			logger.info("Entramos en metodo index/mercadillo Ha habido un error en la edicion del mercadillo:"); 
+			logger.info("Entramos en metodo index/mercadillo Ha habido un error en la edicion del mercadillo:");
 			return "miMercadillo";
 
 		}
@@ -325,10 +331,10 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto1.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto1.getOriginalFilename());
-					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
-				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto1.getOriginalFilename());
-					mercado.setFoto1(foto1.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto1.getOriginalFilename());
+					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
+					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto1.getOriginalFilename());
+					mercadillo.setFoto1(foto1.getOriginalFilename());
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -338,7 +344,7 @@ public class MercadilloController {
 			}
 			if (!foto2.isEmpty() && mercadillo != null) {
 				int oraLen = foto2.getOriginalFilename().length();
-				logger.info("El nombre de la foto1 es: " + foto1.getOriginalFilename());
+				logger.info("El nombre de la foto2 es: " + foto2.getOriginalFilename());
 				for (int i = 0; i < oraLen; i++) {
 					if (foto2.getOriginalFilename().charAt(i) == ' ') {
 						model.addAttribute("mercadilloBorrado",
@@ -352,10 +358,10 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto2.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto2.getOriginalFilename());
-					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
-				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto2.getOriginalFilename());
-					mercado.setFoto2(foto2.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto2.getOriginalFilename());
+					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
+					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto2.getOriginalFilename());
+					mercadillo.setFoto2(foto2.getOriginalFilename());
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -381,10 +387,10 @@ public class MercadilloController {
 					Path rutaCompleta = Paths.get(rootPath + "//" + foto3.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto3.getOriginalFilename());
-					BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);					
-				    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto3.getOriginalFilename());
-					mercado.setFoto3(foto3.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto3.getOriginalFilename());
+					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
+					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto3.getOriginalFilename());
+					mercadillo.setFoto3(foto3.getOriginalFilename());
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -400,9 +406,9 @@ public class MercadilloController {
 			mercado.setId_usuario(mercadillo.getId_usuario());
 			mercado.setTipo_servicio(mercadillo.getTipo_servicio());
 			mercado.setTexto(mercadillo.getTexto());
-			mercado.setFoto1(mercado.getFoto1());
-			mercado.setFoto2(mercado.getFoto2());
-			mercado.setFoto3(mercado.getFoto3());
+			mercado.setFoto1(mercadillo.getFoto1());
+			mercado.setFoto2(mercadillo.getFoto2());
+			mercado.setFoto3(mercadillo.getFoto3());
 			mercado.setFecha(new Date());
 			mercado.setNombre_servicio(mercadillo.getNombre_servicio());
 
@@ -426,20 +432,20 @@ public class MercadilloController {
 
 	}
 
-	@GetMapping(path = "/mercadilloTodos")
-	public String todosMercadillo(Model model) {
-
-		logger.info("Entramos en metodo mercadilloTodos");
-		List<Mercadillo> todos = mercadilloservice.todosLosMercadillos();
-		if (todos.size() > 0) {
-			todos = todos.stream().sorted(Comparator.comparing(Mercadillo::getId).reversed())
-					.collect(Collectors.toList());
-			model.addAttribute("mercadillo", todos);
-		}
-
-		return "mercadilloExterior";
-
-	}
+//	@GetMapping(path = "/mercadilloTodos")
+//	public String todosMercadillo(Model model) {
+//
+//		logger.info("Entramos en metodo mercadilloTodos");
+//		List<Mercadillo> todos = mercadilloservice.todosLosMercadillos();
+//		if (todos.size() > 0) {
+//			todos = todos.stream().sorted(Comparator.comparing(Mercadillo::getId).reversed())
+//					.collect(Collectors.toList());
+//			model.addAttribute("mercadillo", todos);
+//		}
+//
+//		return "mercadilloExterior";
+//
+//	}
 
 	@GetMapping(path = "/mercadilloTodosAdministrador")
 	public String todosMercadilloAdministrador(Model model) {
@@ -458,7 +464,7 @@ public class MercadilloController {
 		logger.info("Entramos en metodo mercadilloTodosAdministrador");
 		List<Mercadillo> todos = mercadilloservice.todosLosMercadillosiIdUsuario(id_usuario);
 
-		List<String> tipoServicio = Arrays.asList("Compra","Venta", "Servicios", "Alquiler");
+		List<String> tipoServicio = Arrays.asList("Compra", "Venta", "Servicios", "Alquiler");
 		model.addAttribute("tipo_servicio", tipoServicio);
 
 		model.addAttribute("miMercadillo", todos);
@@ -502,15 +508,90 @@ public class MercadilloController {
 		return "listaMercadillos";
 
 	}
+
+
 	@GetMapping(path = "/tipoServicio")
-	public @ResponseBody List<Mercadillo> miMercadillo(@RequestParam("tipoServicio")String tipoServicio, Model model) {
+	public @ResponseBody List<Mercadillo> miMercadilloServicioPage(@RequestParam("page") String page,
+			@RequestParam("tipoServicio") String tipoServicio, Model model) {
 
-		logger.info("Entramos en metodo mercadilloTodosAdministrador");
-		List<Mercadillo> todos = mercadilloservice.findByTipo_servicio(tipoServicio);
+		Pageable pagaRequest = PageRequest.of(Integer.parseInt(page), 1);
 
-		
+		Page<Mercadillo> objetosPage = mercadilloservice.findPaginaByTipo_servicio(pagaRequest, tipoServicio);
+
+		PageRender<Mercadillo> pageRender = new PageRender<>("/tipoServicio", objetosPage);
+
+		pageRender.getPaginas().forEach(p -> logger.info("estas son las imagenes" + p.getNumero()));
+		objetosPage.forEach(p -> logger.info("estas son las imagenes" + p.getNombre()));
+		List<Mercadillo> objetos = objetosPage.getContent();
+		return objetos;
+	}
+
+	@GetMapping(path = "/mercadilloPreciosTipoServicio")
+	public @ResponseBody List<Mercadillo> miMercadilloPrecio(@RequestParam("tipoServicio") String tipoServicio,
+			@RequestParam(value = "precioMin", required = false) int precioMin,
+			@RequestParam(value = "precioMax", required = false) int precioMax, Model model) {
+
+		logger.info("Entramos en metodo miMercadilloPrecio");
+		List<Mercadillo> todos = new ArrayList<>();
+		if (precioMin > 0 && precioMax <= 0) {
+			todos = mercadilloservice.findByTipoServicioPrecioMin(tipoServicio, precioMin);
+
+		} else if (precioMin <= 0 && precioMax > 0) {
+			todos = mercadilloservice.findByTipoServicioPrecioMax(tipoServicio, precioMax);
+
+		} else if (precioMin == 0 && precioMax == 0) {
+			todos = mercadilloservice.findByTipoServicioPrecioMaxMin(tipoServicio, precioMin, precioMax);
+		} else {
+			todos = mercadilloservice.findByTipoServicioPrecioMaxMin(tipoServicio, precioMin, precioMax);
+		}
+
 		return todos;
 
 	}
 
+	@GetMapping(path = "/mercadilloPaginasPreciosTipoServicio")
+	public @ResponseBody Page<Mercadillo> miPaginasMercadilloPrecio(
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam("tipoServicio") String tipoServicio,
+			@RequestParam(value = "precioMin", required = false) int precioMin,
+			@RequestParam(value = "precioMax", required = false) int precioMax, Model model) {
+
+		logger.info("Entramos en metodo miMercadilloPrecio la page vale " + page);
+		Pageable pagaRequest = PageRequest.of(page, 3);
+		Page<Mercadillo> todos;
+		if (precioMin > 0 && precioMax <= 0) {
+			todos = mercadilloservice.findPaginasByTipoServicioPrecioMax(pagaRequest, tipoServicio, precioMin);
+
+		} else if (precioMin <= 0 && precioMax > 0) {
+			todos = mercadilloservice.findPaginasByTipoServicioPrecioMax(pagaRequest, tipoServicio, precioMax);
+
+		} else if (precioMin == 0 && precioMax == 0) {
+			todos = mercadilloservice.findPaginasByTipoServicioPrecioMaxMin(pagaRequest, tipoServicio, precioMin,
+					precioMax);
+		} else {
+			todos = mercadilloservice.findPaginasByTipoServicioPrecioMaxMin(pagaRequest, tipoServicio, precioMin,
+					precioMax);
+		}
+
+		return todos;
+
+	}
+
+	@GetMapping(value = "/mercadilloTodos")
+	public @ResponseBody List<Mercadillo> parametrosTabla(@RequestParam("page") String page, Model model,
+			RedirectAttributes flash, Locale locale, HttpSession sesion) {
+
+		logger.info("Entramos en METODO  mercadilloTodos esta es la pagina" + page);
+
+		Pageable pagaRequest = PageRequest.of(Integer.parseInt(page), 1);
+
+		Page<Mercadillo> objetosPage = mercadilloservice.todasPaginasMercadillo(pagaRequest);
+
+		PageRender<Mercadillo> pageRender = new PageRender<>("/mercadilloTodos", objetosPage);
+
+		pageRender.getPaginas().forEach(p -> logger.info("estas son las imagenes" + p.getNumero()));
+		objetosPage.forEach(p -> logger.info("estas son las imagenes" + p.getNombre()));
+		List<Mercadillo> objetos = objetosPage.getContent();
+		return objetos;
+	}
 }

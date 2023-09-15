@@ -28,23 +28,28 @@
     // };
 
 
+var idusuario;
 
-
-
+    function recogerComentarioConUsuario(idUsuario){
+        console.log("se ha pulsado salvarComentario este es el usuario", idUsuario);
+        idusuario=idUsuario;
+    }
 
 
     $("#salvarComentario").on("click", function () {
-        console.log("se ha pulsado salvarComentario");
+        
+        console.log("se ha pulsado salvarComentario ");
 
 if($('#comentario').val()!=""){
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: "salvarcomentario",
             //url: "https://cuevas-de-ayllon.com/salvarcomentario",
-            data: { 'comentario': $('#comentario').val(), 'idUsuario': $('#comentarioIdUsuario').val() },
+            data: { 'comentario': $('#comentario').val(), 'idUsuario': idusuario },
             // beforeSend: function(){
             //     $('#textoComentario').empty();
             // }
+            
         }).done(function (objetos) {
             document.getElementById("comentario").value = "";
             $("#salvarComentario").hide();

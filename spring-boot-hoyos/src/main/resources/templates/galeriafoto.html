@@ -49,9 +49,9 @@
           <div tabindex="-1" aria-labelledby="modal" aria-hidden="true" class="modal fade"
             th:attr="id=modal+${foto.idFotos}">
             <div class="modal-dialog modal-lg modal-dialog-centered">
-              <div class="modal.content">
+              <div class="modal.content"><a th:src="@{'/uploadsGaleria/'+${foto.fotos}}" download>
                 <img th:src="@{'/uploadsGaleria/'+${foto.fotos}}" class="img-fluid" id="fotosModel"
-                  alt="Responsive image" role="button" style="width: 500px;height: 500px;">
+                  alt="Responsive image" role="button" style="width: 1000px;height: 100%;"></a>
               </div>
 
             </div>

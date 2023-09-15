@@ -232,58 +232,60 @@ public class PropuestaController {
 		todas = todas.stream().sorted(Comparator.comparing(Propuestas::getIdPropuesta).reversed())
 				.collect(Collectors.toList());
 
-		todas.forEach(p -> logger.info("estos son los idUasuarios" + p.getUsuario().getIdUsuario()));
+		todas.forEach(p -> logger.info("estos son los idUsuarios" + p.getUsuario().getIdUsuario()));
 
 		return todas;
 
 	}
 
 	@GetMapping("/comentarios")
-	public String comentarios(@RequestParam("idPropuesta") int idpropuesta,@RequestParam("mail") String mail, Model model, HttpSession sesion) {
+	//public String comentarios(@RequestParam("idPropuesta") int idpropuesta,@RequestParam("mail") String mail, Model model, HttpSession sesion) {
+	public String comentarios(@RequestParam("idPropuesta") int idpropuesta,@RequestParam("idUsuario") String idUsuario, Model model, HttpSession sesion) {
+		logger.info("Entramos en metodo comentarios esta es la idpropuesta"+idpropuesta+ " y  el idUsuario: "+idUsuario);
 
-		logger.info("Entramos en metodo comentarios esta es la idpropuesta" + idpropuesta+ " mail= " +mail);
-		Propuestas propuestaIdPropuesta = propuestaService.findByIdPropuesta(idpropuesta);
-		List<Comentarios> comentarios = comentarioService.findAllByIdPropuesta(idpropuesta);
-		List<ComentariosDto> comentarioDtoList = new ArrayList<>();
-		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		List<Comentarios> comentarios=comentarioService.findAllByIdPropuesta(idpropuesta);
+		List<ComentariosDto>comentarioDtoList=new ArrayList<>();
+		Usuario usuario=(Usuario)  usuarioservice.usuarioPorId(Integer.parseInt(idUsuario));
 
-		for (int i = 0; i < comentarios.size(); i++) {
+		for(int i =0;i<comentarios.size();i++) {
 
-			ComentariosDto comentarioDto = Utilidades.comentariosTocomentariosDto(comentarios.get(i));
+			ComentariosDto comentarioDto=Utilidades.comentariosTocomentariosDto(comentarios.get(i));
 
 			comentarioDtoList.add(comentarioDto);
 
-			if (comentarios.get(i).getUsuario().getIdUsuario() != usuario.getIdUsuario()) {
+			if(comentarios.get(i).getUsuario().getIdUsuario()!=usuario.getIdUsuario()) {
+
 
 				comentarioDtoList.get(i).setEditable(null);
 
-			} else {
+
+
+			}else {
 				comentarioDtoList.get(i).setEditable("si");
 
 			}
 
 		}
 
-		Propuestas propuestas = propuestaService.findByIdPropuesta(idpropuesta);
+		Propuestas propuesta=propuestaService.findByIdPropuesta(idpropuesta);
 
-		// logger.info("Estas son la propuestas que recogemos en metodo
-		// comentarios:["+propuesta.getPropuesta()+" "+propuesta.getIdPropuesta()+"]");
+		logger.info("Estas son la propuestas que recogemos en metodo comentarios:["+propuesta.getPropuesta()+" "+propuesta.getIdPropuesta()+"]");
 
 		model.addAttribute("comentarios", comentarioDtoList);
 
-		comentarios.forEach(c -> logger.info("Estos son los usuarios: " + c.getUsuario().getNombre()));
+		comentarios.forEach(c ->logger.info("Estos son los usuarios: "+c.getUsuario().getNombre()));
 
-		model.addAttribute("propuestas", propuestas);
-
+		model.addAttribute("propuestas", propuesta);
+		model.addAttribute("usuario", usuario);
 		sesion.setAttribute("usuario", usuario);
 
-		sesion.setAttribute("propuestas", propuestas);
+		sesion.setAttribute("propuestas", propuesta);
 
 		return "comentarios";
 
 	}
 
-	@GetMapping(value = ("/editarComentario"), produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = ("/editarComentario"), produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Objetos editarComentarios(@RequestParam("idComentario") int idcomentario,
 			@RequestParam("comentario") String coment, Model model, HttpSession sesion) {
 
@@ -291,7 +293,7 @@ public class PropuestaController {
 
 		Comentarios comentario = comentarioService.findByid(idcomentario);
 
-		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		Usuario usuario = comentario.getUsuario();
 		List<Usuario> usuarioList = new ArrayList<>();
 		logger.info("Entramos en metodo editarcomentarios este es el usuario" + usuario.getNombre());
 
@@ -357,16 +359,18 @@ public class PropuestaController {
 		logger.info("Entramos en metodo borrarcomentarios esta es la idcomentario" + idcomentario);
 		Comentarios comentario = new Comentarios();
 		Propuestas propuesta = new Propuestas();
+		Usuario usuario = new Usuario();
 
 		if (idcomentario > 0) {
 			comentario = comentarioService.findByid(idcomentario);
 		}
 
-		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		
 		if (comentario != null) {
+			usuario = comentario.getUsuario();
 			propuesta = propuestaService.findBtNombre(comentario.getPropuesta().getTitulo());
 		} else {
-			propuesta = (Propuestas) sesion.getAttribute("propuestas");
+			propuesta = propuestaService.findByIdPropuesta(idpropuesta);
 		}
 
 		if (comentario != null) {
@@ -409,17 +413,19 @@ public class PropuestaController {
 		logger.info("Entramos en metodo borrarcomentarios esta es la idcomentario" + idcomentario);
 		Comentarios comentario = new Comentarios();
 		Propuestas propuesta = new Propuestas();
+		Usuario usuario = new Usuario();
         int idcomentarioInt=Integer.parseInt(idcomentario);
         
 		if (idcomentarioInt > 0) {
 			comentario = comentarioService.findByid(idcomentarioInt);
 		}
 
-		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		
 		if (comentario != null) {
+			usuario = comentario.getUsuario();
 			propuesta = propuestaService.findBtNombre(comentario.getPropuesta().getTitulo());
 		} else {
-			propuesta = (Propuestas) sesion.getAttribute("propuestas");
+			propuesta = propuestaService.findByIdPropuesta(Integer.parseInt(idpropuesta));
 		}
 
 		if (comentario != null) {
@@ -455,14 +461,14 @@ public class PropuestaController {
 	 * @param sesion
 	 * @return
 	 */
-	@GetMapping(value = ("salvarcomentario"), produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Objetos comentario(@RequestParam("comentario") String comentario, Model model,
+	@PostMapping(value = ("salvarcomentario"), produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Objetos comentario(@RequestParam("comentario") String comentario, @RequestParam("idUsuario") String idUsuario,Model model,
 			HttpSession sesion) {
 		Objetos objetos = new Objetos();
 		Comentarios comentarios = new Comentarios();
 
 		logger.info("Entramos en metodo salvarComentario y este es el comentario)" + comentario);
-		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		Usuario usuario = usuarioservice.usuarioPorId(Integer.parseInt(idUsuario));
 		Propuestas propuesta = (Propuestas) sesion.getAttribute("propuestas");
 		List<Comentarios> lista = new ArrayList<Comentarios>();
 		if (comentario != null) {
@@ -550,10 +556,10 @@ public class PropuestaController {
 	 */
 	@GetMapping("/puntuacionMas")
 	public String puntuacionMasUno(@RequestParam(required = false) String mas, @RequestParam("idPropuesta") int idPropuesta,
-			Model model, HttpSession sesion) {
+			@RequestParam("idUsuario") int idUsuario,Model model, HttpSession sesion) {
 		logger.info("Entramos en metodo /puntuacionMas con mas=" + mas);
 
-		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		Usuario usuario = usuarioservice.usuarioPorId(idUsuario);
 		Propuestas propuesta = propuestaService.findByIdPropuesta(idPropuesta);
 		List<Comentarios> listaComentario = comentarioService.findAllByIdPropuesta(propuesta.getIdPropuesta());
 		Puntuacion puntuacion = new Puntuacion();
@@ -607,10 +613,10 @@ public class PropuestaController {
 	 */
 	@GetMapping("/puntuacionMenos")
 	public String puntuacionMenosUno(@RequestParam(required = false) String menos,
-			@RequestParam("idPropuesta") int idPropuesta, Model model, HttpSession sesion) {
+			@RequestParam("idPropuesta") int idPropuesta,@RequestParam("idUsuario") int idUsuario, Model model, HttpSession sesion) {
 		logger.info("Entramos en metodo /puntuacionMas con mas=" + menos);
 
-		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		Usuario usuario = usuarioservice.usuarioPorId(idUsuario);
 		Propuestas propuesta = propuestaService.findByIdPropuesta(idPropuesta);
 		List<Comentarios> listaComentario = comentarioService.findAllByIdPropuesta(propuesta.getIdPropuesta());
 		Puntuacion puntuacion = new Puntuacion();
