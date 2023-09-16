@@ -1,48 +1,77 @@
-$('#ofertas').scroll(function () {
-    if ($('#ofertas').scrollTop() == $(document).height() - $(window).height()) {
-        pagina++;
-        cargardatos();
-    }
-});
 
+var paginass = 0;
+var preciomaximo=0;
+var preciominimo=0;
 
+function filtrotiposervicioPrecio() {
+    console.log('entramos en filtrar precio');
+    preciominimo= $('#precioMinimo').val();
+    preciomaximo=$('#precioMaximo').val();
+    $("#ofertas").empty();
+    // var html2 = '';
+    // html2 += '<div class="row g-3" style="margin-top: 3%;">';
+    // html2 += '<div class="col-auto">';
+    // html2 += '<label for="precioMinimo" class="form-label">Precio Minimo</label>';
+    // html2 += '<input type="number" value="0" min="1" class="form-control" id="precioMinimo" >';
+    // html2 += '</div>'
+    // html2 += '<div class="col-auto">';
+    // html2 += '<label for="precioMaximo" class="form-label">Precio Maximo</label>';
+    // html2 += '<input type="number" value="0" min="1" class="form-control" id="precioMaximo" >';
+    // html2 += '</div>'
+    // html2 += '<div class="col-auto">';
+    // html2 += '<button class="btn btn-primary mb-3" id="filtrarPrecio2"  style="margin-top: 23%;">Filtrar por Precio</button>';
+    // html2 += '</div>';
+    // html2 += '</div>';
+    // $('#ofertas').append(html2);
+    cargardatosPrecio();
+};
+// $('#filtrarPrecio2').click(function () {
+//     console.log('entramos en filtrar precio');
+//     paginass = 0;
+//     $("#ofertas").empty();
+//     var html2 = '';
+//     html2 += '<div class="row g-3" style="margin-top: 3%;">';
+//     html2 += '<div class="col-auto">';
+//     html2 += '<label for="precioMinimo" class="form-label">Precio Minimo</label>';
+//     html2 += '<input type="number" value="0" min="1" class="form-control" id="precioMinimo" >';
+//     html2 += '</div>'
+//     html2 += '<div class="col-auto">';
+//     html2 += '<label for="precioMaximo" class="form-label">Precio Maximo</label>';
+//     html2 += '<input type="number" value="0" min="1" class="form-control" id="precioMaximo" >';
+//     html2 += '</div>'
+//     html2 += '<div class="col-auto">';
+//     html2 += '<button class="btn btn-primary mb-3" id="filtrarPrecio2"  style="margin-top: 23%;">Filtrar por Precio</button>';
+//     html2 += '</div>';
+//     html2 += '</div>';
+//     $('#ofertas').append(html2);
+//     cargardatosPrecio();
+// });
 
-$('#filtrarPrecio').click(function () {
-    function cargardatos() {
-        console.log('pulsamos boton');
-        $.ajax({
-            type: 'GET',
-            url: "mercadilloPaginasPreciosTipoServicio",
-            //url: "https://cuevas-de-ayllon.com/salvarcomentario",
-            data: {
-                'page': pagina,
-                'tipoServicio': $('#myInput').val(),
-                'precioMin': $('#precioMinimo').val(),
-                'precioMax': $('#precioMaximo').val()
-            },
+function cargardatosPrecio() {
+    console.log('pulsamos boton vargar Precio');
+    $.ajax({
+        type: 'GET',
+        url: "mercadilloPaginasPreciosTipoServicio",
+        //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+        data: {
+            'page': paginass,
+            'tipoServicio': $('#myInput').val(),
+            'precioMin': preciominimo,
+            'precioMax': preciomaximo
+        },
 
-        }).done(function (objetos) {
-            var x = $("#ofertas").empty();
-            console.log(objetos);
+    }).done(function (objetos) {
+
+        console.log(objetos);
+        if (objetos.length != 0) {
             var html = '';
-
-
+           
             for (var i = 0; i < objetos.length; i++) {
 
 
                 if (objetos[i].tipo_servicio == 'Venta') {
-                    html += '<div id="altura">'
-                    html += '<div class="row g-3" style="margin-top: 3%;">';
-                    html += '<div class="col-auto">';
-                    html += '<input type="number" class="form-control" id="precioMinimo" placeholder="precio min">';
-                    html += '</div>'
-                    html += '<div class="col-auto">';
-                    html += '<input type="number" class="form-control" id="precioMaximo" placeholder="precio max">';
-                    html += '</div>'
-                    html += '<div class="col-auto">';
-                    html += '<button class="btn btn-primary mb-3" id="filtrarPrecio">Filtrar por Precio</button>';
-                    html += '</div>';
-                    html += '</div>';
+
+                    html += '<div id="altura">';
                     html += '<div class="row" style="margin-top: 7%;">';
                     html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
                     html += '<div id="carouselExampleControls' + objetos[i].id + '" class="carousel slide" data-bs-ride="carousel">';
@@ -95,25 +124,16 @@ $('#filtrarPrecio').click(function () {
                     html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
+                    html += '</div>';
                     html += '<hr style="margin-top: 3%;width: 72%;">';
 
-                    html += '</div >'
+
 
 
                 }
                 if (objetos[i].tipo_servicio == 'Compra') {
-                    html += '<div id="altura">'
-                    html += '<div class="row g-3" style="margin-top: 3%;">';
-                    html += '<div class="col-auto">';
-                    html += '<input type="number" class="form-control" id="precioMinimo" placeholder="precio min">';
-                    html += '</div>'
-                    html += '<div class="col-auto">';
-                    html += '<input type="number" class="form-control" id="precioMaximo" placeholder="precio max">';
-                    html += '</div>'
-                    html += '<div class="col-auto">';
-                    html += '<button class="btn btn-primary mb-3" id="filtrarPrecio">Filtrar por Precio</button>';
-                    html += '</div>';
-                    html += '</div>';
+                    html += '<div id="altura">';
+
                     html += '<div class="row" style="margin-top: 7%;">';
 
                     html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
@@ -167,27 +187,16 @@ $('#filtrarPrecio').click(function () {
                     html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
-                    html += '</div>'
+                    html += '</div>';
                     html += '<hr style="margin-top: 3%;width: 72%;">';
-
 
 
 
 
                 }
                 if (objetos[i].tipo_servicio == 'Servicios') {
-                    html += '<div id="altura">'
-                    html += '<div class="row g-3" style="margin-top: 3%;">';
-                    html += '<div class="col-auto">';
-                    html += '<input type="number" class="form-control" id="precioMinimo" placeholder="precio min">';
-                    html += '</div>'
-                    html += '<div class="col-auto">';
-                    html += '<input type="number" class="form-control" id="precioMaximo" placeholder="precio max">';
-                    html += '</div>'
-                    html += '<div class="col-auto">';
-                    html += '<button class="btn btn-primary mb-3" id="filtrarPrecio">Filtrar por Precio</button>';
-                    html += '</div>';
-                    html += '</div>';
+                    html += '<div id="altura">';
+
                     html += '<div class="row" style="margin-top: 7%;">';
 
                     html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
@@ -241,24 +250,13 @@ $('#filtrarPrecio').click(function () {
                     html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
-                    html += '</div>'
                     html += '<hr style="margin-top: 3%;width: 72%;">';
-
+                    html += '</div>';
 
                 }
                 if (objetos[i].tipo_servicio == 'Alquiler') {
-                    html += '<div id="altura">'
-                    html += '<div class="row g-3" style="margin-top: 3%;">';
-                    html += '<div class="col-auto">';
-                    html += '<input type="number" class="form-control" id="precioMinimo" placeholder="precio min">';
-                    html += '</div>'
-                    html += '<div class="col-auto">';
-                    html += '<input type="number" class="form-control" id="precioMaximo" placeholder="precio max">';
-                    html += '</div>'
-                    html += '<div class="col-auto">';
-                    html += '<button class="btn btn-primary mb-3" id="filtrarPrecio">Filtrar por Precio</button>';
-                    html += '</div>';
-                    html += '</div>';
+
+                    html += '<div id="altura">';
                     html += '<div class="row" style="margin-top: 7%;">';
 
                     html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
@@ -312,31 +310,55 @@ $('#filtrarPrecio').click(function () {
                     html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
-                    html += '</div>'
+                    html += '</div>';
                     html += '<hr style="margin-top: 3%;width: 72%;">';
-
 
 
                 }
 
 
 
-                // html += '</div>';
+
+                $('#ofertas').append(html);
+                observador = new IntersectionObserver((entradas) => {
+                    entradas.forEach(entradas => {
+                        if (entradas.isIntersecting) {
+                            paginass++;
+                            cargardatosPrecio();
+                        }
+
+                    })
+                    console.log(entradas);
+
+                }, {
+
+                    rootMargin: '0px 0px 0px 0px',
+                    threshole: 1.0
+                });
+                // if (producto) {
+                //     observador.unobserve(producto);
+                // }
+
+
+                const alturas = document.querySelectorAll('#altura');
+                producto = alturas[alturas.length - 1];
+                console.log(producto);
+
+                observador.observe(producto);
 
             }
-            // html += '</div>';
-            $('#ofertas').append(html);
         }
 
-
-
-        ).fail(function () {
-            console.log("Fallo!");
-        })
-            .always(function () {
-                console.log("Completo!");
-            });;
     }
-}   // }
-);
 
+    ).fail(function () {
+        console.log("Fallo!");
+    })
+        .always(function () {
+            console.log("Completo!");
+        });;
+
+
+
+
+};
