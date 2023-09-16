@@ -1210,11 +1210,12 @@ html {
 
 #ofertas::-webkit-scrollbar {
 	width: 10px;
-	background-color: #F5F5F5;
+	
+	
 }
 
 #ofertas::-webkit-scrollbar-thumb {
-	background: transparent;
-	border: 0px none #fff;
+	background: transparent transparent;
+	border: 0px ;
 	border-radius: 10px;
 }
