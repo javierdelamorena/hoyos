@@ -8,21 +8,8 @@ var paginas = 0;
 $('#myInput').change(function () {
     //paginas = 0;
     var x = $("#ofertas").empty();
-    var html2 = '';
-    html2 += '<div class="row g-3" style="margin-top: 3%;">';
-    html2 += '<div class="col-auto">';
-    html2 += '<label for="precioMinimo" class="form-label">Precio Minimo</label>';
-    html2 += '<input type="number" name="precioMinimo" value="0" class="form-control" id="precioMinimo" >';
-    html2 += '</div>'
-    html2 += '<div class="col-auto">';
-    html2 += '<label for="precioMaximo" class="form-label">Precio Maximo</label>';
-    html2 += '<input type="number" name="precioMaximo" value="0" class="form-control" id="precioMaximo" >';
-    html2 += '</div>'
-    html2 += '<div class="col-auto">';
-    html2 += '<button class="btn btn-primary mb-3" id="filtrarPrecio" onclick="filtrotiposervicioPrecio();"  style="margin-top: 23%;">Filtrar por Precio</button>';
-    html2 += '</div>';
-    html2 += '</div>';
-    $('#ofertas').append(html2);
+    
+   
     cargar();
 })
 function cargar() {
@@ -33,11 +20,11 @@ function cargar() {
         data: { 'page': paginas, 'tipoServicio': $('#myInput').val() },
 
     }).done(function (objetos) {
-         
+
         console.log(objetos);
         if (objetos.length != 0) {
             var html = '';
-           
+
             for (var i = 0; i < objetos.length; i++) {
 
 

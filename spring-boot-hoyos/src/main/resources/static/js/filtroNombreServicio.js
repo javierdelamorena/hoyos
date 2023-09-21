@@ -1,29 +1,28 @@
 
-var paginass = 0;
-var preciomaximo = 0;
-var preciominimo = 0;
+var paginasss = 0;
 
-function filtrotiposervicioPrecio() {
-    console.log('entramos en filtrar precio');
-    preciominimo = $('#precioMinimo').val();
-    preciomaximo = $('#precioMaximo').val();
+var nombreservicio;
+
+function filtronombreProducto() {
+    console.log('entramos en filtronombreProducto()');
+    nombreservicio= $('#nombreServicio').val();
+    
     $("#ofertas").empty();
-   
-    cargardatosPrecio();
+    
+    cargardatosNombre();
 };
 
 
-function cargardatosPrecio() {
-    console.log('entramos en  cargardatosPrecio()');
+function cargardatosNombre() {
+    console.log('entramos en cargardatosNombre()');
     $.ajax({
         type: 'GET',
-        url: "mercadilloPaginasPreciosTipoServicio",
+        url: "nombreServicio",
         //url: "https://cuevas-de-ayllon.com/salvarcomentario",
         data: {
-            'page': paginass,
-            'tipoServicio': $('#myInput').val(),
-            'precioMin': preciominimo,
-            'precioMax': preciomaximo
+            'page': paginasss,
+            'nombreServicio': nombreservicio,
+            
         },
 
     }).done(function (objetos) {
@@ -31,7 +30,7 @@ function cargardatosPrecio() {
         console.log(objetos);
         if (objetos.length != 0) {
             var html = '';
-            
+           
             for (var i = 0; i < objetos.length; i++) {
 
 
@@ -289,8 +288,8 @@ function cargardatosPrecio() {
                 observador = new IntersectionObserver((entradas) => {
                     entradas.forEach(entradas => {
                         if (entradas.isIntersecting) {
-                            paginass++;
-                            cargardatosPrecio();
+                            paginasss++;
+                            cargardatosNombre();
                         }
 
                     })

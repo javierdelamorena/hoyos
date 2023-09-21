@@ -49,10 +49,10 @@ public class MercadilloRepositoryImpl implements MercadilloRepository {
 	public void insertarMercadillo(Mercadillo mercadillo) {
 		Mercadillo merdado=new Mercadillo();
 		merdado.setId_usuario(mercadillo.getId_usuario());
-		merdado.setNombre(mercadillo.getNombre());
+		merdado.setNombre(mercadillo.getNombre().trim().toUpperCase());
 		merdado.setTelefono(mercadillo.getTelefono());
-		merdado.setNombre_servicio(mercadillo.getNombre_servicio().trim());
-		merdado.setTipo_servicio(mercadillo.getTipo_servicio().trim());
+		merdado.setNombre_servicio(mercadillo.getNombre_servicio().trim().toUpperCase());
+		merdado.setTipo_servicio(mercadillo.getTipo_servicio());
 		merdado.setPrecio(mercadillo.getPrecio());
 		merdado.setTexto(mercadillo.getTexto());
 		merdado.setFoto1(mercadillo.getFoto1());
@@ -157,6 +157,12 @@ public class MercadilloRepositoryImpl implements MercadilloRepository {
 	public Page<Mercadillo> findPaginaByTipo_servicio(Pageable page, String tipo_servicio) {
 		// TODO Auto-generated method stub
 		return mercadilloJpaRepository.findPaginaByTipo_servicio(page, tipo_servicio);
+	}
+
+	@Override
+	public Page<Mercadillo> findPaginaByNombre_servicio(Pageable page, String nombre_servicio) {
+		// TODO Auto-generated method stub
+		return mercadilloJpaRepository.findPaginaByNombre_servicio(page, nombre_servicio);
 	}
 
 }

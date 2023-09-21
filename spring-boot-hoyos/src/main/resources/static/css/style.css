@@ -979,6 +979,7 @@ body {
 @media (max-width : 576px) {
 	#textoExplicacion {
 		font-size: 25px;
+		margin-left: 2%;
 
 	}
 }
@@ -1139,8 +1140,8 @@ body {
 }
 
 .divSelecMercadillo {
-	width: 71%;
-	margin-left: 4%;
+	
+	
 	margin-top: 7%;
 }
 
@@ -1156,14 +1157,14 @@ body {
 #ofertas {
 	overflow-y: scroll;
 	height: 380px;
-	margin-top: 10%;
+	
 }
 
 @media (max-width : 576px) {
 	#ofertas {
 		overflow-y: scroll;
 		height: 380px;
-		margin-top: 3%;
+		margin-top: 1%;
 
 
 	}
@@ -1175,20 +1176,21 @@ html {
 
 
 #altura {
-
+	
 	height: auto;
 }
 
 @media (max-width : 576px) {
 	#altura {
-
+		
 		height: auto;
-		margin-left: 1%;
+		margin-left: 3%;
+		width: 80%;
 
 	}
 }
 
-.carousel-inner {
+/* .carousel-inner {
 	position: relative;
 	width: 100%;
 	overflow: hidden;
@@ -1200,7 +1202,7 @@ html {
 		margin-left: 12%;
 
 	}
-}
+} */
 
 #rowMercadillo {
 	padding-left: 13%;
@@ -1208,7 +1210,7 @@ html {
 }
 
 
-#ofertas::-webkit-scrollbar {
+ #ofertas::-webkit-scrollbar {
 	width: 10px;
 	
 	
@@ -1218,4 +1220,5 @@ html {
 	background: transparent transparent;
 	border: 0px ;
 	border-radius: 10px;
-}
+	 
+} 

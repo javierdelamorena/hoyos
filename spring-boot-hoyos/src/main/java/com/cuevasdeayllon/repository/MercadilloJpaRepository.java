@@ -28,7 +28,7 @@ public interface MercadilloJpaRepository extends JpaRepository<Mercadillo, Integ
 
 	List<Mercadillo> findByTipo_servicioPreciMax(String tipo_servicio,double precio);
 	
-	@Query("select e from Mercadillo e where tipo_servicio=?1 and precio>=?2 and precio<=?3 ")
+	@Query("select e from Mercadillo e where tipo_servicio=?1 and precio>=?2 and precio<=?3 ORDER BY precio ")
 
 	List<Mercadillo> findByTipo_servicioPreciMaxMin(String tipo_servicio,double preciomin,double precioMax);
 	
@@ -39,6 +39,9 @@ public interface MercadilloJpaRepository extends JpaRepository<Mercadillo, Integ
 	@Query("select e from Mercadillo e where tipo_servicio=?1")
 
 	Page<Mercadillo> findPaginaByTipo_servicio(Pageable page,String tipo_servicio);
+	@Query("select e from Mercadillo e where nombre_servicio LIKE CONCAT('%', CONCAT(?1, '%'))")
+
+	Page<Mercadillo> findPaginaByNombre_servicio(Pageable page,String nombre_servicio);
 	
 	@Query("select e from Mercadillo e where tipo_servicio=?1 and precio>=?2 ")
 

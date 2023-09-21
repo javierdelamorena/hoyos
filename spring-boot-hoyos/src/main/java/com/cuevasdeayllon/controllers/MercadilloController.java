@@ -401,7 +401,7 @@ public class MercadilloController {
 			}
 
 			mercado.setId(mercado.getId());
-			mercado.setNombre(mercadillo.getNombre());
+			mercado.setNombre(mercadillo.getNombre().trim().toUpperCase());
 			mercado.setPrecio(mercadillo.getPrecio());
 			mercado.setTelefono(mercadillo.getTelefono());
 			mercado.setId_usuario(mercadillo.getId_usuario());
@@ -411,7 +411,7 @@ public class MercadilloController {
 			mercado.setFoto2(mercadillo.getFoto2());
 			mercado.setFoto3(mercadillo.getFoto3());
 			mercado.setFecha(new Date());
-			mercado.setNombre_servicio(mercadillo.getNombre_servicio());
+			mercado.setNombre_servicio(mercadillo.getNombre_servicio().trim().toUpperCase());
 
 			mercadilloservice.actualizarMercadillo(mercado);
 
@@ -514,6 +514,7 @@ public class MercadilloController {
 	public @ResponseBody List<Mercadillo> mercadilloServicioPageTipoServicio(@RequestParam("page") String page,
 			@RequestParam("tipoServicio") String tipoServicio, Model model) {
 		logger.info("Entramos en metodo /tipoServicio las paginas son:" + page);
+		List<Mercadillo> objetos = null;
 		Pageable pagaRequest = PageRequest.of(Integer.parseInt(page), 1);
 
 		Page<Mercadillo> objetosPage = mercadilloservice.findPaginaByTipo_servicio(pagaRequest, tipoServicio);
@@ -522,32 +523,35 @@ public class MercadilloController {
 
 		pageRender.getPaginas().forEach(p -> logger.info("estas son las imagenes" + p.getNumero()));
 		objetosPage.forEach(p -> logger.info("estas son las imagenes" + p.getNombre()));
-		List<Mercadillo> objetos = objetosPage.getContent();
+		objetos = objetosPage.getContent();
+		objetos.forEach(p -> logger.info("este es el tipo" + p.getTipo_servicio()
+				+ " este es el nombre en filtrar por tipo: " + p.getNombre_servicio()));
+
 		return objetos;
+
 	}
 
-//	@GetMapping(path = "/mercadilloPreciosTipoServicio")
-//	public @ResponseBody List<Mercadillo> miMercadilloPrecio(@RequestParam("tipoServicio") String tipoServicio,
-//			@RequestParam(value = "precioMin", required = false) int precioMin,
-//			@RequestParam(value = "precioMax", required = false) int precioMax, Model model) {
-//
-//		logger.info("Entramos en metodo miMercadilloPrecio");
-//		List<Mercadillo> todos = new ArrayList<>();
-//		if (precioMin > 0 && precioMax <= 0) {
-//			todos = mercadilloservice.findByTipoServicioPrecioMin(tipoServicio, precioMin);
-//
-//		} else if (precioMin <= 0 && precioMax > 0) {
-//			todos = mercadilloservice.findByTipoServicioPrecioMax(tipoServicio, precioMax);
-//
-//		} else if (precioMin == 0 && precioMax == 0) {
-//			todos = mercadilloservice.findByTipoServicioPrecioMaxMin(tipoServicio, precioMin, precioMax);
-//		} else {
-//			todos = mercadilloservice.findByTipoServicioPrecioMaxMin(tipoServicio, precioMin, precioMax);
-//		}
-//
-//		return todos;
-//
-//	}
+	@GetMapping(path = "/nombreServicio")
+	public @ResponseBody List<Mercadillo> mercadilloServicioPageNombreServicio(@RequestParam("page") String page,
+			@RequestParam("nombreServicio") String nombreServicio, Model model) {
+		logger.info("Entramos en metodo /nombreServicio las paginas son:" + page + " el nombre del servicio: "
+				+ nombreServicio);
+		List<Mercadillo> objetos = null;
+		Pageable pagaRequest = PageRequest.of(Integer.parseInt(page), 1);
+
+		Page<Mercadillo> objetosPage = mercadilloservice.findPaginaByNombre_servicio(pagaRequest,
+				nombreServicio.toUpperCase());
+
+		PageRender<Mercadillo> pageRender = new PageRender<>("/nombreServicio", objetosPage);
+
+		pageRender.getPaginas().forEach(p -> logger.info("estas son las imagenes" + p.getNumero()));
+
+		objetos = objetosPage.getContent();
+		objetos.forEach(p -> logger.info("este es el nombre en filtrar por nombre" + p.getNombre_servicio()));
+
+		return objetos;
+
+	}
 
 	@GetMapping(path = "/mercadilloPaginasPreciosTipoServicio")
 	public @ResponseBody List<Mercadillo> mercadilloPaginasPreciosTipoServicio(@RequestParam("page") String page,
@@ -556,6 +560,10 @@ public class MercadilloController {
 			@RequestParam(value = "precioMax", required = false) String precioMaximo, Model model) {
 //		@RequestParam(value = "precioMin", required = false) int precioMin,
 //		@RequestParam(value = "precioMax", required = false) int precioMax, Model model) {
+		if(tipoServicio.equals("Buscar por tipo......")) {
+			tipoServicio="Venta";
+		}
+		logger.info("Entramos en metodo /mercadilloPaginasPreciosTipoServicio tipoServicio:" + tipoServicio);
 		logger.info("Entramos en metodo /mercadilloPaginasPreciosTipoServicio precioMinimo:" + precioMinimo);
 		logger.info("Entramos en metodo /mercadilloPaginasPreciosTipoServicio precioMaximo:" + precioMaximo);
 		Integer precioMin = 0;
@@ -574,34 +582,35 @@ public class MercadilloController {
 		}
 		logger.info("Entramos en metodo mercadilloPaginasPreciosTipoServicio la page vale " + page);
 		Pageable pagaRequest = PageRequest.of(Integer.parseInt(page), 1);
-		
+
 		Page<Mercadillo> todos = null;
 //		PageRender<Mercadillo> pageRender = new PageRender<>("/mercadilloPaginasPreciosTipoServicio", todos);
 //		pageRender.getPaginas().forEach(p -> logger.info("estas son las imagenes" + p.getNumero()));
 		try {
-		if (precioMin > 0 && precioMax == 0) {
-			todos = mercadilloservice.findPaginasByTipoServicioPrecioMax(pagaRequest, tipoServicio, precioMin);
+			if (precioMin > 0 && precioMax == 0) {
+				todos = mercadilloservice.findPaginasByTipoServicioPrecioMax(pagaRequest, tipoServicio, precioMin);
 
-		} else if (precioMin == 0 && precioMax > 0) {
-			todos = mercadilloservice.findPaginasByTipoServicioPrecioMax(pagaRequest, tipoServicio, precioMax);
+			} else if (precioMin == 0 && precioMax > 0) {
+				todos = mercadilloservice.findPaginasByTipoServicioPrecioMax(pagaRequest, tipoServicio, precioMax);
 
-		} else if (precioMin > 0 && precioMax == 0) {
-			todos = mercadilloservice.findPaginasByTipoServicioPrecioMaxMin(pagaRequest, tipoServicio, precioMin,
-					precioMax);
-		} else if (precioMin != 0 && precioMax != 0) {
-			todos = mercadilloservice.findPaginasByTipoServicioPrecioMaxMin(pagaRequest, tipoServicio, precioMin,
-					precioMax);
-		} else if (precioMin == 0 && precioMax == 0) {
-			todos = mercadilloservice.findPaginasByTipoServicioPrecioMaxMin(pagaRequest, tipoServicio, precioMin,
-					precioMax);
-		}
-		else {
-			todos = null;
-		}
-		}catch(NullArgumentException e) {
+			} else if (precioMin > 0 && precioMax == 0) {
+				todos = mercadilloservice.findPaginasByTipoServicioPrecioMaxMin(pagaRequest, tipoServicio, precioMin,
+						precioMax);
+			} else if (precioMin != 0 && precioMax != 0) {
+				todos = mercadilloservice.findPaginasByTipoServicioPrecioMaxMin(pagaRequest, tipoServicio, precioMin,
+						precioMax);
+			} else if (precioMin == 0 && precioMax == 0) {
+				todos = mercadilloservice.findPaginasByTipoServicioPrecioMaxMin(pagaRequest, tipoServicio, precioMin,
+						precioMax);
+			} else {
+				todos = null;
+			}
+		} catch (NullArgumentException e) {
 			logger.info(e.getMessage());
 		}
 		List<Mercadillo> objetos = todos.getContent();
+		objetos.forEach(p -> logger.info("este es el nombre en filtrar por precio" + p.getNombre_servicio()));
+
 		return objetos;
 
 	}
@@ -621,6 +630,10 @@ public class MercadilloController {
 		pageRender.getPaginas().forEach(p -> logger.info("estas son las imagenes" + p.getNumero()));
 		objetosPage.forEach(p -> logger.info("estas son las imagenes" + p.getNombre()));
 		List<Mercadillo> objetos = objetosPage.getContent();
-		return objetos;
+		if (objetos != null) {
+			return objetos;
+		} else {
+			return null;
+		}
 	}
 }

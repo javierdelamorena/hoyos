@@ -12,7 +12,7 @@
 
 </head>
 
-<body >
+<body>
 
     <div class="row">
         <header class="bodyMercadilloSubir" style="text-align: center;
@@ -31,11 +31,12 @@
     <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
     <hr>
     <div>
-        <div class="col-lg-3 col-sm-10" id="textoExplicacion" style="margin-right: 4%; 
-        margin-top: 4%;       
+        <div class="col-lg-3 col-sm-10" id="textoExplicacion" style=" margin-left: 5%;
+        margin-top: 4%;
         float: right;
+        margin-right: 5%;">
         
-        margin-left: 0%;">
+       
             <hr>
             <p th:text="#{text.cliente.textomercadillo}">
                 <!-- En este apartado podrás anunciar cualquier cosa que quieras vender o alquilar (una casa, un terreno, un
@@ -50,28 +51,50 @@
             </p>
             <hr>
         </div>
-        <div class="container col-lg-5" id="selectorTipo" style="float: right;margin-bottom: 15%;margin-top: 2%;">
-            <!-- <select class="form-control"  id="myInput" onchange="search()"> -->
+        <div class="container col-lg-5" id="selectorTipo" style="padding-left: 8%;float: right;margin-bottom: 15%;">
+            
             <div class="divSelecMercadillo">
+                <div id="volverMercadillo" >
+                    <a class="btn" href="http://localhost:8080/spring-boot-hoyos/mercadilloexterior"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="25" fill="currentColor"
+                            class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                        </svg></a>
+                </div>
                 <select class="form-select " id="myInput">
-                    <option>Buscar oferta......</option>
+                    <option>Buscar por tipo......</option>
                     <option class="Venta">Venta</option>
                     <option class="Compra">Compra</option>
                     <option class="Servicios">Servicios</option>
                     <option class="Alquiler">Alquiler</option>
 
                 </select>
+                <div class="row g-3" style="margin-top: 1%;" id="divBuscarPrecio">
+                    <div class="col-4">
+                        <label for="precioMinimo" class="form-label">Precio Minimo</label>
+                        <input type="number" name="precioMinimo" value="0" class="form-control" id="precioMinimo">
+                    </div>
+                    <div class="col-4">
+                        <label for="precioMaximo" class="form-label">Precio Maximo</label>
+                        <input type="number" name="precioMaximo" value="0" class="form-control" id="precioMaximo">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary mb-3" id="filtrarPrecio" onclick="filtrotiposervicioPrecio();"style="margin-top: 21%;">Buscar por Precio</button>
+                    </div>
+                </div>
+                <div class="row g-3" style="margin-top: 1%; " id="divBuscarNombre">
+                    <div class="col-auto">
+                        <label for="nombreProducto" class="form-label">Nombre del Producto o servicio</label>
+                        <input type="text"title="Ej: Casa, Coche, Silla, Informatica, Clases, Yoga "name="nombreServicio" class="form-control" id="nombreServicio"placeholder="Ej: Casa, Coche, Silla, Informatica">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary mb-3" id="nombreProducto" onclick="filtronombreProducto();"style="margin-top: 20%;">Buscar por nombre</button>
+                    </div>
+                </div>
             </div>
-            <!-- <form>
-                <input class="form-control" type="text" id="myInput" placeholder="Buscar oferta......" onkeyup="search()"style="width: 80%;
-                border: ridge;
-                border-radius: 10px;
-                margin-left: 2%;
-                padding: 1%;">
-              </form> -->
-            <!-- <div id="ofertas" onscroll="esElFinal()" style="margin-left: 4%;"> -->
-                <div id="ofertas"  style="margin-left: 4%;"class="scroller">
-                
+            
+            <div id="ofertas" style="margin-left: 4%;" class="scroller">
+
             </div>
         </div>
         <aside th:replace="layouts/fragmentoprincipal :: footer"></aside>
@@ -86,6 +109,7 @@
     <script th:src="@{/js/filtroTiposervicio.js}"></script>
     <!-- <script th:src="@{/js/paginator.js}"></script> -->
     <script th:src="@{/js/filtroTiposervicioPrecio.js}"></script>
+    <script th:src="@{/js/filtroNombreServicio.js}"></script>
 
 
 
