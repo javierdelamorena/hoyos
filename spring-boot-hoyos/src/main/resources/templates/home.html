@@ -16,6 +16,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script th:src="@{/js/fecha.js}"></script>
   <script th:src="@{/js/clima.js}"></script>
+  <script th:src="@{/js/mostrarBotones.js}"></script>
 
 </head>
 
@@ -47,13 +48,14 @@
   <hr>
 
   <!-- <div class="row" style="margin-left: 10%;"> -->
-  <div class="container-fluid">
-    <div class="col-lg-2 col-sm-8" style="margin-top: 4%;
+  <div >
+    <div class="col-lg-2" id="textoExplicacion" >
+    <!-- <div class="col-lg-2 col-sm-8" style="margin-top: 4%;
     margin-left: 11%;
     font-size: 20px;
     /* font-family: sans-serif; */
     font-family: cursive;float: right;
-    margin-right: 7%;">
+    margin-right: 7%;"> -->
       <img src="" alt="">
       <img src="uploads/Escudo_de_Hoyos.svg.png" alt="" style="width: 80%;">
       <!-- <p>Cuevas de Ayllón es una localidad del municipio de Montejo de Tiermes en la
@@ -64,12 +66,11 @@
         pertenece a la Archidiócesis de Burgos.</p> -->
     </div>
 
-    <div class="col-lg-4 col-sm-10" style="margin-top: 4%;float: right;
-    margin-left: 11%;
+    <div class="container col-lg-5 col-sm-12" id="divMedio"  >
    
-    /* font-family: sans-serif; */
     
-    margin-bottom: 15%;" id="textoPresentacion" th:text="#{text.cliente.textoHome}">
+    <p style="margin-bottom: 15%;" id="textoPresentacion" th:text="#{text.cliente.textoHome}"></p>
+    
        <!-- <p >Hoyos es un remanso de luz, de casas y calles nobiliarias en las que perviven imágenes populares como estampa
         de las encajeras. El pueblo está rodeado de bellos y numerosos huertos familiares de naranjos y limoneros que
         perfuman deliciosamente el ambiente cuando el azahar florece, árboles exóticos como los ornamentales y delicados

@@ -74,7 +74,7 @@ function cargardatosNombre() {
                     html += '</div>';
 
                     html += '</div>';
-                    html += '<div class="col-lg-4" style="margin-top: 1%;" id="textoMercadillo">';
+                    html += '<div class="col-lg-7" style="margin-top: 1%;" id="textoMercadillo">';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;">';
                     html += '<p >Fecha del anuncio: ' + objetos[i].fecha + '</p>';
                     html += '</div>';
@@ -90,7 +90,7 @@ function cargardatosNombre() {
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
-                    html += '<hr style="margin-top: 3%;width: 72%;">';
+                    html += '<hr style="margin-top: 3%;">';
 
 
 
@@ -137,7 +137,7 @@ function cargardatosNombre() {
                     html += '</div>';
 
                     html += '</div>';
-                    html += '<div class="col-lg-4" style="margin-top: 1%;" id="textoMercadillo">';
+                    html += '<div class="col-lg-7" style="margin-top: 1%;" id="textoMercadillo">';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;">';
                     html += '<p >Fecha del anuncio: ' + objetos[i].fecha + '</p>';
                     html += '</div>';
@@ -153,7 +153,7 @@ function cargardatosNombre() {
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
-                    html += '<hr style="margin-top: 3%;width: 72%;">';
+                    html += '<hr style="margin-top: 3%;">';
 
 
 
@@ -200,7 +200,7 @@ function cargardatosNombre() {
                     html += '</div>';
 
                     html += '</div>';
-                    html += '<div class="col-lg-4" style="margin-top: 1%;" id="textoMercadillo">';
+                    html += '<div class="col-lg-7" style="margin-top: 1%;" id="textoMercadillo">';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;">';
                     html += '<p >Fecha del anuncio: ' + objetos[i].fecha + '</p>';
                     html += ' </div>';
@@ -215,7 +215,7 @@ function cargardatosNombre() {
                     html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
-                    html += '<hr style="margin-top: 3%;width: 72%;">';
+                    html += '<hr style="margin-top: 3%;">';
                     html += '</div>';
 
                 }
@@ -260,7 +260,7 @@ function cargardatosNombre() {
                     html += '</div>';
 
                     html += '</div>';
-                    html += '<div class="col-lg-4" style="margin-top: 1%;" id="textoMercadillo">';
+                    html += '<div class="col-lg-7" style="margin-top: 1%;" id="textoMercadillo">';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;">';
                     html += '<p >Fecha del anuncio: ' + objetos[i].fecha + '</p>';
                     html += ' </div>';
@@ -276,7 +276,7 @@ function cargardatosNombre() {
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
-                    html += '<hr style="margin-top: 3%;width: 72%;">';
+                    html += '<hr style="margin-top: 3%;">';
 
 
                 }

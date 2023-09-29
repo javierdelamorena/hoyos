@@ -54,7 +54,7 @@
                     </li>
 
                     <li class="nav-item " style="margin-left:5px;">
-                        <a class="nav-link" th:href="@{/mercadilloexterior}"  th:text="#{text.cliente.compraventa}"></a>
+                        <a class="nav-link" th:href="@{/mercadilloexterior}" th:text="#{text.cliente.compraventa}"></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -64,6 +64,10 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="desplegableNavPrincipal">
                             <li><a class="dropdown-item" th:href="@{/registrarse}">Registrarse</a></li>
                             <li><a class="dropdown-item" th:href="@{/toLoging}">Entrar</a></li>
+                            <li><a class="dropdown-item" th:href="@{/contacto}" th:text="#{text.cliente.contacto}"></a>
+                            </li>
+                            <li><a class="dropdown-item" th:href="@{/preguntas}"
+                                    th:text="#{text.cliente.preguntas}"></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -72,26 +76,171 @@
     </nav>
 
 
-    <aside th:fragment="footer" id="textoAside" class="col-lg-2 col-sm-12" style="margin-left: 5%;
-    margin-top: 4%;">
-        <a href="" style="text-decoration: none;
-        color: #2f3235c7;">Hoyos</a>
+    <aside th:fragment="footer" id="textoAside" class="col-lg-2 col-sm-12">
+        <button style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;"
+            onclick="mostrarAyuntamiento('q1');">Ayuntamiento</button>
+
+        <div id="q1" style="display:none;padding-top: 4%;"><a href="tel:+34927514002"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927514002<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
         <hr>
-        <a href="https://www.guardiacivil.es/es/institucional/directorio/caceres/puesto_de_hoyos.html"
-            style="text-decoration: none;color: #2f3235c7;" data-toggles="tooltip" data-placement="bottom" title="GUARDIA CIVIL
+        <button style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;"
+            onclick="mostrarAyuntamiento('q2');">Centro de Salud</button>
+
+        <div id="q2" style="display:none;padding-top: 4%;"><a href="tel:+34927514346"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927514346<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
+        <hr>
+        <button
+            style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;text-decoration: none;"
+            onclick="mostrarAyuntamiento('q3');">Oficina de Correos</button>
+
+        <div id="q3" style="display:none;padding-top: 4%;"><a href="tel:+34927514059"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927514059<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
+
+        <hr>
+
+
+        <button
+            style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;text-decoration: none;"
+            onclick="mostrarAyuntamiento('q4');" data-toggles="tooltip" data-placement="bottom" title="GUARDIA CIVIL
             PUESTO DE HOYOS
             Localidad: HOYOS
             Provincia: CACERES
             Dirección postal: AVDA. DE ESPAÑA, 1
             Código postal: 10850
-            Teléfono: 927514006" th:text="#{text.cliente.seguridad}"></a>
+            Teléfono: 927514006" th:text="#{text.cliente.seguridad}"></button>
+
+        <div id="q4" style="display:none; padding-top: 4%;"><a href="tel:+34927514346"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">92714006<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
         <hr>
-        <a th:href="@{/contacto}" style="text-decoration: none;color: #2f3235c7;"
-            th:text="#{text.cliente.contacto}"></a>
+
+        <button
+            style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;text-decoration: none;"
+            onclick="mostrarAyuntamiento('q6');">Juzgado</button>
+
+        <div id="q6" style="display:none;padding-top: 4%;"><a href="tel:+34927514007"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927514007<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
+
         <hr>
-        <a th:href="@{/preguntas}" style="text-decoration: none;color: #2f3235c7;"
-            th:text="#{text.cliente.preguntas}"></a>
+        <button
+            style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;text-decoration: none;"
+            onclick="mostrarAyuntamiento('q7');">Inem</button>
+
+        <div id="q7" style="display:none;padding-top: 4%;"><a href="tel:+34927514376"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927514376<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
+
         <hr>
+        <button
+            style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;text-decoration: none;"
+            onclick="mostrarAyuntamiento('q8');">Notaria</button>
+
+        <div id="q8" style="display:none;padding-top: 4%;"><a href="tel:+34927514037"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927514037<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
+
+        <hr>
+        <button
+            style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;text-decoration: none;"
+            onclick="mostrarAyuntamiento('q9');">Residencia Villa de Hoyos</button>
+
+        <div id="q9" style="display:none;padding-top: 4%;"><a href="tel:+34927514570"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927514570<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
+
+        <hr>
+
+        <button
+            style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;text-decoration: none;"
+            onclick="mostrarAyuntamiento('q11');">Farmacia</button>
+
+        <div id="q11" style="display:none;padding-top: 4%;"><a href="tel:+34927514054"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927514054<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
+
+        <hr>
+
+        <button
+            style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;text-decoration: none;"
+            onclick="mostrarAyuntamiento('q10');">Colegio Publico Obispo Alvarez de Castro</button>
+
+        <div id="q10" style="display:none;padding-top: 4%;"><a href="tel:+34927513800"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927513800<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
+
+        <hr>
+        <button
+            style="text-decoration: none;color: #2f3235c7;border: none;background-color: transparent;text-decoration: none;"
+            onclick="mostrarAyuntamiento('q5');">Mancomunidad de Municipios de Sierra de Gata</button>
+
+        <div id="q5" style="display:none;padding-top: 4%;"><a href="tel:+34927514583"
+                style="color: #2f3235c7;text-decoration: none;padding-left: 1%;margin: 1%;">927514583<svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    style="margin-left: 4%;" class="bi bi-telephone" viewBox="0 0 16 16">
+                    <path
+                        d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg></a></div>
+
+
+        <hr>
+
+
+
+
         <a href="https://www.google.com/maps/place/10850+Hoyos,+C%C3%A1ceres/@40.1712811,-6.7299004,15z/data=!3m1!4b1!4m6!3m5!1s0xd3dc0dd45bdd52b:0xa9566addb72720f0!8m2!3d40.1720606!4d-6.7206346!16s%2Fm%2F02z7jz1?entry=ttu"
             style="text-decoration: none;color: #2f3235c7;">Como llegar</a>
         <hr>

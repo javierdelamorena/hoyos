@@ -24,23 +24,18 @@
       font-family: cursive;
       border-radius: 10px;
       height: 100%;">
-			<div class="col-lg-2 fecha" id="fecha" ></div>
+			<div class="col-lg-2 fecha" id="fecha"></div>
 
 			<div class="col-lg-5" id="divCartel">
 				<div id="cartelLogin">Entra en espacio vecinal Hoyos</div>
 			</div>
-			<div th:replace="layouts/fragmentoprincipal :: nombreFoto" ></div>
+			<div th:replace="layouts/fragmentoprincipal :: nombreFoto"></div>
 		</header>
 	</div>
 
 	<nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
 	<div>
-		<div class="col-lg-3 col-sm-10" id="textoExplicacion" style=" margin-left: 7%;
-			margin-top: 3%;
-			
-			
-			float: right;
-			margin-right: 4%;">
+		<div class="col-lg-2 col-sm-10" id="textoExplicacion">
 			<hr>
 			<p>
 				Desde aquí puedes entrar en el espacio vecinal de Hoyos. Necesitarás introducir el email y
@@ -52,12 +47,12 @@
 			</p>
 			</br>
 
-			
+
 			<hr>
 		</div>
 
-		<div class="col-lg-4 col-sm-8 " 
-			style=" margin-top: 3%;margin-left: 7%; margin-bottom: 3%; background-color: #5d7e3fc7;; border-radius: 2px;float:right;padding: 30px;margin-bottom: 15%; ">
+		<div class="container  col-lg-5 col-sm-12" id="divMedio"
+			style=" background-color: #5d7e3fc7; border-radius: 2px;padding: 3%; ">
 			<h5 id="formularioRegistro" style="margin-left: 1%;font-size: 19px;">Entra en el espacio
 				vecinal de Hoyos con tu email y contraseña.</h5>
 
@@ -67,14 +62,16 @@
 				<div class="row col-lg-8 col-sm-4">
 					<label form="email" class="col-form-label" th:text="${email}"></label>
 				</div>
-				<div class="row col-lg-8 col-sm-4">					<!-- <input type="text" id="nombre" name="nombre" class="form-control"> -->
+				<div class="row col-lg-8 col-sm-4">
+					<!-- <input type="text" id="nombre" name="nombre" class="form-control"> -->
 					<input type="text" id="email" name="email" class="form-control">
 				</div>
 
 				<div class="row col-lg-8 col-sm-4">
 					<label form="password" class="col-form-label" th:text="${Password}"></label>
 				</div>
-				<div class="row col-lg-8 col-sm-4">					<!-- <input type="password" id="password" name="password" class="form-control"> -->
+				<div class="row col-lg-8 col-sm-4">
+					<!-- <input type="password" id="password" name="password" class="form-control"> -->
 					<input type="password" id="password" name="password" class="form-control">
 				</div>
 				</br>
@@ -94,12 +91,12 @@
 	">Has olvidado tu contraseña?</a>
 		</div>
 
-		<aside th:replace="layouts/fragmentoprincipal :: footer" class="col-lg-2" style="text-decoration: none;margin-top: 3%;margin-left: 10%;"></aside>
+		<aside th:replace="layouts/fragmentoprincipal :: footer"></aside>
 	</div>
 
 
 	<!-- <footer th:replace="layouts/fragmentoprincipal :: footer"></footer> -->
-	
+
 
 </body>
 

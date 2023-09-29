@@ -77,7 +77,7 @@ public class UsuarioController {
 
 
 			//String rootPath="/uploads/";
-			String rootPath="C://TEMP//uploads";
+			String rootPath="D://TEMP//uploads";
 
 			if(!foto.isEmpty()&&usuario!=null) {
 
@@ -345,7 +345,7 @@ public class UsuarioController {
 			}
 
 			//String rootPath="/uploads/";
-			String rootPath="C://TEMP//uploads";
+			String rootPath="D://TEMP//uploads";
 			try {
 				byte[]bytes=foto.getBytes();
 				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());

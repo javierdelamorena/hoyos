@@ -113,8 +113,8 @@ public class FotosController {
 		Fotos fotos=new Fotos();
 		
 		//String rootPath="/uploadsGaleria/";
-		String rootPath="C://TEMP//uploadsGaleria";
-		//String rootPath="C:\\TEMP\\uploadsGaleria\\";
+		String rootPath="D://TEMP//uploadsGaleria";
+		//String rootPath="D:\\TEMP\\uploadsGaleria\\";
 
 		if(!foto.isEmpty()&&id_usuario>0) {
 			int oraLen = foto.getOriginalFilename().length();
@@ -134,10 +134,7 @@ public class FotosController {
 				
 				Files.write(rutaCompleta,bytes);
 				BufferedImage bufferedImage=ImageResizer.loadImage(rootPath+"\\"+foto.getOriginalFilename());
-				BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);
-				
-
-				
+				BufferedImage bufferedImageResize=ImageResizer.resize(bufferedImage, 400, 400);				
 			    ImageResizer.saveImage(bufferedImageResize, rootPath+"//"+foto.getOriginalFilename());
 				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
 				
@@ -201,7 +198,7 @@ public class FotosController {
 		fotos=service.fotoById(idfoto);
 
 		//String rootPath="/uploadsGaleria/";
-		String rootPath="C://TEMP//uploadsGaleria";
+		String rootPath="D://TEMP//uploadsGaleria";
 
 		if(!foto.isEmpty()&&usuario!=null) {
 			int oraLen = foto.getOriginalFilename().length();

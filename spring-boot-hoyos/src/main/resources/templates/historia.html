@@ -23,10 +23,10 @@
   height: 100%;">
       <div class="col-lg-2 fecha" id="fecha"></div>
 
-      <div class="col-lg-5" id="divCartel">
+      <div class="col-lg-5 " id="divCartel">
         <div id="cartelHistoria" th:text="#{text.cliente.cartelhistoria}"></div>
       </div>
-      <div th:replace="layouts/fragmentoprincipal :: nombreFoto" ></div>
+      <div th:replace="layouts/fragmentoprincipal :: nombreFoto"></div>
     </header>
   </div>
   <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
@@ -35,13 +35,9 @@
 
 
   <!-- <div class="row" style="margin-left: 7%;">  -->
-  <div class="container-fluid">
-    <div class="col-lg-2" id="textoExplicacion" style=" margin-left: 5%;
-    margin-top: 4%;
-   
-    
-    float: right;
-    margin-right: 5%;">
+  <!-- <div class="container-fluid"> -->
+    <div >
+    <div class="col-lg-2" id="textoExplicacion" >
       <hr>
       <p th:text="#{text.cliente.textohistoria}">
         <!-- En esta sección hacemos un breve resumen histórico de Hoyos. Si nos visitas te
@@ -57,135 +53,47 @@
       <hr>
     </div>
 
-    <div class="caja col-lg-5" style="margin-top: 4%;float: right;margin-bottom: 15%;">
+    <div class="container caja col-lg-5" id="divMedio">
       <!-- <textarea name="" id="historia" cols="200" rows="50" readonly> -->
       <h2 style=" text-align: center; font-weight: bold;margin-top: 10%;">
         Hoyos
       </h2><br><br><br>
       <p style="text-align: left;font-weight: bold;margin-left: 7px;" th:text="#{text.cliente.historia0}">
-       
+
       </p><br>
       <p th:text="#{text.cliente.historia1}">
-        <!-- La historia de Hoyos estuvo relacionada con antiguos asentamientos romanos, árabes… pero lo que más se reconoce
-        es la etapa de la Reconquista, cuando el territorio de Hoyos sería incorporado al Reino de León. A comienzos del
-        siglo XIX sufrió la localidad las consecuencias de la Guerra de la Independencia, al ser el Puerto de Perales
-        paso obligatorio de las tropas francesas. El anciano obispo de Coria Don Juan Álvarez de Castro, que recomendaba
-        mediante la publicación de sus pastorales la unión del pueblo y la sumisión a las Juntas, fue perseguido por los
-        invasores hasta asesinarlo el día 29 de agosto de 1809 en su casa en Hoyos. Desde el año 1840 fue la Villa de
-        Hoyos cabeza del amplio partido judicial que llegó a comprender dieciocho entidades de población. Debido a que
-        Hoyos fue elegido por cierta nobleza y por los obispos de Coria como lugar de residencia veraniega, el casco
-        histórico presenta un importante interés artístico. Recomendamos al viajero un recorrido por su santiguas calles
-        que regalan la prestancia propia de los pueblos que han vivido intensamente la historia. En este recorrido, a
-        cada momento, entramos la sorpresa de un bello rincón: un escudo que timbra un alto portalón de medio punto, una
-        sugerente venta de estilo gótico-renacentista, modulaciones ornamentales, una casa palaciega, más ventas, más
-        escudos, una fuente, un crucero…. -->
-     
+
+
 
       <p style="">
-
-      
-      <p th:text="#{text.cliente.historia2}">
-        <!-- El casco histórico se dispone en el entorno de la Iglesia del Buen Varón, que enmarca tres grandes plazas:
-        Constitución, Mayor y Gabriel y Galán o “El Coso”, antigua plaza de toros. La plaza Mayor es un amplio espacio
-        abierto ante la fachada de poniente del templo, con su portal románico. En este recinto se alza el Ayuntamiento,
-        de noble prestancia. De la plaza salen las dos calles más relevantes, dirección norte, la calle Obispo Álvarez
-        de Castro, donde encontramos una mezcla de casas típicas populares junto a unas notables casonas de piedra
-        sillar adornadas con estupendas ventanas geminadas decoradas con adornos florales; y dirección sur, la Antigua
-        Calle Real, que constituye la entrada meridional al pueblo que se alarga hasta el barrio del Escobar, la ermita
-        del Cristo Bendito, pasando las ruinas del Convento Franciscano del Espíritu Santo cuyo fundador, hijo de Hoyos,
-        llamado Pablo Pérez, acompañó a Pizarro en la conquista de América, junto a otros tantos “soyanos” como Marcos
-        Veas. -->
+      <p th:text="#{text.cliente.historia2}"></p></br>
+      <p th:text="#{text.cliente.historia3}"></p></br>
       </p></br>
-      <p th:text="#{text.cliente.historia3}">
-        <!-- Muy significativa es su arquitectura religiosa, aunque las ermitas primitivas solo pueden citarse la del Cristo
-        Bendito del Valle, cuadrada y de sillería granítica de mediados del siglo XVI que posee la talla de Cristo
-        crucificado. Tuvo también Hoyos un convento franciscano, Convento del Espíritu Santo, hoy en deplorable estado
-        de ruina. Es de segunda mitad del siglo XVI, aunque pudo tener su conclusión definitiva en 1641, fecha que
-        figura sobre el Blasón de Pablo Pérez. -->
-      </p></br>
-    </p></br>
-
-
-    <p style="text-align: left;font-weight: bold;margin-left: 7px;" th:text="#{text.cliente.historiaConjuntoHistorico}">
-      
-    </p><br>
-      <p th:text="#{text.cliente.historia4}"> 
-        <!-- De la
-        plaza salen las dos calles más relevantes, dirección norte, la calles Obispo Álvares de Castro, donde
-        encontramos una mezcla de casas típicas populares junto a unas notables casonas de piedra sillar adornadas con
-        estupendas ventanas geminadas decoradas con adornos florales; y dirección sur, la antigua Calle Real, que
-        constituye la entrada meridional al pueblo que se alarga hasta el Barrio del Escobar, la ermita del Cristo
-        Bendito, pasando por las ruinas del Convento Franciscano del Espíritu Santo cuyo fundador, hijo de Hoyos,
-        llamado Pablo Peréz, acompaño a Pizarro en la conquista de América, junto a otros tantos "soyanos" como Marcos
-        Veas. -->
-      </p></br>
-      <p th:text="#{text.cliente.historia5}">
-        <!-- Decir que contamos con la Casa de Arquitectura Vernácula, una joya arquitectónica en sí misma, que nos traslada
-        al modo en que vivían nuestros antepasados en el Siglo XIX. Esta casa alberga exposiciones a la vez que sirve de
-        punto de información turística. Está situada en la Calle Obispo Álvarez de Castro nº 57. -->
-      </p></br>
-      <p th:text="#{text.cliente.historia6}">
-        <!-- Tiene Hoyos la suerte de ser un pueblo cuajado de arte, pero el edificio más característico y de gran interés
-        artístico es la Iglesia de Nuestra Señora del Buen Varón, cuya imagen sedente, datable en el siglo XIII, preside
-        el retablo mayor, Compleja es la historia constructiva de la parroquia de esta localidad. Cuenta la tradición
-        que el templo lo fundó un legendario personaje, algún maestro rural relacionado con la encomienda de Trevejo en
-        la primera mitad del siglo XIII. -->
-      </p></br>
-      <p th:text="#{text.cliente.historia7}">
-        <!-- El primitivo templo se iría ampliando según fuera creciendo la demografía del lugar a finales del siglo XV es
-        cuando se comienza el nuevo templo insertándolo en el anterior. En ella se observa la mano de Pedro de Ybarra
-        quien, posiblemente dirigió las obras entre 1545 y 1560. -->
-      </p></br>
-      <p th:text="#{text.cliente.historia8}">
-        <!-- La parroquia ubicada en el centro del pueblo construida con excelente piedra sillar, tiene tres portadas
-        abiertas a cada una de sus plazas dando el acceso al templo. Pero en la puerta principal, la más importante
-        desde el punto de vista artístico uno los escasos ejemplos de estilo tardo románico que pueden encontrarse en
-        Extremadura, pertenecientes a la Antigua parroquia Medieval. Destaca en ella el arco de Medio Punto, embellecida
-        con sendas arquivoltas, con dos columnas a cada lado y atractivos capiteles con ornamentaciones vegetales, e
-        imágenes que quizás aludan a la virgen María a la que está dedicada el templo. Las otras dos portadas son de
-        estilo gótico y perteneciente a la nueva construcción del primer cuarto del siglo XVI. Son de gran interés las
-        gárgolas con formas tubulares y de animales, así como los ocho curiosos pináculos adornados con bolas situadas
-        en la zona alta, que decoran y bordean la iglesia. -->
-      </p></br>
-      <!-- <p th:text="#{text.cliente.historia9}"> -->
-        <!-- El estilo del interior de la iglesia es muy variado, pero muy similares a las parroquias vecinas de Acebo y
-        Gata, en las que también intervino en gran Pedro de Ybarra. El barroco retablo Mayor, obra del círculo de los
-        Churriguera, decorado con cuatro columnas Salomónicas donde se encuentra la representación de la crucifixión del
-        Señor, junto con maría y San Pedro del Siglo XVII. En el centro de la joya más característica de esta capilla,
-        la imagen de Nuestra Señora del Buen Varón del Siglo XIII a la que está dedicado este templo, y abajo le
-        acompaña la talla de la Inmaculada Concepción. A los lados, las imágenes de San Ramón Nonato (XVIII) y San
-        Bartolomé (XVI). También descubrimos a los patronos del pueblo de San Lorenzo a la izquierda, y San Lino a la
-        derecha, cuyas fiestas locales son el 10 de Agosto y el 23 de septiembre. La sacristía está dotada con imágenes
-        llenas de dolor, vestida de negro y con triste mirada, se encuentra en la procesión más emblemática de la Semana
-        Santa “La procesión de la Soledad”. De notable estilo es el coro renacentista, sujeto en tres capiteles, con un
-        órgano
-        antigua, deteriorado por el tiempo y algunos retablos que se trajeron del Convento del Espíritu Santo. Para
-        subir hasta el coro debemos ascender por unas escaleras de caracol que conducen hasta la torre del campanario
-        abriéndose a modo de abanico con un total de 102 peldaños. Desde el campanario se divisa una bella panorámica de
-        toda la localidad y su entorno natural. Elemento notable es el pulpito de granito empotrado en el arco de la
-        capilla mayor siglo XVI. -->
-
-
-      </p></br>
+      <p style="text-align: left;font-weight: bold;margin-left: 7px;"
+        th:text="#{text.cliente.historiaConjuntoHistorico}"></p><br>
+      <p th:text="#{text.cliente.historia4}"></p></br>
+      <img src="/spring-boot-hoyos/uploadsHistoria/uploadsHistoria1.jpg" class="d-block w-100" alt='...'></br>
+      <img src="/spring-boot-hoyos/uploadsHistoria/uploadsHistoria2.jpg" class="d-block w-100" alt='...'></br>
+      <p th:text="#{text.cliente.historia5}"></p></br>
+      <p th:text="#{text.cliente.historia6}"></p></br>
+      <img src="/spring-boot-hoyos/uploadsHistoria/uploadsHistoria3.jpg" class="d-block w-100" alt='...'></br>
+      <p th:text="#{text.cliente.historia7}"></p></br>
+      <p th:text="#{text.cliente.historia8}"></p></br>
+      <img src="/spring-boot-hoyos/uploadsHistoria/uploadsHistoria4.jpg" class="d-block w-100" alt='...'></br>
       <p style="text-align: left;font-weight: bold;margin-left: 7px;" th:text="#{text.cliente.fiestaslocales}">
         <!-- FIESTAS LOCALES -->
       </p><br>
-      <p th:text="#{text.cliente.historia9}">
-        ROMERÍA DEL CARRASCAL: Se celebra durante el tercer domingo del mes de mayo y está dedicada a Nuestra Señora del
-        Buen Varón. Se sale el Sábado andando y a caballo con la virgen hacia la finca municipal El Carrascal ubicada en
-        Huelaga y se regresa el Domingo.
-        FERIA AGROGANADERA: Se celebraba el 15 de junio desde el año 1951.
-        SAN LORENZO: Se celebra el día 10 de agosto. Amplia programación de actividades culturales, deportivas y
-        verbenas populares.
-        SAN LINO: Se celebra el 23 de septiembre. Es el patrón del pueblo
+      <p th:text="#{text.cliente.historia9}"></p><br>
+      <p th:text="#{text.cliente.historia10}"></p><br>
+      <p th:text="#{text.cliente.historia11}"></p><br>
+      <p th:text="#{text.cliente.historia12}"></p><br>
 
+      <img src="/spring-boot-hoyos/uploadsHistoria/uploadsHistoria5.jpg" class="d-block w-100" alt='...'>
+      </br>
 
-
-      </p><br>
       <!-- </textarea> -->
     </div>
-    <aside th:replace="layouts/fragmentoprincipal :: footer" class="col-lg-2"
-      style="text-decoration: none;margin-top: 3%;margin-left: 5%;"></aside>
+    <aside th:replace="layouts/fragmentoprincipal :: footer" ></aside>
 
 
   </div>
@@ -197,6 +105,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script th:src="@{/js/fecha.js}"></script>
   <script th:src="@{/js/clima.js}"></script>
+  <script th:src="@{/js/mostrarBotones.js}"></script>
 </body>
 
 </html>

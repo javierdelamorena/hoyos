@@ -30,12 +30,10 @@
         </header>
     </div>
     <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
+    <hr>
     <!-- <div class="row" style="margin-left: 10%;"> -->
     <div>
-        <div class="col-lg-2" id="textoExplicacion" style=" margin-left: 5%;
-        margin-top: 4%;        
-        float: right;
-        margin-right: 5%;">
+        <div class="col-lg-2" id="textoExplicacion">
             <hr>
             <p th:text="#{text.cliente.textorutas}">
 
@@ -50,197 +48,235 @@
         </div>
 
 
-        <div class="container col-lg-5 col-sm-10" style="margin-left: 2%;
-        margin-top: 4%;
-        list-style: none;
-        font-size: 20px;
-        float: right;
-        text-align: center;
-        margin-bottom: 4%;">
-            <ul style="padding-right: 10%;list-style:none">
-                <li style="background-color: #deb887c7;padding: 1%;list-style-type: none;">
-                    <a href="" id="botonesRutas" style="text-decoration: none;margin-top: 3%;">
-                        Lista de rutas que ofrece Hoyos
-                    </a>
-                </li>
-                <hr>
+        <div class="container col-lg-5 col-sm-12" id="divMedio"
+            style="box-shadow: 1px 0px 11px -1px;border-radius: 5px;padding: 3%;">
+            <div class="col-12" style="text-align: center;background-color: #be853a91;
+            border-radius: 4px;margin-top: 3%;font-style: oblique;">
 
-                <li style="padding: 1%;list-style-type: none;">
-                    <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"
-                        style="text-decoration: none;margin-top: 3%;" th:text="#{text.cliente.rutafuentes}">
+                <p id="tituloRutas">
+                    Lista de rutas que ofrece Hoyos
+                </p>
 
-                    </a>
-                </li>
-                <hr>
-                <li style="padding: 1%;list-style-type: none;">
-                    <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
-                        style="text-decoration: none;margin-top: 3%;" th:text="#{text.cliente.rutapuenteviejo}">
+            </div>
 
-                    </a>
-                </li>
-                <hr>
-                <li style="padding: 1%;list-style-type: none;">
-                    <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"
-                        style="text-decoration: none;margin-top: 3%;" th:text="#{text.cliente.rutacastanios}">
+            <div class="col-12" style="text-align: center;">
 
-                    </a>
-                </li>
-                <hr>
-                <li style="padding: 1%;list-style-type: none;">
-                    <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop4"
-                        style="text-decoration: none;margin-top: 3%;" th:text="#{text.cliente.rutapiscinas}">
+                <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"
+                    th:text="#{text.cliente.rutafuentes}">
 
-                    </a>
-                </li>
-                <hr>
-            </ul>
-        </div>
-        <aside th:replace="layouts/fragmentoprincipal :: footer" class="col-lg-2 col-sm-10"
-            style="text-decoration: none;margin-top: 3%;margin-left: 7%;">
-        </aside>
+                </a>
+                <div class="modal fade modal-lg" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="font-family: cursive;">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p style="font-size: 20px;font-weight: bold;"><b
+                                        th:text="#{text.cliente.rutafuentes0}"></b></p>
+                                </br>
+                                <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes1}">
+                                </p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes2}"></p>
+                                <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes3}">
+                                </p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes4}"></p>
+                                <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes5}">
+                                </p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes6}"></p>
+                                <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes7}">
+                                </p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes8}"></p>
+                                <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes9}">
+                                </p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes10}"></p>
+                                <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes11}">
+                                </p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes12}"></p>
+                                <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes13}">
+                                </p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes14}"></p>
+                                <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes15}">
+                                </p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes16}"></p>
+                                <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes17}">
+                                </p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes18}"></p>
+                                <p style="font-size: 18px;"><b
+                                        th:text="#{text.cliente.rutafuentesFuenteHodonDelLugar}"></b></p>
+                                <img src="imagenesRutas/fuenteHodon.jpg" alt="" style="width: 100%;"></b>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes19}"></p><br>
+                                <p style="font-size: 18px;"><b
+                                        th:text="#{text.cliente.rutafuentesFuentesDeLaPlazaDeLaCapilla}"></b>
+                                </p>
+                                <img src="imagenesRutas/fuenteDelaCapilla.jpg" alt="" style="width: 100%;"></b>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes20}"></p> <br>
+                                <p style="font-size: 18px;"><b
+                                        th:text="#{text.cliente.rutafuentesFuenteDeSanLorenzo}"></b></p>
+                                <img src="imagenesRutas/fuenteSanLorenzo.jpg" alt="" style="width: 100%;"></b>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes21}"></p> <br>
+                                <p style="font-size: 18px;"><b th:text="#{text.cliente.rutafuentesPedroGodinez}"></b>
+                                </p>
+                                <img src="imagenesRutas/fuentePedroGodinez.jpg" alt="" style="width: 100%;"></b>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes22}"></p>
 
-    </div>
 
 
-    <div class="modal fade modal-lg" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/peniaZorrera.jpg" alt="" style="width: 100%;"> -->
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p style="font-size: 20px;font-weight: bold;"><b th:text="#{text.cliente.rutafuentes0}"></b></p>
-                    </br>
-                    <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes1}"></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes2}"></p>
-                    <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes3}"></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes4}"></p>
-                    <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes5}"></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes6}"></p>
-                    <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes7}"></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes8}"></p>
-                    <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes9}"></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes10}"></p>
-                    <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes11}"></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes12}"></p>
-                    <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes13}"></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes14}"></p>
-                    <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes15}"></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes16}"></p>
-                    <p style="font-size: 18px;font-weight: bold;" th:text="#{text.cliente.rutafuentes17}"></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes18}"></p>
-                    <p style="font-size: 18px;"><b th:text="#{text.cliente.rutafuentesFuenteHodonDelLugar}"></b></p>
-                    <img src="imagenesRutas/fuenteHodon.jpg" alt="" style="width: 100%;"></b>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes19}"></p><br>
-                    <p style="font-size: 18px;"><b th:text="#{text.cliente.rutafuentesFuentesDeLaPlazaDeLaCapilla}"></b></p>
-                    <img src="imagenesRutas/fuenteDelaCapilla.jpg" alt="" style="width: 100%;"></b>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes20}"></p> <br>
-                    <p style="font-size: 18px;"><b th:text="#{text.cliente.rutafuentesFuenteDeSanLorenzo}"></b></p>
-                    <img src="imagenesRutas/fuenteSanLorenzo.jpg" alt="" style="width: 100%;"></b>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes21}"></p> <br>
-                    <p style="font-size: 18px;"><b th:text="#{text.cliente.rutafuentesPedroGodinez}"></b></p>
-                    <img src="imagenesRutas/fuentePedroGodinez.jpg" alt="" style="width: 100%;"></b>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutafuentes22}"></p>
 
+                <hr>
+            </div>
+            <div class="col-12" style="text-align: center;">
 
+                <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+                    th:text="#{text.cliente.rutapuenteviejo}">
 
+                </a>
+                <div class="modal fade modal-lg" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
 
-                    <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/peniaZorrera.jpg" alt="" style="width: 100%;"> -->
+                                <p style="font-size: 20px;font-weight: bold;"><b
+                                        th:text="#{text.cliente.rutapuenteviejo0}">
+                                    </b>
+                                </p>
+                                <p style="font-size: 18px;">
 
+                                </p></br>
+                                <!-- <img src="imagenesRutas/pingano1.jpg" alt="" style="width: 100%;"> -->
+                                <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/pingano1.jpg" alt="" style="width: 100%;"> -->
+
+                                <p style="font-size: 18px;">
+
+                                </p></br>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
+                <hr>
+            </div>
+            <div class="col-12" style="text-align: center;">
+
+                <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"
+                    th:text="#{text.cliente.rutacastanios}">
+
+                </a>
+                <div class="modal fade modal-lg" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p style="font-size: 20px;font-weight: bold;"><b
+                                        th:text="#{text.cliente.rutascastanios0}"></b></p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutascastanios1}"></p></br>
+                                <div>
+                                    <img src="imagenesRutas/castanios/castanios2.jpg" alt="" style="width: 100%;">
+                                </div>
+                                </br>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutascastanios2}"></p>
+                                </br>
+                                <div >
+                                    <img src="imagenesRutas/castanios/castanios3.jpg" alt="" style="width: 100%;">
+                                </div>
+                                </br>
+
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutascastanios3}"></p></br>
+                                <div>
+                                    <img src="imagenesRutas/castanios/castanios4.jpg" alt="" style="width: 100%;">
+                                </div>
+                                </br>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutascastanios4}"></p></br>
+                                <div>
+                                    <img src="imagenesRutas/castanios/castanios5.jpg" alt="" style="width: 100%;">
+                                </div>
+                                </br>
+
+                                <!-- <img src="imagenesRutas/elPortillo.jpg" alt="" style="width: 100%;"> -->
+                                <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/elPortillo.jpg" alt="" style="width: 100%;"> -->
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <hr>
+            </div>
+            <div class="col-12" style="text-align: center;">
+
+                <a href="" id="botonesRutas" data-bs-toggle="modal" data-bs-target="#staticBackdrop4"
+                    th:text="#{text.cliente.rutapiscinas}">
+
+                </a>
+                <div class="modal fade modal-lg" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p style="font-size: 20px;font-weight: bold;"><b
+                                        th:text="#{text.cliente.rutapiscinas0}">
+                                    </b></p>
+                                <p style="font-size: 18px;" th:text="#{text.cliente.rutapiscinas1}">
+                                </p></br>
+
+                                <img src="imagenesRutas/piscinahoyos1.jpg" alt="" style="width: 100%;">
+                                <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/piscinahoyos1.jpg" alt="" style="width: 100%;"> -->
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
             </div>
         </div>
-    </div>
+        <aside th:replace="layouts/fragmentoprincipal :: footer" class="col-lg-2 col-sm-12"></aside>
 
-
-    <div class="modal fade modal-lg" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <p style="font-size: 20px;font-weight: bold;"><b th:text="#{text.cliente.rutapuenteviejo0}"> </b>
-                    </p>
-                    <p style="font-size: 18px;">
-
-                    </p></br>
-                    <!-- <img src="imagenesRutas/pingano1.jpg" alt="" style="width: 100%;"> -->
-                    <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/pingano1.jpg" alt="" style="width: 100%;"> -->
-
-                    <p style="font-size: 18px;">
-
-                    </p></br>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                </div>
-            </div>
-        </div>
     </div>
 
 
 
-    <div class="modal fade modal-lg" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p style="font-size: 20px;font-weight: bold;"><b th:text="#{text.cliente.rutacastanios0}"> </b></p>
-                    <p style="font-size: 18px;">
-                    </p></br>
-                    <p style="font-size: 18px;">
-                    </p></br>
-                    <p style="font-size: 18px;">
 
-                    </p></br>
-
-                    <!-- <img src="imagenesRutas/elPortillo.jpg" alt="" style="width: 100%;"> -->
-                    <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/elPortillo.jpg" alt="" style="width: 100%;"> -->
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade modal-lg" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p style="font-size: 20px;font-weight: bold;"><b th:text="#{text.cliente.rutapiscinas0}"> </b></p>
-                    <p style="font-size: 18px;" th:text="#{text.cliente.rutapiscinas1}">
-                    </p></br>
-
-                    <img src="imagenesRutas/piscinahoyos1.jpg" alt="" style="width: 100%;">
-                    <!-- <img src="https://cuevas-de-ayllon.com/imagenesRutas/piscinahoyos1.jpg" alt="" style="width: 100%;"> -->
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 

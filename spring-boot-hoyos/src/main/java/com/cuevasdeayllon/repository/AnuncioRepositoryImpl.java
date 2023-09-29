@@ -25,7 +25,9 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 	@Override
 	public void insertarAnucio(String anuncio, String titulo, MultipartFile file) {
-		String rootPath = "C://TEMP//uploadsAnuncios";
+		String rootPath = "D://TEMP//uploadsAnuncios";
+		//String rootPath = "/uploadsAnuncios";
+
 
 		int oraLen = file.getOriginalFilename().length();
 
@@ -79,7 +81,7 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 	public void editarAnuncio(Anuncios anuncioeditable, String anuncio, String titulo, String fecha,
 			MultipartFile file) {
 		// String rootPath="/uploadsAnuncios/";
-		String rootPath = "C://TEMP//uploadsAnuncios";
+		String rootPath = "D://TEMP//uploadsAnuncios";
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		java.sql.Date fechaConvertida = null;
 		try {

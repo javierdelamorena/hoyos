@@ -98,7 +98,7 @@ public class MercadilloController {
 
 			}
 			// String rootPath="/uploadsMercadillo/";
-			String rootPath = "C://TEMP//uploadsMercadillo";
+			String rootPath = "D://TEMP//uploadsMercadillo";
 
 			if (!foto1.isEmpty() && mercadillo != null) {
 
@@ -313,7 +313,7 @@ public class MercadilloController {
 
 			}
 			// String rootPath="/uploadsMercadillo/";
-			String rootPath = "C://TEMP//uploadsMercadillo";
+			String rootPath = "D://TEMP//uploadsMercadillo";
 
 			if (!foto1.isEmpty() && mercadillo != null) {
 

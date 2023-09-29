@@ -34,13 +34,10 @@
     <nav th:replace="layouts/fragmentoprincipal :: nav"></nav>
     <div>
 
-        <div class="col-lg-3 col-sm-10" id="textoExplicacion" style=" margin-left: 5%;
-        margin-top: 3%;
+        <div class="col-lg-2 col-sm-10" id="textoExplicacion">
         
         
-        float: right;
-        margin-right: 4%;
-        margin-bottom: 5%;">
+    
             <hr>
             <p>
                 Desde aqui puedes registrarte en el espacio vecinal de Hoyos, una vez te hayas regitrado
@@ -55,12 +52,12 @@
             <hr>
         </div>
 
-        <div class="container col-lg-4 col-sm-12"  style="margin-left: 3%;
+        <div class="container  col-lg-5 col-sm-10" id="divMedio"  style="
     margin-top: 3%;
     background-color: #87a6dec7;
     border-radius: 3px;    
     margin-bottom: 10%;
-    float: right;">
+    ">
 
             <p id="formularioRegistro" style="margin: 1%;font-size: 20px;margin-top: 4%;">Registrate en el espacio vecinal de Hoyos. </p>
             <div th:if="${usuarioExiste}" th:text="${usuarioExiste}" style="font-size: 20px;margin-left: 4%;"
@@ -139,7 +136,7 @@
             </form>
         </div>
 
-        <aside th:replace="layouts/fragmentoprincipal :: footer" class="col-lg-2" style="text-decoration: none;margin-top: 3%;margin-left: 10%;"></aside>
+        <aside th:replace="layouts/fragmentoprincipal :: footer" ></aside>
     </div>
 
     <!-- <footer th:replace="layouts/fragmentoprincipal :: footer"></footer> -->
