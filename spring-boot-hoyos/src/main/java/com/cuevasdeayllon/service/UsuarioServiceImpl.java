@@ -1,5 +1,9 @@
 package com.cuevasdeayllon.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +18,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Autowired
 	UsuarioRepository usuarioService;
+	
+	static final String ROOT_PATH = "D://TEMP//uploads";
+	// static final String ROOT_PATH = "/uploads/";
 
 	@Override
 	public Usuario usuarioPorId(int idUsuario) {
@@ -82,6 +89,20 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public void borrarUsuario(Usuario usuario) {
+		
+		try {
+			if (usuario.getFoto()!= null) {
+				Path rutaCompletaImagen = Paths.get(ROOT_PATH + "//" + usuario.getFoto());
+				Files.deleteIfExists(rutaCompletaImagen);
+			}
+			
+			
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		
+		
 		usuarioService.borrarUsuarioi(usuario);
 
 	}

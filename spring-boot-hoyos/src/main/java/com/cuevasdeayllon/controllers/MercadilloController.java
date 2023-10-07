@@ -55,6 +55,9 @@ public class MercadilloController {
 
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	static final String ROOT_PATH = "D://TEMP//uploadsMercadillo";
+	// static final String ROOT_PATH = "/uploadsMercadillo/";
 
 	@PostMapping(path = "/mercadilloServicio")
 	public String registrarMercadillo(@Valid Mercadillo mercadillo, BindingResult result,
@@ -97,9 +100,7 @@ public class MercadilloController {
 				logger.info("El usuario es distinto de null");
 
 			}
-			// String rootPath="/uploadsMercadillo/";
-			String rootPath = "D://TEMP//uploadsMercadillo";
-
+			
 			if (!foto1.isEmpty() && mercadillo != null) {
 
 				int oraLen = foto1.getOriginalFilename().length();
@@ -128,12 +129,12 @@ public class MercadilloController {
 				}
 				try {
 					byte[] bytes = foto1.getBytes();
-					Path rutaCompleta = Paths.get(rootPath + "//" + foto1.getOriginalFilename());
+					Path rutaCompleta = Paths.get(ROOT_PATH + "//" + foto1.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto1.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH + "\\" + foto1.getOriginalFilename());
 					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
-					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto1.getOriginalFilename());
+					ImageResizer.saveImage(bufferedImageResize, ROOT_PATH + "//" + foto1.getOriginalFilename());
 					mercadillo.setFoto1(foto1.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -168,12 +169,12 @@ public class MercadilloController {
 
 				try {
 					byte[] bytes = foto2.getBytes();
-					Path rutaCompleta = Paths.get(rootPath + "//" + foto2.getOriginalFilename());
+					Path rutaCompleta = Paths.get(ROOT_PATH + "//" + foto2.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto2.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH + "\\" + foto2.getOriginalFilename());
 					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
-					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto2.getOriginalFilename());
+					ImageResizer.saveImage(bufferedImageResize, ROOT_PATH + "//" + foto2.getOriginalFilename());
 					mercadillo.setFoto2(foto2.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -210,12 +211,12 @@ public class MercadilloController {
 
 				try {
 					byte[] bytes = foto3.getBytes();
-					Path rutaCompleta = Paths.get(rootPath + "//" + foto3.getOriginalFilename());
+					Path rutaCompleta = Paths.get(ROOT_PATH + "//" + foto3.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto3.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH + "\\" + foto3.getOriginalFilename());
 					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
-					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto3.getOriginalFilename());
+					ImageResizer.saveImage(bufferedImageResize, ROOT_PATH + "//" + foto3.getOriginalFilename());
 					mercadillo.setFoto3(foto3.getOriginalFilename());
 
 				} catch (IOException e) {
@@ -265,22 +266,20 @@ public class MercadilloController {
 		Mercadillo mercado = mercadilloservice.findById(mercadillo.getId());
 
 		if (mercado == null) {
-			throw new Exception("El id que recibimos no corresponde con ningun mercadillo");
+			throw new Exception("El id que recibimos no corresponde con ningun mercado");
 		}
 
-		if (mercadillo.getId_usuario() == 0) {
+		if (mercado.getId_usuario() == 0) {
 			return "login";
 		}
 		logger.info("Entramos en metodo mercadillo");
-		logger.info("El articulo que recogemos es: " + mercadillo.getNombre());
-		if (mercadillo.getId_usuario() == 0) {
-			return "login";
-		}
+		logger.info("El articulo que recogemos es: " + mercado.getNombre());
+		
 		if (result.hasErrors()) {
-			logger.info("Entramos en metodo index/mercadillo el idusuario es: " + mercadillo.getId_usuario());
+			logger.info("Entramos en metodo index/mercado el idusuario es: " + mercadillo.getId_usuario());
 			List<String> tipoServicio = Arrays.asList("Compra", "Venta", "Servicios", "Alquiler");
-			Usuario usuario = service.usuarioPorId(mercadillo.getId_usuario());
-			List<Mercadillo> todos = mercadilloservice.todosLosMercadillosiIdUsuario(mercadillo.getId_usuario());
+			Usuario usuario = service.usuarioPorId(mercado.getId_usuario());
+			List<Mercadillo> todos = mercadilloservice.todosLosMercadillosiIdUsuario(mercado.getId_usuario());
 			mercadillo.setId_usuario(usuario.getIdUsuario());
 			model.addAttribute("tipo_servicio", tipoServicio);
 			model.addAttribute("nombre", "Nombre del anunciante");
@@ -308,14 +307,13 @@ public class MercadilloController {
 
 		try {
 
-			if (mercadillo != null) {
+			if (mercado != null) {
 				logger.info("El usuario es distinto de null");
 
 			}
-			// String rootPath="/uploadsMercadillo/";
-			String rootPath = "D://TEMP//uploadsMercadillo";
+			
 
-			if (!foto1.isEmpty() && mercadillo != null) {
+			if (!foto1.isEmpty() && mercado!= null) {
 
 				int oraLen = foto1.getOriginalFilename().length();
 				logger.info("El nombre de la foto es: " + foto1.getOriginalFilename());
@@ -329,13 +327,13 @@ public class MercadilloController {
 				}
 				try {
 					byte[] bytes = foto1.getBytes();
-					Path rutaCompleta = Paths.get(rootPath + "//" + foto1.getOriginalFilename());
+					Path rutaCompleta = Paths.get(ROOT_PATH + "//" + foto1.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto1.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH + "\\" + foto1.getOriginalFilename());
 					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
-					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto1.getOriginalFilename());
-					mercadillo.setFoto1(foto1.getOriginalFilename());
+					ImageResizer.saveImage(bufferedImageResize, ROOT_PATH + "//" + foto1.getOriginalFilename());
+					mercado.setFoto1(foto1.getOriginalFilename());
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -343,7 +341,7 @@ public class MercadilloController {
 				}
 
 			}
-			if (!foto2.isEmpty() && mercadillo != null) {
+			if (!foto2.isEmpty() && mercado != null) {
 				int oraLen = foto2.getOriginalFilename().length();
 				logger.info("El nombre de la foto2 es: " + foto2.getOriginalFilename());
 				for (int i = 0; i < oraLen; i++) {
@@ -356,13 +354,13 @@ public class MercadilloController {
 
 				try {
 					byte[] bytes = foto2.getBytes();
-					Path rutaCompleta = Paths.get(rootPath + "//" + foto2.getOriginalFilename());
+					Path rutaCompleta = Paths.get(ROOT_PATH + "//" + foto2.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto2.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH + "\\" + foto2.getOriginalFilename());
 					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
-					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto2.getOriginalFilename());
-					mercadillo.setFoto2(foto2.getOriginalFilename());
+					ImageResizer.saveImage(bufferedImageResize, ROOT_PATH + "//" + foto2.getOriginalFilename());
+					mercado.setFoto2(foto2.getOriginalFilename());
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -370,7 +368,7 @@ public class MercadilloController {
 				}
 
 			}
-			if (!foto3.isEmpty() && mercadillo != null) {
+			if (!foto3.isEmpty() && mercado != null) {
 
 				int oraLen = foto3.getOriginalFilename().length();
 				logger.info("El nombre de la foto es: " + foto3.getOriginalFilename());
@@ -385,13 +383,13 @@ public class MercadilloController {
 
 				try {
 					byte[] bytes = foto3.getBytes();
-					Path rutaCompleta = Paths.get(rootPath + "//" + foto3.getOriginalFilename());
+					Path rutaCompleta = Paths.get(ROOT_PATH + "//" + foto3.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta, bytes);
-					BufferedImage bufferedImage = ImageResizer.loadImage(rootPath + "\\" + foto3.getOriginalFilename());
+					BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH + "\\" + foto3.getOriginalFilename());
 					BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
-					ImageResizer.saveImage(bufferedImageResize, rootPath + "//" + foto3.getOriginalFilename());
-					mercadillo.setFoto3(foto3.getOriginalFilename());
+					ImageResizer.saveImage(bufferedImageResize, ROOT_PATH + "//" + foto3.getOriginalFilename());
+					mercado.setFoto3(foto3.getOriginalFilename());
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -400,18 +398,7 @@ public class MercadilloController {
 
 			}
 
-			mercado.setId(mercado.getId());
-			mercado.setNombre(mercadillo.getNombre().trim().toUpperCase());
-			mercado.setPrecio(mercadillo.getPrecio());
-			mercado.setTelefono(mercadillo.getTelefono());
-			mercado.setId_usuario(mercadillo.getId_usuario());
-			mercado.setTipo_servicio(mercadillo.getTipo_servicio());
-			mercado.setTexto(mercadillo.getTexto());
-			mercado.setFoto1(mercadillo.getFoto1());
-			mercado.setFoto2(mercadillo.getFoto2());
-			mercado.setFoto3(mercadillo.getFoto3());
-			mercado.setFecha(new Date());
-			mercado.setNombre_servicio(mercadillo.getNombre_servicio().trim().toUpperCase());
+			
 
 			mercadilloservice.actualizarMercadillo(mercado);
 
@@ -421,7 +408,7 @@ public class MercadilloController {
 			return "miMercadillo";
 
 		}
-		List<Mercadillo> todos = mercadilloservice.todosLosMercadillosiIdUsuario(mercadillo.getId_usuario());
+		List<Mercadillo> todos = mercadilloservice.todosLosMercadillosiIdUsuario(mercado.getId_usuario());
 
 		if (todos.size() > 0) {
 			model.addAttribute("miMercadillo", todos);

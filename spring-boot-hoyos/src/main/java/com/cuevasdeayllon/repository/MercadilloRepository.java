@@ -34,6 +34,7 @@ public interface MercadilloRepository {
 	
 	void insertarMercadillo(Mercadillo mercadillo);
 	
+	
 	void borrarMercadillo(int id);
 	
 	void actualizarMercadillo(Mercadillo mercadillo);

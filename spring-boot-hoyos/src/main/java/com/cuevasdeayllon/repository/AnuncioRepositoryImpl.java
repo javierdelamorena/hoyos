@@ -22,12 +22,13 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 	@Autowired
 	private AnuncioJpaRepository anuncioJpaRepository;
+	
+	static final String ROOT_PATH = "D://TEMP//uploadsAnuncios";
+	// static final String ROOT_PATH = "/uploadsAnuncios";
 
 	@Override
 	public void insertarAnucio(String anuncio, String titulo, MultipartFile file) {
-		String rootPath = "D://TEMP//uploadsAnuncios";
-		//String rootPath = "/uploadsAnuncios";
-
+		
 
 		int oraLen = file.getOriginalFilename().length();
 
@@ -40,7 +41,7 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 			try {
 				byte[] bytes = file.getBytes();
-				Path rutaCompleta = Paths.get(rootPath + "//" + file.getOriginalFilename());
+				Path rutaCompleta = Paths.get(ROOT_PATH + "//" + file.getOriginalFilename());
 				Files.write(rutaCompleta, bytes);
 				String extension = FilenameUtils.getExtension(file.getOriginalFilename());
 				if (extension.equals("mp4")) {
@@ -57,7 +58,6 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 
 		}
 		anuncioJpaRepository.save(anuncioeditable);
@@ -73,6 +73,27 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 	@Override
 	public void deleteAnuncio(int idAnuncio) {
 
+		Anuncios anuncio = anuncioJpaRepository.findById(idAnuncio).orElse(null);
+		
+		try {
+			if (anuncio.getFoto_anuncio() != null) {
+				Path rutaCompletaImagen = Paths.get(ROOT_PATH + "//" + anuncio.getFoto_anuncio());
+				Files.deleteIfExists(rutaCompletaImagen);
+			}
+			if (anuncio.getAudio_anuncio() != null) {
+				Path rutaCompletaAudio = Paths.get(ROOT_PATH + "//" + anuncio.getAudio_anuncio());
+				Files.deleteIfExists(rutaCompletaAudio);
+			}
+			if (anuncio.getVideo_anuncio() != null) {
+				Path rutaCompletaVideo = Paths.get(ROOT_PATH + "//" + anuncio.getVideo_anuncio());
+
+				Files.deleteIfExists(rutaCompletaVideo);
+			}
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
 		anuncioJpaRepository.deleteById(idAnuncio);
 
 	}
@@ -80,8 +101,7 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 	@Override
 	public void editarAnuncio(Anuncios anuncioeditable, String anuncio, String titulo, String fecha,
 			MultipartFile file) {
-		// String rootPath="/uploadsAnuncios/";
-		String rootPath = "D://TEMP//uploadsAnuncios";
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		java.sql.Date fechaConvertida = null;
 		try {
@@ -99,7 +119,7 @@ public class AnuncioRepositoryImpl implements AnunciosRepository {
 
 			try {
 				byte[] bytes = file.getBytes();
-				Path rutaCompleta = Paths.get(rootPath + "//" + file.getOriginalFilename());
+				Path rutaCompleta = Paths.get(ROOT_PATH + "//" + file.getOriginalFilename());
 				Files.write(rutaCompleta, bytes);
 				String extension = FilenameUtils.getExtension(file.getOriginalFilename());
 				if (extension.equals("mp4")) {

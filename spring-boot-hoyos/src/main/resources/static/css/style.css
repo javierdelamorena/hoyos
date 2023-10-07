@@ -1,5 +1,6 @@
 .bodyGaleria {
 	background-image: url("36.jpg");
+	
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
@@ -237,8 +238,8 @@ body {
 }
 
 .caja {
-	font-family: sans-serif;
-	color: #0b0b0b;
+	font-family: cursive;
+	color: #303030;
 	font-size: 17px;
 	font-weight: 400;
 	/* font-weight: bolder; */
@@ -258,10 +259,10 @@ body {
 
 @media (max-width:576px) {
 	.caja {
-		font-family: sans-serif;
-		color: #0b0b0b;
-		font-size: 24px;
-		font-weight: 400;
+		font-family: serif;
+		color: #303030;
+		font-size: 23px;
+		font-weight: 100;
 		/* font-weight: bolder; */
 		text-align: left;
 		background: #4e82b6a8;
@@ -1250,7 +1251,7 @@ body {
 	border: double;
 	border-color: gainsboro;
 	padding: 4px;
-
+	
 }
 
 @media (max-width : 576px) {
@@ -1259,9 +1260,13 @@ body {
 		height: 678px;
 		margin-top: 1%;
 		margin-left: 4%;
-		border: none;
+		/* border: none; */
 		border-color: transparent;
 		padding: 0px;
+		border: double;
+		border-radius: 12px;
+		border-color: gainsboro;
+
 
 
 	}

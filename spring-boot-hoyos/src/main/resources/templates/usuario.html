@@ -15,6 +15,9 @@
       margin-top: 1%;
       margin-bottom: 1%;
     } */
+    /* tr {
+      max-width: 10px;
+    } */
 
     form #q {
       width: 100%;
@@ -47,11 +50,10 @@
 
   <nav th:replace="layouts/fragmentoUsuarios :: nav"></nav>
   <hr>
-  <div  style="margin-top: 1%;">
+  <div style="margin-top: 1%;">
 
 
-    <div class="row col-lg-6 col-sm-12" th:object="${usuario}" 
-      style="
+    <div class="row col-lg-6 col-sm-12" th:object="${usuario}" style="
     padding: 3%;
     border-radius: 8px;
     margin-left: 3%;
@@ -70,7 +72,9 @@
         border-radius: 8px;
 		margin-top: 7%;">
           <h3 th:if="${fotoConHuecos}" th:text="${fotoConHuecos}" style="color: rgb(0, 0, 0);"></h3>
-          <p style="font-size: 24px;
+          <p style="
+          border-radius: 4px;
+          font-size: 24px;
           color: rgb(50, 50, 50);
           padding: 5%;background-color: #87aedec7;" th:if="${usuario.nombre}"
             th:text="'Hola '+${usuario.nombre}+', desde aquí podrás acceder a las distintas funciones que podrás realizar, solo tienes que pulsar encima del título para acceder.'">
@@ -89,8 +93,8 @@
         <div class="row" style="margin-top: 3%;">
           <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: #d9d4c3;">
-            <a href="" id="botonesRutas" style="text-decoration: none;font-size: 20px;"
-              data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <a href="" id="botonesRutas" style="text-decoration: none;font-size: 20px;" data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop">
               Realizar Propuesta
             </a>
           </div>
@@ -165,7 +169,7 @@
         <div class="row" style="margin-top: 3%;">
           <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: #d9d4c3;">
-            <a  id="botonesRutas" style="text-decoration: none;font-size: 20px;" th:href="@{/subirFotos}">
+            <a id="botonesRutas" style="text-decoration: none;font-size: 20px;" th:href="@{/subirFotos}">
               Subir Foto a
               Galeria</a>
           </div>
@@ -180,7 +184,7 @@
         <div class="row" style="margin-top: 3%;">
           <div class="col-lg-4 btn" style="width: 100%;margin-bottom: 7%;
           background: #d9d4c3;">
-            <a  id="botonesRutas" style="text-decoration: none;font-size: 20px;"
+            <a id="botonesRutas" style="text-decoration: none;font-size: 20px;"
               th:href="@{'/fotosMiLista?idUsuario='+${usuario.idUsuario}}">
               Tus fotos</a>
           </div>
@@ -255,14 +259,12 @@
     /* height: 1224px; */
     margin-bottom: 10%;
     margin-left: 3%;
-    margin-top: 2%;
+    margin-top: 2.2%;
     float: right;
-    padding-right: 6%;" 
-   
-    >
+    padding-right: 6%;">
       <hr>
       <h2
-        style="margin-bottom: 7%;margin-top: 13%;padding: 3%;color: rgb(50, 50, 50); font-family: -webkit-body;padding: 21px;; font-size: 24px;background-color: #87aedec7;">
+        style="border-radius: 4px;margin-bottom: 7%;margin-top: 13%;padding: 3.5%;color: rgb(50, 50, 50); font-family: -webkit-body; font-size: 24px;background-color: #87aedec7;">
         Aquí
         tienes todas las propuestas, las tuyas y las de los demás vecinos.
         </br>
@@ -284,266 +286,266 @@
         margin-bottom: 6%;">
       </form>
       <div class="col-lg-12 col-sm-12" style="overflow: scroll;
-    height: 1224px;"
-    id="todasPropuestas">
-    
+    height: 1224px;" id="todasPropuestas">
 
-    </div>
-
-
-  </div>
-
-  <!-- Darse de baja ventana Modal -->
-
-
-  <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel2">Darse de Baja</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form th:action="@{/doBorrarDesdeUsuario}" th:object="${usuario}" class="text-dark" style="width: 250%;
-           padding: 30px;" method="post">
-            <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
-            <input type="hidden" id="roles" th:field="*{roles}" class="form-control">
-            <div class=" col-sm-2">
-              <input type="submit" value="Darse de baja" class="btn btn-primary">
-            </div>
-          </form>
-
-
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-        </div>
 
       </div>
+
+
     </div>
-  </div>
+
+    <!-- Darse de baja ventana Modal -->
 
 
-  <!-- Realizar propuesta ventana Modal -->
-
-
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-
-          <div>
-            <h3 class="text-start">Realiza tu propuesta para que la conozcan los demás vecinos</h3>
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel2">Darse de Baja</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div id="propuestaRelizada"></div>
-          <div th:text="${propuestaRelizada}"></div>
+          <div class="modal-body">
+            <form th:action="@{/doBorrarDesdeUsuario}" th:object="${usuario}" class="text-dark" style="width: 250%;
+           padding: 30px;" method="post">
+              <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
+              <input type="hidden" id="roles" th:field="*{roles}" class="form-control">
+              <div class=" col-sm-2">
+                <input type="submit" value="Darse de baja" class="btn btn-primary">
+              </div>
+            </form>
 
-          <h2 id="propuestaExistente"></h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <label form="titulo" class="col-form-label col-sm-2" maxlength="50">Titulo</label>
-          <input type="text" id="titulo" class="form-control">
-          <textarea id="texto" name="texto" rows="4" cols="50" style=" height: 180px; width: 98%; margin-top: 10px;"
-            maxlength="500"></textarea>
-          <button type="button" class="btn btn-primary" id="enviarPropuesta">enviar propuestas</button>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          </div>
 
         </div>
-        <!-- <h2 id="propuestaRelizada"></h2>
+      </div>
+    </div>
+
+
+    <!-- Realizar propuesta ventana Modal -->
+
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <div>
+              <h3 class="text-start">Realiza tu propuesta para que la conozcan los demás vecinos</h3>
+            </div>
+            <div id="propuestaRelizada"></div>
+            <div th:text="${propuestaRelizada}"></div>
+
+            <h2 id="propuestaExistente"></h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label form="titulo" class="col-form-label col-sm-2" maxlength="400">Titulo</label>
+            <input type="text" id="titulo" class="form-control">
+            <textarea id="texto" name="texto" rows="4" cols="50" style=" height: 180px; width: 98%; margin-top: 10px;"
+              maxlength="2000"></textarea>
+            <button type="button" class="btn btn-primary" id="enviarPropuesta">enviar propuestas</button>
+
+          </div>
+          <!-- <h2 id="propuestaRelizada"></h2>
           <h2 id="propuestaExistente"></h2> -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="refrescar" data-bs-dismiss="modal">Close</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="refrescar" data-bs-dismiss="modal">Close</button>
+
+          </div>
 
         </div>
-
       </div>
     </div>
-  </div>
 
 
-  <!-- Editar Usuario ventana Modal -->
+    <!-- Editar Usuario ventana Modal -->
 
 
-  <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel1">Editar Usuario</h5>
+    <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel1">Editar Usuario</h5>
 
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form th:action="@{/editarUsuario}" th:object="${usuario}" class="form-control text-dark" style="width: 100%;
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form th:action="@{/editarUsuario}" th:object="${usuario}" class="form-control text-dark" style="width: 100%;
         padding: 30px;" method="post" enctype="multipart/form-data">
-            <div class="row col-12">
-              <label form="nombre" class="col-form-label " th:text="${nombre}"></label>
-            </div>
-            <div class="row col-12">
-              <input type="text" id="nombre" th:field="*{nombre}" class="form-control" maxlength="20"
-                placeholder="Nombre">
-              <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="alert alert-danger">
+              <div class="row col-12">
+                <label form="nombre" class="col-form-label " th:text="${nombre}"></label>
               </div>
-            </div>
-            <div class="row col-12">
-              <label form="apellido1" class="col-form-label " th:text="${apellido1}"></label>
-            </div>
-            <div class="row col-12">
-              <input type="text" id="apellido1" th:field="*{apellido1}" maxlength="20" class="form-control"
-                placeholder="Primer Apellido">
-              <div th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}" class="alert alert-danger">
+              <div class="row col-12">
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" maxlength="20"
+                  placeholder="Nombre">
+                <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="alert alert-danger">
+                </div>
               </div>
-            </div>
-            <div class="row col-12">
-              <label form="apellido2" class="col-form-label " th:text="${apellido2}"></label>
-            </div>
-            <div class="row col-12">
-              <input type="text" id="apellido2" th:field="*{apellido2}" maxlength="20" class="form-control"
-                placeholder="Segundo Apellido">
-              <div th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}" class="alert alert-danger">
+              <div class="row col-12">
+                <label form="apellido1" class="col-form-label " th:text="${apellido1}"></label>
               </div>
-            </div>
-            <div class="row col-12">
-              <label form="email" class="col-form-label " th:text="${email}"></label>
-            </div>
-            <div class="row col-12">
-              <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="@Email">
-              <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger">
+              <div class="row col-12">
+                <input type="text" id="apellido1" th:field="*{apellido1}" maxlength="20" class="form-control"
+                  placeholder="Primer Apellido">
+                <div th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}" class="alert alert-danger">
+                </div>
               </div>
-            </div>
-            <div class="row col-12">
-              <label form="direccion" class="col-form-label " th:text="${direccion}"></label>
-            </div>
-            <div class="row col-12">
-              <input type="text" id="direccion" th:field="*{direccion}" class="form-control"
-                placeholder="Direccion del Pueblo">
-              <div th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="alert alert-danger">
+              <div class="row col-12">
+                <label form="apellido2" class="col-form-label " th:text="${apellido2}"></label>
               </div>
-            </div>
-            <div class="row col-12">
-              <label form="file" class="col-form-label " th:text="${foto}"></label>
-            </div>
-            <div class="row col-12">
-              <input type="file" id="foto" name="file" class="form-control">
-              <div th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}" class="alert alert-danger">
+              <div class="row col-12">
+                <input type="text" id="apellido2" th:field="*{apellido2}" maxlength="20" class="form-control"
+                  placeholder="Segundo Apellido">
+                <div th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}" class="alert alert-danger">
+                </div>
               </div>
-            </div>
-            <div class="row col-12">
-              <label form="password" class="col-form-label " th:text="${Password}"></label>
-            </div>
-            <div class="row col-12">
-              <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Contraseña">
-              <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger">
+              <div class="row col-12">
+                <label form="email" class="col-form-label " th:text="${email}"></label>
               </div>
-            </div></br></br>
-            <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
-            <div class="col-12">
-              <input type="submit" id="enviarAlta" value="ENVIAR" class="btn btn-primary">
-            </div>
+              <div class="row col-12">
+                <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="@Email">
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger">
+                </div>
+              </div>
+              <div class="row col-12">
+                <label form="direccion" class="col-form-label " th:text="${direccion}"></label>
+              </div>
+              <div class="row col-12">
+                <input type="text" id="direccion" th:field="*{direccion}" class="form-control"
+                  placeholder="Direccion del Pueblo">
+                <div th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="alert alert-danger">
+                </div>
+              </div>
+              <div class="row col-12">
+                <label form="file" class="col-form-label " th:text="${foto}"></label>
+              </div>
+              <div class="row col-12">
+                <input type="file" id="foto" name="file" class="form-control">
+                <div th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}" class="alert alert-danger">
+                </div>
+              </div>
+              <div class="row col-12">
+                <label form="password" class="col-form-label " th:text="${Password}"></label>
+              </div>
+              <div class="row col-12">
+                <input type="password" id="password" th:field="*{password}" class="form-control"
+                  placeholder="Contraseña">
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger">
+                </div>
+              </div></br></br>
+              <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
+              <div class="col-12">
+                <input type="submit" id="enviarAlta" value="ENVIAR" class="btn btn-primary">
+              </div>
 
-          </form>
+            </form>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="refrescar" data-bs-dismiss="modal">Close</button>
+
+          </div>
 
         </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="refrescar" data-bs-dismiss="modal">Close</button>
-
-        </div>
-
       </div>
     </div>
-  </div>
 
-  <!-- EditarRecibir notificaciones  -->
+    <!-- EditarRecibir notificaciones  -->
 
-  <div class="modal fade" id="staticBackdrop5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-header">
+    <div class="modal fade" id="staticBackdrop5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-header">
 
-          <h5 class="modal-title" id="staticBackdropLabel5">Si quieres recibir una notificacion por mail cada vez
-            que un vecino realiza una propuesta, pulsa "Recibir notificaciones". si estabas recibibiendo
-            notificaciones
-            y quieres deja de hacerlo, pulsa "Dejar de recibir notificaciones". Si no pulsas "Recibir
-            notificaciones"
-            no recibirás notificación alguna.</h5>
+            <h5 class="modal-title" id="staticBackdropLabel5">Si quieres recibir una notificacion por mail cada vez
+              que un vecino realiza una propuesta, pulsa "Recibir notificaciones". si estabas recibibiendo
+              notificaciones
+              y quieres deja de hacerlo, pulsa "Dejar de recibir notificaciones". Si no pulsas "Recibir
+              notificaciones"
+              no recibirás notificación alguna.</h5>
 
-        </div>
-        <div class="modal-header">
-          <h4 th:text="'En esto momentos  ' + ${usuario.notificacion} + ' recibe notificaciones '"></h4>
-        </div>
-        <div class="modal-body">
-          <div style="display: inline-flex;">
-            <form th:action="@{/recibirNotificacion}" th:object="${usuario}" class="text-dark" style="width: 250%;
+          </div>
+          <div class="modal-header">
+            <h4 th:if="${usuario.notificacion}" th:text="'En estoS momentos  ' + ${usuario.notificacion} + ' recibe notificaciones '"></h4>
+          </div>
+          <div class="modal-body">
+            <div style="display: inline-flex;">
+              <form th:action="@{/recibirNotificacion}" th:object="${usuario}" class="text-dark" style="width: 250%;
   padding-left: 1%;" method="post" enctype="multipart/form-data">
 
 
 
-              <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
-              <div class="row col-sm-13">
-                <input type="submit" id="enviarAlta" value="Recibir Notificaciones" class="btn btn-primary">
-              </div>
+                <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
+                <div class="row col-sm-13">
+                  <input type="submit" id="enviarAlta" value="Recibir Notificaciones" class="btn btn-primary">
+                </div>
 
-            </form>
-            <form th:action="@{/noRecibirNotificacion}" th:object="${usuario}" class="text-dark" style="width: 250%;
+              </form>
+              <form th:action="@{/noRecibirNotificacion}" th:object="${usuario}" class="text-dark" style="width: 250%;
   padding-left: 9%;" method="post" enctype="multipart/form-data">
 
 
-              <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
-              <div class="row col-sm-13">
-                <input type="submit" id="enviarAlta" value="Dejar de recibir notificaciones" class="btn btn-primary">
-              </div>
+                <input type="hidden" id="idUsuario" th:field="*{idUsuario}" class="form-control">
+                <div class="row col-sm-13">
+                  <input type="submit" id="enviarAlta" value="Dejar de recibir notificaciones" class="btn btn-primary">
+                </div>
 
-            </form>
+              </form>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="refrescar" data-bs-dismiss="modal">Close</button>
+
           </div>
 
         </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="refrescar" data-bs-dismiss="modal">Close</button>
-
-        </div>
-
       </div>
     </div>
-  </div>
 
 
-  <!-- </div> -->
+    <!-- </div> -->
 
 
-  <!-- Tabla de propuestas -->
-
-
+    <!-- Tabla de propuestas -->
 
 
 
-  <!-- </div> -->
-  <script th:src="@{/js/jquery.min.js}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+    <!-- </div> -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 </body>
 
 <script>
-  
-  function recogerUsuario(data1)  {
+
+  function recogerUsuario(data1) {
     var usuarioId;
-  
-    usuarioId =data1;
+
+    usuarioId = data1;
     console.log('este es el usuario', usuarioId);
 
-  
+
     var role = $('#roles').val();
     if (role === 'USER') {
       $('#espacioAdministrador').hide();

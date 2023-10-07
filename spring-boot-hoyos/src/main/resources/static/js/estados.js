@@ -50,7 +50,7 @@ $.ajax({
             // html2 += '<div class="row" style="margin-left: 1%;margin-right: 1%;" >';
             html2 += '<div class="col" style="font-size: 18px;background-color: rgb(207 16 16 / 45%);text-align: center;padding: 1%;padding-top: 4%;border-bottom-left-radius: 13px;">Razón de la desestimación:</div>';
             
-            html2 += '<div class="col" style="background-color: rgb(207 16 16 / 45%);padding: 4%;border-bottom-right-radius: 13px;"><h5 class="card-title" id="h5-buscador"><textarea  readonly style="padding:1%"  rows="4" cols="40">' + datos[i].textoDesestimada + '</textarea></h5></div>';
+            html2 += '<div class="col" style="background-color: rgb(207 16 16 / 45%);padding: 4%;border-bottom-right-radius: 13px;"><h5 class="card-title" id="h5-buscador"><textarea class="form-control"  readonly style="padding:1%"  rows="4" cols="40">' + datos[i].textoDesestimada + '</textarea></h5></div>';
            
             html2 += '</div>';
         }

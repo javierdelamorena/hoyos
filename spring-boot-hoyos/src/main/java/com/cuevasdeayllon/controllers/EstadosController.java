@@ -62,7 +62,7 @@ public class EstadosController {
 		estado.setEncurso(null);
 		estado.setId(estado.getId());
 		estado.setPropuesta(propuesta);
-		estado.setTextoDesestimada(null);
+		estado.setTextoDesestimada("");
 		estadosService.actualizarEstado(estado);
 		
 		List<Propuestas> propuestas = propuestaService.findByTodas();
@@ -97,7 +97,7 @@ public class EstadosController {
 		estado.setEncurso("encurso");
 		estado.setId(estado.getId());
 		estado.setPropuesta(propuesta);
-		estado.setTextoDesestimada(null);
+		estado.setTextoDesestimada("");
 		estadosService.actualizarEstado(estado);
 		
 		List<Propuestas> propuestas = propuestaService.findByTodas();
@@ -131,7 +131,7 @@ public class EstadosController {
 		estado.setDesestimada(null);
 		estado.setId(estado.getId());
 		estado.setPropuesta(propuesta);
-		estado.setTextoDesestimada(null);
+		estado.setTextoDesestimada("");
 		estadosService.actualizarEstado(estado);
 		List<Propuestas> propuestas = propuestaService.findByTodas();
 		logger.info("Entramos en metodo  /editarEstadoPleno:" + propuestas);
@@ -161,9 +161,10 @@ public class EstadosController {
 		estado.setRealizada("realizada");
 		estado.setPleno(null);
 		estado.setEncurso(null);
+		estado.setDesestimada(null);
 		estado.setId(estado.getId());
 		estado.setPropuesta(propuesta);
-		estado.setTextoDesestimada(null);
+		estado.setTextoDesestimada("");
 		estadosService.actualizarEstado(estado);
 		
 		List<Propuestas> propuestas = propuestaService.findByTodas();

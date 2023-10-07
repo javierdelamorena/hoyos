@@ -40,7 +40,7 @@ public class EnviarNotificacionController {
 
 		usuarioList.forEach(u -> logger.info("" + u.getNombre()));
 		for (Usuario usu : usuarioList) {
-			if (usu.getNotificacion().equals("si")) {
+			if (usu.getNotificacion().equals("si")&&usu.getNotificacion()!=null) {
 				logger.info("Entramos en metodo /enviarNotificacion y recogemos este usuario: " + usu.getNombre());
 				logger.info("entramos en metodo /enviarNotificacion y recogemos este password:[" + usu.getPassword()
 						+ "] nombre:[" + usu.getNombre() + "] email:[" + usu.getEmail() + "]");

@@ -1,5 +1,9 @@
 package com.cuevasdeayllon.repository;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cuevasdeayllon.entity.Anuncios;
 import com.cuevasdeayllon.entity.Mercadillo;
 
 @Repository
@@ -18,6 +23,8 @@ public class MercadilloRepositoryImpl implements MercadilloRepository {
 	
 	@Autowired
 	private MercadilloJpaRepository mercadilloJpaRepository;
+	static final String ROOT_PATH = "D://TEMP//uploadsMercadillo";
+	// static final String ROOT_PATH = "/uploadsMercadillo/";
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -68,7 +75,30 @@ public class MercadilloRepositoryImpl implements MercadilloRepository {
 
 	@Override
 	public void borrarMercadillo(int id) {
-		Mercadillo mercadillo=	this.findById(id);
+		Mercadillo mercadillo=	mercadilloJpaRepository.findById(id).orElse(null);
+		
+		
+		try {
+			if (mercadillo.getFoto1() != null) {
+				Path rutaCompletaImagen = Paths.get(ROOT_PATH + "//" + mercadillo.getFoto1());
+				Files.deleteIfExists(rutaCompletaImagen);
+			}
+			if (mercadillo.getFoto2() != null) {
+				Path rutaCompletaImagen = Paths.get(ROOT_PATH + "//" + mercadillo.getFoto2());
+				Files.deleteIfExists(rutaCompletaImagen);
+			}
+			if (mercadillo.getFoto3() != null) {
+				Path rutaCompletaImagen = Paths.get(ROOT_PATH + "//" + mercadillo.getFoto3());
+				Files.deleteIfExists(rutaCompletaImagen);
+			}
+			
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		
+		
 		mercadilloJpaRepository.delete(mercadillo);
 		
 	}
@@ -78,21 +108,21 @@ public class MercadilloRepositoryImpl implements MercadilloRepository {
 	public void actualizarMercadillo(Mercadillo mercadillo) {
 		Mercadillo mercado =new Mercadillo();
 		
-//		mercado.setId(mercadillo.getId());
-//		mercado.setNombre(mercadillo.getNombre());
-//		mercado.setPrecio(mercadillo.getPrecio());
-//		mercado.setTelefono(mercadillo.getTelefono());
-//		mercado.setId_usuario(mercadillo.getId_usuario());
-//		mercado.setTipo_servicio(mercadillo.getTipo_servicio());
-//		mercado.setTexto(mercadillo.getTexto());
-//		mercado.setFoto1(mercadillo.getFoto1());
-//		mercado.setFoto2(mercadillo.getFoto2());
-//		mercado.setFoto3(mercadillo.getFoto3());
-//		mercado.setFecha(new Date());
-//		mercado.setNombre_servicio(mercadillo.getNombre_servicio());
+		mercado.setId(mercadillo.getId());
+		mercado.setNombre(mercadillo.getNombre().trim().toUpperCase());
+		mercado.setPrecio(mercadillo.getPrecio());
+		mercado.setTelefono(mercadillo.getTelefono());
+		mercado.setId_usuario(mercadillo.getId_usuario());
+		mercado.setTipo_servicio(mercadillo.getTipo_servicio());
+		mercado.setTexto(mercadillo.getTexto());
+		mercado.setFoto1(mercadillo.getFoto1());
+		mercado.setFoto2(mercadillo.getFoto2());
+		mercado.setFoto3(mercadillo.getFoto3());
+		mercado.setFecha(new Date());
+		mercado.setNombre_servicio(mercadillo.getNombre_servicio().trim().toUpperCase());
 		
 		
-		mercadilloJpaRepository.save(mercadillo);
+		mercadilloJpaRepository.save(mercado);
 		
 		
 		

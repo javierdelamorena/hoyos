@@ -286,6 +286,7 @@ public class IndexControler {
 		return "mercadillo";
 
 	}
+	
 	@GetMapping("/unMercadillo")
 	public String unMercadillo(@RequestParam("id")int id,HttpSession session,Model model) {
 

@@ -44,6 +44,9 @@ public class UsuarioController {
 
 	@Autowired
 	UsuarioService service;
+	
+	static final String ROOT_PATH = "D://TEMP//uploads";
+	// static final String ROOT_PATH = "/uploads/";
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -76,8 +79,7 @@ public class UsuarioController {
 			}
 
 
-			//String rootPath="/uploads/";
-			String rootPath="D://TEMP//uploads";
+			
 
 			if(!foto.isEmpty()&&usuario!=null) {
 
@@ -95,7 +97,7 @@ public class UsuarioController {
 
 				try {
 					byte[]bytes=foto.getBytes();
-					Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
+					Path rutaCompleta=Paths.get(ROOT_PATH+"//"+foto.getOriginalFilename());
 					logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
 					Files.write(rutaCompleta,bytes);
 					usuario.setFoto(foto.getOriginalFilename());
@@ -344,11 +346,10 @@ public class UsuarioController {
 				}
 			}
 
-			//String rootPath="/uploads/";
-			String rootPath="D://TEMP//uploads";
+			
 			try {
 				byte[]bytes=foto.getBytes();
-				Path rutaCompleta=Paths.get(rootPath+"//"+foto.getOriginalFilename());
+				Path rutaCompleta=Paths.get(ROOT_PATH+"//"+foto.getOriginalFilename());
 				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
 				Files.write(rutaCompleta,bytes);
 				usuario.setFoto(foto.getOriginalFilename());

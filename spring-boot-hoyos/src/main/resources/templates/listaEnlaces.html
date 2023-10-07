@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>Hoyos anuncios</title>
+    <title>Hoyos enlaces</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=500, user-scalable=no" />
 
@@ -53,16 +53,16 @@
     <div class="container content" style="margin-top: 10%;">
         <h4 style="text-align: center;margin: 1%;">Espacio Administradores de pagina</h4>
         <h5 th:if="${faltaTitulo}" th:text="${faltaTitulo}" class="alert alert-danger"></h5>
-        <h5 th:if="${faltaAnuncio}" th:text="${faltaAnuncio}" class="alert alert-danger"></h5>
-        <h5 th:if="${anuncioSubido}" th:text="${anuncioSubido}" class="alert alert-info"></h5>
+        <h5 th:if="${faltaenlace}" th:text="${faltaenlace}" class="alert alert-danger"></h5>
+        <h5 th:if="${enlaceSubido}" th:text="${enlaceSubido}" class="alert alert-info"></h5>
         <div class="col-lg-12 col-sm-2" style="margin: 2%;" >
 
             <a type="button" value="cerrar" th:href="@{/toUsuario}" class="btn "
                 style="color: #eeeeee;background-color: #463232a3;margin-right: 6%;">cerrar</a>
         </div>
-        <p style="text-align: center;">Lista de anucios del tablón de anuncios.</p>
+        <p style="text-align: center;">Lista de Enlaces de enlaces de interes.</p>
         <form>
-            <input class="form-control" type="text" id="q" placeholder="Buscar anuncio......" onkeyup="search()">
+            <input class="form-control" type="text" id="q" placeholder="Buscar enlace......" onkeyup="search()">
         </form>
 
         <table class="table table-bordered" style="text-align: center;">
@@ -70,8 +70,8 @@
             <thead class="thead-dark">
                 <tr  style="background-color: #deb887a8;">
 
-                    <th scope="col">Titulo Anuncio</th>
-                    <th scope="col">Fecha de Publicacion</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Borrar</th>
 
@@ -81,37 +81,37 @@
             <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
                 th:text="${usuarioBorrado}"></div> -->
             <tbody id="the_table_body">
-                <tr th:each="anuncio:${listaAnuncios}">
+                <tr th:each="enlace:${listaEnlaces}">
 
 
 
-                    <td th:if="${anuncio.titulo_anuncio}" th:text="${anuncio.titulo_anuncio}"></td>
+                    <td th:if="${enlace.nombre}" th:text="${enlace.nombre}"></td>
 
-                    <td th:if="${anuncio.fecha}" th:text="${anuncio.fecha}"></td>
+                    <td th:if="${enlace.tipo}" th:text="${enlace.tipo}"></td>
                     <td><a href="#" data-bs-toggle="modal" class="btn btn-primary"
-                            th:attr="data-bs-target='#modal1'+${anuncio.idAnuncios}">Editar Anuncio</a></td>
+                            th:attr="data-bs-target='#modal1'+${enlace.id}">Editar Enlace</a></td>
 
                     <td><a href="#" data-bs-toggle="modal" class="btn btn-danger"
-                            th:attr="data-bs-target='#modal'+${anuncio.idAnuncios}">Borrar Anuncio</a></td>
+                            th:attr="data-bs-target='#modal'+${enlace.id}">Borrar enlace</a></td>
 
 
                     <div class="modal fade" data-bs-backdrop="staticBackdropLabel"
-                        th:attr="id=modal+${anuncio.idAnuncios}" data-bs-keyboard="false" tabindex="-1"
+                        th:attr="id=modal+${enlace.id}" data-bs-keyboard="false" tabindex="-1"
                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Borrar Anuncio.</h5></br>
+                                    <h5 class="modal-title">Borrar enlace.</h5></br>
 
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <h5 class="alert alert-danger">Antes de borrar un Anuncio, piensalo bien</h5>
-                                    <form th:action="@{/borrarAnuncio}" method="post">
-                                        <input type="hidden" name="idAnuncio" th:value="${anuncio.idAnuncios}">
+                                    <h5 class="alert alert-danger">Antes de borrar un enlace, piensalo bien</h5>
+                                    <form th:action="@{/borrarEnlace}" method="post">
+                                        <input type="hidden" name="id" th:value="${enlace.id}">
                                         <input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark"
-                                            value="Borrar Anuncio">
+                                            value="Borrar enlace">
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -122,32 +122,32 @@
                         </div>
                     </div>
                     <div class="modal fade" data-bs-backdrop="staticBackdropLabel"
-                        th:attr="id=modal1+${anuncio.idAnuncios}" data-bs-keyboard="false" tabindex="-1"
+                        th:attr="id=modal1+${enlace.id}" data-bs-keyboard="false" tabindex="-1"
                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Editar Anuncio.</h5></br>
+                                    <h5 class="modal-title">Editar Enlace.</h5></br>
 
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
 
-                                    <form th:action="@{/editarAnuncio}" class="text-dark" style="width: 100%;
+                                    <!-- <form th:action="@{/editarenlace}" class="text-dark" style="width: 100%;
                                 padding: 30px;" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="idAnuncio" th:value="${anuncio.idAnuncios}">
-                                        <input type="hidden" name="fecha" th:value="${anuncio.fecha}">
+                                        <input type="hidden" name="id" th:value="${enlace.idenlaces}">
+                                        <input type="hidden" name="fecha" th:value="${enlace.fecha}">
                                         <div class="mb-3">
                                             <label for="titulo" class="form-label">Enunciado</label>
                                             <input type="text" name="titulo" titulo class="form-control"
-                                                id="titulo_anuncio" style="width: 65%; "
-                                                th:placeholder="${anuncio.titulo_anuncio}">
+                                                id="titulo_enlace" style="width: 65%; "
+                                                th:placeholder="${enlace.titulo_enlace}">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="anuncio" class="form-label">Texto del anuncio</label>
-                                            <textarea class="form-control" name="anuncio" id="anuncio" rows="7"
-                                                style="width: 65%; " th:text="${anuncio.anuncio}"></textarea>
+                                            <label for="enlace" class="form-label">Texto del enlace</label>
+                                            <textarea class="form-control" name="enlace" id="enlace" rows="7"
+                                                style="width: 65%; " th:text="${enlace.enlace}"></textarea>
                                         </div>
                                         <div class="mb-3">
 
@@ -160,7 +160,7 @@
                                         </div>
 
 
-                                    </form>
+                                    </form> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
