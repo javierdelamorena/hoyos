@@ -26,6 +26,8 @@ public class PuntuacionTotal implements Serializable{
 	private String propuesta;
 	
 	private int puntuacion;
+	
+	private int id_propuesta;
 
 	public int getId_total() {
 		return id_total;
@@ -49,6 +51,14 @@ public class PuntuacionTotal implements Serializable{
 
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
+	}
+
+	public int getId_propuesta() {
+		return id_propuesta;
+	}
+
+	public void setId_propuesta(int id_propuesta) {
+		this.id_propuesta = id_propuesta;
 	}
 	
 	

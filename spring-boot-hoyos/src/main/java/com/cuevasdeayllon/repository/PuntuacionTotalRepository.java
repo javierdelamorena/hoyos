@@ -7,7 +7,7 @@ import com.cuevasdeayllon.entity.PuntuacionTotal;
 public interface PuntuacionTotalRepository {
 	
 	
-	void salvarPuntuacion(String propuesta,int puntuacion);
+	void salvarPuntuacion(String propuesta,int puntuacion,int idPropuesta);
 	
 	List<PuntuacionTotal> todasLasPuntuaciones();
 	

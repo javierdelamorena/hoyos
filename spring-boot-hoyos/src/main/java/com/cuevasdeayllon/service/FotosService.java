@@ -1,4 +1,4 @@
-package com.cuevasdeayllon.repository;
+package com.cuevasdeayllon.service;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cuevasdeayllon.entity.Fotos;
 import com.cuevasdeayllon.entity.Usuario;
 
-public interface FotosRepository {
+public interface FotosService {
 	
 	public List<Fotos> todasLasFotos();
 	

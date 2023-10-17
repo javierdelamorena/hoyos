@@ -1,4 +1,4 @@
-package com.cuevasdeayllon.repository;
+package com.cuevasdeayllon.service;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.cuevasdeayllon.entity.Mercadillo;
 
-public interface MercadilloRepository {
+public interface MercadilloService {
 	
 	
 	List<Mercadillo> todosLosMercadillos();

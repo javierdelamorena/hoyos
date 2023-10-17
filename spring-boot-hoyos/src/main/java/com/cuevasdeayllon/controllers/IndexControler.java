@@ -1,6 +1,5 @@
 package com.cuevasdeayllon.controllers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cuevasdeayllon.entity.Mercadillo;
 import com.cuevasdeayllon.entity.Usuario;
-import com.cuevasdeayllon.repository.MercadilloRepository;
+import com.cuevasdeayllon.service.MercadilloService;
 import com.cuevasdeayllon.service.UsuarioService;
 
 
@@ -29,14 +28,14 @@ public class IndexControler {
 	private UsuarioService service;
 	
 	@Autowired
-	private MercadilloRepository mercadilloservice;
+	private MercadilloService mercadilloservice;
 
 	@GetMapping({"/index","/home"})
 	public String index() {
 
 		logger.info("Entramos en metodo index");
 
-		return "home";
+		return "portadas/home";
 
 	}
 	@GetMapping("/registrarse")
@@ -77,7 +76,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo galeriaFotografica");
 
-		return "galeriafoto";
+		return "portadas/galeriafoto";
 
 	}
 	@GetMapping("/piscinasNaturales")
@@ -86,7 +85,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo /piscinasNaturales");
 
-		return "piscinasNaturales";
+		return "portadas/piscinasNaturales";
 
 	}
 	@GetMapping("/estado")
@@ -95,7 +94,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo /estado");
 
-		return "estadosPropuestas";
+		return "usuarios/estadosPropuestas";
 
 	}
 	@GetMapping("/historiaPueblo")
@@ -104,7 +103,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo /historiaPueblo");
 
-		return "historia";
+		return "portadas/historia";
 
 	}
 	@GetMapping("/tablonAnuncios")
@@ -113,7 +112,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo /tablonAnuncios");
 
-		return "tablonanuncios";
+		return "portadas/tablonanuncios";
 
 	}
 	@GetMapping("/toRutas")
@@ -122,7 +121,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo /rutas");
 
-		return "rutas";
+		return "portadas/rutas";
 
 	}
 	@GetMapping("/editarEstados")
@@ -131,7 +130,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo /editarEstados");
 
-		return "editarEstados";
+		return "administrador/editarEstados";
 
 	}
 	@GetMapping("/enlacesDeInteres")
@@ -140,7 +139,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo /enlacesDeInteres");
 
-		return "enlacesDeInteres";
+		return "portadas/enlacesDeInteres";
 
 	}
 	@GetMapping("/subirFotos")
@@ -156,7 +155,7 @@ public class IndexControler {
 
 				logger.info("Entramos en metodo index subirFoto");
 
-				return "subirFoto";
+				return "usuarios/subirFoto";
 			}
 		}catch(Exception e) {
 
@@ -168,7 +167,7 @@ public class IndexControler {
 	}
 	@GetMapping("/anuncios")
 	public String subirAnuncio(Model model,HttpSession sesion) {
-		logger.info("Entramos en metodo index subirFoto");
+		logger.info("Entramos en metodo index subirAnuncio");
 		Usuario usuario=new Usuario();
 		try {
 			if(sesion.getAttribute("usuario")!=null) {
@@ -176,8 +175,8 @@ public class IndexControler {
 				model.addAttribute("titulo", "Titulo");
 				model.addAttribute("anuncio", "Anuncio");
 				model.addAttribute("foto", "Documento");
-				logger.info("Entramos en metodo index subirFoto el idUsuario es: "+usuario.getIdUsuario());
-				return "subirAnuncio";
+				logger.info("Entramos en metodo index subirAnuncio el idUsuario es: "+usuario.getIdUsuario());
+				return "administrador/subirAnuncio";
 			}
 			else {
 				logger.info("La sesion en /toUsuario esta vacia");
@@ -283,7 +282,7 @@ public class IndexControler {
 		model.addAttribute("mercadillo", mercadillo);
 		
 
-		return "mercadillo";
+		return "usuarios/mercadillo";
 
 	}
 	
@@ -313,7 +312,7 @@ public class IndexControler {
 		model.addAttribute("mercadillo", mercadillo);
 		
 
-		return "miMercadillo";
+		return "usuarios/miMercadillo";
 
 	}
 	@GetMapping("/grafico")
@@ -322,7 +321,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo /graficosPuntuciones");
 
-		return "graficosPuntuaciones";
+		return "usuarios/graficosPuntuaciones";
 		
 
 	}
@@ -333,7 +332,7 @@ public class IndexControler {
 
 		logger.info("Entramos en metodo /mercadilloexterior");
 
-		return "mercadilloExterior";
+		return "portadas/mercadilloExterior";
 		
 
 	}

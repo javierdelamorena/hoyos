@@ -1,14 +1,6 @@
 package com.cuevasdeayllon.controllers;
 
-import java.io.IOException;
-import org.apache.commons.io.FilenameUtils;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,9 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cuevasdeayllon.entity.Anuncios;
-import com.cuevasdeayllon.entity.Documentos;
-import com.cuevasdeayllon.repository.AnuncioRepositoryImpl;
 import com.cuevasdeayllon.repository.DocumentosRepositoryImpl;
+import com.cuevasdeayllon.service.AnunciosService;
 
 @CrossOrigin(origins = "*")
 @Controller
@@ -36,7 +27,7 @@ public class AnunciosController {
 	private static final Logger logger = LoggerFactory.getLogger(AnunciosController.class);
 
 	@Autowired
-	private AnuncioRepositoryImpl anuncioRepositoryImpl;
+	private AnunciosService anuncioService;
 
 	@Autowired
 	private DocumentosRepositoryImpl documentosRepositoryImpl;
@@ -47,21 +38,29 @@ public class AnunciosController {
 		logger.info("Entramos en metodo /todosAnuncios");
 
 		try {
-			List<Anuncios> anuncios = anuncioRepositoryImpl.listAnuncio();
+			List<Anuncios> anuncios = anuncioService.listAnuncio();
 
 			anuncios = anuncios.stream().sorted(Comparator.comparing(Anuncios::getIdAnuncios).reversed())
 					.collect(Collectors.toList());
 
 			model.addAttribute("listaAnuncios", anuncios);
 
-			return "tablonanuncios";
+			return "portadas/tablonanuncios";
 
 		} catch (Exception e) {
 
 			logger.info("El error que da en /todosAnuncios es: " + e.getMessage());
 
 		}
-		return "tablonanuncios";
+		return "portadas/tablonanuncios";
+
+	}
+
+	@GetMapping("/anuncio")
+	public @ResponseBody Anuncios unanuncio(@RequestParam("idAnuncio") int idAnuncio) {
+
+		Anuncios anuncios = anuncioService.recuperarAnuncio(idAnuncio);
+		return anuncios;
 
 	}
 
@@ -79,7 +78,7 @@ public class AnunciosController {
 		for (int i = 0; i < oraLen; i++) {
 			if (file.getOriginalFilename().charAt(i) == ' ') {
 				model.addAttribute("fotoConEspacio", "El nombre de la foto no puede tener espacios en blanco.");
-				return "subirAnuncio";
+				return "administrador/subirAnuncio";
 
 			}
 		}
@@ -89,21 +88,21 @@ public class AnunciosController {
 
 				model.addAttribute("faltaTitulo",
 						"El titulo en los anuncios es necesario, lo unico que se puede omitir es la foto.");
-				return "subirAnuncio";
+				return "administrador/subirAnuncio";
 			}
 
 			else if (anuncio.isEmpty()) {
 
 				model.addAttribute("faltaAnuncio",
 						"El texto en los anuncios es necesario, lo unico que se puede omitir es la foto.");
-				return "subirAnuncio";
+				return "administrador/subirAnuncio";
 			} else {
 
-				anuncioRepositoryImpl.insertarAnucio(anuncio, titulo, file);
+				anuncioService.insertarAnucio(anuncio, titulo, file);
 
 				model.addAttribute("anuncioSubido", "El anuncio se ha agregado con exito.");
 
-				return "subirAnuncio";
+				return "administrador/subirAnuncio";
 			}
 		} catch (Exception e) {
 
@@ -111,7 +110,7 @@ public class AnunciosController {
 
 			logger.info("El error que da en /subirAnuncio es: " + e.getMessage());
 		}
-		return "subirAnuncio";
+		return "administrador/subirAnuncio";
 
 	}
 
@@ -120,20 +119,18 @@ public class AnunciosController {
 			@RequestParam("fecha") String fecha, @RequestParam("anuncio") String anuncio,
 			@RequestParam("file") MultipartFile file, Model model) {
 
-		
-		
 		logger.info("Entramos en metodo /subirAnuncio");
-		Anuncios anuncioeditable = anuncioRepositoryImpl.recuperarAnuncio(idAnuncio);
+		Anuncios anuncioeditable = anuncioService.recuperarAnuncio(idAnuncio);
 		int oraLen = file.getOriginalFilename().length();
 		logger.info("El nombre de la foto es: " + file.getOriginalFilename());
 
 		for (int i = 0; i < oraLen; i++) {
 			if (file.getOriginalFilename().charAt(i) == ' ') {
 				model.addAttribute("faltaTitulo", "El nombre de la foto no puede tener espacios en blanco.");
-				List<Anuncios> anuncios = anuncioRepositoryImpl.listAnuncio();
+				List<Anuncios> anuncios = anuncioService.listAnuncio();
 
 				model.addAttribute("listaAnuncios", anuncios);
-				return "listaAnuncios";
+				return "administrador/listaAnuncios";
 
 			}
 		}
@@ -142,31 +139,31 @@ public class AnunciosController {
 
 				model.addAttribute("faltaTitulo",
 						"El titulo en los anuncios es necesario, lo unico que se puede omitir es la foto.");
-				List<Anuncios> anuncios = anuncioRepositoryImpl.listAnuncio();
+				List<Anuncios> anuncios = anuncioService.listAnuncio();
 
 				model.addAttribute("listaAnuncios", anuncios);
-				return "listaAnuncios";
+				return "administrador/listaAnuncios";
 			}
 
 			else if (anuncio.isEmpty()) {
-				List<Anuncios> anuncios = anuncioRepositoryImpl.listAnuncio();
+				List<Anuncios> anuncios = anuncioService.listAnuncio();
 
 				model.addAttribute("listaAnuncios", anuncios);
 
 				model.addAttribute("faltaAnuncio",
 						"El texto en los anuncios es necesario, lo unico que se puede omitir es la foto.");
-				return "listaAnuncios";
+				return "administrador/listaAnuncios";
 			} else {
 
-				anuncioRepositoryImpl.editarAnuncio(anuncioeditable, anuncio, titulo, fecha, file);
+				anuncioService.editarAnuncio(anuncioeditable, anuncio, titulo, fecha, file);
 
-				List<Anuncios> anuncios = anuncioRepositoryImpl.listAnuncio();
+				List<Anuncios> anuncios = anuncioService.listAnuncio();
 
 				model.addAttribute("listaAnuncios", anuncios);
 
 				model.addAttribute("anuncioSubido", "El anuncio se ha editado con exito.");
 
-				return "listaAnuncios";
+				return "administrador/listaAnuncios";
 			}
 		} catch (Exception e) {
 
@@ -174,10 +171,10 @@ public class AnunciosController {
 
 			logger.info("El error que da en /subirAnuncio es: " + e.getMessage());
 		}
-		List<Anuncios> anuncios = anuncioRepositoryImpl.listAnuncio();
+		List<Anuncios> anuncios = anuncioService.listAnuncio();
 
 		model.addAttribute("listaAnuncios", anuncios);
-		return "listaAnuncios";
+		return "administrador/listaAnuncios";
 
 	}
 
@@ -186,27 +183,28 @@ public class AnunciosController {
 
 		logger.info("Entramos en metodo /listaAnunciosAdmin");
 		try {
-			List<Anuncios> anuncios = anuncioRepositoryImpl.listAnuncio();
+			List<Anuncios> anuncios = anuncioService.listAnuncio();
 
 			model.addAttribute("listaAnuncios", anuncios);
 
-			return "listaAnuncios";
+			return "administrador/listaAnuncios";
 		} catch (Exception e) {
 			logger.info("El error que da en /listaAnunciosAdmin es: " + e.getMessage());
 		}
-		return "listaAnuncios";
+		return "administrador/listaAnuncios";
 
 	}
 
 	@PostMapping("/borrarAnuncio")
 	public String borrarAnuncio(@RequestParam("idAnuncio") int idAnuncio, Model model) {
+		
 		try {
-			Anuncios anuncios = anuncioRepositoryImpl.recuperarAnuncio(idAnuncio);
+			Anuncios anuncios = anuncioService.recuperarAnuncio(idAnuncio);
 
 			if (idAnuncio > 0 && anuncios != null) {
-				anuncioRepositoryImpl.deleteAnuncio(idAnuncio);
+				anuncioService.deleteAnuncio(idAnuncio);
 			} else {
-				return "listaAnuncios";
+				return "administrador/listaAnuncios";
 			}
 
 		} catch (Exception e) {
@@ -217,7 +215,7 @@ public class AnunciosController {
 
 		List<Anuncios> anuncios;
 		try {
-			anuncios = anuncioRepositoryImpl.listAnuncio();
+			anuncios = anuncioService.listAnuncio();
 			model.addAttribute("listaAnuncios", anuncios);
 		} catch (Exception e) {
 
@@ -225,49 +223,41 @@ public class AnunciosController {
 
 		}
 
-		return "listaAnuncios";
+		return "administrador/listaAnuncios";
 
 	}
 
-	@PostMapping("/subirDocumento")
-	public String insertarDocumento(@RequestParam("titulo") String titulo, @RequestParam("file") MultipartFile foto,
-			Model model) throws IOException {
-
-		logger.info("Entramos en metodo /Documento");
-
-		logger.info("El nombre de la foto es: " + foto.getOriginalFilename());
-
-		documentosRepositoryImpl.insertarDocumentos(titulo, foto);
-
-		model.addAttribute("anuncioSubido", "El anuncio se ha agregado con exito.");
-
-		return "fileUpload";
-
-	}
-
-	@GetMapping("/todosDocumentos")
-	public String todosDocumento(Model model) throws IOException {
-
-		logger.info("Entramos en metodo /Documento");
-
-		List<Documentos> documento = new ArrayList<>();
-
-		documento = documentosRepositoryImpl.listDocumentos();
-		documento = documento.stream().sorted(Comparator.comparing(Documentos::getId).reversed())
-				.collect(Collectors.toList());
-
-		model.addAttribute("listaDocumentos", documento);
-
-		return "documentos";
-
-	}
-
-	@GetMapping("/anuncio")
-	public @ResponseBody Anuncios unanuncio(@RequestParam("idAnuncio") int idAnuncio) {
-
-		Anuncios anuncios = anuncioRepositoryImpl.recuperarAnuncio(idAnuncio);
-		return anuncios;
-
-	}
+//	@PostMapping("/subirDocumento")
+//	public String insertarDocumento(@RequestParam("titulo") String titulo, @RequestParam("file") MultipartFile foto,
+//			Model model) throws IOException {
+//
+//		logger.info("Entramos en metodo /Documento");
+//
+//		logger.info("El nombre de la foto es: " + foto.getOriginalFilename());
+//
+//		documentosRepositoryImpl.insertarDocumentos(titulo, foto);
+//
+//		model.addAttribute("anuncioSubido", "El anuncio se ha agregado con exito.");
+//
+//		return "fileUpload";
+//
+//	}
+//
+//	@GetMapping("/todosDocumentos")
+//	public String todosDocumento(Model model) throws IOException {
+//
+//		logger.info("Entramos en metodo /Documento");
+//
+//		List<Documentos> documento = new ArrayList<>();
+//
+//		documento = documentosRepositoryImpl.listDocumentos();
+//		documento = documento.stream().sorted(Comparator.comparing(Documentos::getId).reversed())
+//				.collect(Collectors.toList());
+//
+//		model.addAttribute("listaDocumentos", documento);
+//
+//		return "documentos";
+//
+//	}
 
 }

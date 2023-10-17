@@ -73,6 +73,7 @@
                     <th scope="col">Fecha </th>
                     <th scope="col">Titulo</th>
                     <th scope="col">Usuario</th>
+                    <th scope="col">Estado</th>
                     <th scope="col">Borrar</th>
 
 
@@ -88,9 +89,13 @@
 
                 <td th:if="${propuesta.fecha == null}" th:text="'sin fecha'"></td>
                 <td th:if="${propuesta.titulo}" th:text="${propuesta.titulo}"></td>
-
-
                 <td th:if="${propuesta.usuario.nombre}" th:text="${propuesta.usuario.nombre}"></td>
+                <td th:if="${propuesta.votacion }" th:text="${propuesta.votacion}"></td>
+                <td th:if="${propuesta.encurso }" th:text="${propuesta.encurso}"></td>
+                <td th:if="${propuesta.realizada }" th:text="${propuesta.realizada}"></td>
+                <td th:if="${propuesta.desestimada }" th:text="${propuesta.desestimada}"></td>
+                <td th:if="${propuesta.pleno }" th:text="${propuesta.pleno}"></td>
+
 
                 <td><a href="#" data-bs-toggle="modal" class="btn btn-primary"
                         th:attr="data-bs-target='#modal'+${propuesta.idPropuesta}">Editar Estado</a>

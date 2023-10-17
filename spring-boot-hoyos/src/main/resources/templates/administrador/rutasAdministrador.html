@@ -49,9 +49,11 @@
     <nav th:replace="layouts/fragmentoAdministradores :: nav"></nav>
 
 
-    <div class="container content" style="margin-top: 10%;">
+    <div class="container content" style="margin-top: 10%;font-size: medium;">
         <h4 style="text-align: center;margin: 1%;">Espacio Administradores de pagina</h4>
-        <div th:if="${exito}" th:text="${exito}" class="alert alert-info my-4" style="font-size: 20px;
+
+        <p style="text-align: center;">Subir ruta a Rutas.</p>
+        <div th:if="${rutaAgregada}" th:text="${rutaAgregada}" class="alert alert-info my-4" style="font-size: 20px;
             
             font-weight: bold;"></div>
         <div th:if="${espaciosBlancos}" th:text="${espaciosBlancos}" class="alert alert-info my-4" style="font-size: 20px;
@@ -59,120 +61,84 @@
             font-weight: bold;"></div>
 
         <div class="col-lg-12" style="margin-top: 6%;">
-            <form th:action="@{/insertarEnlace}" th:object="${Enlaces}" class="text-dark" style="font-size: 15px;"
+            <form th:action="@{/insertarRuta}" th:object="${rutas}" class="text-dark" style="font-size: 15px;"
                 method="post" enctype="multipart/form-data">
 
-                <div class="row" style="margin-top: 3%;margin-bottom: 5%;">
-
-                    <!-- <div class="col-lg-12" style="margin-top: 3%;margin-bottom: 5%;"> -->
-
-
+                <!-- <div class="row" style="margin-top: 3%;margin-bottom: 5%;"> -->
                     <div class="row">
                         <div class=" col-lg-6">
                             <label form="nombre" class="col-form-label col-sm-2" th:text="${nombre}" style="width: 100%;font-family: sans-serif;
                                     font-size: 20px;"></label>
-                            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" maxlength="20"
-                                placeholder="Nombre" autocomplete="off">
-
+                            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" maxlength="140"
+                                autocomplete="off">
                         </div>
-                        <div class=" col-lg-6">
-                            <label form="apellidos" class="col-form-label col-sm-2" th:text="${apellidos}" style="width: 100%;font-family: sans-serif;
-                                    font-size: 20px;"></label>
-                            <input type="text" id="apellidos" th:field="*{apellidos}" class="form-control"
-                                maxlength="20" placeholder="Apellidos" autocomplete="off">
-
+                        <div class="col-lg-6">
+                            <label form="file1" class="col-form-label col-sm-2" th:text="${foto1}" style="font-family: sans-serif;width: 100%;
+                                font-size: 20px;"></label>
+                            <input type="file" id="file1" name="file1" class="form-control" autocomplete="off">
                         </div>
-                        
-
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-                            <label form="tipo_enlace" class="col-form-label col-sm-2" th:text="${tipo_enlace}" style="width: 100%;font-family: sans-serif;
-                                    font-size: 20px;">tipo_enlace</label>
-                            <select class="form-control" th:field="*{tipo}" id="dropDownList">tipo_enlace
-                                <option value="Comercio">Comercio</option>
-                                <option value="Asociacion">Asociacion</option>
-                                <option value="Vecino">Vecino</option>
-                            </select>
-
-
+                            <label form="file2" class="col-form-label col-sm-2" th:text="${foto2}" style="font-family: sans-serif;width: 100%;
+                                font-size: 20px;"></label>
+                            <input type="file" id="file2" name="file2" class="form-control" autocomplete="off">
                         </div>
-                        <div class=" col-lg-6">
-                            <label form="telefono" class="col-form-label col-sm-2" th:text="${telefono}" style="width: 100%;font-family: sans-serif;
-                                    font-size: 20px;"></label>
-                            <input type="text" id="telefono" th:field="*{telefono}" class="form-control" maxlength="20"
-                                placeholder="Telefono" autocomplete="off">
-                            
+                        <div class="col-lg-6">
+                            <label form="file3" class="col-form-label col-sm-2" th:text="${foto3}" style="font-family: sans-serif;width: 100%;
+                                font-size: 20px;"></label>
+                            <input type="file" id="file3" name="file3" class="form-control" autocomplete="off">
                         </div>
-
-                        <!-- </div> -->
-
-
                     </div>
                     <div class="row">
-                    
-                    <div class=" col-lg-6">
-                        <label form="Enlace web" class="col-form-label col-sm-2" th:text="${enlaceweb}" style="width: 100%;font-family: sans-serif;
-                                    font-size: 20px;"></label>
-                        <input type="text" id="enlaceweb" th:field="*{enlaceweb}" class="form-control" maxlength="20"
-                            placeholder="Telefono" autocomplete="off">
-
-                    </div>
-
-                    <div class="col-lg-6">
-                        <label form="file1" class="col-form-label col-sm-2" th:text="${foto1}" style="font-family: sans-serif;width: 100%;
+                        <div class="col-lg-6">
+                            <label form="file4" class="col-form-label col-sm-2" th:text="${foto4}" style="font-family: sans-serif;width: 100%;
                                 font-size: 20px;"></label>
-                        <input type="file" id="file1" name="file1" class="form-control" autocomplete="off">
-
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label form="file2" class="col-form-label col-sm-2" th:text="${foto2}" style="font-family: sans-serif;width: 100%;
+                            <input type="file" id="file4" name="file4" class="form-control" autocomplete="off">
+                        </div>
+                        <div class="col-lg-6">
+                            <label form="file5" class="col-form-label col-sm-2" th:text="${foto5}" style="font-family: sans-serif;width: 100%;
                                 font-size: 20px;"></label>
-                        <input type="file" id="file2" name="file2" class="form-control" autocomplete="off">
-
+                            <input type="file" id="file5" name="file5" class="form-control" autocomplete="off">
+                        </div>
                     </div>
-
-
-                </div>
+             
 
                 <div class="col-lg-12 col-sm-12">
-                    <label form="texto" class="col-form-label col-sm-2" th:text="${texto1}" style="width: 100%;font-family: sans-serif;
+                    <label form="texto1" class="col-form-label col-sm-2" th:text="${texto1}" style="width: 100%;font-family: sans-serif;
                                 font-size: 20px;"></label>
-                    <textarea id="texto" th:field="*{texto1}" name="texto1" rows="4" cols="50" style=" height: 15%;
-                            width: 100%; margin-bottom: 5%;" maxlength="500"></textarea>
+                    <textarea id="texto1" th:field="*{texto1}" name="texto1" rows="4" cols="50" style=" height: 15%;
+                            width: 100%; margin-bottom: 5%;" maxlength="990"></textarea>
                     <label form="texto2" class="col-form-label col-sm-2" th:text="${texto2}" style="width: 100%;font-family: sans-serif;
                             font-size: 20px;"></label>
                     <textarea id="texto2" th:field="*{texto2}" name="texto2" rows="4" cols="50" style=" height: 15%;
-                        width: 100%; margin-bottom: 5%;" maxlength="500"></textarea>
+                        width: 100%; margin-bottom: 5%;" maxlength="990"></textarea>
                     <label form="texto3" class="col-form-label col-sm-2" th:text="${texto3}" style="width: 100%;font-family: sans-serif;
                                 font-size: 20px;"></label>
                     <textarea id="texto3" th:field="*{texto3}" name="texto3" rows="4" cols="50" style=" height: 15%;
-                            width: 100%; margin-bottom: 5%;" maxlength="500"></textarea>
-
+                            width: 100%; margin-bottom: 5%;" maxlength="990"></textarea>
+                    <label form="texto4" class="col-form-label col-sm-2" th:text="${texto4}" style="width: 100%;font-family: sans-serif;
+                            font-size: 20px;"></label>
+                    <textarea id="texto4" th:field="*{texto4}" name="texto4" rows="4" cols="50" style=" height: 15%;
+                        width: 100%; margin-bottom: 5%;" maxlength="990"></textarea>
+                    <label form="texto5" class="col-form-label col-sm-2" th:text="${texto5}" style="width: 100%;font-family: sans-serif;
+                                font-size: 20px;"></label>
+                    <textarea id="texto5" th:field="*{texto5}" name="texto5" rows="4" cols="50" style=" height: 15%;
+                            width: 100%; margin-bottom: 5%;" maxlength="990"></textarea>
 
                     <div class="row">
                         <div class="col-lg-6 col-sm-6" style="margin-top: 1%;">
-
-
                             <input type="submit" class="btn btn-dark"
                                 style="color: #eeeeee;background-color: #463232a3;" value="Enviar" />
-
                         </div>
                         <div class="col-lg-6 col-sm-6" style="margin-top: 1%;">
                             <a type="button" value="cerrar" th:href="@{/toUsuario}" class="btn btn-dark" style="color: #eeeeee;
                                     background-color: #463232a3;">Cerrar</a>
                         </div>
                     </div>
-
-                </div>
                 <!-- </div> -->
-
+            </form>
         </div>
-        </form>
-    </div>
     </div>
 
 

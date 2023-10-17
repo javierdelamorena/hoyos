@@ -10,29 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="enlaces")
-public class Enlaces implements Serializable{
+@Table(name="igualdad")
+public class Igualdad implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idenlacesdeinteres")
+	@Column(name="id_igualdad")
 	private int id;
+	 
+	
 	private String tipo;
 	
-
-	private String nombre;
 	
-	private String apellidos;
+	private String titulo;
 	
-	private String telefono;
-	
-	private String direccion;
 	
 	private String enlaceweb;
-	
-    private String mail;
-    
+	   
 	private String texto1;
 	
 	private String texto2;
@@ -43,10 +39,6 @@ public class Enlaces implements Serializable{
 	
 	private String foto2;
 
-	public Enlaces() {
-		super();
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -55,28 +47,28 @@ public class Enlaces implements Serializable{
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	public String getApellidos() {
-		return apellidos;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
-	public String getTelefono() {
-		return telefono;
+	public String getEnlaceweb() {
+		return enlaceweb;
 	}
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setEnlaceweb(String enlaceweb) {
+		this.enlaceweb = enlaceweb;
 	}
 
 	public String getTexto1() {
@@ -118,39 +110,6 @@ public class Enlaces implements Serializable{
 	public void setFoto2(String foto2) {
 		this.foto2 = foto2;
 	}
-	
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public String getEnlaceweb() {
-		return enlaceweb;
-	}
-
-	public void setEnlaceweb(String enlaceweb) {
-		this.enlaceweb = enlaceweb;
-	}
-	
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-	
 	
 	
 

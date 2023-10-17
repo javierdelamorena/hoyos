@@ -66,11 +66,11 @@ function esElFinal() {
                     html += '</div>';
                     html += '<button class="carousel-control-prev" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="prev">';
                     html += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-                    html += '<span class="sr-only">Previous</span>';
+                    
                     html += '</button>';
                     html += '<button class="carousel-control-next" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="next">';
                     html += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-                    html += '<span class="sr-only">Next</span>';
+                   
                     html += '</button>';
                     html += '</div>';
 
@@ -130,11 +130,11 @@ function esElFinal() {
                     html += '</div>';
                     html += '<button class="carousel-control-prev" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="prev">';
                     html += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-                    html += '<span class="sr-only">Previous</span>';
+                   
                     html += '</button>';
                     html += '<button class="carousel-control-next" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="next">';
                     html += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-                    html += '<span class="sr-only">Next</span>';
+                    
                     html += '</button>';
                     html += '</div>';
 
@@ -194,11 +194,11 @@ function esElFinal() {
                     html += '</div>';
                     html += '<button class="carousel-control-prev" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="prev">';
                     html += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-                    html += '<span class="sr-only">Previous</span>';
+               
                     html += '</button>';
                     html += '<button class="carousel-control-next" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="next">';
                     html += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-                    html += '<span class="sr-only">Next</span>';
+                   
                     html += '</button>';
                     html += '</div>';
 
@@ -256,11 +256,11 @@ function esElFinal() {
                     html += '</div>';
                     html += '<button class="carousel-control-prev" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="prev">';
                     html += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-                    html += '<span class="sr-only">Previous</span>';
+                   
                     html += '</button>';
                     html += '<button class="carousel-control-next" data-bs-target="#carouselExampleControls' + objetos[i].id + '" role="button" data-bs-slide="next">';
                     html += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-                    html += '<span class="sr-only">Next</span>';
+                   
                     html += '</button>';
                     html += '</div>';
 

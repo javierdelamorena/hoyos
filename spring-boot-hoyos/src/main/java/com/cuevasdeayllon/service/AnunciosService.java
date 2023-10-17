@@ -1,4 +1,4 @@
-package com.cuevasdeayllon.repository;
+package com.cuevasdeayllon.service;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cuevasdeayllon.entity.Anuncios;
 
-public interface AnunciosRepository {
+public interface AnunciosService {
 	
 	List<Anuncios> listAnuncio();
 	

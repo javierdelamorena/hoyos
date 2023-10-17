@@ -36,7 +36,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		if(listaUsuarios.size()==0) {
 			Usuario usuarios=new Usuario();
 
-			usuarios.setIdUsuario(0);
+			//usuarios.setIdUsuario(0);
 			usuarios.setNombre(usuario.getNombre());
 			usuarios.setApellido1(usuario.getApellido1());
 			usuarios.setApellido2(usuario.getApellido2());
@@ -51,7 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		}else {
 			Usuario usuarios=new Usuario();
 
-			usuarios.setIdUsuario(0);
+			//usuarios.setIdUsuario(0);
 			usuarios.setNombre(usuario.getNombre());
 			usuarios.setApellido1(usuario.getApellido1());
 			usuarios.setApellido2(usuario.getApellido2());

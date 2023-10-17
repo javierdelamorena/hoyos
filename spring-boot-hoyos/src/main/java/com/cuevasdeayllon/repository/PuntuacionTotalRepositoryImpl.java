@@ -15,7 +15,7 @@ public class PuntuacionTotalRepositoryImpl implements PuntuacionTotalRepository{
 	@Autowired
 	PuntuacionTotalJpaRepository puntuacionTotalJpaRepository;
 	@Override
-	public void salvarPuntuacion(String propuesta, int puntuacion) {
+	public void salvarPuntuacion(String propuesta, int puntuacion,int idPropuesta) {
 
 		
 		PuntuacionTotal puntuacionTotalEditable=puntuacionTotalJpaRepository.findByPropuesta(propuesta);
@@ -25,6 +25,7 @@ public class PuntuacionTotalRepositoryImpl implements PuntuacionTotalRepository{
 			puntuacionTotal=new PuntuacionTotal();
 			puntuacionTotal.setId_total(0);
 			puntuacionTotal.setPropuesta(propuesta);
+			puntuacionTotal.setId_propuesta(idPropuesta);
 			puntuacionTotal.setPuntuacion(puntuacion);
 
 			puntuacionTotalJpaRepository.save(puntuacionTotal);
@@ -35,6 +36,7 @@ public class PuntuacionTotalRepositoryImpl implements PuntuacionTotalRepository{
 			puntuacionTotal.setId_total(puntuacionTotalEditable.getId_total());
 			puntuacionTotal.setPropuesta(propuesta);
 			puntuacionTotal.setPuntuacion(puntuacion);
+			puntuacionTotal.setId_propuesta(idPropuesta);
 			puntuacionTotalJpaRepository.save(puntuacionTotal);
 
 		}

@@ -1,4 +1,4 @@
-package com.cuevasdeayllon.repository;
+package com.cuevasdeayllon.service;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,13 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cuevasdeayllon.entity.Anuncios;
 import com.cuevasdeayllon.entity.Mercadillo;
+import com.cuevasdeayllon.repository.MercadilloJpaRepository;
 
-@Repository
-public class MercadilloRepositoryImpl implements MercadilloRepository {
+@Service
+public class MercadilloServiceImpl implements MercadilloService {
 	
 	@Autowired
 	private MercadilloJpaRepository mercadilloJpaRepository;

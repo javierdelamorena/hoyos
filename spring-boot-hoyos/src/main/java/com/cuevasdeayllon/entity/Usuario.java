@@ -17,7 +17,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,8 +44,9 @@ public class Usuario implements Serializable{
 	private String apellido2;
 	@Email
 	@NotEmpty
-	private String email;
-	@NotEmpty
+	private String email;	
+	@NotEmpty(message = "Tienes que introducir una contraseña.")
+	@Length(min = 6, message = "Tu contraseña tiene que tener minimo 6 caracteres.")
 	private String password;
 	private String notificacion;
 	private String foto;

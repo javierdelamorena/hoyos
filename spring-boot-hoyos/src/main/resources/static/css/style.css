@@ -1,5 +1,5 @@
 .bodyGaleria {
-	background-image: url("36.jpg");
+	background-image: url("galeria.jpg");
 	
 	background-size: cover;
 	/* background-repeat: repeat; */
@@ -21,7 +21,7 @@
 }
 
 .bodyAnuncios {
-	background-image: url("38.jpg");
+	background-image: url("tablon.jpg");
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
@@ -31,7 +31,17 @@
 }
 
 .bodyMercadilloSubir {
-	background-image: url("31.jpg");
+	background-image: url("espaciovecinal.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
+
+}
+.bodyMercadillo {
+	background-image: url("mercadillo.jpg");
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
@@ -39,9 +49,8 @@
 	object-fit: cover;
 	object-position: bottom;
 }
-
 .bodyContacto {
-	background-image: url("28.jpg");
+	background-image: url("contacto.jpg");
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
@@ -61,7 +70,7 @@
 }
 
 .bodyEnlacesInteres {
-	background-image: url("39.jpg");
+	background-image: url("enlaces.jpg");
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
@@ -71,7 +80,7 @@
 }
 
 .bodyRegistro {
-	background-image: url("42.jpg");
+	background-image: url("registro.jpg");
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
@@ -81,7 +90,7 @@
 }
 
 .bodyUsuario {
-	background-image: url("40.jpg");
+	background-image: url("espaciovecinal.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
@@ -91,7 +100,7 @@
 }
 
 .bodyLogin {
-	background-image: url("41.jpg");
+	background-image: url("login.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
@@ -101,7 +110,7 @@
 }
 
 .bodyComentarios {
-	background-image: url("40.jpg");
+	background-image: url("espaciovecinal.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
@@ -111,7 +120,7 @@
 }
 
 .bodyRutas {
-	background-image: url("34.jpg");
+	background-image: url("rutas.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	margin: 0;
@@ -121,7 +130,7 @@
 }
 
 .bodyHistoria {
-	background-image: url("35.jpg");
+	background-image: url("historia.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;
@@ -132,7 +141,7 @@
 }
 
 .body {
-	background-image: url("33.jpg");
+	background-image: url("home.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	margin: 0;
@@ -150,7 +159,7 @@
 }
 
 .bodyOrfeo {
-	background-image: url("37.jpg");
+	background-image: url("piscina.jpg");
 	background-size: cover;
 	background-repeat: repeat;
 	margin: 0;

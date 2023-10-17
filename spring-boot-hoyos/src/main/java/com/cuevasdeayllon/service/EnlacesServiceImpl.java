@@ -27,17 +27,40 @@ public class EnlacesServiceImpl implements EnlacesService {
 	public void salvarEnlace(Enlaces enlaces, MultipartFile file1, MultipartFile file2) {
 
 		Enlaces enlace = new Enlaces();
+		if (!enlaces.getTipo().isEmpty()) {
+			enlace.setTipo(enlaces.getTipo());
+		}
+		if (!enlaces.getNombre().isEmpty()) {
+			enlace.setNombre(enlaces.getNombre());
+		}
 
-		enlace.setNombre(enlaces.getNombre());
-		enlace.setApellidos(enlaces.getApellidos());
-		enlace.setDireccion(enlaces.getDireccion());
-		enlace.setTelefono(enlaces.getTelefono());
-		enlace.setEnlaceweb(enlaces.getEnlaceweb());
+		if (!enlaces.getApellidos().isEmpty()) {
+			enlace.setApellidos(enlaces.getApellidos());
+		}
+
+		if (!enlaces.getDireccion().isEmpty()) {
+			enlace.setDireccion(enlaces.getDireccion());
+		}
+		if (!enlaces.getTelefono().isEmpty()) {
+			enlace.setTelefono(enlaces.getTelefono());
+		}
+		if (!enlaces.getEnlaceweb().isEmpty()) {
+			enlace.setEnlaceweb(enlaces.getEnlaceweb());
+		}
+
 		enlace.setTexto1(enlaces.getTexto1());
+
 		enlace.setTexto2(enlaces.getTexto2());
+
 		enlace.setTexto3(enlaces.getTexto3());
 
-		if (!file1.isEmpty()) {
+		if (!enlaces.getMail().isEmpty()) {
+			enlace.setMail(enlaces.getMail());
+		}
+
+		if (!file1.isEmpty())
+
+		{
 
 			try {
 				byte[] bytes = file1.getBytes();
@@ -45,9 +68,9 @@ public class EnlacesServiceImpl implements EnlacesService {
 				Files.write(rutaCompleta, bytes);
 				String extension1 = FilenameUtils.getExtension(file1.getOriginalFilename());
 
-				//if (extension1.equals("jpg") || extension1.equals("png")) {
-					enlace.setFoto1(file1.getOriginalFilename());
-				//}
+				// if (extension1.equals("jpg") || extension1.equals("png")) {
+				enlace.setFoto1(file1.getOriginalFilename());
+				// }
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -62,9 +85,9 @@ public class EnlacesServiceImpl implements EnlacesService {
 				Files.write(rutaCompleta, bytes);
 				String extension2 = FilenameUtils.getExtension(file2.getOriginalFilename());
 
-				//if (extension2.equals("jpg") || extension2.equals("png")) {
-					enlace.setFoto2(file1.getOriginalFilename());
-				//}
+				// if (extension2.equals("jpg") || extension2.equals("png")) {
+				enlace.setFoto2(file1.getOriginalFilename());
+				// }
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -77,6 +100,19 @@ public class EnlacesServiceImpl implements EnlacesService {
 
 	@Override
 	public void borrarEnlace(int idEnlaces) {
+
+		Enlaces enlace = enlacesJpaRepository.findById(idEnlaces).orElse(null);
+
+		try {
+			Path rutaCompletaImagen1 = Paths.get(ROOT_PATH + "//" + enlace.getFoto1());
+			Files.deleteIfExists(rutaCompletaImagen1);
+			Path rutaCompletaImagen2 = Paths.get(ROOT_PATH + "//" + enlace.getFoto2());
+			Files.deleteIfExists(rutaCompletaImagen2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		enlacesJpaRepository.deleteById(idEnlaces);
 	}
 
@@ -89,7 +125,7 @@ public class EnlacesServiceImpl implements EnlacesService {
 	@Override
 	public Enlaces unEnlace(int idEnlaces) {
 
-		return enlacesJpaRepository.getById(idEnlaces);
+		return enlacesJpaRepository.findById(idEnlaces).orElse(null);
 	}
 
 }

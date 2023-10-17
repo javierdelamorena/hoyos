@@ -52,7 +52,7 @@
 
 
 
-    <div class="container content" style="margin-top: 10%;">
+    <div class="container content" style="margin-top: 10%;font-size: smaller;">
         <h4 style="text-align: center;margin: 1%;">Espacio Administradores de pagina</h4>
         <div class="col-lg-12 col-sm-2" style="margin: 2%;" >
 
@@ -72,6 +72,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido1</th>
                     <th scope="col">Apellido2</th>
+                    <th scope="col">direccion</th>
                     <th scope="col">Borrar</th>
 
                 </tr>
@@ -88,6 +89,8 @@
                     <td th:if="${usuario.apellido1}" th:text="${usuario.apellido1}"></td>
 
                     <td th:if="${usuario.apellido2}" th:text="${usuario.apellido2}"></td>
+
+                    <td th:if="${usuario.direccion}" th:text="${usuario.direccion}"></td>
 
                     <td><a href="#" data-bs-toggle="modal" class="btn btn-danger"
                             th:attr="data-bs-target='#modal'+${usuario.idUsuario}">Dar de Baja</a></td>

@@ -1,4 +1,4 @@
-package com.cuevasdeayllon.repository;
+package com.cuevasdeayllon.service;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,28 +10,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.cuevasdeayllon.entity.Fotos;
 import com.cuevasdeayllon.entity.Usuario;
+import com.cuevasdeayllon.repository.FotosJpaRepository;
 
-@Repository
-public class FotosRepositoryImpl implements FotosRepository {
+@Service
+public class FotosServiceImpl implements FotosService {
 
 	@Autowired
-	FotosJpaRepository repository;
+	FotosJpaRepository fotosJpaRepository;
 	static final String ROOT_PATH = "D://TEMP//uploadsGaleria";
 	// static final String ROOT_PATH = "/uploadsGaleria/";
 
 	public List<Fotos> todasLasFotos() {
 
-		return repository.findAll();
+		return fotosJpaRepository.findAll();
 
 	}
 
 	@Override
 	public void salvarFoto(Fotos foto) {
 
-		repository.save(foto);
+		fotosJpaRepository.save(foto);
 
 	}
 
@@ -54,7 +56,7 @@ public class FotosRepositoryImpl implements FotosRepository {
 				e.printStackTrace();
 			}
 
-			repository.delete(fotos);
+			fotosJpaRepository.delete(fotos);
 
 		}
 
@@ -63,25 +65,25 @@ public class FotosRepositoryImpl implements FotosRepository {
 	@Override
 	public Page<Fotos> fotosPaginas(Pageable page) {
 
-		return repository.findAllPage(page);
+		return fotosJpaRepository.findAllPage(page);
 	}
 
 	@Override
 	public List<Fotos> todasByIdUsuario(int idUsuario) {
 		// TODO Auto-generated method stub
-		return repository.findAllByIdUsuario(idUsuario);
+		return fotosJpaRepository.findAllByIdUsuario(idUsuario);
 	}
 
 	@Override
 	public Fotos fotoByIdUsuario(int idUsuario) {
 		// TODO Auto-generated method stub
-		return repository.findByIdUsuario(idUsuario);
+		return fotosJpaRepository.findByIdUsuario(idUsuario);
 	}
 
 	@Override
 	public Fotos fotoById(int idFotos) {
 		// TODO Auto-generated method stub
-		return repository.getById(idFotos);
+		return fotosJpaRepository.getById(idFotos);
 	};
 
 }

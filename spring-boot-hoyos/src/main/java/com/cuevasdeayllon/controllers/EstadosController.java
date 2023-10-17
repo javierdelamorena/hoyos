@@ -43,9 +43,11 @@ public class EstadosController {
 		List<EstadosPropuestas> estadosPropuestas = new ArrayList<>();			
 		
 		 estadosPropuestas=Utilidades.listaPropuestasAlistaEstadosPropuestas(propuestas);
+		 
+		
 		
 		model.addAttribute("listaPropuestas", estadosPropuestas);
-		return "editarEstado";
+		return "administrador/editarEstado";
 
 	}
 
@@ -81,7 +83,7 @@ public class EstadosController {
 		logger.info("Entramos en metodo /editarEstadoVotacion");
 		
 		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado Votacion ");
-		return "editarEstado";
+		return "administrador/editarEstado";
 
 	}
 	@PostMapping("/editarEstadoEnCurso")
@@ -115,7 +117,7 @@ public class EstadosController {
 		logger.info("Entramos en metodo /editarEstadoEncurso");
 		
 		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado En Curso ");
-		return "editarEstado";
+		return "administrador/editarEstado";
 
 	}
 	@PostMapping("/editarEstadoPleno")
@@ -148,7 +150,7 @@ public class EstadosController {
 		logger.info("Entramos en metodo /editarEstadoPleno");
 		
 		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado Pleno ");
-		return "editarEstado";
+		return "administrador/editarEstado";
 
 	}
 	@PostMapping("/editarEstadoRealizada")
@@ -183,7 +185,7 @@ public class EstadosController {
 		logger.info("Entramos en metodo /editarEstadoRealizada");
 		
 		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado realizada ");
-		return "editarEstado";
+		return "administrador/editarEstado";
 
 	}
 	@PostMapping("/editarEstadoDesestimada")
@@ -208,7 +210,7 @@ public class EstadosController {
 			logger.info("Entramos en metodo /editarEstadoDesestimada");
 			
 			model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" no ha sido editada correctamente en estado desestimada porque no tiene un explicacion.");
-			return "editarEstado";
+			return "administrador/editarEstado";
 			
 		}
 		estado.setId(idPropuesta);
@@ -240,7 +242,7 @@ public class EstadosController {
 		logger.info("Entramos en metodo /editarEstadoDesestimada");
 		
 		model.addAttribute("input","La propuesta "+propuesta.getTitulo()+" ha sido editada correctamente en estado desestimada ");
-		return "editarEstado";
+		return "administrador/editarEstado";
 		
 
 	}

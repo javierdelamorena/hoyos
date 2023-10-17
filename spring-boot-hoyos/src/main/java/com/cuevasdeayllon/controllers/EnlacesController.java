@@ -2,7 +2,6 @@ package com.cuevasdeayllon.controllers;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,24 +10,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cuevasdeayllon.entity.Enlaces;
-import com.cuevasdeayllon.entity.Mercadillo;
-import com.cuevasdeayllon.entity.Usuario;
-import com.cuevasdeayllon.repository.AnuncioRepositoryImpl;
 import com.cuevasdeayllon.service.EnlacesService;
-
+@CrossOrigin(origins = "*")
 @Controller
-public class EnlacesControllers {
+public class EnlacesController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(EnlacesControllers.class);
+	private static final Logger logger = LoggerFactory.getLogger(EnlacesController.class);
 	
 	@Autowired
 	private EnlacesService enlacesService;
@@ -42,15 +38,16 @@ public class EnlacesControllers {
 				Enlaces enlace=new Enlaces();
 				
 				model.addAttribute("tipo_enlace","Tipo Enlace" );
-				model.addAttribute("nombre","Nombre del anunciante");
-				model.addAttribute("apellidos","Apellido del anunciante");
-				model.addAttribute("telefono","Telefono");
-				model.addAttribute("direccion","Direccion");				
+				model.addAttribute("nombre","Nombre de asociación,comercio,vecino etc");
+				model.addAttribute("apellidos","Apellido del vecino");
+				model.addAttribute("telefono","Teléfono");
+				model.addAttribute("direccion","Dirección");				
 				model.addAttribute("texto1", "Texto1");
 				model.addAttribute("texto2", "Texto2");
 				model.addAttribute("texto3", "Texto3");
 				model.addAttribute("foto1", "Foto 1");
 				model.addAttribute("foto2", "Foto 2");
+				model.addAttribute("mail", "Email");
 				model.addAttribute("enlaceweb", "Enlace web");
 				
 				
@@ -60,7 +57,7 @@ public class EnlacesControllers {
 				model.addAttribute("Enlaces",enlace);
 				
 
-				return "enlacesAdministrador";
+				return "administrador/enlacesAdministrador";
 
 			}
 	
@@ -85,6 +82,7 @@ public class EnlacesControllers {
 		model.addAttribute("texto3", "Texto3");
 		model.addAttribute("foto1", "Foto 1");
 		model.addAttribute("foto2", "Foto 2");
+		model.addAttribute("mail", "Email");
 		model.addAttribute("enlaceweb", "Enlace web");
 		
 		
@@ -93,20 +91,23 @@ public class EnlacesControllers {
 		
 		model.addAttribute("Enlaces",enlace);
 		
-		return "enlacesAdministrador";
+		return "administrador/enlacesAdministrador";
 	}
 	@PostMapping("/borrarEnlace")
 	public String borrarEnlace(@RequestParam("idEnlace") int enlace,Model model ) {
 		
 		enlacesService.borrarEnlace(enlace);
+		
+		List<Enlaces>enlacesList=enlacesService.todosLosElaces();
+		model.addAttribute("listaEnlaces", enlacesList);
 		model.addAttribute("enlaceborrado", "El enlace se ha borrado con exito");
 		
-		return "enlacesAdministrador";
+		return "administrador/listaEnlaces";
 	}
 	@GetMapping("/todosEnlace")
 	public @ResponseBody List<Enlaces> todosEnlace() {
 		
-		
+		logger.info("Entramos en /todosEnlace:" );
 		List<Enlaces>enlacesList=enlacesService.todosLosElaces();
 		
 		return enlacesList;
@@ -117,11 +118,11 @@ public class EnlacesControllers {
 		
 		List<Enlaces>enlacesList=enlacesService.todosLosElaces();
 		model.addAttribute("listaEnlaces", enlacesList);
-		return "listaEnlaces";
+		return "administrador/listaEnlaces";
 	}
 	@GetMapping("/unEnlace")
 	public @ResponseBody Enlaces unEnlace(@RequestParam("idEnlace") int enlace) {
-		
+		logger.info("Entramos en /unEnlace:" );
 		Enlaces unEnlace=enlacesService.unEnlace(enlace);
 		
 		

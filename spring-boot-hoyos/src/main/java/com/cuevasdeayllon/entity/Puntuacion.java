@@ -25,8 +25,18 @@ public class Puntuacion implements Serializable{
 	private int puntuacion;
 	
 	private String propuesta;
+	
+	private int id_propuesta;
 
 	
+	public int getId_propuesta() {
+		return id_propuesta;
+	}
+
+	public void setId_propuesta(int id_propuesta) {
+		this.id_propuesta = id_propuesta;
+	}
+
 	public int getId_puntuacion() {
 		return id_puntuacion;
 	}

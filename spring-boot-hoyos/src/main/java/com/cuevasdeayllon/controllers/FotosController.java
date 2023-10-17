@@ -31,7 +31,7 @@ import com.cuevasdeayllon.compresor.ImageResizer;
 import com.cuevasdeayllon.entity.Fotos;
 import com.cuevasdeayllon.entity.Usuario;
 import com.cuevasdeayllon.paginator.PageRender;
-import com.cuevasdeayllon.repository.FotosRepositoryImpl;
+import com.cuevasdeayllon.service.FotosService;
 import com.cuevasdeayllon.service.UsuarioService;
 
 @CrossOrigin(origins = "*")
@@ -44,7 +44,7 @@ public class FotosController {
 	// static final String ROOT_PATH = "/uploadsGaleria/";
 
 	@Autowired
-	FotosRepositoryImpl service;
+	FotosService service;
 	@Autowired
 	UsuarioService usuarioservice;
 
@@ -70,9 +70,9 @@ public class FotosController {
 					.info("Esta es la lista de fotos: " + f.getFotos() + " y el usuario" + f.getUsuario().getNombre()));
 			model.addAttribute("fotosLista", fotos);
 		} else {
-			return "listaFotos";
+			return "administrador/listaFotos";
 		}
-		return "listaFotos";
+		return "administrador/listaFotos";
 
 	}
 
@@ -87,9 +87,9 @@ public class FotosController {
 					.info("Esta es la lista de fotos: " + f.getFotos() + " y el usuario" + f.getUsuario().getNombre()));
 			model.addAttribute("fotosLista", fotos);
 		} else {
-			return "misFotos";
+			return "usuarios/misFotos";
 		}
-		return "misFotos";
+		return "usuarios/misFotos";
 
 	}
 
@@ -110,7 +110,7 @@ public class FotosController {
 			for (int i = 0; i < oraLen; i++) {
 				if (foto.getOriginalFilename().charAt(i) == ' ') {
 					model.addAttribute("fotoSubida", "El nombre de la foto no puede tener espacios en blanco.");
-					return "subirFoto";
+					return "usuarios/subirFoto";
 				}
 			}
 
@@ -132,7 +132,7 @@ public class FotosController {
 
 				model.addAttribute("fotoSubida", "La foto se ha añadido con exito, la podras ver en la galeria");
 				model.addAttribute("usuario", usuario);
-				return "subirFoto";
+				return "usuarios/subirFoto";
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -143,7 +143,7 @@ public class FotosController {
 		model.addAttribute("fotoSubida",
 				"La foto no se ha añadido con exito, probablemente no escogio una foto, vuelva a intentarlo");
 		model.addAttribute("usuario", usuario);
-		return "subirFoto";
+		return "usuarios/subirFoto";
 	}
 
 	@PostMapping(value = ("/paginaEditarFoto"), produces = MediaType.APPLICATION_JSON_VALUE)
@@ -157,7 +157,7 @@ public class FotosController {
 
 		model.addAttribute("foto", fotos);
 
-		return "editarFoto";
+		return "usuarios/editarFoto";
 	}
 
 	@PostMapping(value = ("/editarFoto"), produces = MediaType.APPLICATION_JSON_VALUE)
@@ -237,11 +237,11 @@ public class FotosController {
 		} else {
 			List<Fotos> fotosLista = service.todasLasFotos();
 			model.addAttribute("fotosLista", fotosLista);
-			return "listaFotos";
+			return "administrador/listaFotos";
 		}
 		List<Fotos> fotosLista = service.todasLasFotos();
 		model.addAttribute("fotosLista", fotosLista);
-		return "listaFotos";
+		return "administrador/listaFotos";
 	}
 
 	@PostMapping("/borrarFotoUsuario")
@@ -262,11 +262,11 @@ public class FotosController {
 		} else {
 			List<Fotos> fotosLista = service.todasByIdUsuario(usuario.getIdUsuario());
 			model.addAttribute("fotosLista", fotosLista);
-			return "misFotos";
+			return "usuarios/misFotos";
 		}
 		List<Fotos> fotosLista = service.todasByIdUsuario(usuario.getIdUsuario());
 		model.addAttribute("fotosLista", fotosLista);
-		return "misFotos";
+		return "usuarios/misFotos";
 	}
 
 	/**
@@ -293,7 +293,7 @@ public class FotosController {
 		model.addAttribute("page", pageRender);
 		pageRender.getPaginas().forEach(p -> logger.info("estas son las imagenes" + p.getNumero()));
 		fotosEnPagina.forEach(p -> logger.info("estas son las imagenes" + p.getFotos()));
-		return "galeriafoto";
+		return "portadas/galeriafoto";
 	}
 
 }

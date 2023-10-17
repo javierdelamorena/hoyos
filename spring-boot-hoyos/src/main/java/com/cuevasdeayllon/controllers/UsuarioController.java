@@ -5,7 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +37,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cuevasdeayllon.entity.Usuario;
 import com.cuevasdeayllon.service.UsuarioService;
+
 //@SessionAttributes("usuario")
 @Controller
 public class UsuarioController {
@@ -44,7 +47,7 @@ public class UsuarioController {
 
 	@Autowired
 	UsuarioService service;
-	
+
 	static final String ROOT_PATH = "D://TEMP//uploads";
 	// static final String ROOT_PATH = "/uploads/";
 
@@ -53,24 +56,33 @@ public class UsuarioController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 
-
-	@PostMapping( path= "/registrar")
-	public String registrarUsuario(@Valid Usuario usuario,BindingResult result,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
+	@PostMapping(path = "/registrar")
+	public String registrarUsuario(@Valid Usuario usuario, BindingResult result,
+			@RequestParam("file") MultipartFile foto, Model model, HttpSession sesion) {
 		logger.info("Entramos en metodo registrar");
-		logger.info("El usuario que recogemos es: "+usuario.getNombre()+" con el password  "+ usuario.getPassword());
-		Usuario usuariocomprobacion=null;
-		String passwordSinEncriptar=usuario.getPassword();
+		logger.info(
+				"El usuario que recogemos es: " + usuario.getNombre() + " con el password  " + usuario.getPassword());
+		Usuario usuariocomprobacion = null;
+		String passwordSinEncriptar = usuario.getPassword();
 
+		if (result.hasErrors()) {
+			Map<String, String> errores = new HashMap<>();
+			result.getFieldErrors().forEach(err -> {
+				errores.put(err.getField(),
+						"El campo".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()));
+			});
+			model.addAttribute("error",errores);
+			return "registro";
 
+		}
 		try {
 
-			
-			if( usuario!=null) {
+			if (usuario != null) {
 				logger.info("El usuario es distinto de null");
-				usuariocomprobacion=service.usuarioPorEmail(usuario.getEmail());
+				usuariocomprobacion = service.usuarioPorEmail(usuario.getEmail());
 			}
 
-			if(usuariocomprobacion!=null ) {
+			if (usuariocomprobacion != null) {
 				model.addAttribute("usuarioExiste", "El email ya existe registrese con otro email ");
 
 				logger.info("Entramos en metodo registrar Usuario comprobamos email");
@@ -78,48 +90,48 @@ public class UsuarioController {
 				return "registro";
 			}
 
-
-			
-
-			if(!foto.isEmpty()&&usuario!=null) {
+			if (!foto.isEmpty() && usuario != null) {
 
 				int oraLen = foto.getOriginalFilename().length();
-				logger.info("El nombre de la foto es: "+foto.getOriginalFilename());
+				logger.info("El nombre de la foto es: " + foto.getOriginalFilename());
 
-				for (int i = 0; i <  oraLen; i++) {
+				for (int i = 0; i < oraLen; i++) {
 					if (foto.getOriginalFilename().charAt(i) == ' ') {
-						model.addAttribute("usuarioExiste", "El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
+						model.addAttribute("usuarioExiste",
+								"El nombre de la foto no puede tener espacios en blanco.Cambie el nombre de la foto y añadala de nuevo, gracias.");
 						return "registro";
 
 					}
 				}
 
-
 				try {
-					byte[]bytes=foto.getBytes();
-					Path rutaCompleta=Paths.get(ROOT_PATH+"//"+foto.getOriginalFilename());
-					logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
-					Files.write(rutaCompleta,bytes);
+					byte[] bytes = foto.getBytes();
+					Path rutaCompleta = Paths.get(ROOT_PATH + "//" + foto.getOriginalFilename());
+					logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
+					Files.write(rutaCompleta, bytes);
 					usuario.setFoto(foto.getOriginalFilename());
 					String passwordEncriptada = usuario.getPassword();
 					usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
 					service.salvarUsuario(usuario);
 
-
-					Usuario usuari=service.usuarioPorNombre(usuario.getNombre());
-					if(usuari!=null) {
-						logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
-						logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
+					Usuario usuari = service.usuarioPorNombre(usuario.getNombre());
+					if (usuari != null) {
+						logger.info(
+								"Entramos en metodo registrar Usuario y recogemos este usuario: " + usuari.getNombre());
+						logger.info("entramos en metodo doVerificar y recogemos este password:[" + usuari.getPassword()
+								+ "] nombre:[" + usuari.getNombre() + "] email:[" + usuari.getEmail() + "]");
 						SimpleMailMessage message = new SimpleMailMessage();
 						message.setTo(usuari.getEmail());
 						message.setSubject(
 								"Muchas gracias por registrarte en el espacio vecinal de Hoyos,  aqui te dejamos los datos de tu registro:");
-						message.setText("Usuario: " + usuari.getNombre() +" Primer apellido: " + usuari.getApellido1() +" Segundo apellido: " + usuari.getApellido2() +" Direccion del pueblo: " + usuari.getDireccion() +  " password:" + passwordSinEncriptar + " email de registro:"
+						message.setText("Usuario: " + usuari.getNombre() + " Primer apellido: " + usuari.getApellido1()
+								+ " Segundo apellido: " + usuari.getApellido2() + " Direccion del pueblo: "
+								+ usuari.getDireccion() + " password:" + passwordSinEncriptar + " email de registro:"
 								+ usuari.getEmail());
 						mailSender.send(message);
 					}
 					model.addAttribute("usuario", usuari);
-					
+
 					return "login";
 
 				} catch (IOException e) {
@@ -127,23 +139,25 @@ public class UsuarioController {
 					e.printStackTrace();
 				}
 
-			}else {
+			} else {
 
 				usuario.setFoto("sinFoto.jpg");
 				String passwordEncriptada = usuario.getPassword();
 				usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
 				service.salvarUsuario(usuario);
 
-
-				Usuario usuari=service.usuarioPorEmail(usuario.getEmail());
-				if(usuari!=null) {
-					logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
-					logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
+				Usuario usuari = service.usuarioPorEmail(usuario.getEmail());
+				if (usuari != null) {
+					logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: " + usuari.getNombre());
+					logger.info("entramos en metodo doVerificar y recogemos este password:[" + usuari.getPassword()
+							+ "] nombre:[" + usuari.getNombre() + "] email:[" + usuari.getEmail() + "]");
 					SimpleMailMessage message = new SimpleMailMessage();
 					message.setTo(usuari.getEmail());
 					message.setSubject(
 							"Muchas gracias por registrarte en el espacio vecinal de Cuevas de Ayllón,  aqui te dejamos los datos de tu registro:");
-					message.setText("Usuario: " + usuari.getNombre() +" Primer apellido: " + usuari.getApellido1() +" Segundo apellido: " + usuari.getApellido2() +" Direccion del pueblo: " + usuari.getDireccion() +  " password:" + passwordSinEncriptar + " email de registro:"
+					message.setText("Usuario: " + usuari.getNombre() + " Primer apellido: " + usuari.getApellido1()
+							+ " Segundo apellido: " + usuari.getApellido2() + " Direccion del pueblo: "
+							+ usuari.getDireccion() + " password:" + passwordSinEncriptar + " email de registro:"
 							+ usuari.getEmail());
 					mailSender.send(message);
 				}
@@ -152,55 +166,57 @@ public class UsuarioController {
 				return "login";
 
 			}
-		}catch(javax.validation.ConstraintViolationException e) {
+		} catch (javax.validation.ConstraintViolationException e) {
 
 			return "registro";
 
 		}
 
-
 		return "registro";
 
 	}
-	//	@GetMapping("/login")
-	//	public String loging(@RequestParam(value = "error", required = false) String error, HttpSession sesion,
-	//			Principal principal, Model model) throws ParseException{
-	//	
-	//		logger.info("Entramos en metodo loging");
-	//		
-	//		Usuario usuario=(Usuario) sesion.getAttribute("usuario");
-	//		
-	//		logger.info("Recogemos este usuario["+usuario+"]");
-	//		
-	//		
-	//		model.addAttribute("usuario", usuario);
-	//		
-	//		return "usuario";
-	//		
-	//	}
+
+	// @GetMapping("/login")
+	// public String loging(@RequestParam(value = "error", required = false) String
+	// error, HttpSession sesion,
+	// Principal principal, Model model) throws ParseException{
+	//
+	// logger.info("Entramos en metodo loging");
+	//
+	// Usuario usuario=(Usuario) sesion.getAttribute("usuario");
+	//
+	// logger.info("Recogemos este usuario["+usuario+"]");
+	//
+	//
+	// model.addAttribute("usuario", usuario);
+	//
+	// return "usuario";
+	//
+	// }
 	/**
 	 * 
 	 * @param request
 	 * @param model
 	 * @return
 	 */
-	@GetMapping( path="/usuario")
-	public String usuario(HttpServletRequest request,Model model) {
-		HttpSession sesion=request.getSession(true); 
+	@GetMapping(path = "/usuario")
+	public String usuario(HttpServletRequest request, Model model) {
+		HttpSession sesion = request.getSession(true);
 		logger.info("Entramos en metodo usuario");
-		if(sesion.getAttribute("usuario")!=null) {
-			Usuario usuario=(Usuario) sesion.getAttribute("usuario");
-			logger.info("Recogemos este usuario["+usuario+"]");
+		if (sesion.getAttribute("usuario") != null) {
+			Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+			logger.info("Recogemos este usuario[" + usuario + "]");
 
 			model.addAttribute("usuario", usuario);
 
 			return "usuario";
-		}else {
+		} else {
 			logger.info("La sesion esta a null y no se ha creado");
 			return "/login";
 		}
 
 	}
+
 	/**
 	 * 
 	 * @param idUsuario
@@ -208,69 +224,73 @@ public class UsuarioController {
 	 * @param model
 	 * @return
 	 */
-	@PostMapping( path="/doBorrarDesdeLista")
-	public String borrarUsuario(@RequestParam("idUsuario") int  idUsuario,HttpServletRequest request,Model model) {
+	@PostMapping(path = "/doBorrarDesdeLista")
+	public String borrarUsuario(@RequestParam("idUsuario") int idUsuario, HttpServletRequest request, Model model) {
 
-		Usuario usuario=service.usuarioPorId(idUsuario);
-		if(usuario!=null) {
+		Usuario usuario = service.usuarioPorId(idUsuario);
+		if (usuario != null) {
 
 			service.borrarUsuario(usuario);
 		}
 
 		model.addAttribute("usuarioBorrado", "El suario se ha borrado con exito");
 
-		return "todosLosUsuarios";
-
+		return "administrador/todosLosUsuarios";
 
 	}
-	@PostMapping( path="/doBorrarDesdeUsuario")
-	public String borrarUsuarioDesdeUsuario(@RequestParam("idUsuario") int  idUsuario,HttpServletRequest request,Model model) {
 
-		Usuario usuario=service.usuarioPorId(idUsuario);
-		if(usuario!=null) {
+	@PostMapping(path = "/doBorrarDesdeUsuario")
+	public String borrarUsuarioDesdeUsuario(@RequestParam("idUsuario") int idUsuario, HttpServletRequest request,
+			Model model) {
+
+		Usuario usuario = service.usuarioPorId(idUsuario);
+		if (usuario != null) {
 
 			service.borrarUsuario(usuario);
-		}else {
-			return "home";
+		} else {
+			return "portadas/home";
 		}
 
 		model.addAttribute("usuarioBorrado", "El suario se ha borrado con exito");
 
-		return "home";
-
+		return "portadas/home";
 
 	}
+
 	/**
 	 * 
 	 * @param request
 	 * @param model
 	 * @return
 	 */
-	@GetMapping( path="/todosUsuarios")
-	public String todossuario(HttpServletRequest request,Model model) {
+	@GetMapping(path = "/todosUsuarios")
+	public String todossuario(HttpServletRequest request, Model model) {
 
-		List<Usuario>todos=service.todosLosUsuarios();
+		List<Usuario> todos = service.todosLosUsuarios();
 
 		model.addAttribute("todosLosusuarios", todos);
 
-		return "todosLosUsuarios";
-
+		return "administrador/todosLosUsuarios";
 
 	}
-	//	@GetMapping(value = "/unUsuarioSesion", produces = MediaType.APPLICATION_JSON_VALUE)
-	//	public String  unUsuarioAlta(@RequestParam String nombre, HttpSession sesion,
-	//			HttpServletResponse response) {
-	//		System.out.println("esta es la sesion"+sesion);
-	//		Usuario usuarioSesion =service.usuarioPorNombre(nombre);
-	//		sesion.setAttribute("usuario", usuarioSesion);
+
+	// @GetMapping(value = "/unUsuarioSesion", produces =
+	// MediaType.APPLICATION_JSON_VALUE)
+	// public String unUsuarioAlta(@RequestParam String nombre, HttpSession sesion,
+	// HttpServletResponse response) {
+	// System.out.println("esta es la sesion"+sesion);
+	// Usuario usuarioSesion =service.usuarioPorNombre(nombre);
+	// sesion.setAttribute("usuario", usuarioSesion);
 	//
-	//		logger.info("Entramos en unUsuarioSesio este es el usuario que recojemos: [ nombre " + usuarioSesion.getNombre()
-	//		+ " idUsuario:  " + usuarioSesion.getIdUsuario() +  " role: " + usuarioSesion.getRoles() + "]");
-	//		return "redirect:/usuario";
+	// logger.info("Entramos en unUsuarioSesio este es el usuario que recojemos: [
+	// nombre " + usuarioSesion.getNombre()
+	// + " idUsuario: " + usuarioSesion.getIdUsuario() + " role: " +
+	// usuarioSesion.getRoles() + "]");
+	// return "redirect:/usuario";
 	//
 	//
 	//
-	//	}
+	// }
 	@GetMapping("/login_failure_handler")
 	public String loginFailureHandler(Model model) {
 
@@ -279,6 +299,7 @@ public class UsuarioController {
 
 		return "redirect:/login";
 	}
+
 	/**
 	 * 
 	 * @param request
@@ -293,65 +314,76 @@ public class UsuarioController {
 		}
 		return "redirect:/login";// para redirigir a la pantalla de login
 	}
+
 	/**
-	 *  Recibe una llamada con la password para recibirla sin encriptar y manda un mail con los datos recibidos en el registro
+	 * Recibe una llamada con la password para recibirla sin encriptar y manda un
+	 * mail con los datos recibidos en el registro
+	 * 
 	 * @param password
 	 * @param sesion
 	 * @param model
 	 * @return
 	 * @throws Exception
 	 */
-	//	@GetMapping(value="/doVerificar", produces = MediaType.APPLICATION_JSON_VALUE)
-	//	public void enviar(@RequestParam(value="password",required =true) String password,@RequestParam(value="nombre",required = true) String nombre,@RequestParam(value="email",required=true) String email,  HttpSession sesion, Model model) throws Exception {
-	//		logger.info("entramos en metodo doVerificar y recogemos este password:["+password+"] nombre:["+nombre+"] email:["+email+"]");
-	//		SimpleMailMessage message = new SimpleMailMessage();
-	//		message.setTo(email);
-	//		message.setSubject(
-	//				"Muchas Gracias por registrarte en el espacio vecinal de cuevas de ayllopn,  aqui te dejamos los datos de tu registro:");
-	//		message.setText("Usuario: " + nombre + " password:" + password + " email de registro:"
-	//				+ email);
-	//		mailSender.send(message);
+	// @GetMapping(value="/doVerificar", produces =
+	// MediaType.APPLICATION_JSON_VALUE)
+	// public void enviar(@RequestParam(value="password",required =true) String
+	// password,@RequestParam(value="nombre",required = true) String
+	// nombre,@RequestParam(value="email",required=true) String email, HttpSession
+	// sesion, Model model) throws Exception {
+	// logger.info("entramos en metodo doVerificar y recogemos este
+	// password:["+password+"] nombre:["+nombre+"] email:["+email+"]");
+	// SimpleMailMessage message = new SimpleMailMessage();
+	// message.setTo(email);
+	// message.setSubject(
+	// "Muchas Gracias por registrarte en el espacio vecinal de cuevas de ayllopn,
+	// aqui te dejamos los datos de tu registro:");
+	// message.setText("Usuario: " + nombre + " password:" + password + " email de
+	// registro:"
+	// + email);
+	// mailSender.send(message);
 
+	// return "login";
+	// }
 
-	//return "login";
-	//	}
-
-	@PostMapping(path="/editarUsuario")
-	public String editarUsuario(@Valid Usuario usuario,BindingResult result,@RequestParam("file")MultipartFile foto,Model model,HttpSession sesion) {
+	@PostMapping(path = "/editarUsuario")
+	public String editarUsuario(@Valid Usuario usuario, BindingResult result, @RequestParam("file") MultipartFile foto,
+			Model model, HttpSession sesion) {
 		logger.info("Entramos en metodo editar");
-		Usuario usuarioControl=new Usuario();
-		if(usuario!=null) {
-			usuarioControl=service.usuarioPorEmail(usuario.getEmail());
-		}else {
-			
+		Usuario usuarioControl = new Usuario();
+		if (usuario != null) {
+			usuarioControl = service.usuarioPorEmail(usuario.getEmail());
+		} else {
+
 			model.addAttribute("fotoConHuecos", "Lo sentimos, algo salio mal, el usuario no existe, gracias.");
 			return "usuario";
 		}
-		logger.info("El usuario que recogemos es: "+usuario.getNombre()+" con el password  "+ usuario.getPassword()+" con idUsuario: "+usuario.getIdUsuario());
-		//Usuario usuariocomprobacion=(Usuario) sesion.getAttribute("usuario");
+		logger.info("El usuario que recogemos es: " + usuario.getNombre() + " con el password  " + usuario.getPassword()
+				+ " con idUsuario: " + usuario.getIdUsuario());
+		// Usuario usuariocomprobacion=(Usuario) sesion.getAttribute("usuario");
 
-		String passwordSinEncriptar=usuario.getPassword();
+		String passwordSinEncriptar = usuario.getPassword();
 
-		if(!foto.isEmpty()&&usuario!=null) {
-			Usuario usuari=service.usuarioPorEmail(usuario.getEmail());
+		if (!foto.isEmpty() && usuario != null) {
+			Usuario usuari = service.usuarioPorEmail(usuario.getEmail());
 			int oraLen = foto.getOriginalFilename().length();
-			logger.info("El nombre de la foto es: "+foto.getOriginalFilename());
+			logger.info("El nombre de la foto es: " + foto.getOriginalFilename());
 
-			for (int i = 0; i <  oraLen; i++) {
+			for (int i = 0; i < oraLen; i++) {
 				if (foto.getOriginalFilename().charAt(i) == ' ') {
 					model.addAttribute("usuario", usuari);
-					model.addAttribute("fotoConHuecos", "Lo sentimos, el nombre de la foto no puede tener espacios en blanco, cambie el nombre de la foto y añadala de nuevo, gracias.");
+					model.addAttribute("fotoConHuecos",
+							"Lo sentimos, el nombre de la foto no puede tener espacios en blanco, cambie el nombre de la foto y añadala de nuevo, gracias.");
 					return "usuario";
 
 				}
 			}
 
-			
 			try {
-				byte[]bytes=foto.getBytes();
-				Path rutaCompleta=Paths.get(ROOT_PATH+"//"+foto.getOriginalFilename());
-				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
-				Files.write(rutaCompleta,bytes);
+				byte[] bytes = foto.getBytes();
+				Path rutaCompleta = Paths.get(ROOT_PATH + "//" + foto.getOriginalFilename());
+				logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
+				Files.write(rutaCompleta, bytes);
 				usuario.setFoto(foto.getOriginalFilename());
 				String passwordEncriptada = usuario.getPassword();
 				usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
@@ -359,33 +391,34 @@ public class UsuarioController {
 				usuario.setRoles(usuarioControl.getRoles());
 				service.editarUsuario(usuario);
 
-
-				usuari=service.usuarioPorId(usuario.getIdUsuario());
-				if(usuari!=null) {
-					logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
-					logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
+				usuari = service.usuarioPorId(usuario.getIdUsuario());
+				if (usuari != null) {
+					logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: " + usuari.getNombre());
+					logger.info("entramos en metodo doVerificar y recogemos este password:[" + usuari.getPassword()
+							+ "] nombre:[" + usuari.getNombre() + "] email:[" + usuari.getEmail() + "]");
 					SimpleMailMessage message = new SimpleMailMessage();
 					message.setTo(usuari.getEmail());
 					message.setSubject(
 							"El usuario ha sido editado correctamente,  aqui te dejamos los datos de tu registro:");
-					message.setText("Usuario: " + usuari.getNombre() +" Primer apellido: " + usuari.getApellido1() +" Segundo apellido: " + usuari.getApellido2() +" Direccion del pueblo: " + usuari.getDireccion() +  " password:" + passwordSinEncriptar + " email de registro:"
+					message.setText("Usuario: " + usuari.getNombre() + " Primer apellido: " + usuari.getApellido1()
+							+ " Segundo apellido: " + usuari.getApellido2() + " Direccion del pueblo: "
+							+ usuari.getDireccion() + " password:" + passwordSinEncriptar + " email de registro:"
 							+ usuari.getEmail());
 					mailSender.send(message);
 				}
 				model.addAttribute("usuario", usuari);
 				sesion.setAttribute("usuario", usuari);
 
-
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-		}else {
-			//				byte[]bytes="sinFoto.jpg".getBytes();
-			//				Path rutaCompleta=Paths.get(rootPath+"//"+"sinFoto.jpg");
-			//				logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
-			//				Files.write(rutaCompleta,bytes);
+		} else {
+			// byte[]bytes="sinFoto.jpg".getBytes();
+			// Path rutaCompleta=Paths.get(rootPath+"//"+"sinFoto.jpg");
+			// logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
+			// Files.write(rutaCompleta,bytes);
 			usuario.setFoto("sinFoto.jpg");
 			String passwordEncriptada = usuario.getPassword();
 			usuario.setIdUsuario(usuario.getIdUsuario());
@@ -393,55 +426,58 @@ public class UsuarioController {
 			usuario.setRoles(usuarioControl.getRoles());
 			service.editarUsuario(usuario);
 
-
-			Usuario usuari=service.usuarioPorNombre(usuarioControl.getNombre());
-			if(usuari!=null) {
-				logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: "+usuari.getNombre());
-				logger.info("entramos en metodo doVerificar y recogemos este password:["+usuari.getPassword()+"] nombre:["+usuari.getNombre()+"] email:["+usuari.getEmail()+"]");
+			Usuario usuari = service.usuarioPorNombre(usuarioControl.getNombre());
+			if (usuari != null) {
+				logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: " + usuari.getNombre());
+				logger.info("entramos en metodo doVerificar y recogemos este password:[" + usuari.getPassword()
+						+ "] nombre:[" + usuari.getNombre() + "] email:[" + usuari.getEmail() + "]");
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setTo(usuari.getEmail());
 				message.setSubject(
 						"Muchas gracias por registrarte en el espacio vecinal de Cuevas de Ayllón,  aqui te dejamos los datos de tu registro:");
-				message.setText("Usuario: " + usuari.getNombre() +" Primer apellido: " + usuari.getApellido1() +" Segundo apellido: " + usuari.getApellido2() +" Direccion del pueblo: " + usuari.getDireccion() +  " password:" + passwordSinEncriptar + " email de registro:"
+				message.setText("Usuario: " + usuari.getNombre() + " Primer apellido: " + usuari.getApellido1()
+						+ " Segundo apellido: " + usuari.getApellido2() + " Direccion del pueblo: "
+						+ usuari.getDireccion() + " password:" + passwordSinEncriptar + " email de registro:"
 						+ usuari.getEmail());
 				mailSender.send(message);
 			}
 			model.addAttribute("usuario", usuari);
 			sesion.setAttribute("usuario", usuari);
 
-
 		}
 		return "usuario";
 	}
+
 	// Controlador que se encarga de mandar un mail desde contacto al email de la
 	// empresa
 	@PostMapping("/doContacto")
 	public String contacto(@RequestParam("nombre") String nombre, @RequestParam("email") String email,
-			@RequestParam("mensaje") String mensaje, HttpSession sesion,Model model) throws Exception {
+			@RequestParam("mensaje") String mensaje, HttpSession sesion, Model model) throws Exception {
 
-		logger.info("estamos en contacto recibimos nombre: "+nombre+" email: "+ email+" mensaje: "+ mensaje);
+		logger.info("estamos en contacto recibimos nombre: " + nombre + " email: " + email + " mensaje: " + mensaje);
 
-		if(nombre!=""&&email!=""&&mensaje!="") {
-			Usuario usuario=service.usuarioPorEmail(email);
-			if(usuario!=null) {
-
+		if (nombre != "" && email != "" && mensaje != "") {
+			Usuario usuario = service.usuarioPorEmail(email);
+			if (usuario != null) {
 
 				logger.info("estamos en contacto no hay ningun campo vacio");
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setTo("ayuntamientodecuevas@cuevas-de-ayllon.com");
-				message.setSubject("Mesaje de usuario: " +nombre );
-				message.setText("Usuario: " +nombre +" con email de registro: "
-						+ email + "  mensaje del cliente:" + mensaje);
+				message.setSubject("Mesaje de usuario: " + nombre);
+				message.setText(
+						"Usuario: " + nombre + " con email de registro: " + email + "  mensaje del cliente:" + mensaje);
 				mailSender.send(message);
-				model.addAttribute("camposVacios","El mensaje se ha enviado con exito, te contestaremos a la mayor brevedad posible.");
-			}else
-			{
+				model.addAttribute("camposVacios",
+						"El mensaje se ha enviado con exito, te contestaremos a la mayor brevedad posible.");
+			} else {
 				logger.info("estamos en contacto el mail no esta en el sistema");
-				model.addAttribute("camposVacios","El mail no esta en nuestro sistema, intentelo de nuevo, sentimos la molestia.");
+				model.addAttribute("camposVacios",
+						"El mail no esta en nuestro sistema, intentelo de nuevo, sentimos la molestia.");
 			}
-		}else {
+		} else {
 			logger.info("estamos en contacto  hay campos vacio");
-			model.addAttribute("camposVacios","Se tienen que rellenar todos los campos, para poder responderte y saber quien nos esta escribiendo.");
+			model.addAttribute("camposVacios",
+					"Se tienen que rellenar todos los campos, para poder responderte y saber quien nos esta escribiendo.");
 			return "contactoMensaje";
 		}
 
@@ -450,30 +486,23 @@ public class UsuarioController {
 	}
 
 	@GetMapping("/login")
-	public String login(Model model,Principal principal,HttpSession session) {
+	public String login(Model model, Principal principal, HttpSession session) {
 
-
-		if(principal!=null) {
-			Usuario usuario=service.usuarioPorEmail(principal.getName());
+		if (principal != null) {
+			Usuario usuario = service.usuarioPorEmail(principal.getName());
 
 			session.setAttribute("usuario", usuario);
 
-			logger.info("Entramos en metodo login  recogemos este usuario: "+usuario.getNombre());
+			logger.info("Entramos en metodo login  recogemos este usuario: " + usuario.getNombre());
 
 			return "redirect:/usuario";
-		}else {
-			
-			model.addAttribute("loginIncorrecto","El email o la contraseña son incorrectos.");
+		} else {
+
+			model.addAttribute("loginIncorrecto", "El email o la contraseña son incorrectos.");
 			return "login";
-			
+
 		}
-		
 
-		
-
-
-
-	}	
-
+	}
 
 }

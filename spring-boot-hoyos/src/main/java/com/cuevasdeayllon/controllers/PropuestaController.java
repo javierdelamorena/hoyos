@@ -136,7 +136,7 @@ public class PropuestaController {
 			puntuacion.setPropuesta(titulo);
 			puntuacion.setPuntuacion(0);
 
-			puntuacionTotalservice.salvarPuntuacion(titulo, 0);
+			puntuacionTotalservice.salvarPuntuacion(titulo, 0,propuestaEstado.getIdPropuesta());
 
 			// List<Usuario> usuari=usuarioservice.todosLosUsuarios();
 
@@ -214,11 +214,11 @@ public class PropuestaController {
 
 			model.addAttribute("misPropuestas", misPropuestas);
 			model.addAttribute("propuestaEditada", "La propuesta a sido editada con exito");
-			return "misPropuestas";
+			return "usuarios/misPropuestas";
 
 		}
 
-		return "misPropuestas";
+		return "usuarios/misPropuestas";
 
 	}
 
@@ -572,6 +572,7 @@ public class PropuestaController {
 			puntuacion.setPuntuacion(contador);
 			puntuacion.setUsuario(usuario.getNombre());
 			puntuacion.setPropuesta(propuesta.getTitulo());
+			puntuacion.setId_propuesta(propuesta.getIdPropuesta());
 			puntuacionservice.grabarPuntuacion(puntuacion);
 
 		} else if (puntuacioncheck.getPuntuacion() == 0 || puntuacioncheck.getPuntuacion() == 1) {
@@ -581,6 +582,7 @@ public class PropuestaController {
 			puntuacion.setPuntuacion(contador);
 			puntuacion.setUsuario(usuario.getNombre());
 			puntuacion.setPropuesta(propuesta.getTitulo());
+			puntuacion.setId_propuesta(propuesta.getIdPropuesta());
 			puntuacionservice.grabarPuntuacion(puntuacion);
 		}
 
@@ -629,6 +631,7 @@ public class PropuestaController {
 			puntuacion.setPuntuacion(contador);
 			puntuacion.setUsuario(usuario.getNombre());
 			puntuacion.setPropuesta(propuesta.getTitulo());
+			puntuacion.setId_propuesta(propuesta.getIdPropuesta());
 			puntuacionservice.grabarPuntuacion(puntuacion);
 
 		} else if (puntuacioncheck.getPuntuacion() == 1 || puntuacioncheck.getPuntuacion() == 0) {
@@ -638,7 +641,7 @@ public class PropuestaController {
 			puntuacion.setPuntuacion(contador);
 			puntuacion.setUsuario(usuario.getNombre());
 			puntuacion.setPropuesta(propuesta.getTitulo());
-
+			puntuacion.setId_propuesta(propuesta.getIdPropuesta());
 			puntuacionservice.grabarPuntuacion(puntuacion);
 		}
 		List<Puntuacion> lista = puntuacionservice.listaDePuntos(propuesta.getTitulo());
@@ -698,7 +701,7 @@ public class PropuestaController {
 				.collect(Collectors.toList());
 
 		model.addAttribute("listaPropuestas", todas);
-		return "listaPropuestas";
+		return "administrador/listaPropuestas";
 
 	}
 
@@ -718,13 +721,13 @@ public class PropuestaController {
 			propuestaService.deleteById(idPropuesta);
 
 		} else {
-			return "listaPropuestas";
+			return "administrador/listaPropuestas";
 
 		}
 		List<Propuestas> todas = propuestaService.findAll();
 		model.addAttribute("listaPropuestas", todas);
 
-		return "listaPropuestas";
+		return "administrador/listaPropuestas";
 
 	}
 
@@ -741,7 +744,7 @@ public class PropuestaController {
 		if (sesion.getAttribute("propuestas") != null) {
 			Propuestas propuestaT = (Propuestas) sesion.getAttribute("propuestas");
 
-			puntuacionTotalservice.salvarPuntuacion(propuestaT.getTitulo(), total);
+			puntuacionTotalservice.salvarPuntuacion(propuestaT.getTitulo(), total,propuestaT.getIdPropuesta());
 
 		}
 		return total;
@@ -755,7 +758,7 @@ public class PropuestaController {
 
 		model.addAttribute("listaPuntuaciones", resultadoToatles);
 
-		return "puntuacionPropuestas";
+		return "administrador/puntuacionPropuestas";
 
 	}
 
@@ -777,7 +780,7 @@ public class PropuestaController {
 
 		model.addAttribute("misPropuestas", misPropuestas);
 
-		return "misPropuestas";
+		return "usuarios/misPropuestas";
 
 	}
 
@@ -794,7 +797,7 @@ public class PropuestaController {
 
 		model.addAttribute("misPropuestas", misPropuestas);
 
-		return "misPropuestas";
+		return "usuarios/misPropuestas";
 
 	}
 

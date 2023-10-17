@@ -42,7 +42,7 @@
             <img class="img-thumbnail  " style="border-radius:4px;padding:10px;height: 300px;width: 400px;"
               th:src="@{'/uploadsGaleria/'+${foto.fotos}}" th:alt="${foto.fotos}" />
           </a>
-          <div th:text="'Foto de '+${foto.usuario.nombre}+' '+ ${foto.usuario.apellido1}+' '+ ${foto.usuario.apellido2}" style="font-family: cursive;
+          <div th:text="'Foto de '+ ${#strings.toUpperCase(foto.usuario.nombre)}+' '+ ${#strings.toUpperCase(foto.usuario.apellido1)}+' '+ ${#strings.toUpperCase(foto.usuario.apellido2)}" style="
           font-size: 14px;font-weight: 600;">
 
           </div>
@@ -51,7 +51,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
               <div class="modal.content"><a th:src="@{'/uploadsGaleria/'+${foto.fotos}}" download>
                 <img th:src="@{'/uploadsGaleria/'+${foto.fotos}}" class="img-fluid" id="fotosModel"
-                  alt="Responsive image" role="button" style="width: 1000px;height: 100%;"></a>
+                  alt="Responsive image" role="button" style="width: 800px;height: 800px;"></a>
               </div>
 
             </div>
