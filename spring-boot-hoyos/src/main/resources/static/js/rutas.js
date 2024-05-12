@@ -3,7 +3,8 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
-        url: "todasRutas"
+        //url: "todasRutas"
+        url:"https://hoyos.com.es/todasRutas"
 
 
     }).done(function (data) {
@@ -41,6 +42,7 @@ function mostraRuta(idRuta) {
     $.ajax({
         type: 'GET',
         url: "unaRuta",
+        //url:"https://hoyos.com.es/unaRuta",
         data: {
 
             'idRuta': idRuta,
@@ -88,7 +90,7 @@ function mostraRuta(idRuta) {
             html += '<p style="font-size: 18px;text-align: left" >' + data.texto5 + '</p></br>';
         }
         if (data.foto5 != null) {
-            html += '<div><img src="imagenesRutas/hoyos/' + data.foto5 + '" alt=""style="width: 100%;"></div></br>';
+            html += '<div><img src="imagenesRutas/hoyos/' + data.foto5 + '" alt=""style="width: 100%;"></div>';
         }
         html += '</div>';
         html += '<div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>';

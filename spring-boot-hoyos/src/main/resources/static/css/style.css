@@ -1,6 +1,6 @@
 .bodyGaleria {
 	background-image: url("galeria.jpg");
-	
+
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
@@ -40,6 +40,7 @@
 	object-position: bottom;
 
 }
+
 .bodyMercadillo {
 	background-image: url("mercadillo.jpg");
 	background-size: cover;
@@ -49,6 +50,7 @@
 	object-fit: cover;
 	object-position: bottom;
 }
+
 .bodyContacto {
 	background-image: url("contacto.jpg");
 	background-size: cover;
@@ -71,6 +73,15 @@
 
 .bodyEnlacesInteres {
 	background-image: url("enlaces.jpg");
+	background-size: cover;
+	/* background-repeat: repeat; */
+	margin: 0;
+	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
+}
+.bodyIgualdad {
+	background-image: url("igualdad.jpg");
 	background-size: cover;
 	/* background-repeat: repeat; */
 	margin: 0;
@@ -490,7 +501,27 @@ body {
 
 	}
 }
+#cartelIgualdad {
+	padding: 6%;
+	font-size: 28px;
+	/* width: 100%; */
+	margin-right: 30%;
+	background-color: #9b3db5bd;
 
+}
+
+@media (max-width : 576px) {
+
+
+	#cartelIgualdad {
+		padding: 4%;
+		font-size: 35px;
+		margin-right: 38%;
+		margin-top: 8%;
+		background-color: #9b3db5bd;
+
+	}
+}
 #cartelHistoria {
 	padding: 6%;
 	font-size: 28px;
@@ -892,7 +923,7 @@ body {
 	#comentarioTextoPropuesta {
 		padding: 10px;
 		border-radius: 6px;
-		font-size: 25px;
+		font-size: 18px;
 		background-color: rgb(251, 251, 251);
 		font-weight: 500;
 		border-width: thin;
@@ -914,7 +945,7 @@ body {
 	position: relative;
 	padding: 8px;
 	font-weight: 500;
-	font-size: 20px;
+	font-size: medium;
 	border: groove;
 	/* font-family: sans-serif; */
 	display: -webkit-inline-box;
@@ -932,7 +963,7 @@ body {
 		position: relative;
 		padding: 8px;
 		font-weight: 500;
-		font-size: 22px;
+		font-size: medium;
 		border: groove;
 		/* font-family: sans-serif; */
 		display: -webkit-inline-box;
@@ -1091,7 +1122,7 @@ body {
 
 @media (max-width : 576px) {
 	#textoMercadillo {
-		font-size: 24px;
+		font-size:18px;
 		padding: 1%;
 		padding-left: 1%;
 
@@ -1260,7 +1291,7 @@ body {
 	border: double;
 	border-color: gainsboro;
 	padding: 4px;
-	
+
 }
 
 @media (max-width : 576px) {
@@ -1320,4 +1351,31 @@ html {
 	border: 0px;
 	border-radius: 10px;
 
+}
+
+#textoPreguntas {
+	background-color: #5d7e3fc7;
+	padding: 3%;
+	margin: auto;
+	border-radius: 1px;
+	list-style: none;
+	font-size: 22px;
+	font-family: cursive;
+	color: white;
+}
+
+@media (max-width : 576px) {
+	#textoPreguntas {
+
+		background-color: #5d7e3fc7;
+		padding: 3%;
+		margin: auto;
+		border-radius: 1px;
+		list-style: none;
+		font-size: 24px;
+		font-family: cursive;
+		color: white;
+		font-weight: 500;
+
+	}
 }

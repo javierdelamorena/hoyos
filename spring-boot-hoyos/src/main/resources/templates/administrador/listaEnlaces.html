@@ -33,7 +33,7 @@
 
         form {
             width: 100%;
-            margin-top: 60px;
+           
             margin-bottom: 60px;
         }
 
@@ -88,8 +88,13 @@
                     <td th:if="${enlace.nombre}" th:text="${enlace.nombre}"></td>
 
                     <td th:if="${enlace.tipo}" th:text="${enlace.tipo}"></td>
-                    <td><a href="#" data-bs-toggle="modal" class="btn btn-primary"
-                            th:attr="data-bs-target='#modal1'+${enlace.id}">Editar Enlace</a></td>
+                    <td>
+                        <form th:action="@{/toEditarEnlace}" method="post">
+                            <input type="hidden" name="idEnlace" th:value="${enlace.id}">
+                            <input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark" value="Editar enlace">
+                        </form>
+                    
+                    </td>
 
                     <td><a href="#" data-bs-toggle="modal" class="btn btn-danger"
                             th:attr="data-bs-target='#modalborrar'+${enlace.id}">Borrar enlace</a></td>
@@ -121,54 +126,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" data-bs-backdrop="staticBackdropLabel"
-                        th:attr="id=modal1+${enlace.id}" data-bs-keyboard="false" tabindex="-1"
-                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Editar Enlace.</h5></br>
-
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <!-- <form th:action="@{/editarenlace}" class="text-dark" style="width: 100%;
-                                padding: 30px;" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="id" th:value="${enlace.idenlaces}">
-                                        <input type="hidden" name="fecha" th:value="${enlace.fecha}">
-                                        <div class="mb-3">
-                                            <label for="titulo" class="form-label">Enunciado</label>
-                                            <input type="text" name="titulo" titulo class="form-control"
-                                                id="titulo_enlace" style="width: 65%; "
-                                                th:placeholder="${enlace.titulo_enlace}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="enlace" class="form-label">Texto del enlace</label>
-                                            <textarea class="form-control" name="enlace" id="enlace" rows="7"
-                                                style="width: 65%; " th:text="${enlace.enlace}"></textarea>
-                                        </div>
-                                        <div class="mb-3">
-
-                                            <input type="file" class="form-control" name="file" style="width: 65%;">
-
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <input type="submit" class="btn btn-dark" value="enviar">
-                                        </div>
-
-
-                                    </form> -->
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
 
 
                 </tr>

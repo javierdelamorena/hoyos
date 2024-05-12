@@ -47,9 +47,9 @@ public class EnviarNotificacionController {
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setTo(usu.getEmail());
 				message.setSubject(
-						"Hola vecino, se ha realizado una propuesta nueva en el espacio vecinal de Cuevas de Ayllon.");
+						"Hola vecino, se ha realizado una propuesta nueva en el espacio vecinal de Hoyos.");
 				message.setText(
-						"Te informamos que un vecino ha realizado una propuesta en el espacio vecinal de Cuevas de Ayllón,"
+						"Te informamos que un vecino ha realizado una propuesta en el espacio vecinal de Hoyos,"
 								+ " si te interesa saber que propuesta es ,entra en el espacio vecinal y podras dar tu opinion y votarla. Ya sabes que si quieres dejar de recibir emails como este,"
 								+ " solo tienes que entrar en tu espacio vecinal, "
 								+ "pulsar en recibir notificaciones y seguidamente pulsar en dejar de recibir notificaciones.  Muchas gracias y un saludo.");

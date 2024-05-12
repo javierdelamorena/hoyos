@@ -25,8 +25,8 @@ public class AnuncioServiceImpl implements AnunciosService {
 	@Autowired
 	private AnuncioJpaRepository anuncioJpaRepository;
 	
-	static final String ROOT_PATH = "D://TEMP//uploadsAnuncios";
-	// static final String ROOT_PATH = "/uploadsAnuncios";
+	//static final String ROOT_PATH = "D://TEMP//uploadsAnuncios";
+	static final String ROOT_PATH = "/uploadsAnuncios";
 
 	@Override
 	public void insertarAnucio(String anuncio, String titulo, MultipartFile file) {
@@ -51,7 +51,11 @@ public class AnuncioServiceImpl implements AnunciosService {
 
 				} else if (extension.equals("jpg") || extension.equals("png")) {
 					anuncioeditable.setFoto_anuncio(file.getOriginalFilename());
-				} else {
+				} else if (extension.equals("pdf") )
+				{
+					anuncioeditable.setPdf_anuncio(file.getOriginalFilename());
+				}
+				else {
 					anuncioeditable.setAudio_anuncio(file.getOriginalFilename());
 
 				}
@@ -87,6 +91,11 @@ public class AnuncioServiceImpl implements AnunciosService {
 				Files.deleteIfExists(rutaCompletaAudio);
 			}
 			if (anuncio.getVideo_anuncio() != null) {
+				Path rutaCompletaVideo = Paths.get(ROOT_PATH + "//" + anuncio.getVideo_anuncio());
+
+				Files.deleteIfExists(rutaCompletaVideo);
+			}
+			if (anuncio.getPdf_anuncio() != null) {
 				Path rutaCompletaVideo = Paths.get(ROOT_PATH + "//" + anuncio.getVideo_anuncio());
 
 				Files.deleteIfExists(rutaCompletaVideo);
@@ -129,7 +138,11 @@ public class AnuncioServiceImpl implements AnunciosService {
 
 				} else if (extension.equals("jpg") || extension.equals("png")) {
 					anuncioeditable.setFoto_anuncio(file.getOriginalFilename());
-				} else {
+				} else if (extension.equals("pdf") )
+				{
+					anuncioeditable.setPdf_anuncio(file.getOriginalFilename());
+				}
+				else {
 					anuncioeditable.setAudio_anuncio(file.getOriginalFilename());
 
 				}

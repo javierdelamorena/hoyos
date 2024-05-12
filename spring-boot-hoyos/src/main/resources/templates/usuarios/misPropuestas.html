@@ -55,6 +55,7 @@
         <div th:if="${misPropuestas.isEmpty()}" class="alert alert-info my-4"
           th:text="'No hay propuestas que mostrar, no has realizado ninguna propuesta'"></div>
         <div th:if="${propuestaBorrada}" class="alert alert-info my-4" th:text="${propuestaBorrada}"></div>
+        <div th:if="${propuestaEditada}" class="alert alert-info my-4" th:text="${propuestaEditada}"></div>
 
         <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
             th:text="${usuarioBorrado}"></div> -->

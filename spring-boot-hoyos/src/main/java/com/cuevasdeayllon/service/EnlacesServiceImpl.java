@@ -17,8 +17,8 @@ import com.cuevasdeayllon.repository.EnlacesJpaRepository;
 @Service
 public class EnlacesServiceImpl implements EnlacesService {
 
-	static final String ROOT_PATH = "D://TEMP//uploadsEnlaces";
-	// static final String ROOT_PATH = "/uploadsEnlaces";
+	//static final String ROOT_PATH = "D://TEMP//uploadsEnlaces";
+	static final String ROOT_PATH = "/uploadsEnlaces";
 
 	@Autowired
 	EnlacesJpaRepository enlacesJpaRepository;
@@ -83,11 +83,8 @@ public class EnlacesServiceImpl implements EnlacesService {
 				byte[] bytes = file2.getBytes();
 				Path rutaCompleta = Paths.get(ROOT_PATH + "//" + file2.getOriginalFilename());
 				Files.write(rutaCompleta, bytes);
-				String extension2 = FilenameUtils.getExtension(file2.getOriginalFilename());
-
-				// if (extension2.equals("jpg") || extension2.equals("png")) {
-				enlace.setFoto2(file1.getOriginalFilename());
-				// }
+				enlace.setFoto2(file2.getOriginalFilename());
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -126,6 +123,96 @@ public class EnlacesServiceImpl implements EnlacesService {
 	public Enlaces unEnlace(int idEnlaces) {
 
 		return enlacesJpaRepository.findById(idEnlaces).orElse(null);
+	}
+
+	@Override
+	public void editarEnlace(Enlaces enlaces, MultipartFile file1, MultipartFile file2) {
+		Enlaces enlace = new Enlaces();
+		Enlaces enlaceFotos=this.unEnlace(enlaces.getId());
+		enlace.setId(enlaces.getId());
+		
+		if (!enlaces.getTipo().isEmpty()) {
+			enlace.setTipo(enlaces.getTipo());
+		}
+		if (!enlaces.getNombre().isEmpty()) {
+			enlace.setNombre(enlaces.getNombre());
+		}
+
+		if (!enlaces.getApellidos().isEmpty()) {
+			enlace.setApellidos(enlaces.getApellidos());
+		}
+
+		if (!enlaces.getDireccion().isEmpty()) {
+			enlace.setDireccion(enlaces.getDireccion());
+		}
+		if (!enlaces.getTelefono().isEmpty()) {
+			enlace.setTelefono(enlaces.getTelefono());
+		}
+		if (!enlaces.getEnlaceweb().isEmpty()) {
+			enlace.setEnlaceweb(enlaces.getEnlaceweb());
+		}
+
+		enlace.setTexto1(enlaces.getTexto1());
+
+		enlace.setTexto2(enlaces.getTexto2());
+
+		enlace.setTexto3(enlaces.getTexto3());
+
+		if (!enlaces.getMail().isEmpty()) {
+			enlace.setMail(enlaces.getMail());
+		}
+
+		if (!file1.isEmpty())
+
+		{
+			Path rutaCompleta = Paths.get(ROOT_PATH + "//" + enlaceFotos.getFoto1());			
+			try {
+				Files.deleteIfExists(rutaCompleta);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+			 rutaCompleta = Paths.get(ROOT_PATH + "//" + file1.getOriginalFilename());	
+				byte[] bytes = file1.getBytes();
+				
+				Files.write(rutaCompleta, bytes);			
+				enlace.setFoto1(file1.getOriginalFilename());
+				
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+
+		}
+		else {
+			enlace.setFoto1(enlaceFotos.getFoto1());
+		}
+		if (!file2.isEmpty()) {
+			Path rutaCompleta = Paths.get(ROOT_PATH + "//" + enlaceFotos.getFoto2());
+			try {
+				Files.deleteIfExists(rutaCompleta);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			try {
+			    rutaCompleta = Paths.get(ROOT_PATH + "//" + file2.getOriginalFilename());
+				byte[] bytes = file2.getBytes();			
+				Files.write(rutaCompleta, bytes);				
+				enlace.setFoto2(file2.getOriginalFilename());
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+
+		}else {
+			enlace.setFoto2(enlaceFotos.getFoto2());
+		}
+
+		enlacesJpaRepository.save(enlace);
+		
 	}
 
 }

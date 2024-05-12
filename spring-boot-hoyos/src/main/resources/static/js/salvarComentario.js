@@ -43,8 +43,8 @@ var idusuario;
 if($('#comentario').val()!=""){
         $.ajax({
             type: 'POST',
-            url: "salvarcomentario",
-            //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+            //url: "salvarcomentario",
+            url: "https://hoyos.com.es/salvarcomentario",
             data: { 'comentario': $('#comentario').val(), 'idUsuario': idusuario },
             // beforeSend: function(){
             //     $('#textoComentario').empty();
@@ -81,13 +81,13 @@ if($('#comentario').val()!=""){
                 html2 += '<tr>';
                 html2 += "<td>";
                 html2 += '<div style="display: flex;">';
-                html2 += "<button id='botonEditar' type='button' class='btn btn-dark'  onclick='editarComent(\"" + objetos.comentarios[i].comentario.toString() + "\" ," + objetos.comentarios[i].id + ")' style='color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;'float: left;'>editar</button>";
+                html2 += "<button id='botonEditar' type='button' class='btn btn-dark'  onclick='editarComent(\"" + objetos.comentarios[i].comentario.toString() + "\" ," + objetos.comentarios[i].id + ")' style='color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;'float: left;font-size: smaller;'>editar</button>";
                 html2 += " <form action='borrarComentarioAjax' method='post'>";
                 html2 += '<input type="hidden" name="idComentario" value="' + objetos.comentarios[i].id + '">';
                 console.log("Hecho Correcto estamos dentro del if de editable el id es: " + objetos.comentarios[i].id);
                 html2 += '<input type="hidden" name="idPropuesta" value="' + objetos.propuestas.idPropuesta + '">';
                 console.log("Hecho Correcto estamos dentro del if de editable el idpropuesta es: " + objetos.propuestas.idPropuesta);
-                html2 += '<input type="submit" class="btn" value="Borrar"style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;">';
+                html2 += '<input type="submit" class="btn" value="Borrar"style="color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;font-size: smaller;">';
                 html2 += '</form>';
                 html2 += '</div>';
                 html2 += '</td>';

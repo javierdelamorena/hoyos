@@ -126,7 +126,7 @@
               <tr style="margin-bottom: 1%;">
                 <div>
                   <td>
-                    <div style="font-size: medium;" id="textoComentarios"
+                    <div  id="textoComentarios"
                       th:text="${comentario.usuario.nombre.toUpperCase()}+ ' ha dicho:  '+${comentario.comentario}"
                       disabled>
                       <!-- <p id="textoComentarios" 
@@ -177,7 +177,7 @@
 
           <div class="col-lg-12 col-sm-6" id="textoComentario" style="display: flex;">
             <div  class="col-lg-8 col-sm-8">
-            <textarea type="text" id="comentario" name="comentario" class="form-control" maxlength="250" required placeholder="Escribe tu opinión...."></textarea>
+            <textarea type="text" id="comentario" name="comentario" class="form-control" maxlength="1999" required placeholder="Escribe tu opinión...."></textarea>
               </div>
                <div class="col-lg-1 col-sm-2" id="botonAgregar">
                 <button class="btn " style="color: #eeeeee;background-color: #463232a3;" id="salvarComentario" >
@@ -296,8 +296,8 @@
       $.ajax({
 
         type: 'GET',
-        url: "puntuacionTotal",
-        //url: "https://cuevas-de-ayllon.com/puntuacionTotal",
+        //url: "puntuacionTotal",
+        url: "https://hoyos.com.es/puntuacionTotal",
       }).done(function (data) {
 
 
@@ -310,8 +310,8 @@
         $.ajax({
 
           type: 'GET',
-          url: "guardarTotal",
-          //url: "https://cuevas-de-ayllon.com/guardarTotal",
+          //url: "guardarTotal",
+          url: "https://hoyos.com.es/guardarTotal",
           data: { 'total': data }
 
         });

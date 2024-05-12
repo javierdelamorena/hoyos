@@ -49,9 +49,9 @@
           <div tabindex="-1" aria-labelledby="modal" aria-hidden="true" class="modal fade"
             th:attr="id=modal+${foto.idFotos}">
             <div class="modal-dialog modal-lg modal-dialog-centered">
-              <div class="modal.content"><a th:src="@{'/uploadsGaleria/'+${foto.fotos}}" download>
+              <div class="modal.content"><a th:src="@{'/uploads/uploadsGaleria/'+${foto.fotos}}" download>
                 <img th:src="@{'/uploadsGaleria/'+${foto.fotos}}" class="img-fluid" id="fotosModel"
-                  alt="Responsive image" role="button" style="width: 800px;height: 800px;"></a>
+                  alt="Responsive image" role="button" style="width: 700px;height: 500px;"></a>
               </div>
 
             </div>
@@ -124,8 +124,8 @@
       //   console.log(' estas son las fotos que recogemos' + data[i].fotos)
       //   html += '   <div class="col-lg-2 style="margin-left: 17%;">';
       //   html += '     <a href="#" data-bs-toggle="modal" data-bs-target="#modal' + [28 + i] + '">';
-      //   html += '       <img src="uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
-      //   //html += '       <img src="https://cuevas-de-ayllon.com/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
+      //   html += '       <img src="/uploads/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
+      //   //html += '       <img src="https://cuevas-de-ayllon.com//uploads/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
       //   html += '       height: 415px;';
       //   html += '       width: 415px;" id="galeriaImg' + data[i].fotos + '" alt="Responsive image" role="button">';
       //   html += '     </a>';
@@ -142,8 +142,8 @@
       //   html1 += '   <div tabindex="-1" aria-labelledby="modal" aria-hidden="true" class="modal fade" id="modal' + [28 + i] + '">';
       //   html1 += '     <div class="modal-dialog modal-lg modal-dialog-centered">';
       //   html1 += '       <div class="modal.content">';
-      //   html1 += '         <img src="uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
-      //   //html1 += '         <img src="https://cuevas-de-ayllon.com/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
+      //   html1 += '         <img src="/uploads/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
+      //   //html1 += '         <img src="https://cuevas-de-ayllon.com//uploads/uploadsGaleria/' + data[i].fotos + '" class="img-fluid" style="border-radius:30px;padding:10px;';
       //   html1 += '           height: 700px;';
       //   html1 += '           width:  1024px;" id="galeriaImg' + data[i].fotos + '" alt="Responsive image" role="button">';
       //   html1 += '       </div>';

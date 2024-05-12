@@ -146,8 +146,8 @@
 
                         <label form="texto" class="col-form-label col-sm-2" th:text="${texto}" style="width: 100%;font-family: sans-serif;
                                 font-size: 20px;"></label>
-                        <textarea id="texto" th:field="*{texto}" name="texto" rows="4" cols="50" style=" height: 52%;
-                            width: 100%; margin-bottom: 5%;" maxlength="500"></textarea>
+                        <textarea id="texto"  name="texto" rows="5" cols="50" style=" height: 52%;
+                            width: 100%; margin-bottom: 5%;" maxlength="2000"></textarea>
                         <div th:if="${#fields.hasErrors('texto')}" th:errors="*{texto}" class="alert alert-danger"
                             style="width: 80%;">
                         </div>

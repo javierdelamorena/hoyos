@@ -161,7 +161,8 @@ const saveImage = (mails,ids) => {
     //     console.log('Oups! Something goes wrong.');
     // });
     // We setup our request
-    XHR.open('POST', 'editarFoto');
+    XHR.open('POST', 'https://hoyos.com.es/editarFoto');
+    //XHR.open('POST', 'editarFoto');
  
     XHR.send(fd);
    

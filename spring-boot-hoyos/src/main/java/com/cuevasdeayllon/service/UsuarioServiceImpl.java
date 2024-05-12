@@ -19,8 +19,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Autowired
 	UsuarioRepository usuarioService;
 	
-	static final String ROOT_PATH = "D://TEMP//uploads";
-	// static final String ROOT_PATH = "/uploads/";
+	//static final String ROOT_PATH = "D://TEMP//uploads";
+	static final String ROOT_PATH = "/uploads/";
 
 	@Override
 	public Usuario usuarioPorId(int idUsuario) {

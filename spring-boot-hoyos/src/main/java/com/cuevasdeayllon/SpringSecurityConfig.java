@@ -51,7 +51,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		
 
-		http.csrf().disable().authorizeRequests().antMatchers("/", "/mercadilloTodos", "/registrarse", "/home",
+		http.csrf().disable().authorizeRequests().antMatchers("/", "/mercadilloTodos", "/registrarse","/home", "/hoyos-caceres-sierra-de-gata",
 				"/galeriaFotografica", "/historiaPueblo", "/toRutas", "/tablonAnuncios","/todosEnlace", "/casasRurales","/piscinasNaturales","/enlacesDeInteres").permitAll()
 //		.antMatchers("/login*").permitAll()
 		
@@ -102,7 +102,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //		 .invalidateHttpSession(true)
 //		 .clearAuthentication(true)
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home")
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/hoyos-caceres-sierra-de-gata")
 				.permitAll()
 				.and()
 				.headers()

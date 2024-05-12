@@ -48,8 +48,8 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService service;
 
-	static final String ROOT_PATH = "D://TEMP//uploads";
-	// static final String ROOT_PATH = "/uploads/";
+	//static final String ROOT_PATH = "D://TEMP//uploads";
+	static final String ROOT_PATH = "/uploads/";
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -154,7 +154,7 @@ public class UsuarioController {
 					SimpleMailMessage message = new SimpleMailMessage();
 					message.setTo(usuari.getEmail());
 					message.setSubject(
-							"Muchas gracias por registrarte en el espacio vecinal de Cuevas de Ayllón,  aqui te dejamos los datos de tu registro:");
+							"Muchas gracias por registrarte en el espacio vecinal de Hoyos,  aqui te dejamos los datos de tu registro:");
 					message.setText("Usuario: " + usuari.getNombre() + " Primer apellido: " + usuari.getApellido1()
 							+ " Segundo apellido: " + usuari.getApellido2() + " Direccion del pueblo: "
 							+ usuari.getDireccion() + " password:" + passwordSinEncriptar + " email de registro:"
@@ -248,12 +248,12 @@ public class UsuarioController {
 
 			service.borrarUsuario(usuario);
 		} else {
-			return "portadas/home";
+			return "portadas/hoyos-caceres-sierra-de-gata";
 		}
 
 		model.addAttribute("usuarioBorrado", "El suario se ha borrado con exito");
 
-		return "portadas/home";
+		return "portadas/hoyos-caceres-sierra-de-gata";
 
 	}
 
@@ -325,26 +325,19 @@ public class UsuarioController {
 	 * @return
 	 * @throws Exception
 	 */
-	// @GetMapping(value="/doVerificar", produces =
-	// MediaType.APPLICATION_JSON_VALUE)
-	// public void enviar(@RequestParam(value="password",required =true) String
-	// password,@RequestParam(value="nombre",required = true) String
-	// nombre,@RequestParam(value="email",required=true) String email, HttpSession
-	// sesion, Model model) throws Exception {
-	// logger.info("entramos en metodo doVerificar y recogemos este
-	// password:["+password+"] nombre:["+nombre+"] email:["+email+"]");
-	// SimpleMailMessage message = new SimpleMailMessage();
-	// message.setTo(email);
-	// message.setSubject(
-	// "Muchas Gracias por registrarte en el espacio vecinal de cuevas de ayllopn,
-	// aqui te dejamos los datos de tu registro:");
-	// message.setText("Usuario: " + nombre + " password:" + password + " email de
-	// registro:"
-	// + email);
-	// mailSender.send(message);
-
-	// return "login";
-	// }
+//	 @GetMapping(value="/doVerificar", produces =MediaType.APPLICATION_JSON_VALUE)
+//	 public void enviar(@RequestParam(value="password",required =true) String password,@RequestParam(value="nombre",required = true) String
+//	 nombre,@RequestParam(value="email",required=true) String email, HttpSession
+//	 sesion, Model model) throws Exception {
+//	 logger.info("entramos en metodo doVerificar y recogemos este password:["+password+"] nombre:["+nombre+"] email:["+email+"]");
+//	 SimpleMailMessage message = new SimpleMailMessage();
+//	 message.setTo(email);
+//	 message.setSubject("Muchas Gracias por registrarte en el espacio vecinal de Hoyos,aqui te dejamos los datos de tu registro:");
+//	 message.setText("Usuario: " + nombre + " password:" + password + " email de registro:"+ email);
+//	 mailSender.send(message);
+//
+//	 
+//	 }
 
 	@PostMapping(path = "/editarUsuario")
 	public String editarUsuario(@Valid Usuario usuario, BindingResult result, @RequestParam("file") MultipartFile foto,
@@ -363,9 +356,9 @@ public class UsuarioController {
 		// Usuario usuariocomprobacion=(Usuario) sesion.getAttribute("usuario");
 
 		String passwordSinEncriptar = usuario.getPassword();
-
+		Usuario usuari = null;
 		if (!foto.isEmpty() && usuario != null) {
-			Usuario usuari = service.usuarioPorEmail(usuario.getEmail());
+			 usuari = service.usuarioPorEmail(usuario.getEmail());
 			int oraLen = foto.getOriginalFilename().length();
 			logger.info("El nombre de la foto es: " + foto.getOriginalFilename());
 
@@ -415,18 +408,15 @@ public class UsuarioController {
 			}
 
 		} else {
-			// byte[]bytes="sinFoto.jpg".getBytes();
-			// Path rutaCompleta=Paths.get(rootPath+"//"+"sinFoto.jpg");
-			// logger.info("Esta es la ruta absoluta="+rutaCompleta.toAbsolutePath());
-			// Files.write(rutaCompleta,bytes);
-			usuario.setFoto("sinFoto.jpg");
+			usuari = service.usuarioPorEmail(usuario.getEmail());
+			usuario.setFoto(usuari.getFoto());
 			String passwordEncriptada = usuario.getPassword();
 			usuario.setIdUsuario(usuario.getIdUsuario());
 			usuario.setPassword(passwordEncoder.encode(passwordEncriptada));
 			usuario.setRoles(usuarioControl.getRoles());
 			service.editarUsuario(usuario);
 
-			Usuario usuari = service.usuarioPorNombre(usuarioControl.getNombre());
+			
 			if (usuari != null) {
 				logger.info("Entramos en metodo registrar Usuario y recogemos este usuario: " + usuari.getNombre());
 				logger.info("entramos en metodo doVerificar y recogemos este password:[" + usuari.getPassword()
@@ -434,7 +424,7 @@ public class UsuarioController {
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setTo(usuari.getEmail());
 				message.setSubject(
-						"Muchas gracias por registrarte en el espacio vecinal de Cuevas de Ayllón,  aqui te dejamos los datos de tu registro:");
+						"Muchas gracias por registrarte en el espacio vecinal de Hoyos,  aqui te dejamos los datos de tu registro:");
 				message.setText("Usuario: " + usuari.getNombre() + " Primer apellido: " + usuari.getApellido1()
 						+ " Segundo apellido: " + usuari.getApellido2() + " Direccion del pueblo: "
 						+ usuari.getDireccion() + " password:" + passwordSinEncriptar + " email de registro:"
@@ -462,7 +452,7 @@ public class UsuarioController {
 
 				logger.info("estamos en contacto no hay ningun campo vacio");
 				SimpleMailMessage message = new SimpleMailMessage();
-				message.setTo("ayuntamientodecuevas@cuevas-de-ayllon.com");
+				message.setTo("ayuntamientodehoyos@hoyos.com.es");
 				message.setSubject("Mesaje de usuario: " + nombre);
 				message.setText(
 						"Usuario: " + nombre + " con email de registro: " + email + "  mensaje del cliente:" + mensaje);

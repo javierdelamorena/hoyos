@@ -9,7 +9,13 @@ import java.nio.file.Path;
 
 import javax.imageio.ImageIO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.cuevasdeayllon.controllers.FotosController;
+
 public class ImageResizer {
+	private static final Logger logger = LoggerFactory.getLogger(ImageResizer.class);
 	    //Ancho máximo
 	    public static int MAX_WIDTH=400;
 	    //Alto máximo
@@ -38,6 +44,7 @@ public class ImageResizer {
 	    Este método se utiliza para cargar la imagen de disco
 	    */
 	    public static BufferedImage loadImage(String rutaCompleta) {
+	    	
 	        BufferedImage bimage = null;
 	        try {
 	        	

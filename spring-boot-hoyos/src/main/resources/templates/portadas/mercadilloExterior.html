@@ -44,7 +44,7 @@
             <div class="divSelecMercadillo">
                 <div id="volverMercadillo">
                     <a class="btn" id="volverhrefMercadillo"
-                        href="http://192.168.1.36:8080/spring-boot-hoyos/mercadilloexterior"><svg
+                        href="https://hoyos.com.es/mercadilloexterior"><svg
                             xmlns="http://www.w3.org/2000/svg" width="16" height="25" fill="currentColor"
                             class="bi bi-arrow-left-square" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -62,11 +62,11 @@
                 <div class="row g-3" style="margin-top: 1%;" id="divBuscarPrecio">
                     <div class="col-4">
                         <label for="precioMinimo" class="form-label">Precio Minimo</label>
-                        <input type="number" name="precioMinimo" value="0" class="form-control" id="precioMinimo">
+                        <input type="number" name="precioMinimo" value="0" min="0" class="form-control" id="precioMinimo">
                     </div>
                     <div class="col-4">
                         <label for="precioMaximo" class="form-label">Precio Maximo</label>
-                        <input type="number" name="precioMaximo" value="0" class="form-control" id="precioMaximo">
+                        <input type="number" name="precioMaximo" value="0" min="0" class="form-control" id="precioMaximo">
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-primary mb-3" id="filtrarPrecio" onclick="filtrotiposervicioPrecio();"

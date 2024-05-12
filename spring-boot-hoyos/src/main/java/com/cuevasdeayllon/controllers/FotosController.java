@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,8 +42,8 @@ import com.cuevasdeayllon.service.UsuarioService;
 public class FotosController {
 
 	private static final Logger logger = LoggerFactory.getLogger(FotosController.class);
-	static final String ROOT_PATH = "D://TEMP//uploadsGaleria";
-	// static final String ROOT_PATH = "/uploadsGaleria/";
+	//static final String ROOT_PATH = "D://TEMP//uploadsGaleria";
+	static final String ROOT_PATH = "/uploadsGaleria";
 
 	@Autowired
 	FotosService service;
@@ -119,9 +121,9 @@ public class FotosController {
 				Path rutaCompleta = Paths.get(ROOT_PATH + "//" + foto.getOriginalFilename());
 
 				Files.write(rutaCompleta, bytes);
-				BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH + "\\" + foto.getOriginalFilename());
+				BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH +"/"+ foto.getOriginalFilename());
 				BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
-				ImageResizer.saveImage(bufferedImageResize, ROOT_PATH + "//" + foto.getOriginalFilename());
+				ImageResizer.saveImage(bufferedImageResize, ROOT_PATH +"/"+ foto.getOriginalFilename());
 				logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 
 				fotos.setIdFotos(0);
@@ -195,10 +197,10 @@ public class FotosController {
 				Path rutaCompleta = Paths.get(ROOT_PATH + "//" + fotos.getFotos());
 				logger.info("Esta es la ruta absoluta=" + rutaCompleta.toAbsolutePath());
 				Files.write(rutaCompleta, bytes);
-				BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH + "\\" + fotos.getFotos());
+				BufferedImage bufferedImage = ImageResizer.loadImage(ROOT_PATH + "/" + fotos.getFotos());
 				BufferedImage bufferedImageResize = ImageResizer.resize(bufferedImage, 400, 400);
 
-				ImageResizer.saveImage(bufferedImageResize, ROOT_PATH + "//" + foto.getOriginalFilename());
+				ImageResizer.saveImage(bufferedImageResize, ROOT_PATH + "/" + foto.getOriginalFilename());
 				fotos.setIdFotos(fotos.getIdFotos());
 				fotos.setFotos(fotos.getFotos());
 				fotos.setUsuario(usuario);
@@ -283,9 +285,11 @@ public class FotosController {
 
 		logger.info("Entramos en METODO  doMostrarTemperaturasTabla");
 
-		Pageable pagaRequest = PageRequest.of(page, 3);
+		Pageable pagaRequest = PageRequest.of(page, 3,Sort.by("idFotos").descending());
 
 		Page<Fotos> fotosEnPagina = service.fotosPaginas(pagaRequest);
+		
+		
 
 		PageRender<Fotos> pageRender = new PageRender<>("/fotosGaleria", fotosEnPagina);
 

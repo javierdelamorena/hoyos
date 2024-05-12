@@ -15,8 +15,8 @@ $('#myInput').change(function () {
 function cargar() {
     $.ajax({
         type: 'GET',
-        url: "tipoServicio",
-        //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+        //url: "tipoServicio",
+        url:"https://hoyos.com.es/tipoServicio",
         data: { 'page': paginas, 'tipoServicio': $('#myInput').val() },
 
     }).done(function (objetos) {
@@ -38,21 +38,21 @@ function cargar() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -80,7 +80,7 @@ function cargar() {
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
                     html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                    html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
+                    html += '<div  style="padding: 3%;word-break: break-word;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
@@ -101,21 +101,21 @@ function cargar() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -143,7 +143,7 @@ function cargar() {
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
                     html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                    html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
+                    html += '<div  style="padding: 3%;word-break: break-word;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
@@ -164,21 +164,21 @@ function cargar() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -206,7 +206,7 @@ function cargar() {
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
                     html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                    html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
+                    html += '<div  style="padding: 3%;word-break: break-word;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
                     html += '<hr style="margin-top: 3%;">';
@@ -224,21 +224,21 @@ function cargar() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -266,7 +266,7 @@ function cargar() {
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
                     html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                    html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
+                    html += '<div  style="padding: 3%;word-break: break-word;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';

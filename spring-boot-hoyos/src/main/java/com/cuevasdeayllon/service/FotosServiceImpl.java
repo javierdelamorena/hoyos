@@ -21,8 +21,8 @@ public class FotosServiceImpl implements FotosService {
 
 	@Autowired
 	FotosJpaRepository fotosJpaRepository;
-	static final String ROOT_PATH = "D://TEMP//uploadsGaleria";
-	// static final String ROOT_PATH = "/uploadsGaleria/";
+	//static final String ROOT_PATH = "D://TEMP//uploadsGaleria";
+	static final String ROOT_PATH = "/uploadsGaleria";
 
 	public List<Fotos> todasLasFotos() {
 

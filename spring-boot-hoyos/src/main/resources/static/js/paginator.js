@@ -2,7 +2,7 @@ const factsEl = document.querySelector('.facts');
 const loader = document.querySelector('.loader');
 
 const getfacts = async (page, limit) => {
-    const API_URL = `mercadilloPginasPreciosTipoServicio?page=${page}&limit=${limit}`;
+    const API_URL = `https://hoyos.com.es/mercadilloPginasPreciosTipoServicio?page=${page}&limit=${limit}`;
     const response = await fetch(API_URL);
     // handle 404 
     if (!response.ok) {
@@ -37,20 +37,7 @@ const showfacts = (facts) => {
                 
 
                 if (objetos[i].tipo_servicio == 'Venta') {
-                    // html += '<div class="row g-3" style="margin-top: 3%;">';
-                    // html += '<div class="col-auto">'; 
-                    // html += '<label for="precioMinimo" class="form-label">Precio Minimo</label>';                  
-                    // html += '<input type="number" value="0" class="form-control" id="precioMinimo" placeholder="precio min">';
-                    // html += '</div>'
-                    // html += '<div class="col-auto">';  
-                    // html += '<label for="precioMaximo" class="form-label">Precio Maximo</label>';                  
-                    // html += '<input type="number" value="0" class="form-control" id="precioMaximo" placeholder="precio max">';
-                    // html += '</div>'
-                    // html += '<div class="col-auto">'; 
-                                     
-                    // html+= '<button class="btn btn-primary mb-3" id="filtrarPrecio" onclick="myFunction()" style="margin-top: 23%;">Filtrar por Precio</button>';
-                    // html+= '</div>';
-                    // html+= '</div>';
+                    
                     html += '<div class="row" style="margin-top: 7%;">';
                     html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
                     html += '<div id="carouselExampleControls' + objetos[i].id + '" class="carousel slide" data-bs-ride="carousel">';
@@ -58,21 +45,21 @@ const showfacts = (facts) => {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -110,20 +97,7 @@ const showfacts = (facts) => {
 
                 }
                 if (objetos[i].tipo_servicio == 'Compra') {
-                    // html += '<div class="row g-3" style="margin-top: 3%;">';
-                    // html += '<div class="col-auto">'; 
-                    // html += '<label for="precioMinimo" class="form-label">Precio Minimo</label>';                  
-                    // html += '<input type="number" value="0" class="form-control" id="precioMinimo" placeholder="precio min">';
-                    // html += '</div>'
-                    // html += '<div class="col-auto">';  
-                    // html += '<label for="precioMaximo" class="form-label">Precio Maximo</label>';                  
-                    // html += '<input type="number" value="0" class="form-control" id="precioMaximo" placeholder="precio max">';
-                    // html += '</div>'
-                    // html += '<div class="col-auto">'; 
-                                      
-                    // html+= '<button class="btn btn-primary mb-3" id="filtrarPrecio" onclick="myFunction()" style="margin-top: 23%;">Filtrar por Precio</button>';
-                    // html+= '</div>';
-                    // html+= '</div>';
+                    
                     html += '<div class="row" style="margin-top: 7%;">';
                     
                     html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
@@ -132,21 +106,21 @@ const showfacts = (facts) => {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -184,20 +158,7 @@ const showfacts = (facts) => {
 
                 }
                 if (objetos[i].tipo_servicio == 'Servicios') {
-                    // html += '<div class="row g-3" style="margin-top: 3%;">';
-                    // html += '<div class="col-auto">'; 
-                    // html += '<label for="precioMinimo" class="form-label">Precio Minimo</label>';                  
-                    // html += '<input type="number" value="0" class="form-control" id="precioMinimo" placeholder="precio min">';
-                    // html += '</div>'
-                    // html += '<div class="col-auto">';  
-                    // html += '<label for="precioMaximo" class="form-label">Precio Maximo</label>';                  
-                    // html += '<input type="number" value="0" class="form-control" id="precioMaximo" placeholder="precio max">';
-                    // html += '</div>'
-                    // html += '<div class="col-auto">'; 
-                                      
-                    // html+= '<button class="btn btn-primary mb-3" id="filtrarPrecio" onclick="myFunction()" style="margin-top: 23%;">Filtrar por Precio</button>';
-                    // html+= '</div>';
-                    // html+= '</div>';
+                    
                     html += '<div class="row" style="margin-top: 7%;">';
                     
                     html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
@@ -206,21 +167,21 @@ const showfacts = (facts) => {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -255,20 +216,7 @@ const showfacts = (facts) => {
 
                 }
                 if (objetos[i].tipo_servicio == 'Alquiler') {
-                    // html += '<div class="row g-3" style="margin-top: 3%;">';
-                    // html += '<div class="col-auto">'; 
-                    // html += '<label for="precioMinimo" class="form-label">Precio Minimo</label>';                  
-                    // html += '<input type="number" value="0" class="form-control" id="precioMinimo" placeholder="precio min">';
-                    // html += '</div>'
-                    // html += '<div class="col-auto">';  
-                    // html += '<label for="precioMaximo" class="form-label">Precio Maximo</label>';                  
-                    // html += '<input type="number" value="0" class="form-control" id="precioMaximo" placeholder="precio max">';
-                    // html += '</div>'
-                    // html += '<div class="col-auto">'; 
-                                      
-                    // html+= '<button class="btn btn-primary mb-3" id="filtrarPrecio" onclick="myFunction()" style="margin-top: 23%;">Filtrar por Precio</button>';
-                    // html+= '</div>';
-                    // html+= '</div>';
+                    
                     html += '<div class="row" style="margin-top: 7%;">';
                     
                     html += '<div class="col-lg-5" style="margin-top: 3%; float:left">';
@@ -277,21 +225,21 @@ const showfacts = (facts) => {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }

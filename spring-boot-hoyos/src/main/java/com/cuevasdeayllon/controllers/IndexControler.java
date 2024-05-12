@@ -30,12 +30,20 @@ public class IndexControler {
 	@Autowired
 	private MercadilloService mercadilloservice;
 
-	@GetMapping({"/index","/home"})
+	@GetMapping({"/index","/home","/","/hoyos-caceres-sierra-de-gata"})
 	public String index() {
 
 		logger.info("Entramos en metodo index");
 
-		return "portadas/home";
+		return "portadas/hoyos-caceres-sierra-de-gata";
+
+	}
+	@GetMapping({"/politicaDePrivacidad"})
+	public String politicadeprivacidad() {
+
+		logger.info("Entramos en metodo politicaDePrivacidad");
+
+		return "politica-de-privacidad";
 
 	}
 	@GetMapping("/registrarse")
@@ -143,12 +151,13 @@ public class IndexControler {
 
 	}
 	@GetMapping("/subirFotos")
-	public String subirFoto(Model model,HttpSession sesion) {
+	public String subirFoto(@RequestParam("idUsuario")int idUsuario,Model model,HttpSession sesion) {
 
-		Usuario usuario=new Usuario();
+		
+		Usuario usuario=service.usuarioPorId(idUsuario);
 		try {
-			if(sesion.getAttribute("usuario")!=null) {
-				usuario=(Usuario) sesion.getAttribute("usuario");
+			if(idUsuario>0) {
+				
 				model.addAttribute("usuario", usuario);
 
 				logger.info("Entramos en metodo index subirFoto el idUsuario es: "+usuario.getIdUsuario());
@@ -290,7 +299,7 @@ public class IndexControler {
 	public String unMercadillo(@RequestParam("id")int id,HttpSession session,Model model) {
 
 		
-		List<String>tipoServicio= Arrays.asList("Compra Venta ","Servicios","Alquiler");
+		List<String>tipoServicio= Arrays.asList("Compra","Venta","Servicios","Alquiler");
 		
 		Mercadillo mercadillo=mercadilloservice.findById(id);
 		
@@ -333,6 +342,16 @@ public class IndexControler {
 		logger.info("Entramos en metodo /mercadilloexterior");
 
 		return "portadas/mercadilloExterior";
+		
+
+	}
+	@GetMapping("/igualdadExterior")
+	public String igualdadExterior(Model model) {
+
+
+		logger.info("Entramos en metodo /igualdadExterior");
+
+		return "portadas/igualdadExterior";
 		
 
 	}

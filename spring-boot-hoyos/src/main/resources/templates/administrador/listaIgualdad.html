@@ -1,10 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <title>Hoyos igualdades</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=500, user-scalable=no" />
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .content {
+
+            font-family: "Open Sans";
+            background-color: white;
+
+        }
+
+        form {
+            width: 100%;
+           
+            margin-bottom: 60px;
+        }
+
+        form #q {
+           
+            text-align: left;
+            padding: 5px 0px;
+        }
+    </style>
 </head>
-<body>
+
+<body class="bodyAdministradores">
+    <nav th:replace="layouts/fragmentoAdministradores :: nav"></nav>
+
+
+
+    <div class="container content" style="margin-top: 10%;">
+        <h4 style="text-align: center;margin: 1%;">Espacio Administradores de pagina</h4>
+        <h5 th:if="${faltaTitulo}" th:text="${faltaTitulo}" class="alert alert-danger"></h5>
+        <h5 th:if="${faltaigualdad}" th:text="${faltaigualdad}" class="alert alert-danger"></h5>
+        <h5 th:if="${igualdadSubido}" th:text="${igualdadSubido}" class="alert alert-info"></h5>
+        <div class="col-lg-12 col-sm-2" style="margin: 2%;" >
+
+            <a type="button" value="cerrar" th:href="@{/toUsuario}" class="btn "
+                style="color: #eeeeee;background-color: #463232a3;margin-right: 6%;">cerrar</a>
+        </div>
+        <p style="text-align: center;">Lista de igualdad .</p>
+        <form>
+            <input class="form-control" type="text" id="q" placeholder="Buscar igualdad......" onkeyup="search()">
+        </form>
+
+        <table class="table table-bordered" style="text-align: center;">
+
+            <thead class="thead-dark">
+                <tr  style="background-color: #deb887a8;">
+
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Borrar</th>
+
+
+                </tr>
+            </thead>
+            <!-- <div class="container" style="background-color:white;" th:if="${usuarioBorrado}"
+                th:text="${usuarioBorrado}"></div> -->
+            <tbody id="the_table_body">
+                <tr th:each="igualdad:${listaIgualdades}">
+
+
+
+                    <td th:if="${igualdad.titulo}" th:text="${igualdad.titulo}"></td>
+
+                    <td th:if="${igualdad.tipo}" th:text="${igualdad.tipo}"></td>
+                    <td>
+                        <form th:action="@{/toEditarIgualdad}" method="post">
+                            <input type="hidden" name="idIgualdad" th:value="${igualdad.id}">
+                            <input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark" value="Editar igualdad">
+                        </form>
+                    
+                    </td>
+
+                    <td><a href="#" data-bs-toggle="modal" class="btn btn-danger"
+                            th:attr="data-bs-target='#modalborrar'+${igualdad.id}">Borrar igualdad</a></td>
+
+
+                    <div class="modal fade" data-bs-backdrop="staticBackdropLabel"
+                        th:attr="id=modalborrar+${igualdad.id}" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Borrar igualdad.</h5></br>
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5 class="alert alert-danger">Antes de borrar un igualdad, piensalo bien</h5>
+                                    <form th:action="@{/borrarIgualdad}" method="post">
+                                        <input type="hidden" name="idIgualdad" th:value="${igualdad.id}">
+                                        <input type="submit" style="margin: 10px;color: #eeeeee;" class="btn btn-dark"
+                                            value="Borrar igualdad">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+
+
+                </tr>
+            </tbody>
+
+        </table>
+
+        <div class="col-lg-12 col-sm-2" style="margin: 2%;" >
+
+            <a type="button" value="cerrar" th:href="@{/toUsuario}" class="btn "
+                style="color: #eeeeee;background-color: #463232a3;margin-right: 6%;">cerrar</a>
+        </div>
+
+    </div>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function search() {
+            var num_cols, display, input, filter, table_body, tr, td, i, txtValue;
+            num_cols = 3;
+            input = document.getElementById("q");
+            filter = input.value.toUpperCase();
+            table_body = document.getElementById("the_table_body");
+            tr = table_body.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                display = "none";
+                for (j = 0; j < num_cols; j++) {
+                    td = tr[i].getElementsByTagName("td")[j];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            display = "";
+                        }
+                    }
+                }
+                tr[i].style.display = display;
+            }
+        }		
+    </script>
 
 </body>
+
 </html>

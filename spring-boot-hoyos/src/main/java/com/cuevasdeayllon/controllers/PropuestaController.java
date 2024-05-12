@@ -216,9 +216,13 @@ public class PropuestaController {
 			model.addAttribute("propuestaEditada", "La propuesta a sido editada con exito");
 			return "usuarios/misPropuestas";
 
+		}else
+		{
+			model.addAttribute("propuestaEditada", "La propuesta no a sido editada.");
+			return "usuarios/misPropuestas";
 		}
 
-		return "usuarios/misPropuestas";
+		
 
 	}
 

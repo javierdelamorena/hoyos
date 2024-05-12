@@ -37,8 +37,8 @@ function editarComent(comentario, idComentario) {
 function editar() {
     $.ajax({
         type: 'POST',
-        url: "editarComentario",
-        //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+        //url: "editarComentario",
+        url: "https://hoyos.com.es/editarComentario",
         data: { 'comentario': $('#comentario').val(), 'idComentario': idComent },
 
     }).done(function (objetos) {
@@ -58,7 +58,7 @@ function editar() {
         for (var i = 0; i < objetos.comentarios.length; i++) {
 
             html2 += '<tr>';
-            html2 += '<td><img class="img-thumbnail  float-left" style="width: 50px ;float: left; border-radius: 90px;" src=uploads/' + objetos.usuarios[i].foto + "></td>";
+            html2 += '<td><img class="img-thumbnail  float-left" style="width: 50px ;float: left; border-radius: 90px;" src=/uploads/' + objetos.usuarios[i].foto + "></td>";
             html2 += '</tr>';
 
             html2 += '<tr>';
@@ -72,14 +72,14 @@ function editar() {
                 html2 += '<tr>';
                 html2 += "<td>";
                 html2 += '<div style="display: flex;">'
-                html2 += " <button id='botonEditar' type='button' class='btn btn-dark'  onclick='editarComent(\"" + objetos.comentarios[i].comentario.toString() + "\" ," + objetos.comentarios[i].id + ")' style='color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;'float: left;'>editar</button>";
+                html2 += " <button id='botonEditar' type='button' class='btn btn-dark'  onclick='editarComent(\"" + objetos.comentarios[i].comentario.toString() + "\" ," + objetos.comentarios[i].id + ")' style='color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;margin-right: 1%;'float: left;font-size: smaller;'>editar</button>";
                 html2 += " <form action='borrarComentarioAjax' method='post'>";
                 //html2 += " <form action='https://cuevas-de-ayllon.com/borrarComentario' method='post'>";
                 html2 += "<input type='hidden' name='idComentario' value=\"" + parseInt(objetos.comentarios[i].id) + "\" >";
                 console.log("Hecho Correcto estamos dentro del if de editable el id es: " + objetos.comentarios[i].id);
                 html2 += "<input type='hidden' name='idPropuesta'  value=\"" + parseInt(objetos.propuestas.idPropuesta) + "\" >";
                 console.log("Hecho Correcto estamos dentro del if de editable el idpropuesta es: " + objetos.propuestas.idPropuesta);
-                html2 += "<input type='submit' class='btn' value='Borrar' style='color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;'>";
+                html2 += "<input type='submit' class='btn' value='Borrar' style='color: #eeeeee;background-color: #463232a3; margin-bottom: 30px;font-size: smaller;'>";
                 html2 += "</form>";
                 html2 += "</td>"
                 html2 += '</div >'

@@ -4,7 +4,8 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'GET',
-        url: "todosEnlace"
+        //url: "todosEnlace"
+        url:"https://hoyos.com.es/todosEnlace"
 
 
     }).done(function (data) {
@@ -55,8 +56,8 @@ function mostraEnlace(obj) {
     var idEnlace = obj;
     $.ajax({
         type: 'GET',
-        url: "unEnlace",
-        //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+        //url: "unEnlace",
+        url:"https://hoyos.com.es/unEnlace",
         data: {
 
             'idEnlace': idEnlace,
@@ -154,21 +155,21 @@ function mostraEnlace(obj) {
         html += '<div class="row" >';
 
         if (objetos.foto1 != null&&objetos.foto2 == null) {
-            html += '<div class="col-auto">';
+            html += '<div class="col-auto" style="margin: auto;">';
 
-            html += "<img src='/spring-boot-hoyos/uploadsEnlaces/" + objetos.foto1 + "' class=' w-100 responsive'  alt='...'>";
+            html += "<img src='/uploadsEnlaces/" + objetos.foto1 + "' class=' w-100 responsive'  alt='...'>";
 
             html += '</div>';
         } if (objetos.foto1 != null&&objetos.foto2 != null) {
             html += '<div class="col-6">';
 
-            html += "<img src='/spring-boot-hoyos/uploadsEnlaces/" + objetos.foto1 + "' class=' w-100 responsive'  alt='...'>";
+            html += "<img src='/uploadsEnlaces/" + objetos.foto1 + "' class=' w-100 responsive'  alt='...'>";
 
             html += '</div>';
        
             html += '<div class="col-6">';
 
-            html += "<img src='/spring-boot-hoyos/uploadsEnlaces/" + objetos.foto2 + "' class='d-block w-100'  alt='...'>";
+            html += "<img src='/uploadsEnlaces/" + objetos.foto2 + "' class='d-block w-100'  alt='...'>";
 
             html += '</div>';
         }
@@ -176,7 +177,7 @@ function mostraEnlace(obj) {
         html += '</div>';
         if (objetos.enlaceweb != null) {
             html += '<divclass="row">';
-            html += '<div >';
+            html += '<div style="margin-top: 3%;font-family: impact;">';
             html += "<a class='link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' href='" + objetos.enlaceweb + "'>Enlace web</a>";
             html += '</div>';
             html += '</div>';

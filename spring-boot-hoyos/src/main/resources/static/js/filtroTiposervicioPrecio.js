@@ -17,8 +17,8 @@ function cargardatosPrecio() {
     console.log('entramos en  cargardatosPrecio()');
     $.ajax({
         type: 'GET',
-        url: "mercadilloPaginasPreciosTipoServicio",
-        //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+        //url: "mercadilloPaginasPreciosTipoServicio",
+        url:"https://hoyos.com.es/mercadilloPaginasPreciosTipoServicio",
         data: {
             'page': paginass,
             'tipoServicio': $('#myInput').val(),
@@ -45,21 +45,21 @@ function cargardatosPrecio() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -108,21 +108,21 @@ function cargardatosPrecio() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -171,21 +171,21 @@ function cargardatosPrecio() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -231,21 +231,21 @@ function cargardatosPrecio() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }

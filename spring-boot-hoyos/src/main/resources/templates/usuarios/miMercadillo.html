@@ -35,14 +35,14 @@
 
     <div class="container">
         <div class="col-lg-10 col-sm-8" style="margin-top: 5%; margin-bottom: 5%; ">
-
+            <div th:if="${miMercadilloVacio}" class="alert alert-info my-4"
+            th:text="${miMercadilloVacio}"></div>
+        <div th:if="${mercadilloBorrado}" th:text="${mercadilloBorrado}" class="alert alert-info"></div>
             <table class="table table-bordered data-min-width" style="background-color: #d8852ebd;
     
     text-align: center;
     font-weight: bold;">
-                <div th:if="${miMercadilloVacio}" class="alert alert-info my-4"
-                    th:text="${miMercadilloVacio}"></div>
-                <div th:if="${mercadilloBorrado}" th:text="${mercadilloBorrado}" class="alert alert-info"></div>
+                
                 <thead class="thead-dark">
                     <tr>
 
@@ -149,9 +149,9 @@
                                             class="form-control" th:placeholder="${mercadillo.foto3}">
                                         <label form="texto" style="width: 100%;" class="col-form-label col-sm-1">Escribe
                                             tu oferta</label>
-                                        <textarea id="texto" name="texto" th:value="${mercadillo.texto}" rows="4"
+                                        <textarea id="texto" name="texto" th:value="${mercadillo.texto}" rows="5"
                                             cols="50" style=" height: 180px; width: 98%; margin-top: 10px;"
-                                            maxlength="255" th:text="${mercadillo.texto}"></textarea>
+                                            maxlength="2000" th:text="${mercadillo.texto}"></textarea>
                                         <!-- <div th:if="${#fields.hasErrors('mercadillo.texto')}" th:errors="*{mercadillo.texto}"
                                     class="alert alert-danger"></div> -->
                                         <input type="hidden" id="id" th:value="${mercadillo.id}" name="id"

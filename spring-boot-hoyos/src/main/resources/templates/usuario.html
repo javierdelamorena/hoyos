@@ -169,7 +169,7 @@
         <div class="row" style="margin-top: 3%;">
           <div class="col-lg-2 btn" style="width: 100%;margin-bottom: 7%;
           background: #d9d4c3;">
-            <a id="botonesRutas" style="text-decoration: none;font-size: 20px;" th:href="@{/subirFotos}">
+            <a id="botonesRutas" style="text-decoration: none;font-size: 20px;" th:href="@{'/subirFotos?idUsuario='+${usuario.idUsuario}}">
               Subir Foto a
               Galeria</a>
           </div>
@@ -556,8 +556,8 @@
 
       type: 'get',
       dataType: "json",
-      //url: "https://cuevas-de-ayllon.com/propuesta",
-      url: "propuesta",
+      url: "https://hoyos.com.es/propuesta",
+      //url: "propuesta",
 
 
 
@@ -583,7 +583,7 @@
         html2 += '<div class="row">';
         html2 += '<div class="col-xs-5">';
         html2 += "<td style='padding:4%'>";
-        html2 += "<a  style='text-decoration: none;color:black;font-family: sans-serif;'  href=comentarios?idPropuesta=" + data[i].idPropuesta + "&idUsuario=" + usuarioId + ">" + data[i].titulo.toUpperCase() + "</a></td>";
+        html2 += "<a  style='text-decoration: none;color: #000000ba;font-family: sans-serif;font-weight: 550;'  href=comentarios?idPropuesta=" + data[i].idPropuesta + "&idUsuario=" + usuarioId + ">" + data[i].titulo.toUpperCase() + "</a></td>";
         html2 += '</div>';
         html2 += '</div>';
         html2 += "</tr>"
@@ -621,8 +621,8 @@
 
     $.ajax({
       type: 'POST',
-      url: "propuesta",
-      //url: "https://cuevas-de-ayllon.com/propuesta",
+      //url: "propuesta",
+      url: "https://hoyos.com.es/propuesta",
       data: { 'propuesta': texto, 'titulo': $('#titulo').val(), 'idUsuario': $('#idUsuario').val() },
       timeout: 5000,
 
@@ -678,8 +678,8 @@
         $('#staticBackdrop').append(propuestaRealizada);
         $.ajax({
           type: 'GET',
-          url: "enviarNotificacion",
-          //url: "https://cuevas-de-ayllon.com/enviarNotificacion",
+          //url: "enviarNotificacion",
+          url: "https://hoyos.com.es/enviarNotificacion",
 
           timeout: 5000,
 
@@ -731,8 +731,8 @@
 
     $.ajax({
       type: 'GET',
-      url: "mercadillo",
-      //url: "https://cuevas-de-ayllon.com/mercadillo",
+      //url: "mercadillo",
+      url: "https://hoyos.com.es/mercadillo",
       data: { 'idUsuario': idUsuario },
       timeout: 5000,
 

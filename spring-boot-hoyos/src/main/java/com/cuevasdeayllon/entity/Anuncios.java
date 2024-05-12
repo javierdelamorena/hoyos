@@ -32,6 +32,8 @@ public class Anuncios implements Serializable{
 	
 	private String audio_anuncio;
 	
+	private String pdf_anuncio;
+	
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	
@@ -93,6 +95,14 @@ public class Anuncios implements Serializable{
 
 	public void setAudio_anuncio(String audio_anuncio) {
 		this.audio_anuncio = audio_anuncio;
+	}
+
+	public String getPdf_anuncio() {
+		return pdf_anuncio;
+	}
+
+	public void setPdf_anuncio(String pdf_anuncio) {
+		this.pdf_anuncio = pdf_anuncio;
 	}
 	
 	

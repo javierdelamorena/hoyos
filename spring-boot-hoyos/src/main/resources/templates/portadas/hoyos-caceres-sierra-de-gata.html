@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pueblo de hoyos (Cáceres) </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Turismo rural caceres, Piscinas Naturales Sierra de Gata, Pueblo de hoyos" />
+
+  <meta name="viewport" content="width=500" />
+
+  <!-- <link rel="canonical" href="https://hoyos.com.es/hoyos-caceres-sierra-de-gata"> -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script th:src="@{/js/fecha.js}"></script>
+  <script th:src="@{/js/clima.js}"></script>
+  <script th:src="@{/js/mostrarBotones.js}"></script>
+  <script th:src="@{/js/lopdgdd.js}"></script>
+  <style>
+    #lopdgddd {
+      position: fixed;
+      padding: 10px 0 20px;
+      z-index: 1;
+      width: 100%;
+      bottom: 0;
+      margin: 0 auto;
+      background-color: #fdffde;
+      display: none;
+      /* default hide div */
+    }
+  
+    #lopdgddd .buttons {
+      clear: both;
+      padding: 5px 0;
+    }
+  
+    #lopdgddd .buttons a {
+      padding: 10px;
+      text-decoration: none;
+    }
+  
+    #lopdgddd .btn-accept {
+      background: #219234;
+      color: #fff;
+    }
+  
+    #lopdgddd .btn-conf {
+      background: #4783a7;
+      color: #fff;
+    }
+  
+    #lopdgddd .btn-info {
+      background: #219234;
+      color: #fff;
+    }
+  
+    #lopdgddd-modal .modal-content {
+      padding: 15px;
+    }
+  
+    #lopdgddd-modal .modal-content .content {
+      background: #eee;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  
+    #lopdgddd-modal .modal-content .buttons {
+      clear: both;
+      height: auto;
+      overflow: hidden;
+      padding: 10px 0;
+    }
+  
+    #lopdgddd-modal .modal-content .buttons a {
+      text-decoration: none;
+    }
+  
+    #lopdgddd-modal .modal-content .btn-close {
+      float: right;
+      position: absolute;
+      right: 25px;
+      top: 15px;
+      font-size: 2rem;
+    }
+  
+    #lopdgddd-modal .modal-content .btn-accept {
+      background: #219234;
+      color: #fff;
+      padding: 25px;
+    }
+  
+    #lopdgddd-modal .modal-content .btn-denied {
+      background: #4783a7;
+      color: #fff;
+      padding: 25px;
+    }
+  
+    @media screen and (max-width: 992px) {
+  
+      #lopdgddd {
+        font-size: 1rem;
+      }
+  
+      #lopdgddd .info {
+        font-size: 0.8rem
+      }
+  
+      #lopdgddd .buttons {
+        padding: 0px 0 0 5px;
+      }
+  
+      #lopdgddd-modal .modal-content .buttons a {
+        display: flex;
+        padding: 10px 10px 10px;
+        margin: 0 0 5px;
+      }
+  
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="row">
+    <header class="body" style="text-align: center;
+  color: #ffffff;
+  font-family: cursive;
+  border-radius: 10px;
+  height: 100%;">
+      <div th:replace="layouts/fragmentoprincipal :: idiomas" id="idiomas"></div>
+
+
+      <!-- lopdgdd -->
+
+
+      <div class="col-lg-5 " id="divCartel">
+        <div id="cartelHome" th:text="#{text.cliente.cartelhome}"></div>
+        <!-- <h3 class="tituloHeaderHome">Bienvenid@s a Cuevas de Ayllón</h3> -->
+
+      </div>
+
+
+      <div th:replace="layouts/fragmentoprincipal :: nombreFoto"></div>
+
+    </header>
+  </div>
+  <nav th:replace="layouts/fragmentoprincipal :: nav" id="navPrincipal"></nav>
+  <hr>
+
+  <div>
+    <div class="col-lg-2" id="textoExplicacion">
+      <img src="uploads/Escudo_de_Hoyos.svg.png" alt="" style="width: 80%;">
+    </div>
+
+
+    <div class="container col-lg-5 col-sm-12" id="divMedio">
+      <p style="margin-bottom: 15%;" id="textoPresentacion" th:text="#{text.cliente.textoHome}"></p>
+    </div>
+
+    <div id="lopdgddd">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-12 info">
+            <p>Utilizamos cookies propias para analizar nuestros servicios y de terceros para mostrarte publicidad
+              relacionada con tus preferencias en base a un perfil elaborado a partir de tus hábitos de navegación.
+              Puedes
+              obtener más información y configurar tus preferencias en "Configuración" y + "Info".</p>
+          </div>
+          <div class="col-md-4 col-sm-12 buttons">
+            <div class="buttons">
+              <a th:href="@{/}" class="btn-accept">Aceptar</a>
+              <a href="" class="btn-conf" data-bs-toggle="modal" data-bs-target=".lopdgddd-modal">Configuración</a>
+              <a href="" class="btn-info">+info</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside th:replace="layouts/fragmentoprincipal :: footer"></aside>
+
+  </div>
+
+  <div class="modal fade lopdgddd-modal" id="lopdgddd-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h3>Configuración de cookies</h3>
+          </div>
+          <div class="modal-body">
+            <p>En <strong>empresa</strong> usamos dos tipos de cookies. Las cookies requeridas y las cookies analíticas.
+            </p>
+            <p>Las <strong>cookies requeridas</strong> facilitan la navegación y la utilización de las diferentes
+              opciones
+              o servicios que ofrece la web como identificar la sesión, permitir el acceso a determinadas áreas,
+              facilitar
+              pedidos, compras, cumplimentación de formularios, inscripciones, seguridad, facilitar funcionalidades
+              (videos, redes sociales…). Por el buen funcionamiento de la web, dichas cookies no se pueden desactivar.
+            </p>
+            <p>Las <strong>cookies analíticas</strong> nos permiten reconocer y contar la cantidad de usuarios en
+              nuestro
+              sitio, ver cómo se mueven dentro de él y registrar los contenidos que los usuarios ven o son de mayor
+              interés. Esto nos ayuda a mejorar el servicio que ofrecemos, asegurando que nuestros usuarios encuentran
+              la
+              información que necesitan.</p>
+
+        </div>
+
+        <div class="buttons">
+          <a href="" class="btn-accept" data-bs-dismiss="modal">Permitir Cookies
+            Analíticas</a>
+          <a href="" class="btn-denied" data-bs-dismiss="modal">Rechazar Cookies
+            Analíticas</a>
+        </div>
+        </div>
+        </div>
+        </div>
+
+</body>
+
+<script type="text/javascript">
+  cookies_value = localStorage.getItem("lopdgdd_cookies")
+  if (cookies_value == 1 || cookies_value == null) {
+    // codigo de analytics
+  }
+</script>
+
+<style>
+  #cuevas {
+
+    animation-name: example;
+    animation-duration: 2s;
+  }
+
+  @keyframes example {
+    0% {
+      width: 1px;
+      font-size: 1px;
+      transform: rotate(0deg);
+
+    }
+
+    25% {
+      /* transform: rotate(45deg); */
+    }
+
+    50% {
+      /* transform: rotate(90deg); */
+    }
+
+    75% {
+      /* transform: rotate(180deg); */
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .borrar {
+    display: none;
+  }
+</style>
+<script>
+  const img = $('#cuevas').val();
+
+  var modWidth = '30%';
+  if ($(this).width(modWidth).addClass("borrar")) {
+
+
+
+
+
+
+
+  }
+</script>
+
+
+
+
+</html>

@@ -2,7 +2,8 @@
 
 $.ajax({
     type: 'GET',
-    url: "votacionPropuestasAjax",
+    //url: "votacionPropuestasAjax",
+    url:"https://hoyos.com.es/votacionPropuestasAjax",
 }).done(function (datos) {
 
     

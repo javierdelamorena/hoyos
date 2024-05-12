@@ -37,7 +37,7 @@
   <hr>
   <!-- <div class="row" style="margin-left: 8%;"> -->
   <div>
-    <div class="col-lg-2" id="textoExplicacion" >
+    <div class="col-lg-2" id="textoExplicacion">
       <hr>
       <p th:text="#{text.cliente.textotablon}">
         <!-- En esta sección ponemos todos los anuncios y eventos que se relizan en Hoyos. -->
@@ -135,7 +135,7 @@
       </div>
     </div>
 
-    <aside th:replace="layouts/fragmentoprincipal :: footer" ></aside>
+    <aside th:replace="layouts/fragmentoprincipal :: footer"></aside>
   </div>
   <script th:src="@{/js/jquery.min.js}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
@@ -172,8 +172,8 @@
     console.log('este es el id de la foto', idAnuncio);
     $.ajax({
       type: 'GET',
-      url: "anuncio",
-      //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+      //url: "anuncio",
+      url: "https://hoyos.com.es/anuncio",
       data: { 'idAnuncio': idAnuncio },
       // beforeSend: function(){
       //     $('#textoComentario').empty();
@@ -184,7 +184,7 @@
         // if (data.video_anuncio.slice((data.video_anuncio.lastIndexOf(".") - 1 >>> 0) + 2) === "mp4") {
 
 
-        $('#idFoto' + idAnuncio).append('<div class="embed-responsive embed-responsive-21by9"><video class="embed-responsive-item"   style=" margin: 10px; border-radius: 8px;width: 100%;height: 100%;" src="/spring-boot-hoyos/uploadsAnuncios/' + data.video_anuncio + '" controls autoplay ></video></div>');
+        $('#idFoto' + idAnuncio).append('<div class="embed-responsive embed-responsive-21by9"><video class="embed-responsive-item"   style=" margin: 10px; border-radius: 8px;width: 100%;height: 100%;" src="/uploadsAnuncios/' + data.video_anuncio + '" controls autoplay ></video></div>');
 
         $('#idBoton' + idAnuncio).hide();
       }
@@ -195,8 +195,8 @@
 
         $('#idFoto' + idAnuncio).append('<div class="embed-responsive embed-responsive-21by9">' +
           '<audio class="embed-responsive-item"   style=" margin: 10px; border-radius: 8px;width: 100%;"  controls autoplay>' +
-          '<source src="/spring-boot-hoyos/uploadsAnuncios/' + data.audio_anuncio + '" type="audio/ogg">' +
-          '<source src="/spring-boot-hoyos/uploadsAnuncios/' + data.audio_anuncio + '" type="audio/mpeg">' +
+          '<source src="/uploadsAnuncios/' + data.audio_anuncio + '" type="audio/ogg">' +
+          '<source src="/uploadsAnuncios/' + data.audio_anuncio + '" type="audio/mpeg">' +
           '</audio></div>');
 
         $('#idBoton' + idAnuncio).hide();
@@ -204,10 +204,17 @@
       // }
 
       else if (data.foto_anuncio != null) {
-        $('#idFoto' + idAnuncio).append('<a href="http://localhost:8080/spring-boot-hoyos/uploadsAnuncios/' + data.audio_anuncio + '" download><img class="img-thumbnail"  style=" margin: 10px; border-radius: 8px;" src="/spring-boot-hoyos/uploadsAnuncios/' + data.foto_anuncio + '"  /></a>');
+        $('#idFoto' + idAnuncio).append('<a href="http://localhost:8080/uploadsAnuncios/' + data.audio_anuncio + '" download><img class="img-thumbnail"  style=" margin: 10px; border-radius: 8px;" src="/uploadsAnuncios/' + data.foto_anuncio + '"  /></a>');
 
         $('#idBoton' + idAnuncio).hide();
-      } else {
+      }
+      else if (data.pdf_anuncio != null) {
+        $('#idFoto' + idAnuncio).append('<div class="embed-responsive embed-responsive-21by9">' +
+          ' <iframe class="embed-responsive-item"  src="/uploadsAnuncios/' + data.pdf_anuncio + '"style="width:100%; height:700px;" frameborder="0" ></iframe></div> ');
+
+        $('#idBoton' + idAnuncio).hide();
+      }
+      else {
         $('#idFoto' + idAnuncio).html('<p style="text-align:center;">Este anuncio no tiene imagen que mostrar</p>');
         $('#idBoton' + idAnuncio).hide();
       }

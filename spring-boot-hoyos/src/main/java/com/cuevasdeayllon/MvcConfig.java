@@ -20,7 +20,7 @@ public class MvcConfig implements WebMvcConfigurer{
 
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/login").setViewName("login");
-		registry.addViewController("/").setViewName("portadas/home");
+		registry.addViewController("/").setViewName("portadas/hoyos-caceres-sierra-de-gata");
 		registry.addViewController("/error_403").setViewName("error_403");	
 
 	}
@@ -55,44 +55,52 @@ public class MvcConfig implements WebMvcConfigurer{
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 
 
+//  registry.addResourceHandler("/uploads/**")
+// .addResourceLocations("file:/D:/TEMP/uploads/");
     registry.addResourceHandler("/uploads/**")
-    .addResourceLocations("file:/D:/TEMP/uploads/");
- // registry.addResourceHandler("/uploads/**")
- // .addResourceLocations("file:/uploads/");
+    .addResourceLocations("file:/uploads/");
+//  registry.addResourceHandler("/uploads1/**")
+// .addResourceLocations("file:/D:/TEMP/uploads1/");
+    registry.addResourceHandler("/uploads1/**")
+    .addResourceLocations("file:/uploads1/");
+//  registry.addResourceHandler("/uploadsGaleria/**")
+//  .addResourceLocations("file:/D:/TEMP/uploadsGaleria/");
   	registry.addResourceHandler("/uploadsGaleria/**")
-  	.addResourceLocations("file:/D:/TEMP/uploadsGaleria/");
-//	registry.addResourceHandler("/uploadsGaleria/**")
-//	.addResourceLocations("file:/uploadsGaleria/");
-  	registry.addResourceHandler("/uploadsAnuncios/**")
-  	.addResourceLocations("file:/D:/TEMP/uploadsAnuncios/");
+  	.addResourceLocations("file:/uploadsGaleria/");
 //	registry.addResourceHandler("/uploadsAnuncios/**")
-//	.addResourceLocations("file:/uploadsAnuncios/");
-  	registry.addResourceHandler("/imagenesRutas/**")		
-  	.addResourceLocations("file:/D:/TEMP/imagenesRutas/");
-//	registry.addResourceHandler("/imagenesRutas/**")
-//	.addResourceLocations("file:/imagenesRutas/");
-  	registry.addResourceHandler("/uploadsDocumentos/**")		
-  	.addResourceLocations("file:/D:/TEMP/uploadsDocumentos/");
-//	registry.addResourceHandler("/uploadsDocumentos/**")
-//	.addResourceLocations("file:/uploadsDocumentos/");
-  	registry.addResourceHandler("/uploadsMercadillo/**")		
-  	.addResourceLocations("file:/D:/TEMP/uploadsMercadillo/");
-//			registry.addResourceHandler("/uploadsMercadillo/**")
-//				.addResourceLocations("file:/uploadsMercadillo/");
-  	registry.addResourceHandler("/uploadsPiscina/**")		
-  	.addResourceLocations("file:/D:/TEMP/uploadsPiscina/");
-//			registry.addResourceHandler("/uploadsPiscina/**")
-//				.addResourceLocations("file:/uploadsPiscina/");
-  	registry.addResourceHandler("/uploadsHistoria/**")		
-  	.addResourceLocations("file:/D:/TEMP/uploadsHistoria/");
-//			registry.addResourceHandler("/uploadsPiscina/**")
-//				.addResourceLocations("file:/uploadsPiscina/");
-  	registry.addResourceHandler("/uploadsEnlaces/**")		
-  	.addResourceLocations("file:/D:/TEMP/uploadsEnlaces/");
-//			registry.addResourceHandler("/uploadsEnlaces/**")
-//				.addResourceLocations("file:/uploadsEnlaces/");
-	
-	}
+//	.addResourceLocations("file:/D:/TEMP/uploadsAnuncios/");
+  	registry.addResourceHandler("/uploadsAnuncios/**")
+  	.addResourceLocations("file:/uploadsAnuncios/");
+//	registry.addResourceHandler("/imagenesRutas/**")		
+//	.addResourceLocations("file:/D:/TEMP/imagenesRutas/");
+  	registry.addResourceHandler("/imagenesRutas/**")
+  	.addResourceLocations("file:/imagenesRutas/");
+//	registry.addResourceHandler("/uploadsDocumentos/**")		
+//	.addResourceLocations("file:/D:/TEMP/uploadsDocumentos/");
+  	registry.addResourceHandler("/uploadsDocumentos/**")
+  	.addResourceLocations("file:/uploadsDocumentos/");
+//	registry.addResourceHandler("/uploadsMercadillo/**")		
+//	.addResourceLocations("file:/D:/TEMP/uploadsMercadillo/");
+  	registry.addResourceHandler("/uploadsMercadillo/**")
+  	.addResourceLocations("file:/uploadsMercadillo/");
+//	registry.addResourceHandler("/uploadsPiscina/**")		
+//	.addResourceLocations("file:/D:/TEMP/uploadsPiscina/");
+  	registry.addResourceHandler("/uploadsPiscina/**")
+  	.addResourceLocations("file:/uploadsPiscina/");
+//	registry.addResourceHandler("/uploadsHistoria/**")		
+//	.addResourceLocations("file:/D:/TEMP/uploadsHistoria/");
+  	registry.addResourceHandler("/uploadsHistoria/**")
+  	.addResourceLocations("file:/uploadsHistoria/");
+//	registry.addResourceHandler("/uploadsEnlaces/**")		
+//	.addResourceLocations("file:/D:/TEMP/uploadsEnlaces/");
+  	registry.addResourceHandler("/uploadsEnlaces/**")
+    .addResourceLocations("file:/uploadsEnlaces/");
+//  registry.addResourceHandler("/uploadsIgualdad/**")		
+//  .addResourceLocations("file:/D:/TEMP/uploadsIgualdad/");
+  	registry.addResourceHandler("/uploadsIgualdad/**")
+  	.addResourceLocations("file:/uploadsIgualdad/");
+		
+		}
 
 
 

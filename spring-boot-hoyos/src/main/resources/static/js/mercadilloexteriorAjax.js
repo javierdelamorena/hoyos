@@ -21,8 +21,8 @@ function esElFinal() {
     console.log(pages);
     $.ajax({
         type: 'GET',
-        url: "mercadilloTodos",
-        //url: "https://cuevas-de-ayllon.com/salvarcomentario",
+        //url: "mercadilloTodos",
+        url:"https://hoyos.com.es/mercadilloTodos",
         data: { "page": pages },
 
     }).done(function (objetos) {
@@ -45,21 +45,21 @@ function esElFinal() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -109,21 +109,21 @@ function esElFinal() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -151,7 +151,7 @@ function esElFinal() {
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
                     html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                    html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
+                    html += '<div  style="padding: 3%;word-break: break-word;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
@@ -173,21 +173,21 @@ function esElFinal() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -215,7 +215,7 @@ function esElFinal() {
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
                     html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                    html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
+                    html += '<div  style="padding: 3%;word-break: break-word;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
@@ -235,21 +235,21 @@ function esElFinal() {
                     if (objetos[i].foto1) {
                         html += '<div class="carousel-item active">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto1 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto2) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto2 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
                     if (objetos[i].foto3) {
                         html += '<div class="carousel-item">';
 
-                        html += "<img src='/spring-boot-hoyos/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
+                        html += "<img src='/uploadsMercadillo/" + objetos[i].foto3 + "' class='d-block w-100'  alt='...'>";
 
                         html += '</div>';
                     }
@@ -277,7 +277,7 @@ function esElFinal() {
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Nombre: ' + objetos[i].nombre + ' </div>';
                     html += '<div class="col-lg-1" style="width: 100%;font-weight: 600;" id="textoMercadillo">Telefono: ' + objetos[i].telefono + ' </div>';
                     html += '<div class="col-lg-1" style="display: contents;align-items: center;word-break: break-all; align-items: center; margin: 0 0 1em 1em;">';
-                    html += '<div  style="padding: 3%;">' + objetos[i].texto + '</div>';
+                    html += '<div  style="padding: 3%;word-break: break-word;">' + objetos[i].texto + '</div>';
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
